@@ -1,0 +1,17 @@
+# common, PHPStorm
+.DS_Store
+.idea/*
+Thumbs.db
+
+*.sql
+
+# working: layout, wireframes etc
+working/*
+!working/.gitignore
+!working/layout
+
+# site
+www/*
+!www/.gitignore
+!www/local
+!www/robots.txt
