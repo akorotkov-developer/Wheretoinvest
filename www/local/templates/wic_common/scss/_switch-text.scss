@@ -1,0 +1,16 @@
+.switch-text {
+  margin: 0 0 0 $switch-height-med * 3;
+  display: block;
+}
+
+.switch.small .switch-text {
+  margin: 0 0 0 $switch-height-sml * 3;
+}
+
+.switch.tiny .switch-text {
+  margin: 0 0 0 $switch-height-tny * 3;
+}
+
+.switch.large .switch-text {
+  margin: 0 0 0 $switch-height-lrg * 3;
+}

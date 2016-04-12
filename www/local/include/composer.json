@@ -1,0 +1,18 @@
+{
+  "require": {
+    "pimple/pimple": "~3.0"
+  },
+  "autoload": {
+    "psr-0": {
+      "CUserTypeBool": "lib/",
+      "Cetera\\": "lib/"
+    },
+    "psr-4": {
+      "Wic\\": "app/"
+    },
+    "files": [
+      "app/common.php",
+      "app/handlers.php"
+    ]
+  }
+}

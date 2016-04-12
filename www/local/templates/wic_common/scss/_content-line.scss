@@ -1,0 +1,14 @@
+.content-line {
+  margin-bottom: rem-calc(50);
+}
+
+.content-line_image {
+  background: center no-repeat;
+  background-size: cover;
+  min-height: rem-calc(400);
+  padding: rem-calc(60 0);
+}
+
+.content-line_dark * {
+  color: $white;
+}

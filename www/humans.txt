@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Cetera Labs -- Создание сайтов. Поддержка сайтов. Корпоративный портал. CMS. eCommerce. -- https://twitter.com/ceteralabs
+
+# THANKS
+
+    <name>
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    Normalize.css, jQuery, Modernizr

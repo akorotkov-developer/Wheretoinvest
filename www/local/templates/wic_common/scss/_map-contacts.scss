@@ -1,0 +1,21 @@
+.map-contacts {
+  display: block;
+  position: relative;
+  margin: rem-calc(0 -25 -20);
+  background: $primary-color;
+  padding: 0 0 100%;
+}
+
+@media #{$medium} {
+  .map-contacts {
+    margin: rem-calc(-30 -25 -20 0);
+  }
+}
+
+.map-contacts__map {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

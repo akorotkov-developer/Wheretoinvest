@@ -1,0 +1,19 @@
+User-agent: *
+Crawl-delay: 1
+Disallow: /search/
+Disallow: /bitrix/
+Disallow: /*sort=
+Disallow: /*SORT=
+Disallow: /upload/
+
+User-agent: Yandex
+Crawl-delay: 1
+Disallow: /search/
+Disallow: /bitrix/
+Disallow: /*sort=
+Disallow: /*SORT=
+Disallow: /upload/
+
+Host: example.com
+
+Sitemap: http://example.com/sitemap_index.xml
