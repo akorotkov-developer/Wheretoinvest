@@ -11,7 +11,7 @@ working/*
 !working/layout
 
 # site
-www/*
+www/bitrix
 !www/.gitignore
 !www/local
 !www/robots.txt
