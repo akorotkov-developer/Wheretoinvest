@@ -3,7 +3,7 @@
 use Cetera\Tools\JsIncludes;
 
 JsIncludes::includeFiles('common');
-JsIncludes::injectVariable('#WIC_TEMPLATE_PATH#', WIC_TEMPLATE_PATH);
+JsIncludes::injectVariable('#SITE_TEMPLATE_PATH#', WIC_TEMPLATE_PATH);
 echo JsIncludes::showIncludes();
 
 
