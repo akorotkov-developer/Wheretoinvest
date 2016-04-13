@@ -1,0 +1,6 @@
+<?
+$sSectionName = "Банки";
+$arDirProperties = Array(
+
+);
+?>
