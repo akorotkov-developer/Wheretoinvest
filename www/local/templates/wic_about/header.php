@@ -18,4 +18,12 @@ require($_SERVER['DOCUMENT_ROOT'] . WIC_TEMPLATE_PATH . '/header.php');
 );?>
 
 
+<h1><?=$APPLICATION->ShowTitle(false)?></h1>
+
+
+<div class="panel radius right share">
+	<script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="small" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir" data-yashareTheme="counter"></div>
+</div>
+
+
 

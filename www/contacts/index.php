@@ -1,57 +1,30 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetPageProperty("title", "Контакты");
 $APPLICATION->SetTitle("Контакты");
-?>
-<p>Обратитесь к нашим специалистам и получите профессиональную консультацию по вопросам создания и покупки мебели (от дизайна, разработки технического задания до доставки мебели к Вам домой).</p>
+?><div class="row">
+        <div class="columns small-12 medium-7 large-8">
+            
+<h1>Контакты</h1>
 
-<p>Вы можете обратиться к нам по телефону, по электронной почте или договориться о встрече в нашем офисе. Будем рады помочь вам и ответить на все ваши вопросы. </p>
+  
 
-<h2>Телефоны</h2>
-
-<ul> 
-	<li>Телефон/факс:
-		<ul> 
-			<li><b>(495) 212-85-06</b></li>
-		</ul>
-	</li>
- 
-	<li>Телефоны:
-		<ul> 
-			<li><b>(495) 212-85-07</b></li>
-			<li><b>(495) 212-85-08</b></li>
-		</ul>
-	</li>
-</ul>
+<div class="panel radius right share">
+	<script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script><div class="yashare-auto-init b-share_theme_counter" data-yasharel10n="ru" data-yasharetype="small" data-yasharequickservices="vkontakte,facebook,twitter,odnoklassniki,moimir" data-yasharetheme="counter" data-yasharelink="http://wheretoinvest.ru/contacts"><span class="b-share b-share_type_small"><span class="b-share-btn__wrap"><a rel="nofollow" target="_blank" title="ВКонтакте" class="b-share__handle b-share__link b-share-btn__vkontakte" href="https://share.yandex.net/go.xml?service=vkontakte&amp;url=http%3A%2F%2Fwheretoinvest.ru%2Fcontacts&amp;title=%D0%9A%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D1%8B" data-service="vkontakte"><span class="b-share-icon b-share-icon_vkontakte"></span><span class="b-share-counter">0</span></a></span><span class="b-share-btn__wrap"><a rel="nofollow" target="_blank" title="Facebook" class="b-share__handle b-share__link b-share-btn__facebook" href="https://share.yandex.net/go.xml?service=facebook&amp;url=http%3A%2F%2Fwheretoinvest.ru%2Fcontacts&amp;title=%D0%9A%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D1%8B" data-service="facebook"><span class="b-share-icon b-share-icon_facebook"></span><span class="b-share-counter">0</span></a></span><span class="b-share-btn__wrap"><a rel="nofollow" target="_blank" title="Twitter" class="b-share__handle b-share__link b-share-btn__twitter" href="https://share.yandex.net/go.xml?service=twitter&amp;url=http%3A%2F%2Fwheretoinvest.ru%2Fcontacts&amp;title=%D0%9A%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D1%8B" data-service="twitter"><span class="b-share-icon b-share-icon_twitter"></span></a></span><span class="b-share-btn__wrap"><a rel="nofollow" target="_blank" title="Одноклассники" class="b-share__handle b-share__link b-share-btn__odnoklassniki" href="https://share.yandex.net/go.xml?service=odnoklassniki&amp;url=http%3A%2F%2Fwheretoinvest.ru%2Fcontacts&amp;title=%D0%9A%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D1%8B" data-service="odnoklassniki"><span class="b-share-icon b-share-icon_odnoklassniki"></span><span class="b-share-counter">0</span></a></span><span class="b-share-btn__wrap"><a rel="nofollow" target="_blank" title="Мой Мир" class="b-share__handle b-share__link b-share-btn__moimir" href="https://share.yandex.net/go.xml?service=moimir&amp;url=http%3A%2F%2Fwheretoinvest.ru%2Fcontacts&amp;title=%D0%9A%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D1%8B" data-service="moimir"><span class="b-share-icon b-share-icon_moimir"></span><span class="b-share-counter"></span></a></span><iframe style="display: none" src="//yastatic.net/share/ya-share-cnt.html?url=http%3A%2F%2Fwheretoinvest.ru%2Fcontacts&amp;services=vkontakte,facebook,twitter,odnoklassniki,moimir"></iframe></span></div>
+</div>
 
 <h2>Email</h2>
 
-<ul> 
-  <li><a href="mailto:info@example.ru">info@example.ru</a> &mdash; общие вопросы</li>
-  <li><a href="mailto:sales@example.ru">sales@example.ru</a> &mdash; приобретение продукции</li>
-  <li><a href="mailto:marketing@example.ru">marketing@example.ru</a> &mdash; маркетинг/мероприятия/PR</li>
-</ul>
+<p><a href="mailto:info@wheretoinvest.ru" title="Follow link">info@wheretoinvest.ru</a>&nbsp;</p>
 
-<h2>Офис в Москве</h2>
-<p><?$APPLICATION->IncludeComponent("bitrix:map.google.view", ".default", array(
-	"KEY" => "ABQIAAAAOSNukcWVjXaGbDo6npRDcxS1yLxjXbTnpHav15fICwCqFS-qhhSby0EyD6rK_qL4vuBSKpeCz5cOjw",
-	"INIT_MAP_TYPE" => "NORMAL",
-	"MAP_DATA" => "a:3:{s:10:\"google_lat\";s:7:\"55.7383\";s:10:\"google_lon\";s:7:\"37.5946\";s:12:\"google_scale\";i:13;}",
-	"MAP_WIDTH" => "600",
-	"MAP_HEIGHT" => "500",
-	"CONTROLS" => array(
-		0 => "LARGE_MAP_CONTROL",
-		1 => "MINIMAP",
-		2 => "HTYPECONTROL",
-		3 => "SCALELINE",
-	),
-	"OPTIONS" => array(
-		0 => "ENABLE_SCROLL_ZOOM",
-		1 => "ENABLE_DBLCLICK_ZOOM",
-		2 => "ENABLE_DRAGGING",
-	),
-	"MAP_ID" => ""
-	),
-	false
-);?></p>
+   
+             
+        </div>
+        
+        <div class="columns small-12 medium-5 large-4">
+             
+                 
 
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+                       
+        </div>
+    </div><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

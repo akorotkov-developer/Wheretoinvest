@@ -1,5 +1,5 @@
 <?
-$sSectionName = "Куда вложить - помощь в выборе банка и вклада";
+$sSectionName = "Куда вложить";
 $arDirProperties = array(
    "description" => "",
    "keywords" => "",

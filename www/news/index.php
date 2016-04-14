@@ -3,7 +3,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Новости");
 ?>
 <?$APPLICATION->IncludeComponent("bitrix:news", "ideas", Array(
-    "ADD_ELEMENT_CHAIN" => "N",	// Включать название элемента в цепочку навигации
+    "ADD_ELEMENT_CHAIN" => "Y",	// Включать название элемента в цепочку навигации
     "ADD_SECTIONS_CHAIN" => "Y",	// Включать раздел в цепочку навигации
     "AJAX_MODE" => "N",	// Включить режим AJAX
     "AJAX_OPTION_ADDITIONAL" => "",	// Дополнительный идентификатор
@@ -35,7 +35,7 @@ $APPLICATION->SetTitle("Новости");
     "HIDE_LINK_WHEN_NO_DETAIL" => "N",	// Скрывать ссылку, если нет детального описания
     "IBLOCK_ID" => "7",	// Инфоблок
     "IBLOCK_TYPE" => "Materials",	// Тип инфоблока
-    "INCLUDE_IBLOCK_INTO_CHAIN" => "Y",	// Включать инфоблок в цепочку навигации
+    "INCLUDE_IBLOCK_INTO_CHAIN" => "N",	// Включать инфоблок в цепочку навигации
     "LIST_ACTIVE_DATE_FORMAT" => "d.m.Y",	// Формат показа даты
     "LIST_FIELD_CODE" => "",	// Поля
     "LIST_PROPERTY_CODE" => "",	// Свойства
