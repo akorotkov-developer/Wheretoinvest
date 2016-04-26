@@ -18,7 +18,10 @@ class User extends \Cetera\User\User
     {
         return in_array(Config::GROUP_ADMIN, $this->getGroups());
     }
-
+    public function isPartner()
+    {
+        return in_array(Config::GROUP_PARTNER, $this->getGroups());
+    }
     /**
      * @param $args
      * @throws Exception

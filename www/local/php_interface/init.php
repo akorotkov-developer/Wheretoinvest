@@ -8,6 +8,7 @@
  */
 require(__DIR__ . "/../include/vendor/autoload.php");
 
+
 /**
  * инициализация приложения
  */

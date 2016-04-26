@@ -31,10 +31,11 @@
 
 <script src="<?=WIC_TEMPLATE_PATH;?>/js/vendor/jquery.min.js"></script>
 <script src="<?=WIC_TEMPLATE_PATH;?>/js/vendor/foundation/foundation.js"></script>
+<script src="<?=WIC_TEMPLATE_PATH;?>/js/vendor/foundation/foundation.tab.js"></script>
 <script src="<?=WIC_TEMPLATE_PATH;?>/js/vendor/foundation/foundation.alert.js"></script>
 <script src="<?=WIC_TEMPLATE_PATH;?>/js/vendor/foundation/foundation.equalizer.js"></script>
 <script src="<?=WIC_TEMPLATE_PATH;?>/js/vendor/foundation/foundation.slider.js"></script>
-<script src="<?=WIC_TEMPLATE_PATH;?>/js/vendor/foundation/foundation.tab.js"></script>
+
 <script src="<?=WIC_TEMPLATE_PATH;?>/js/vendor/foundation/foundation.topbar.js"></script>
 <script src="<?=WIC_TEMPLATE_PATH;?>/js/vendor/slick.min.js"></script>
 <script src="<?=WIC_TEMPLATE_PATH;?>/js/common.js"></script>

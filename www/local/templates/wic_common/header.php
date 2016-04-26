@@ -89,12 +89,12 @@ IncludeTemplateLangFile(__FILE__);
                     <div class="top-bar-section">
                         <ul class="left">
                             <ul class="left">
-                                <li class="active"><a href="/about">О проекте</a></li>
-                                <li class="active"><a href="/ideas">Виды вложений</a></li>
-                                <li class="active"><a href="/banks">Банки</a></li>
-                                <li class="active"><a href="/news">Новости</a></li>
-                                <li class="active"><a href="/contacts">Контакты</a></li>
-                                <li class="active"><a href="/auth">Личный кабинет</a></li>
+                                <li class="active"><a href="/about/">О проекте</a></li>
+                                <li class="active"><a href="/ideas/">Виды вложений</a></li>
+                                <li class="active"><a href="/banks/">Банки</a></li>
+                                <li class="active"><a href="/news/">Новости</a></li>
+                                <li class="active"><a href="/contacts/">Контакты</a></li>
+                                <li class="active"><a href="/personal/">Личный кабинет</a></li>
                             </ul>
                         </ul>
 
