@@ -1,5 +1,16 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
+$arComponentVariables = array('offer_id');
+
+
+$arVariableAliases = CComponentEngine::MakeComponentVariableAliases($arDefaultVariableAliases, $arParams['VARIABLE_ALIASES']);
+CComponentEngine::InitComponentVariables(false, $arComponentVariables, $arVariableAliases, $arVariables);
+
+
+
+$arResult = array('VARIABLES' => $arVariables, 'ALIASES' => $arVariableAliases);
+$arVarAliaces = $arParams['VARIABLE_ALIASES'];
+
 
 
 $hblockID = $arParams["HIGHLOAD_ID"];
@@ -13,7 +24,8 @@ $usr = new Wic\User\User($USER);
             "UF_USER_ID" => $USERID,
 
         );
-
+        if(!empty($arVariables["offer_id"]))
+            $filter["ID"] = $arVariables["offer_id"];
 
 
         $list = $hblock->getList(Array("filter" => $filter));
@@ -44,7 +56,14 @@ $usr = new Wic\User\User($USER);
         }
 
         if (!empty($_REQUEST["goorgreg"])) { // если отправлена форма
-            $list = $hblock->getList(Array("filter" => array("UF_USER_ID" => $USERID))); //ищем ячейку с организацией
+            $filter = array(
+                "UF_USER_ID" => $USERID,
+
+            );
+            if(!empty($arVariables["offer_id"]))
+                $filter["ID"] = $arVariables["offer_id"];
+            $list = $hblock->getList(Array("filter" => $filter)); //ищем ячейку с организацией
+
             $itemID = "";// ID ячейки
             if ($el = $list->fetch()) { // собираем массив
                 $itemID = $el["ID"];
@@ -59,31 +78,32 @@ $usr = new Wic\User\User($USER);
             }
 
             foreach($_FILES as $filename=>$file){ // загрузка изображений
-                $imageinfo = getimagesize($file["tmp_name"]);
-                if($imageinfo["mime"] != "image/gif" && $imageinfo["mime"] != "image/jpeg" && $imageinfo["mime"] !="image/png") {
-                   $arResult["ERRORS"][$filename] = "Недопустимый формат файла";
+                if(!empty($file["tmp_name"])){
+                    $imageinfo = getimagesize($file["tmp_name"]);
+                    if($imageinfo["mime"] != "image/gif" && $imageinfo["mime"] != "image/jpeg" && $imageinfo["mime"] !="image/png") {
+                       $arResult["ERRORS"][$filename] = "Недопустимый формат файла";
 
-                }else {
-                    //Сохранение загруженного изображения с расширением, которое возвращает функция getimagesize()
-                    //Расширение изображения
-                    $mime=explode("/",$imageinfo["mime"]);
-                    //Имя файла
-                    $namefile=explode(".",$file["name"]);
-                    //Полный путь к директории
-                    $uploaddir = $_SERVER['DOCUMENT_ROOT']."/upload/logos/";
-                    if(!is_dir($uploaddir))
-                        mkdir($uploaddir, 0777);
-                    //Функция, перемещает файл из временной, в указанную вами папку
-                    $pathnewfile = $uploaddir.$namefile[0].rand(0,1000).".".$mime[1];
-                    if (!move_uploaded_file($file["tmp_name"], $pathnewfile)) {
-                        $arResult["ERRORS"][$filename] = "Файл не был загружен";
                     }else {
-                        $makefile = CFile::MakeFileArray($pathnewfile);
-                        $updateInfo[$filename] = $makefile;
-                        unset($makefile);
+                        //Сохранение загруженного изображения с расширением, которое возвращает функция getimagesize()
+                        //Расширение изображения
+                        $mime=explode("/",$imageinfo["mime"]);
+                        //Имя файла
+                        $namefile=explode(".",$file["name"]);
+                        //Полный путь к директории
+                        $uploaddir = $_SERVER['DOCUMENT_ROOT']."/upload/logos/";
+                        if(!is_dir($uploaddir))
+                            mkdir($uploaddir, 0777);
+                        //Функция, перемещает файл из временной, в указанную вами папку
+                        $pathnewfile = $uploaddir.$namefile[0].rand(0,1000).".".$mime[1];
+                        if (!move_uploaded_file($file["tmp_name"], $pathnewfile)) {
+                            $arResult["ERRORS"][$filename] = "Файл не был загружен";
+                        }else {
+                            $makefile = CFile::MakeFileArray($pathnewfile);
+                            $updateInfo[$filename] = $makefile;
+                            unset($makefile);
+                        }
                     }
                 }
-
 
 
             }
@@ -99,16 +119,32 @@ $usr = new Wic\User\User($USER);
         $list = $hblock->getList(Array("filter" => $filter)); // получаем инфо
         $fields = $list->fetch();
         foreach($fields as $name=>$row){
-            if($name!= "ID" && $name != "UF_USER_ID")
+            if( $name != "UF_USER_ID")
             {
                 $arResult["FIELDS"][$name]["TITLE"] = $rowNames[$name]["EDIT_FORM_LABEL"];
-                $type = $rowNames[$name]["USER_TYPE_ID"];
+                $type = $rowNames["USER_TYPE_ID"];
                 $arResult["FIELDS"][$name]["TYPE"] = $type;
                 if($type=="file"){
                     $arResult["FIELDS"][$name]["VALUE"] = CFile::GetPath($row);
-                }else{
+
+                }elseif($name == "ID") {
                     $arResult["FIELDS"][$name]["VALUE"] = $row;
+                }else{
+
+                    $arResult["FIELDS"][$name]["VALUE"]  = call_user_func_array(
+                        array($rowNames[$name]["USER_TYPE"]["CLASS_NAME"], "getadminlistedithtml"),
+                        array(
+                            $rowNames[$name],
+                            array(
+                                "NAME" => $rowNames[$name]["FIELD_NAME"],
+                                "VALUE" => htmlspecialcharsbx($row)
+                            )
+                        )
+                    );
                 }
+
+
+
 
 
             }

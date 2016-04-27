@@ -21,7 +21,9 @@ $arComponentParameters = array(
 
 
 
-		)
+		),
+
+
 	)
 );
 ?>

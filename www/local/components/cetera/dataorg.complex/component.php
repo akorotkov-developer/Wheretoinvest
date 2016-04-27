@@ -1,6 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
-
+$arVariables = array();
 $arComponentVariables = array('offer_id');
 
 
@@ -24,9 +24,11 @@ $arVarAliaces = $arParams['VARIABLE_ALIASES'];
           break;
     case 3:
 
-          if(!empty($arVariables["offer_id"])){
+          if($_REQUEST["EDIT"]=="Y"){
               $componentPage="edit";
-          }else {
+          }elseif(!empty($arVariables["offer_id"])) {
+              $componentPage = "show";
+          }else{
               $componentPage = "list";
           }
           $arParams["HIGHLOAD_ID"] = $arParams["TYPEPAGE"];

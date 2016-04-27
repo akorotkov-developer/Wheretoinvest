@@ -7,8 +7,10 @@
             <?foreach($arResult["FIELDS"] as $arKey=>$arItem):?>
 
                 <?
+
                 if(!empty($arResult["ERRORS"][$arKey]))
                     echo $arResult["ERRORS"][$arKey];
+
                 switch ($arItem["TYPE"]):
                     case "file":
                     ?>
@@ -18,11 +20,16 @@
                     <?
                       break;
                     default:
-                    ?>
-                        <label><?=$arItem["TITLE"];?></label>
-                        <input type="text" name="<?=$arKey;?>" value="<?=$arItem["VALUE"];?>">
 
-                    <?
+                        if($arKey!="ID") {
+                            ?>
+
+                            <label><?= $arItem["TITLE"]; ?></label>
+                            <?= $arItem["VALUE"]; ?>
+                            <br>
+                            <?
+                        }
+
                     endswitch;
                 ?>
 

@@ -20,9 +20,11 @@
                     <?
                       break;
                     default:
-                    ?>
+                        if($arKey!="ID"):?>
+
                         <p><?=$arItem["TITLE"];?> : <?=$arItem["VALUE"];?></p>
                     <?
+                        endif;
                     endswitch;
                 ?>
 

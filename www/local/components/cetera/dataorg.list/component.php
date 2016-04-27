@@ -38,7 +38,7 @@ $usr = new Wic\User\User($USER);
 
 
 
-                if($name!= "ID" && $name != "UF_USER_ID")
+                if( $name != "UF_USER_ID")
                 {
                     $arResult["FIELDS"][$key][$name]["TITLE"] = $rowNames[$name]["EDIT_FORM_LABEL"];
                     $type = $rowNames[$item]["USER_TYPE_ID"];
@@ -56,8 +56,8 @@ $usr = new Wic\User\User($USER);
                         $arResult["FIELDS"][$key][$name]["VALUE"] = implode(", ", $RegionsAr);
                         unset($RegionsAr);
 
-
-
+                    }elseif($name == "ID") {
+                        $arResult["FIELDS"][$key][$name]["VALUE"] = $row;
                     }else{
 
                         $arResult["FIELDS"][$key][$name]["VALUE"]  = call_user_func_array(
