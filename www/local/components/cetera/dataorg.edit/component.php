@@ -19,6 +19,29 @@ $usr = new Wic\User\User($USER);
     if($usr->isPartner()) { // Проверяем, является ли пользователь партнером
 
         $hblock = new Cetera\HBlock\SimpleHblockObject($hblockID); // Подцепляем нужный хайблок
+
+        $regionBlock = new Cetera\HBlock\SimpleHblockObject(5); // Подцепляем блок с регионами
+
+        $reglol = $regionBlock->getArray();
+
+        $regList = $regionBlock->getList();
+
+        $Regions = $regList->fetchAll();
+
+
+        foreach($Regions as $region){
+            $newRegions[$region["ID"]] = $region["UF_REGION_NAME"];
+        }
+
+
+        $fp = fopen($_SERVER["DOCUMENT_ROOT"]."/regions.json", "w");
+
+
+        fwrite($fp, json_encode($newRegions));
+
+
+        fclose($fp);
+
         $rowNames = $hblock->getHblockEntityFields();
         $filter = array(
             "UF_USER_ID" => $USERID,
@@ -129,7 +152,12 @@ $usr = new Wic\User\User($USER);
 
                 }elseif($name == "ID") {
                     $arResult["FIELDS"][$name]["VALUE"] = $row;
-                }else{
+                }elseif($name == "UF_REGION") {
+
+                   // $arResult["FIELDS"][$name]["VALUE"] = '<div contenteditable="true" style="border: 1px solid #cccccc;height: 40px;padding: 5px;" class="js-regions regions">'.implode(" ", $row).'</div>';
+                    $arResult["FIELDS"][$name]["VALUE"] = '<ul id="myTags"><li>fdf</li></ul>';
+                }
+                else{
 
                     $arResult["FIELDS"][$name]["VALUE"]  = call_user_func_array(
                         array($rowNames[$name]["USER_TYPE"]["CLASS_NAME"], "getadminlistedithtml"),

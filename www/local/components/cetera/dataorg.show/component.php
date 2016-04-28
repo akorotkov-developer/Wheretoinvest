@@ -38,10 +38,7 @@ $usr = new Wic\User\User($USER);
             "UF_USER_ID" => $USERID,
 
         );
-        if($hblockID != 1){
-            if(!empty($arVariables["offer_id"]))
-                $filter["ID"] = $arVariables["offer_id"];
-        }
+
         $list = $hblock->getList(Array("filter" => $filter));
 
 

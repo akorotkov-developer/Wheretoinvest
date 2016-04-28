@@ -28,14 +28,17 @@
     </div>
 </div>
 
-
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+<link href="<?=WIC_TEMPLATE_PATH;?>/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+<link href="<?=WIC_TEMPLATE_PATH;?>/css/jquery-ui.css" rel="stylesheet" type="text/css">
 <script src="<?=WIC_TEMPLATE_PATH;?>/js/vendor/jquery.min.js"></script>
 <script src="<?=WIC_TEMPLATE_PATH;?>/js/vendor/foundation/foundation.js"></script>
 <script src="<?=WIC_TEMPLATE_PATH;?>/js/vendor/foundation/foundation.tab.js"></script>
 <script src="<?=WIC_TEMPLATE_PATH;?>/js/vendor/foundation/foundation.alert.js"></script>
 <script src="<?=WIC_TEMPLATE_PATH;?>/js/vendor/foundation/foundation.equalizer.js"></script>
 <script src="<?=WIC_TEMPLATE_PATH;?>/js/vendor/foundation/foundation.slider.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?=WIC_TEMPLATE_PATH;?>/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?=WIC_TEMPLATE_PATH;?>/js/vendor/foundation/foundation.topbar.js"></script>
 <script src="<?=WIC_TEMPLATE_PATH;?>/js/vendor/slick.min.js"></script>
 <script src="<?=WIC_TEMPLATE_PATH;?>/js/common.js"></script>

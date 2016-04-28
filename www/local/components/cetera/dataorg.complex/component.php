@@ -24,10 +24,8 @@ $arVarAliaces = $arParams['VARIABLE_ALIASES'];
           break;
     case 3:
 
-          if($_REQUEST["EDIT"]=="Y"){
+          if(!empty($arVariables["offer_id"])){
               $componentPage="edit";
-          }elseif(!empty($arVariables["offer_id"])) {
-              $componentPage = "show";
           }else{
               $componentPage = "list";
           }

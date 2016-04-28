@@ -1,7 +1,39 @@
-;(function ($) {
+(function ($) {
     $(function () {
         "use strict";
 
+
+
+        $.getJSON('/regions.json', function(data){
+            //$('.js-regions').html('');
+            $("#myTags").tagit( {
+                availableTags: data
+            });
+            window.olo =  new Array();
+            $.each( data, function( key, value ) {
+
+               window.olo = window.olo + value;
+            });
+            console.log(window.olo);
+        });
+        if($('.js-regions').length){
+
+
+            var regions = $('.js-regions').html().split(' ');
+             $.getJSON('/regions.json', function(data){
+                 $('.js-regions').html('');
+                 $.each( regions, function( key, value ) {
+
+                     var div = '<span class="js-region region" style="border: 1px solid #cccccc;height: 40px;padding: 0px 5px;'
+                     +'margin: 0px 5px;" contenteditable="false">'+data[value]+'</span>';
+                     $('.js-regions').append(div);
+                 });
+
+            });
+
+
+
+        }
 
         $(document).foundation({
             equalizer : {

@@ -21,6 +21,7 @@ $usr = new Wic\User\User($USER);
         foreach($Regions as $region){
             $newRegions[$region["ID"]] = $region["UF_REGION_NAME"];
         }
+
         $filter = array(
             "UF_USER_ID" => $USERID,
 
