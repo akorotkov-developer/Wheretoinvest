@@ -7608,7 +7608,9 @@ th.hide-for-touch {
     float: left;
     margin-bottom: 0; }
   .b-offers__res {
-    float: right; } }
+    float: right; }
+  .b-offers__res2 {
+    float: none; } }
 .b-footer {
   margin-top: 3.75rem;
   background: #202020;
