@@ -16,8 +16,28 @@ IncludeTemplateLangFile(__FILE__);
         <title><?php $APPLICATION->ShowTitle()?></title>
 
 
-        <link rel="icon" href="<?=WIC_TEMPLATE_PATH;?>/images/favicon-96.png" type="image/x-icon">
-        <link rel="shortcut icon" href="<?=WIC_TEMPLATE_PATH;?>/images/favicon-96.png" type="image/x-icon">
+        <link rel="icon" href="<?=WIC_TEMPLATE_PATH;?>/uploads/favicon-96.png" type="image/x-icon">
+        <link rel="shortcut icon" href="<?=WIC_TEMPLATE_PATH;?>/uploads/favicon-96.png" type="image/x-icon">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-29x29.png">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-40x40.png">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-50x50.png">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-58x58.png">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-80x80.png">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-87x87.png">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-100x100.png">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-167x167.png">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-180x180.png">
+        <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-1024x1024.png">
+
+
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
