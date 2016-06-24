@@ -39,7 +39,7 @@ $usr = new Wic\User\User($USER);
 
 
 
-                if( $name != "UF_USER_ID")
+                if( $name != "UF_USER_ID" && $name !="UF_METHOD")
                 {
                     $arResult["FIELDS"][$key][$name]["TITLE"] = $rowNames[$name]["EDIT_FORM_LABEL"];
                     $type = $rowNames[$item]["USER_TYPE_ID"];
