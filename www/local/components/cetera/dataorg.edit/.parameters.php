@@ -12,6 +12,14 @@ $arComponentParameters = array(
 
 
 		),
+		"METHOD" => array(
+
+			"NAME" => "Вид вложения",
+			"TYPE" => "STRING",
+
+
+
+		),
 
 
 	)

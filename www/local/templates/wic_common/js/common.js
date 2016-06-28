@@ -1,8 +1,26 @@
 (function ($) {
     $(function () {
         "use strict";
+        $('[name="orginfo"]').on('submit',function(){
+            $('body .js-cols').each(function(i,elem) {
+              //  alert(i)
+            });
+            //return false;
+        });
+        $('body ').on('click','.js-addcols',function(){
+            $('.js-cols').append(
+                '<div class="input-group"><input type="text" name="sum[]" class="js-col1 input-group-field"><span class="input-group-label">—</span>'
+            +'<input type="text" name="sum2[]" class="js-col2 input-group-field"><div class="input-group-button"><button type="button" class="button hollow success js-addcols">Добавить</button>'
+                +'</div>                </div>');
 
-
+        });
+        $('body ').on('click','.js-addrows',function(){
+            $('.js-rows').append(
+                '<div class="row collapse" ><div class="column small-6"><div class="input-group"><input type="text"  name="day[]" class="js-row1 input-group-field"><span class="input-group-label">—</span>'
+            + '<input type="text" name="day2[]" class="js-row2 input-group-field">                </div>                </div>'
+            +'<div class="column small-4 large-3"><select name="day3[]" class="js-row3"><option selected="" value="1">Дней</option><option value="2">Месяцев</option><option value="3">Лет</option></select>'
+              +'  </div><div class="column small-12 large-3"><button type="button" class="button hollow success js-addrows">Добавить</button></div> </div>');
+        });
 
         $.getJSON('/regions.json', function(data){
             //$('.js-regions').html('');

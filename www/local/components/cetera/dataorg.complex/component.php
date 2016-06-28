@@ -24,9 +24,14 @@ $arVarAliaces = $arParams['VARIABLE_ALIASES'];
           break;
     case 3:
 
-          if(!empty($arVariables["offer_id"])){
+          if(!empty($arVariables["offer_id"] && !empty($_REQUEST["EDIT"]) && $_REQUEST["EDIT"]=="Y")){
               $componentPage="edit";
-          }else{
+          }elseif(!empty($arVariables["offer_id"])){
+              $componentPage="show";
+          }elseif( !empty($_REQUEST["NEW"]) && $_REQUEST["NEW"]=="Y"){
+              $componentPage="edit";
+            }
+          else{
               $componentPage = "list";
           }
           $arParams["HIGHLOAD_ID"] = $arParams["TYPEPAGE"];

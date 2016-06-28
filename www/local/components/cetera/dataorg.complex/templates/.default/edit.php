@@ -7,7 +7,8 @@ $APPLICATION->IncludeComponent(
     Array(
 
         "HIGHLOAD_ID" => $arParams["HIGHLOAD_ID"],
-        "VARIABLE_ALIASES"=>$arParams["VARIABLE_ALIASES"]
+        "VARIABLE_ALIASES"=>$arParams["VARIABLE_ALIASES"],
+        "METHOD"=>$arParams["METHOD"]
     ),
     $component
 );?>
