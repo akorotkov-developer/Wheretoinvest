@@ -42,7 +42,7 @@
         <?}?>
 
 
-        <a href="/cabinet/partner/offers/?NEW=Y">Создать предложение</a>
+        <a href="?NEW=Y">Создать предложение</a>
 
 
     <?else:

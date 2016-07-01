@@ -284,6 +284,10 @@ $usr = new Wic\User\User($USER);
                     $arResult["FIELDS"][$name]["VALUE"] = '<input type="hidden" value="'.$arParams["METHOD"].'" name="UF_METHOD">';
                 */}
                 else{
+                    if($name=="UF_METHOD" && $_REQUEST["NEW"]=="Y"){
+                        $row = $arParams["METHOD"];
+
+                    }
 
                     $arResult["FIELDS"][$name]["VALUE"]  = call_user_func_array(
                         array($rowNames[$name]["USER_TYPE"]["CLASS_NAME"], "getadminlistedithtml"),

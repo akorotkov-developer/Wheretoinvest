@@ -6,7 +6,8 @@ $APPLICATION->IncludeComponent(
     "",
     Array(
 
-        "HIGHLOAD_ID" => $arParams["HIGHLOAD_ID"]
+        "HIGHLOAD_ID" => $arParams["HIGHLOAD_ID"],
+        "METHOD"=>$arParams["METHOD"]
     ),
     $component
 );?>

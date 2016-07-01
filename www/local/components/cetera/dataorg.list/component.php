@@ -27,6 +27,10 @@ $usr = new Wic\User\User($USER);
 
         );
 
+        if($hblockID == 3){
+            $filter["UF_METHOD"] = $arParams["METHOD"];
+
+        }
 
 
         $list = $hblock->getList(Array("filter" => $filter));

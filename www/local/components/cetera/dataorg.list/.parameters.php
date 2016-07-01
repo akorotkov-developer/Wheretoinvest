@@ -13,6 +13,22 @@ $arComponentParameters = array(
 
 		),
 
+		"METHOD" => array(
+
+			"NAME" => "Вид вложения(для редактирования)",
+			"TYPE" => "LIST",
+			"VALUES"=>array(
+				3=> "Банковские вклады",
+
+				6=> "Займы",
+
+
+			)
+
+
+
+		),
+
 	)
 );
 ?>
