@@ -206,8 +206,31 @@
 
 @media #{$small-only} {
   .b-offers {
+    &__profit {
+      padding-left: 6px;
+      padding-right: 0;
+    }
     padding-left: 0;
     padding-right: 0;
+
+    &__arrows {
+      left: calc(300% - 22px);
+      display: block;
+      top: 58px;
+    }
+
+    &__logo {
+      padding-top: 4px;
+      width: 100%;
+      display: inline-block;
+    }
+    &__name {
+      padding-top: 0;
+      text-align: center;
+      display: inline-block;
+      line-height: 2.4;
+      width: 100%;
+    }
     .first {
       .b-offers__title {
         font-size: 0;
@@ -226,9 +249,6 @@
     &__item {
       line-height: rem-calc(40);
 
-    }
-    &__prof {
-      padding: 0;
     }
     &__more {
       line-height: normal;
@@ -250,11 +270,17 @@
 
     &__label {
       float: left;
+      width: 47%;
+      padding-top: 4px;
+      text-align: left;
       margin-bottom: 0;
     }
 
     &__res {
-      float: right;
+      float: left;
+      width: 53%;
+      padding-left: 8px;
+      text-align: left;
     }
     &__res2 {
       float: none;
