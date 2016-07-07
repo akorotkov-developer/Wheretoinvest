@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]><html class="no-js ie lt-ie9 lt-ie8 lt-ie7" lang="en"><![endif]-->
-<!--[if IE 7]><html class="no-js ie ie7 lt-ie9 lt-ie8" lang="en"><![endif]-->
-<!--[if IE 8]><html class="no-js ie ie8 lt-ie9" lang="en"><![endif]-->
-<!--[if IE 9]><html class="no-js ie ie9" lang="en"><![endif]-->
-<!--[if !IE]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js ie lt-ie9 lt-ie8 lt-ie7" lang="en"><![endif]-->
+<!--[if IE 7]>
+<html class="no-js ie ie7 lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if IE 8]>
+<html class="no-js ie ie8 lt-ie9" lang="en"><![endif]-->
+<!--[if IE 9]>
+<html class="no-js ie ie9" lang="en"><![endif]-->
+<!--[if !IE]><!-->
+<html class="no-js" lang="en"><!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Главная страница</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="copyright" content="Создание сайтов - Cetera Labs, www.cetera.ru, 2015" />
-    <meta name="author" content="Cetera Labs, http://www.cetera.ru/, создание сайтов, поддержка сайтов, продвижение сайтов" />
-    <meta name="cmsmagazine" content="f21b68cb09efe1a7161ca2caaacaf749" />
+    <meta name="copyright" content="Создание сайтов - Cetera Labs, www.cetera.ru, 2015"/>
+    <meta name="author"
+          content="Cetera Labs, http://www.cetera.ru/, создание сайтов, поддержка сайтов, продвижение сайтов"/>
+    <meta name="cmsmagazine" content="f21b68cb09efe1a7161ca2caaacaf749"/>
 
     <link rel="stylesheet" href="css/style.css">
 
@@ -48,16 +54,16 @@
         <div class="row">
             <div class="column small-12">
                 <ul class="b-header__menu">
-                   <li class="b-header__menu-item">
-                      <a href="#" class="b-header__menu-link">Все способы</a>
-                   </li>
+                    <li class="b-header__menu-item">
+                        <a href="#" class="b-header__menu-link">Все способы</a>
+                    </li>
                     <li class="b-header__menu-item">
                         <a href="#" class="b-header__menu-link">Банковские вклады</a>
                     </li>
                     <li class="b-header__menu-item">
                         <a href="#" class="b-header__menu-link">Займы</a>
                     </li>
-                    <li class="b-header__menu-item">
+                    <li class="b-header__menu-item hide-for-small-only">
                         <a href="#" class="b-header__menu-link">Облигации</a>
                     </li>
                     <li class="b-header__menu-item">
@@ -90,26 +96,33 @@
 </section>
 
 <section class="b-sort row">
-    <div class="column medium-7">
-        <span class="b-sort__label">Сумма:</span>
+    <div class="b-sort__arr"></div>
+    <div class="columns b-sort__all">100 000 000 ₽ на 1 год</div>
+    <div class="b-sort__main">
 
-        <input type="text" class="b-sort__inp" placeholder="1000000">
-    </div>
-    <div class="column small-3 medium-1">
-        <span class="b-sort__label">Валюта:</span>
-        <select>
-            <option>р</option>
-            <option>е</option>
-            <option>$</option>
-        </select>
-    </div>
-    <div class="column small-9 medium-4">
-        <span class="b-sort__label">Срок:</span>
-        <select>
-            <option>1 год</option>
-            <option>3 года и более</option>
-            <option>20 лет</option>
-        </select>
+
+        <div class="column medium-7">
+            <span class="b-sort__label">Сумма:</span>
+
+            <input type="text" class="b-sort__inp" value="10 000 000">
+        </div>
+        <div class="column small-3 medium-1">
+            <span class="b-sort__label">Валюта:</span>
+            <select>
+                <option>₽</option>
+                <option>€</option>
+                <option>$</option>
+            </select>
+        </div>
+        <div class="column small-9 medium-4">
+            <span class="b-sort__label">Срок:</span>
+            <select>
+                <option>1 год</option>
+                <option>3 года и более</option>
+                <option>20 лет</option>
+            </select>
+        </div>
+
     </div>
 </section>
 <section class="b-offers ">
@@ -124,7 +137,7 @@
         </div>
         <div class="column medium-3 hide-for-small-only">
             <div class="b-offers__th">
-                <a href="#"  class="b-offers__title">
+                <a href="#" class="b-offers__title">
                     Способы вложения
                 </a>
 
@@ -132,7 +145,7 @@
         </div>
         <div class="column medium-2 small-4">
             <div class="b-offers__th">
-                <a href="#"  class="b-offers__title">
+                <a href="#" class="b-offers__title">
                     Доходность
                 </a>
 
@@ -140,21 +153,21 @@
         </div>
         <div class="column medium-2 small-4">
             <div class="b-offers__th">
-                <a href="#"  class="b-offers__title">
+                <a href="#" class="b-offers__title">
                     Надежность
                 </a>
 
             </div>
         </div>
         <div class="column medium-1 show-for-medium-up">
-            <div class="b-offers__th">&nbsp;</div>
+            <div class="b-offers__th b-offers__th_last">&nbsp;</div>
         </div>
     </div>
     <div class="b-offers__item row">
         <div class="column medium-4 small-4 b-offers__firsttd">
-           <div class="b-offers__logo">
-               <img src="images/logo1.png">
-           </div>
+            <div class="b-offers__logo">
+                <img src="images/logo1.png">
+            </div>
             <div class="b-offers__name">
                 Альфа банк
             </div>
@@ -278,7 +291,7 @@
 
                 </div>
                 <div class="column medium-3" data-equalizer-watch="">
-                    <a href="#" class="b-offers__link">На сайт банка</a>
+                    <a href="#" class="b-offers__link">Перейти на сайт</a>
                 </div>
             </div>
         </div>
@@ -431,8 +444,8 @@
             <form class="b-footer__form">
                 <div class="b-footer__smalltext">Подписаться на рассылку</div>
                 <div class="row collapse ">
-                   <div class="small-10 columns">
-                        <input type="text" placeholder="youremail@yandex.ru" />
+                    <div class="small-10 columns">
+                        <input type="text" placeholder="youremail@yandex.ru"/>
                     </div>
                     <div class="small-2 columns end">
                         <input type="submit" class="b-footer__postfix">

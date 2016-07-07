@@ -105,9 +105,9 @@
       width: 100%;
       background: #ebebeb url("../images/img1.png") no-repeat center center;
       height: 50px;
-&.js-toggle {
-  background: #ebebeb url("../images/cross.png") no-repeat center center;;
-}
+      &.js-toggle {
+        background: #ebebeb url("../images/cross.png") no-repeat center center;;
+      }
       &_bg {
         border-right: 1px solid #fff;
         padding: 0;
@@ -155,7 +155,8 @@
       padding-top: 33px;
       &-item {
         float: left;
-
+        padding-left: 17px;
+        padding-right: 16px;
         width: 120px;
         height: 120px;
         margin-right: 21px;
