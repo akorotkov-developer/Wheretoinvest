@@ -5,6 +5,13 @@
   padding-bottom: rem-calc(60);
   color: #d2d2d2;
   font-weight: 300;
+  &__cetera {
+    color: #e53935;
+    &:hover {
+      text-decoration: underline;
+      color: #e53935;
+    }
+  }
 
   &__link {
     font-size: rem-calc(14);
@@ -49,8 +56,38 @@
   &__icons {
     font-size: 0;
     margin-bottom: rem-calc(10);
+    img {
+      width: 32px;
+    }
   }
   &__icon {
     margin-right: rem-calc(5);
   }
+}
+@media (max-width:640px) {
+    .b-footer {
+      padding-bottom: 32px;
+      &__copyr {
+        margin-top: 98px;
+        font-size: 12px;
+      }
+      &__icon {
+        margin-right: 14px;
+      }
+      &__icons {
+        position: absolute;
+        top: 267px;
+        z-index: 10;
+        text-align: center;
+        width: calc(100%  - 20px);
+
+        img {
+          width: 48px;
+        }
+      }
+      padding-left: 17px;
+      padding-top: 23px;
+      padding-right: 17px;
+      margin-top: 50px;
+    }
 }

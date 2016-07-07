@@ -50,6 +50,9 @@
 
     &:hover {
       background: #fef2d2;
+      .b-offers__stars {
+        background: url("../images/star-active.png") no-repeat center center;
+      }
 
       .b-offers__arrows {
         display: block;
@@ -174,6 +177,7 @@
     display: block;
     position: absolute;
     bottom: rem-calc(10);
+    background: #fff;
     left: rem-calc(15);
     text-transform: uppercase;
   }
@@ -192,7 +196,7 @@
     line-height: rem-calc(44);
     border: rem-calc(1) solid #e6e6e6;
     border-radius: rem-calc(100);
-    color: #202020;
+    color: #202020;font-weight: 700;
     text-transform: uppercase;
 
     span {
@@ -206,6 +210,27 @@
 
 @media #{$small-only} {
   .b-offers {
+    &__bottom {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    &__best {
+      border-top: 1px solid #ebebeb;
+      padding-top: 17px;
+      padding-bottom: 25px;
+    }
+    &__liked {
+      color: #202020;
+      font-size: 12px;
+      display: inline-block;
+      width: calc(100% - 37px);
+      font-weight: 700;
+      padding-left: 9px;
+
+    }
+    &__stars {
+      margin-top: 0px;
+    }
     &__profit {
       padding-left: 6px;
       padding-right: 0;
@@ -257,7 +282,12 @@
     &__link {
       position: static;
       text-align: center;
-
+      width:calc(100% - 20px);
+      margin-left: 10px;
+      margin-bottom: 17px;
+    }
+    &__prof {
+      padding-top: 33px;
     }
     &__type {
       padding: 0;
@@ -281,6 +311,9 @@
       width: 53%;
       padding-left: 8px;
       text-align: left;
+      .b-offers__prof {
+        padding-top: 0;
+      }
     }
     &__res2 {
       float: none;
