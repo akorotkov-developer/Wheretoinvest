@@ -3,9 +3,24 @@
   margin-bottom: rem-calc(30);
 
 
-  &__laber {
+  &__label {
     font-size: rem-calc(12);
     color: #9e9e9e;
     margin-bottom: rem-calc(10);
   }
+}
+@media (max-width:640px) {
+    .b-sort {
+      margin-bottom: 13px;
+      padding-top: 25px;
+      .b-sort__inp {
+        margin-bottom: 9px;
+      }
+      &__label {
+        color: #202020;
+        margin-bottom: 7px;
+        display: block;
+
+      }
+    }
 }

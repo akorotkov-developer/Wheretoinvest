@@ -22,10 +22,10 @@
 
 <header class="b_header">
     <div class="b-header__firstline row">
-        <div class="small-8 medium-5 column small-only-text-center">
+        <div class="small-8 small-offset-2 medium-offset-0 medium-5 column small-only-text-center b-header__logotype">
             <img src="images/logo.png">
         </div>
-        <div class="column small-4 medium-2 medium-offset-1 medium-text-right small-padding-noleft">
+        <div class="column small-12 b-header__place  medium-2 medium-offset-1 medium-text-right">
 
             <span class="b-header__firstline-iconreg"></span><!-- не убирать этот коммент
             --><span class="b-header__firstline-linkreg">Москва</span>
@@ -33,14 +33,14 @@
 
         </div>
 
-        <div class="column small-9 medium-4  medium-text-right b-header__loginform">
+        <div class="column small-2 medium-4  medium-text-right small-text-center b-header__loginform">
 
             <span class="b-header__firstline-iconlogin"></span><!-- не убирать этот коммент
             --><a href="#" class="b-header__firstline-link">Вход</a>
             <span class="b-header__firstline-slash">|</span>
             <a href="#" class="b-header__firstline-link">Регистрация</a>
         </div>
-        <div class="column small-3 b-header__showMenu_bg show-for-small-only text-right js-show-menu">
+        <div class="column small-2 b-header__showMenu_bg show-for-small-only text-right js-show-menu">
             <div class="b-header__showMenu">&nbsp;</div>
         </div>
     </div>
@@ -68,7 +68,7 @@
         </div>
     </div>
 </header>
-<section class="row b-sizeinfo">
+<section class="row b-sizeinfo hide-for-small-only">
     <div class="column medium-9">
         <div class="b-sizeinfo__title">
             Размер ставки или надежность?
@@ -93,7 +93,7 @@
     <div class="column medium-7">
         <span class="b-sort__label">Сумма:</span>
 
-        <input type="text" placeholder="1000000">
+        <input type="text" class="b-sort__inp" placeholder="1000000">
     </div>
     <div class="column small-3 medium-1">
         <span class="b-sort__label">Валюта:</span>
@@ -114,17 +114,15 @@
 </section>
 <section class="b-offers ">
     <div class="row  b-offers__header small-only-text-center">
-        <div class="column b-offers__sort show-for-small-only">
-            Сортировать:
-        </div>
-        <div class="column medium-4">
+
+        <div class="column medium-4 small-4 ">
             <div class="b-offers__th first">
                 <a href="#" class="b-offers__title">
-                    Финансовая организация
+                    Финансовая организация <span class="b-offers__title-span show-for-small-only">Организация</span>
                 </a>
             </div>
         </div>
-        <div class="column medium-3">
+        <div class="column medium-3 hide-for-small-only">
             <div class="b-offers__th">
                 <a href="#"  class="b-offers__title">
                     Способы вложения
@@ -132,7 +130,7 @@
 
             </div>
         </div>
-        <div class="column medium-2">
+        <div class="column medium-2 small-4">
             <div class="b-offers__th">
                 <a href="#"  class="b-offers__title">
                     Доходность
@@ -140,7 +138,7 @@
 
             </div>
         </div>
-        <div class="column medium-2">
+        <div class="column medium-2 small-4">
             <div class="b-offers__th">
                 <a href="#"  class="b-offers__title">
                     Надежность
