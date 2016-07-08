@@ -1,0 +1,51 @@
+.content {
+  padding-left: 48px;
+  .content__input {
+    display: none;
+  }
+  &__title {
+    color: #202020;
+    font-weight: 100;
+    padding-bottom: 15px;
+    font-size: 36px;
+    font-family: 'Conv_HelveticaNeueCyr-Thin';
+  }
+
+  &__key {
+    font-size: 14px;
+    font-weight: 400;
+    color: #202020;
+    padding-top: 14px;
+    padding-bottom: 11px;
+  }
+  &__link {
+    color: #e53935;
+  }
+  &__change {
+    padding-bottom: 11px;
+    color: #e53935;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    padding-left: 32px;
+    background: url(../images/pencil.png) no-repeat 10px top;
+  }
+  .content__input {
+    width: calc(100% - 10px);
+  }
+}
+
+@media (max-width: 640px) {
+  .content {
+    .content__input {
+      width: calc(100% - 20px);
+      margin-left: 10px;
+    }
+    &__title {
+      font-size: 30px;
+      text-align: center;
+    }
+    margin-top: 20px;
+    padding-left: 10px;
+  }
+}

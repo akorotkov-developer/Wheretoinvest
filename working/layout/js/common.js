@@ -35,6 +35,12 @@
                 sortText();
             });
             //end of sum menu show/hide
+
+            //begin of hiding input in the account settings
+            $('.content__change').click(function() {
+               $(this).next('.content__input').slideToggle();
+            });
+            //end of hiding input in the account settings
         })();
 
         (function () {
