@@ -10,6 +10,9 @@
   &__all {
     display: none;
     cursor: pointer;
+    padding-right: 34px;
+
+    text-align: center;
     &.js-toggle {
       display: block;
     }
@@ -20,11 +23,22 @@
     display: inline-block;
     position: absolute;
     right: 10px;
-    border:1px solid #e6e6e6;
-    border-radius:3px;
     cursor: pointer;
     z-index: 10;
     background: url(../images/sel.png) no-repeat center;
+    &.js-toggle {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+@media (max-width: 820px) and(min-width: 640px) {
+  .b-sort {
+    &__select {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
   }
 }
 

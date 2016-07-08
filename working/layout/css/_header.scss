@@ -93,7 +93,6 @@
   @media #{$small-only} {
 
     &__logotype {
-      background-color: #ebebeb;
       height: 50px;
       padding-top: 6px;
       padding-bottom: 6px;
@@ -103,7 +102,7 @@
     }
     &__showMenu {
       width: 100%;
-      background: #ebebeb url("../images/img1.png") no-repeat center center;
+      background: #fff url("../images/img1.png") no-repeat center center;
       height: 50px;
       &.js-toggle {
         background: #ebebeb url("../images/cross.png") no-repeat center center;;
@@ -121,13 +120,13 @@
       padding-top: 13px;
       padding-bottom: 2px;
       text-align: center;
+      border-top:1px solid #e6e6e6;
       &.js-toggle {
         display: none;
       }
     }
     &__firstline {
       line-height: 0;
-      border-bottom: 1px solid #e6e6e6;
 
       padding-bottom: 40px;
       &.js-toggle {
@@ -147,7 +146,6 @@
       height: 50px;
       border-left: 1px solid #fff;
       padding-top: 4px;
-      background-color: #ebebeb;
     }
 
     &__menu {

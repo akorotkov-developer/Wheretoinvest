@@ -15,7 +15,6 @@
 
   &__link {
     font-size: rem-calc(14);
-    text-decoration: underline;
     color: #d2d2d2;
     line-height: rem-calc(25);
 
@@ -74,9 +73,7 @@
       &__icon {
         margin-right: 14px;
       }
-      &__link {
-        text-decoration: none;
-      }
+      
       &__icons {
         position: absolute;
         top: 267px;
