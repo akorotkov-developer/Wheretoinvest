@@ -1,7 +1,32 @@
 .content {
   padding-left: 48px;
+  &__submit {
+    background-color: #e53935;
+    border-radius: 3px 2px 2px 3px;color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 11px;
+    padding-bottom: 12px;
+
+    margin-top: 16px;
+  }
+  &__form {
+    margin-top: 10px;
+    float: left;
+    width: 100%;
+  }
   .content__input {
     display: none;
+  }
+  &__label {
+    color: #9e9e9e;
+    font-size: 12px;
+    input {
+      margin-top: 5px;
+    }
   }
   &__title {
     color: #202020;
@@ -37,6 +62,10 @@
 
 @media (max-width: 640px) {
   .content {
+    &__submit {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
     .content__input {
       width: calc(100% - 20px);
       margin-left: 10px;
