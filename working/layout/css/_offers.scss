@@ -88,6 +88,7 @@
   }
   &__firsttd {
     font-size: rem-calc(0);
+    padding-right: 0;
 
   }
   &__logo {
@@ -229,6 +230,13 @@
 }
 @media (max-width:960px) {
     .b-offers {
+      &__name,&__logo {
+        display: inline-block;
+      }
+      &__link {
+        padding-left: 9px;
+        padding-right: 9px;
+      }
       &__item {
         &.active {
           background: #fef2d2;
@@ -315,6 +323,7 @@
       text-align: center;
       width: calc(100% - 20px);
       margin-left: 10px;
+
       margin-bottom: 17px;
     }
     &__prof {
