@@ -230,6 +230,10 @@
 }
 @media (max-width:960px) {
     .b-offers {
+      &__capital {
+        padding-left: 0;
+        padding-right: 0;
+      }
       &__name,&__logo {
         display: inline-block;
       }
@@ -292,18 +296,7 @@
       line-height: 2.4;
       width: 100%;
     }
-    .first {
-      .b-offers__title {
-        font-size: 0;
-        border-bottom: 0;
-      }
 
-    }
-    &__title-span {
-      font-size: 12px;
-
-
-    }
     &__th.first {
       padding-left: 0;
     }

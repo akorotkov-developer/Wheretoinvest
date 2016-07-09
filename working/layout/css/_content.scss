@@ -59,7 +59,11 @@
     width: calc(100% - 10px);
   }
 }
-
+@media (max-width:960px) {
+    .content {
+      padding-left: 15px;
+    }
+}
 @media (max-width: 640px) {
   .content {
     &__submit {

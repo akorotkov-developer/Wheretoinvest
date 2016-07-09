@@ -37,10 +37,16 @@
             //end of sum menu show/hide
 
             //begin of hiding input in the account settings
-            $('.content__change').click(function() {
-               $(this).next('.content__input').slideToggle();
+            $('.content__change').click(function () {
+                $(this).next('.content__input').slideToggle();
             });
             //end of hiding input in the account settings
+            //begin of filter show/hide function
+            $('.filter__arr').click(function () {
+                $('.filter__main').slideToggle();
+                $(this).toggleClass('js-toggle');
+            });
+            //end of filter show/hide function
         })();
 
         (function () {
@@ -51,7 +57,18 @@
             $('.b-sort__inp').keyup(function (event) {
                 $(this).val(number_format($(this).val()));
             });
-        })()
+        })();
+        (function () {
+            window.onresize = function () {
+                mainMenuFix();
+            };
+            function mainMenuFix() {
+                if ($(window).width() > 623) {
+                    $('.b-header__menuWrap').attr('style','');
+                    $('.b-header__showMenu').removeClass('js-toggle');
+                }
+            }
+        })();
 
 
     });

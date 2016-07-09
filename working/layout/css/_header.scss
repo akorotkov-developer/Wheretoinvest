@@ -76,7 +76,7 @@
 
     }
     &-link {
-      font-size: rem-calc(12);
+      font-size: rem-calc(16);
       color: #d2d2d2;
       text-transform: uppercase;
       padding: 20px 0px;
@@ -90,100 +90,120 @@
       }
     }
   }
-  @media #{$small-only} {
 
-    &__logotype {
-      height: 50px;
-      padding-top: 6px;
-      padding-bottom: 6px;
-      & > img {
-        max-height: 100%;
+
+
+}
+@media (max-width:960px) {
+    .b-header {
+      &__place  {
+        margin-left: 30px;
       }
     }
-    &__showMenu {
-      width: 100%;
-      background: #fff url("../images/img1.png") no-repeat center center;
-      height: 50px;
-      &.js-toggle {
-        background: #ebebeb url("../images/cross.png") no-repeat center center;;
+}
+@media (max-width:640px) {
+    .b-header {
+      &__logotype {
+        height: 50px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        & > img {
+          max-height: 100%;
+        }
       }
-      &_bg {
-        border-right: 1px solid #fff;
-        padding: 0;
+      &__showMenu {
+        width: 100%;
+        background: #fff url("../images/img1.png") no-repeat center center;
+        height: 50px;
+        &.js-toggle {
+          background: #ebebeb url("../images/cross.png") no-repeat center center;;
+        }
+        &_bg {
+          border-right: 1px solid #fff;
+          padding: 0;
+          position: absolute;
+
+        }
+      }
+      &__place {
         position: absolute;
-
-      }
-    }
-    &__place {
-      position: absolute;
-      top: 50px;
-      padding-top: 13px;
-      padding-bottom: 2px;
-      text-align: center;
-      border-top:1px solid #e6e6e6;
-      &.js-toggle {
-        display: none;
-      }
-    }
-    &__firstline {
-      line-height: 0;
-
-      padding-bottom: 40px;
-      &.js-toggle {
-        padding-bottom: 0;
-      }
-      &-link, &-slash, &-iconlogin {
-        display: none;
-      }
-      &-link:nth-of-type(1) {
-        background: url("../images/iconlogo2.png") no-repeat center center;
-        font-size: 0;
-        display: block;
-        height: 100%;
-      }
-    }
-    &__loginform {
-      height: 50px;
-      border-left: 1px solid #fff;
-      padding-top: 4px;
-    }
-
-    &__menu {
-      padding-left: 17px;
-      padding-top: 33px;
-      &-item {
-        float: left;
-        padding-left: 17px;
-        padding-right: 16px;
-        width: 120px;
-        height: 120px;
-        margin-right: 21px;
-        background-color: #ebebeb;
-        border-radius: 3px;
-        margin-bottom: 21px;
+        top: 50px;
+        padding-top: 13px;
+        margin-left: 0;
+        padding-bottom: 2px;
         text-align: center;
-        &:hover {
-          background-color: #e43935;
+        &.js-toggle {
+          display: none;
         }
       }
-      &-link {
-        font-weight: 700;
-        border-bottom: 0;
-        color: #202020;
-        padding-top: 46px;
-        height: 100%;
-        &:hover {
+      &__firstline {
+        line-height: 0;
+
+        padding-bottom: 40px;
+        &.js-toggle {
+          padding-bottom: 0;
+        }
+        &-link, &-slash, &-iconlogin {
+          display: none;
+        }
+        &-link:nth-of-type(1) {
+          background: url("../images/iconlogo2.png") no-repeat center center;
+          font-size: 0;
+          display: block;
+          height: 100%;
+        }
+      }
+      &__loginform {
+        height: 50px;
+        border-left: 1px solid #fff;
+        padding-top: 4px;
+      }
+
+      &__menu {
+        padding-left: 17px;
+        padding-top: 33px;
+        &-item {
+          float: left;
+          width: 120px;
+          height: 120px;
+          padding-left: 3px;
+          padding-right: 3px;
+          margin-right: 21px;
+          background-color: #ebebeb;
+          border-radius: 3px;
+          margin-bottom: 21px;
+          text-align: center;
+          &:nth-of-type(1),&:nth-of-type(2) {
+            a{
+              padding-top: 38px;
+            }
+
+          }
+          &:last-child {
+            margin-right: 0;
+          }
+          &:hover {
+            background-color: #e43935;
+          }
+        }
+        &-link {
+          font-weight: 700;
           border-bottom: 0;
+          color: #202020;
+          padding-top: 46px;
+          height: 100%;
+
+          &:hover {
+            border-bottom: 0;
+          }
         }
-        font-size: 12px;
+
+      }
+
+      &__menuWrap {
+        display: none;
+        background: none;
       }
 
     }
-
-    &__menuWrap {
-      display: none;
-      background: none;
-    }
-  }
-
 }

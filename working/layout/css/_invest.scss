@@ -1,0 +1,81 @@
+.invest {
+  &__head {
+    background-color: #ebebeb;
+    float: left;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  &__title {
+    color: #202020;
+    font-size: 12px;
+    font-weight: 700;
+    position: relative;
+    width: calc(100% - 144px);
+    padding-left: 20px;
+    float: left;
+    cursor: pointer;
+    &:before {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      margin-left: 117px;
+      background: url(../images/sel.png) no-repeat;
+
+    }
+  }
+  &__who {
+    float: left;
+    color: #202020;
+    font-size: 12px;
+    width: 144px;
+    font-weight: 700;
+  }
+  &__row {
+    border-bottom: 1px solid #e6e6e6;
+    float: left;
+    width: 100%;
+
+  }
+  &__body {
+
+  }
+
+  &__deposite {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    float: left;
+    color: #e53935;
+    font-size: 12px;
+    font-weight: 400;
+    padding-left: 20px;
+    width: calc(100% - 144px);
+  }
+  &__face {
+    width: 144px;
+    float: left;
+    color: #202020;
+    font-size: 12px;
+    padding-left: 20px;
+    &:before {
+      display: inline-block;
+      position: absolute;
+      content: '';
+      margin-left: -20px;
+      width: 11px;
+      height: 11px;
+      background: url(../images/phys.png) no-repeat;
+
+    }
+    &_law {
+      &:before {
+        background: url(../images/yur.png) no-repeat;
+      }
+    }
+    font-weight: 400;
+    padding-top: 16px;
+
+  }
+}
