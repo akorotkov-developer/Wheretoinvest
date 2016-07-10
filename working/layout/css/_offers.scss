@@ -9,6 +9,11 @@
   }
   &__header {
     background: #ebebeb;
+    z-index: 10;
+    &.fixed {
+      position: fixed;
+      left: calc(50% - 490px);
+    }
 
   }
   &__th {
@@ -120,6 +125,7 @@
     background: url("../images/arrows.png") no-repeat top left;
     position: absolute;
     top: 50%;
+    z-index: 5;
     margin-top: -7px;
     right: rem-calc(12);
     display: none;
@@ -171,14 +177,14 @@
     color: #202020;
 
   }
+  &__nopadding {
+    padding: 0;
+  }
   @media #{$medium-up} {
-    &__nopadding {
-      padding: 0;
-    }
+
   }
 
   &__more {
-    padding-top: rem-calc(30);
 
     .b-offers__label {
       margin: 0;
@@ -196,7 +202,7 @@
     border: rem-calc(2) solid #e53935;
     border-radius: rem-calc(3);
     display: block;
-    position: absolute;
+    text-align: center;
     bottom: rem-calc(10);
     left: rem-calc(15);
     text-transform: uppercase;
@@ -228,28 +234,34 @@
   }
 
 }
-@media (max-width:960px) {
-    .b-offers {
-      &__capital {
-        padding-left: 0;
-        padding-right: 0;
-      }
-      &__name,&__logo {
-        display: inline-block;
-      }
-      &__link {
-        padding-left: 9px;
-        padding-right: 9px;
-      }
-      &__item {
-        &.active {
-          background: #fef2d2;
-        }
+
+@media (max-width: 960px) {
+  .b-offers {
+    &__capital {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    &__name, &__logo {
+      display: inline-block;
+    }
+    &__link {
+      padding-left: 9px;
+      padding-right: 9px;
+    }
+    &__item {
+      &.active {
+        background: #fef2d2;
       }
     }
+  }
 }
+
 @media #{$small-only} {
   .b-offers {
+
+    &__capital {
+      padding-left: 10px;
+    }
     &__bottom {
       padding-left: 10px;
       padding-right: 10px;
@@ -309,6 +321,9 @@
     }
     &__more {
       line-height: normal;
+      .b-offers__label {
+        width: 92%;
+      }
 
     }
     &__link {
@@ -350,6 +365,17 @@
     }
     &__res2 {
       float: none;
+      .b-offers__prof {
+        padding-top: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .b-offers {
+    &__header.fixed {
+      left: 0;
     }
   }
 }
