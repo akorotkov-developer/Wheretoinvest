@@ -179,10 +179,9 @@
   }
   &__nopadding {
     padding: 0;
+    padding-left: 25px;
   }
-  @media #{$medium-up} {
 
-  }
 
   &__more {
 
@@ -255,7 +254,13 @@
     }
   }
 }
-
+@media (max-width:790px) {
+    .b-offers {
+      &__arrows {
+        display: block;
+      }
+    }
+}
 @media #{$small-only} {
   .b-offers {
 
@@ -292,7 +297,7 @@
 
     &__arrows {
       left: calc(300% - 22px);
-      display: block;
+
       top: 58px;
     }
 
@@ -368,6 +373,9 @@
       .b-offers__prof {
         padding-top: 0;
       }
+    }
+    &__nopadding {
+      padding-left: 0;
     }
   }
 }
