@@ -13,8 +13,8 @@
                 $('.b-header__place, .b-header__showMenu,.b-header__firstline').toggleClass('js-toggle');
             });
             //begin of b-offers__item show/hide
-            $('.b-offers__arrows').click(function() {
-               $(this).closest('.b-offers__item').toggleClass('active');
+            $('.b-offers__arrows').click(function () {
+                $(this).closest('.b-offers__item').toggleClass('active');
             });
             //end of b-offers__item show/hide
             //begin of sum menu show/hide
@@ -77,39 +77,41 @@
 
         (function () {
             var block = $('.b-sort');
-            var blockPos = block.offset().top;
             var header = $('.b-offers__header');
             var blockHei = block.height();
-            //var offersBot = $('.b-offers').offset().top + $('.b-offers').height() - header.height() -300;
             var compensation = blockHei + header.height();
+            if (block.is('section') && header.is('div')) {
 
-            function scr() {
-                block.removeClass('fixed');
-                blockPos = block.offset().top;
-                blockHei = block.height();
-                var y = $(document).scrollTop();
-                if (y > blockPos) {
-                    block.addClass('fixed');
-                    $('.b-offers').attr('style', "margin-top:" + compensation + 'px;');
-                    header.addClass('fixed').attr('style', 'top:' + (blockHei + 12) + 'px;');
-                }
-                else {
-                    $('.b-offers').attr('style','');
+                var blockPos = block.offset().top;
+
+                function scr() {
                     block.removeClass('fixed');
-                    header.removeClass('fixed');
+                    blockPos = block.offset().top;
+                    blockHei = block.height();
+                    var y = $(document).scrollTop();
+                    if (y > blockPos) {
+                        block.addClass('fixed');
+                        $('.b-offers').attr('style', "margin-top:" + compensation + 'px;');
+                        header.addClass('fixed').attr('style', 'top:' + (blockHei + 12) + 'px;');
+                    }
+                    else {
+                        $('.b-offers').attr('style', '');
+                        block.removeClass('fixed');
+                        header.removeClass('fixed');
+                    }
                 }
+
+                window.onresize = function () {
+                    scr();
+                }
+                $('.b-sort').resize(function (e) {
+                    scr();
+                });
+                $(document).scroll(function () {
+                    scr();
+                })
             }
 
-            window.onresize = function () {
-                scr();
-            }
-            $('.b-sort').resize(function (e) {
-                scr();
-            });
-            $(document).scroll(function () {
-
-                scr();
-            })
         })();
 
     });
