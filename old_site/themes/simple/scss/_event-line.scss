@@ -1,0 +1,14 @@
+.event-line {
+  margin: rem-calc(0 0 22);
+}
+
+@media #{$large} {
+
+  .event-line__date {
+    float: left;
+  }
+
+  .event-line__text {
+    margin: rem-calc(0 0 0 150);
+  }
+}

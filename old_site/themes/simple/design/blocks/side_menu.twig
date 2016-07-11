@@ -1,0 +1,29 @@
+{# покажем меню только если мы зашли в раздел верхного уровня или ниже #}
+{% import _self as macro %}
+{% if catalog.getPath|length > 2 and catalog.getPath.2.children|length > 0 %}
+            <div class="panel">
+                <h5>{{ catalog.getPath.2.name }}</h5>
+				{{ macro.catalog(catalog.getPath.2) }} 
+            </div>
+{% endif %} 
+
+{% macro catalog(cat) %} 
+	{% import _self as mcr %}
+	{% if cat.children|length > 0 %}
+                <ul class="side-nav">
+                    {% for c in cat.children if not c.hidden %}
+						<li{% if catalog.getPath.has(c) %} class="active"{% endif %}><a href="{{ c.url }}">{{ c.name }}</a></li>
+						{% if catalog.getPath.has(c) %}
+						
+							{{ mcr.catalog(c) }} 
+							<ul class="side-nav" style="margin-left: 20px">
+							{% for m in c.getMaterials.orderBy('name').where('alias<>"index"')  %}
+								<li><a href="{{ m.url }}">{{ m.name }}</a></li>
+							{% endfor %}
+							</ul>  							
+						
+						{% endif %}
+                    {% endfor %}  
+                </ul>  
+	{% endif %}
+{% endmacro %} 

@@ -1,0 +1,43 @@
+{% extends ordinary %}
+
+{% block title %}{% if material.meta_title is defined and material.meta_title %}{{ material.meta_title }}{% else %}{{ material.name|striptags }}{% endif %}{% endblock %}
+{% block keywords %}{% if material.meta_keywords is defined and material.meta_keywords %}{{ material.meta_keywords }}{% endif %}{{ parent() }}{% endblock %}
+{% block description %}{% if material.meta_description is defined and material.meta_description %}{{ material.meta_description }}{% endif %}{{ parent() }}{% endblock %}
+
+{% block head %}
+	{{ parent() }}
+	
+	<meta itemprop="name" content="{{ material.name|striptags }}"/>
+	<meta name="twitter:title" content="{{ material.name|striptags }}">
+	<meta property="og:title" content="{{ material.name|striptags }}"/>
+
+	<meta itemprop="description" content="{{ material.short|striptags }}"/>
+	<meta name="twitter:description" content="{{ material.short|striptags }}"/>
+	<meta property="og:description" content="{{ material.short|striptags }}"/>
+	
+	<meta property="og:url" content="http://{{ s.SERVER_NAME }}{{ material.url }}"/>
+
+	{% if material.pic %}
+	<meta itemprop="image" content="http://{{ s.SERVER_NAME }}{{ material.pic }}"/>
+	<meta name="twitter:image:src" content="http://{{ s.SERVER_NAME }}{{ material.pic }}"/>
+	<meta property="og:image" content="http://{{ s.SERVER_NAME }}{{ material.pic }}"/>
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ material.name }}</h1>
+
+{% if material.pic is defined and material.pic %} 
+	<div class="left picture">
+	<img src="{{ material.pic }}" />
+	</div>
+{% endif %}  
+
+<div class="panel radius right share">
+	<script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="small" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir" data-yashareTheme="counter"></div>
+</div>
+
+{{ material.text|raw }}   
+             
+{% endblock %} 

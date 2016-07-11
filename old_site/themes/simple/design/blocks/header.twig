@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="columns small-12 medium-9 large-10">
+        <nav class="menu-top small-only-text-center">
+            <a href="http://cetera.ru/seminars/go/" class="menu-top__link">Запишитесь на бесплатный семинар</a>
+            <a href="http://cetera.ru/about/presentation/" class="menu-top__link">Позовите на презентацию</a>
+            <a href="http://cetera.ru/about/contacts/" class="menu-top__link">Свяжитесь с нами</a>
+        </nav>
+    </div>
+	{% if config.phone is defined and config.phone|raw %}
+    <div class="columns small-12 medium-3 large-2 small-text-center medium-text-right">
+        <div class="phone-top">{{ config.phone|raw }}</div>
+    </div>
+	{% endif %}
+</div>

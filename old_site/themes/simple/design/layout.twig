@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js ie lt-ie9 lt-ie8 lt-ie7" lang="ru"><![endif]-->
+<!--[if IE 7]><html class="no-js ie ie7 lt-ie9 lt-ie8" lang="ru"><![endif]-->
+<!--[if IE 8]><html class="no-js ie ie8 lt-ie9" lang="ru"><![endif]-->
+<!--[if IE 9]><html class="no-js ie ie9" lang="ru"><![endif]-->
+<!--[if !IE]><!--> <html class="no-js" lang="ru"><!--<![endif]-->
+<head>
+	{% block head %}
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<link rel="apple-touch-icon" href="/uploads/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/uploads/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/uploads/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/uploads/apple-touch-icon-152x152.png">
+
+    <title>{% block title %}{% if catalog.meta_title is defined and catalog.meta_title %}{{ catalog.meta_title }}{% else %}{{ catalog.name }}{% endif %}{% endblock %}</title>
+
+    <meta name="keywords" content="{% block keywords %}{{ keywords }}{% endblock %}" />
+    <meta name="description" content="{% block description %}{{ description }}{% endblock %}" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="copyright" content="Создание сайтов - Cetera Labs, www.cetera.ru, 2015" />
+    <meta name="author" content="Cetera Labs, http://www.cetera.ru/, создание сайтов, поддержка сайтов, продвижение сайтов" />
+    <meta name="cmsmagazine" content="f21b68cb09efe1a7161ca2caaacaf749" />
+
+	{% if config.favicon is defined and config.favicon %}
+	<link rel="icon" href="{{ config.favicon }}" type="image/x-icon">
+	<link rel="shortcut icon" href="{{ config.favicon }}" type="image/x-icon">
+	{% endif %}
+	
+    <link rel="stylesheet" href="{{ basePath }}css/style">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+	{% if config.css is defined and config.css %}<link rel="stylesheet" href="{{ config.css }}">{% endif %}
+
+    <script src="{{ basePath }}js/vendor/modernizr.min.js"></script>
+	{% if config.code_head is defined and config.code_head %}{{ config.code_head|raw }}{% endif %}
+
+	{% endblock %}
+</head>
+<body>
+
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+	    (function (d, w, c) {
+	        (w[c] = w[c] || []).push(function() {
+	            try {
+	                w.yaCounter36400230 = new Ya.Metrika({
+	                    id:36400230,
+	                    clickmap:true,
+	                    trackLinks:true,
+	                    accurateTrackBounce:true,
+	                    webvisor:true
+	                });
+	            } catch(e) { }
+	        });
+
+	        var n = d.getElementsByTagName("script")[0],
+	            s = d.createElement("script"),
+	            f = function () { n.parentNode.insertBefore(s, n); };
+	        s.type = "text/javascript";
+	        s.async = true;
+	        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+	        if (w.opera == "[object Opera]") {
+	            d.addEventListener("DOMContentLoaded", f, false);
+	        } else { f(); }
+	    })(document, window, "yandex_metrika_callbacks");
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/36400230" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- Yandex.Metrika counter -->
+
+	<!-- Google analytics -->
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-75726146-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+	<!-- Google analytics -->
+
+
+{% block header %}
+
+{% if header is defined and header %}{% include header %}{% endif %}
+
+<div class="menu">
+    <div class="contain-to-grid row">
+        <nav class="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+                <li class="name">
+                    <span><a href="/"><img class="logo" src="{% if config.logo is defined and config.logo %}{{ config.logo }}{% else %}{% if server.pic %}{{ server.pic }}{% else %}{{ basePath }}images/logo.png{% endif %}{% endif %}"></a></span>
+                </li>
+                <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+            </ul>
+            <div class="top-bar-section">
+                <ul class="left">
+                {% for c in server.children if not c.hidden %}
+                    <li {% if catalog.getPath.has(c) %} class="active"{% endif %}><a href="{{ c.url }}">{{ c.name }}</a></li>
+                {% endfor %}
+                </ul>
+
+                <ul class="right">
+					<li>
+						<form id="x-top-search-form" class="hide" action="/search">
+							<input name="query" placeholder="Поиск по сайту" />
+						</form>
+					</li>
+                    <li><a id="x-top-search-btn" href="#"><span><img src="{{ basePath }}images/ico/search.png"></span></a></li>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
+{% block main %}{% endblock %}
+
+{% block footer %}
+
+{#
+<div class="row">
+    <div class="columns small-12">
+        <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-6" data-equalizer="news">
+            <li>
+                <p><a href="#">Сайты</a></p>
+                <p>
+                    <a href="#">Комплексное обслуживание</a><br>
+                    <a href="#">Развитие сайтов</a><br>
+                    <a href="#">Поддержка сайтов</a><br>
+                    <a href="#">Портфолио</a><br>
+                    <a href="#">Cetera CMS</a><br>
+                    <a href="#">Отраслевые решения</a>
+                </p>
+            </li>
+            <li>
+                <p><a href="#">Магазины</a></p>
+                <p>
+                    <a href="#">Отраслевой опыт</a><br>
+                    <a href="#">Многоканальная электронная коммерция</a><br>
+                    <a href="#">1С-Битрикс: Управление сайтом</a><br>
+                    <a href="#">Интеграция с 1С</a><br>
+                </p>
+            </li>
+            <li>
+                <p><a href="#">Мобильные</a></p>
+                <p>
+                    <a href="#">Мобильное приложение для магазинов</a><br>
+                    <a href="#">Интернет-СМИ</a><br>
+                    <a href="#">Радиостанции</a>
+                </p>
+            </li>
+            <li>
+                <p><a href="#">CRM</a></p>
+                <p>
+                    <a href="#">Cetera CRM — автоматизация продаж и рекламы</a><br>
+                    <a href="#">Cetera Call — звонки с сайта</a><br>
+                    <a href="#">Cetera MobiTorg — автоматизация торговых представителей</a>
+                </p>
+            </li>
+            <li>
+                <p><a href="#">Порталы</a></p>
+                <p>
+                    <a href="#">Корпоративные порталы</a><br>
+                    <a href="#">Бесплатный облачный CRM «Битрикс24»</a><br>
+                    <a href="#">1С-Битрикс: Корпоративный портал</a><br>
+                    <a href="#">Готовые решения</a>
+                </p>
+            </li>
+            <li>
+                <p><a href="#">Реклама</a></p>
+                <p>
+                    <a href="#">Контекстная реклама</a><br>
+                    <a href="#">Поисковая оптимизация</a><br>
+                    <a href="#">Ретаргетинг</a><br>
+                    <a href="#">Социальные сети</a>
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>
+#}
+
+<div class="menu-footer">
+    <div class="contain-to-grid">
+        <nav class="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+                <li class="name">
+                    <span><a href="/"><img class="logo" src="{% if config.logo is defined and config.logo %}{{ config.logo }}{% else %}{% if server.pic %}{{ server.pic }}{% else %}{{ basePath }}images/logo.png{% endif %}{% endif %}"></a></span>
+                </li>
+                <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+            </ul>
+            <div class="top-bar-section">
+
+
+				{% if bottommenu is defined and bottommenu %}
+				{% include bottommenu %}
+				{% endif %}
+
+                <ul class="right">
+                    {% if config.link_vk is defined and config.link_vk %}<li><a href="{{ config.link_vk }}"><span><img src="/themes/simple/images/ico/vk.png"></span></a></li>{% endif %}
+                    {% if config.link_fb is defined and config.link_fb %}<li><a href="{{ config.link_fb }}"><span><img src="/themes/simple/images/ico/fb.png"></span></a></li>{% endif %}
+                    {% if config.email is defined and config.email %}<li><a href="mailto:{{ config.email }}"><span><img src="/themes/simple/images/ico/mail.png"></span></a></li>{% endif %}
+										<!--LiveInternet counter-->
+										<script type="text/javascript"><!--
+										document.write("<a href='//www.liveinternet.ru/click' "+
+										"target=_blank><img src='//counter.yadro.ru/hit?t23.6;r"+
+										escape(document.referrer)+((typeof(screen)=="undefined")?"":
+										";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+										screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+										";"+Math.random()+
+										"' alt='' title='LiveInternet: показано число посетителей за"+
+										" сегодня' "+
+										"border='0' width='88' height='15'><\/a>")
+										//-->
+										</script>
+										<!--/LiveInternet-->
+								</ul>
+
+            </div>
+        </nav>
+		{% if config.code_footer is defined and config.code_footer %}<div class="top-bar">{{ config.code_footer|raw }}</div>{% endif %}
+    </div>
+</div>
+{% if footer is defined and footer %}{% include footer %}{% endif %}
+
+{% endblock %}
+
+
+
+<script src="{{ basePath }}js/vendor/jquery.min.js"></script>
+<script src="{{ basePath }}js/vendor/foundation/foundation.js"></script>
+<script src="{{ basePath }}js/vendor/foundation/foundation.alert.js"></script>
+<script src="{{ basePath }}js/vendor/foundation/foundation.equalizer.js"></script>
+<script src="{{ basePath }}js/vendor/foundation/foundation.slider.js"></script>
+<script src="{{ basePath }}js/vendor/foundation/foundation.tab.js"></script>
+<script src="{{ basePath }}js/vendor/foundation/foundation.topbar.js"></script>
+<script src="{{ basePath }}js/vendor/slick.min.js"></script>
+<script src="{{ basePath }}js/common.js"></script>
+{% if config.js is defined and config.js %}<script src="{{ config.js }}"></script>{% endif %}
+</body>
+</html>

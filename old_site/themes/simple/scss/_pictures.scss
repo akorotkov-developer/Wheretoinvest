@@ -1,0 +1,13 @@
+.picture {
+
+	img {
+	
+		max-width: rem-calc(780);
+			
+	}
+	
+	&.left img {
+		margin: 0 rem-calc(20) rem-calc(20) 0;
+	}	
+
+}

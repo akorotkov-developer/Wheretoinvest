@@ -1,0 +1,67 @@
+{% extends ordinary %}
+
+{% block title %}Поиск{% endblock %}
+
+{% block main %}
+
+<div class="row">
+
+	<div class="small-12 columns">
+		<h2>{{ block('title') }}</h2>
+        <form>
+            <div class="row">
+                <div class="small-12 medium-6 large-4 columns">
+                    <label>
+                        <input type="text" placeholder="Поиск" name="query" />
+                    </label>
+                </div>
+                <div class="small-6 medium-3 large-2 end columns">
+                    <div class="row collapse">
+                        <button type="submit" class="button tiny">Искать</button>
+                    </div>
+                </div>
+            </div>
+        </form>	
+
+            <p>Поиск: <strong>{{ query }}</strong><br>
+            {% if list and list.getCountAll > 0 %}
+                Результаты 
+                {{ (list.getCurrentPageNumber-1) * list.count + 1 }}
+                 - 
+                {% if list.getCurrentPageNumber == list.getPageCount %}{{ list.getCountAll }}{% else %}{{ list.getCurrentPageNumber * list.count }}{% endif %}
+                 из 
+                {{ list.getCountAll }}</p>
+            {% else %}
+                Поиск не дал результатов
+            {% endif %}
+			</p>
+			
+			{% if list and list.getCountAll > 0 %}
+			
+				{% include "blocks/pagination.twig" with {'current':list.getCurrentPageNumber, 'pages':list.getPageCount, 'prefix': 'query='~query } only %}		
+
+				{% for m in list %}
+					<hr />			
+					<h2><a href="{{ m.url }}">{{ m.name|raw }}</a></h2>
+					<p>{{ m.short|raw }}</p>
+					<p>Изменен: {{ m.dat|date('d.m.Y') }}<br>
+					Путь: 
+					{% for c in m.catalog.getPath %}
+					{% if c.id %}
+						<a href="{{ c.url }}">{% if c.isServer %}Главная{% else %}{{ c.name|striptags }}{% endif %}</a>
+						{% if not loop.last %}/{% endif %}
+					{% endif %}
+					{% endfor %}  				
+					</p>
+				{% endfor %}
+				
+				{% include "blocks/pagination.twig" with {'current':list.getCurrentPageNumber, 'pages':list.getPageCount, 'prefix': 'query='~query } only %}	
+			
+			{% endif %}
+		
+	</div>
+	
+</div>
+
+             
+{% endblock %} 

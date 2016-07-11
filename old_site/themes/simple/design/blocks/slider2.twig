@@ -1,0 +1,17 @@
+<header style="display: block ; height: 700px; background: url(/uploads/20160322/zadnik_2.jpg) no-repeat center top;"><div class="row x-slick">
+    {% for m in widget.getChildren %}
+    <div class="slick-slide">
+        <div class="columns small-4 medium-5 large-4 medium-offset-1 large-offset-2 text-center">
+            {% if m.pic is defined and m.pic %}<img src="{{ m.pic }}" alt="">{% endif %}
+        </div>
+        <div class="columns small-8 medium-5 large-4 end">
+            <h2>{{ m.name }}</h2>
+            {% if m.subtitle is defined and m.subtitle %}
+            {{ m.subtitle|raw }}
+            {% elseif m.short is defined and m.short %}                    
+            {{ m.short|raw }}
+            {% endif %} 
+        </div>
+    </div>
+    {% endfor %}
+</div>

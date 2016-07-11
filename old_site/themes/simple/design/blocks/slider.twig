@@ -1,0 +1,19 @@
+<div class="x-slick">
+    {% for m in widget.getChildren %}
+    <div class="slick-slide">
+        <div class="content-line content-line_image"{% if m.pic is defined and m.pic %} style="background-image: url({{ m.pic }})"{% endif %}>
+            <div class="row">
+                <div class="columns small-12 medium-8 large-5 large-offset-1 end">
+                    <h1>{{ m.name }}</h1>
+                    {% if m.subtitle is defined and m.subtitle %}
+                    {{ m.subtitle|raw }}
+                    {% elseif m.short is defined and m.short %}                    
+                    {{ m.short|raw }}
+                    {% endif %} 
+                    <div><a href="{{ m.url }}" class="button small">Подробнее</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

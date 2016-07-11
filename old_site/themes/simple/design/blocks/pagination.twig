@@ -1,0 +1,29 @@
+			{% if pages > 1 %}
+              <ul class="pagination">
+                <li class="arrow{% if 1 == current %} unavailable{% endif %}"><a href="?page={{ current-1 }}{% if prefix is defined and prefix %}&{{ prefix }}{% endif %}">&laquo;</a>
+                
+                {% if current > 5 %}
+                    {% for i in range(1,2) %}
+                        <li{% if i == current %} class="current"{% endif %}><a href="?page={{ i }}{% if prefix is defined and prefix %}&{{ prefix }}{% endif %}">{{ i }}</a></li>
+                    {% endfor %}   
+                    {% if current > 6 %}                    
+                        <li class="unavailable"><a href="">&hellip;</a></li>
+                    {% endif %}
+                {% endif %}
+                
+                {% for i in range(current - 2, current + 2) if (i > 0 and i <= pages) %}
+                    <li{% if i == current %} class="current"{% endif %}><a href="?page={{ i }}{% if prefix is defined and prefix %}&{{ prefix }}{% endif %}">{{ i }}</a></li>
+                {% endfor %} 
+                
+                {% if current < pages - 4 %}
+                    {% if current < pages - 5 %}                    
+                        <li class="unavailable"><a href="">&hellip;</a></li>
+                    {% endif %}                      
+                    {% for i in range(pages - 1, pages) %}
+                        <li{% if i == current %} class="current"{% endif %}><a href="?page={{ i }}{% if prefix is defined and prefix %}&{{ prefix }}{% endif %}">{{ i }}</a></li>
+                    {% endfor %}   
+                {% endif %}                      
+                 
+                <li class="arrow{% if pages == current %} unavailable{% endif %}"><a href="?page={{ current+1 }}{% if prefix is defined and prefix %}&{{ prefix }}{% endif %}">&raquo;</a></li>                    
+              </ul>
+           {% endif %} 					 

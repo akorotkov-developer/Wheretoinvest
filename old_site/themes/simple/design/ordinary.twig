@@ -1,0 +1,44 @@
+{% extends layout %}
+
+{% block header %}
+
+    {{ parent() }}
+    
+    <div class="content-line">
+    </div>
+    
+    {% include "blocks/breadcrumbs.twig" %}
+    
+{% endblock %}
+
+{% block main %}  
+
+    <div class="row">
+        <div class="columns small-12 medium-7 large-8">
+            {% block content %}
+
+                {% if list|length > 0 %}
+                {# Список материалов #}
+    
+                    {% for m in list %}
+                        <h2><a href="{{ m.url }}">{{ m.name }}</a></h2>             
+                        {{ m.short|raw }}
+                        <p><a href="{{ m.url }}">Подробнее</a></p>
+                        {% if not loop.last %}<hr/>{% endif %}            
+                     {% endfor %}
+                     
+                     {% include "blocks/pagination.twig" with { 'current':list.getCurrentPageNumber, 'pages':list.getPageCount } only %}
+                          
+                {% endif %} 
+
+            {% endblock %}
+        </div>
+        
+        <div class="columns small-12 medium-5 large-4">
+            {% block side %} 
+                {% include "blocks/side_menu.twig" %}
+            {% endblock %}          
+        </div>
+    </div>  
+             
+{% endblock %} 

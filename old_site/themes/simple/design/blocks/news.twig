@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="columns small-12">
+        <ul class="small-block-grid-1 medium-block-grid-3" data-equalizer="news">
+            {% for m in widget.getChildren %}
+            <li>
+                <div class="panel text-center" data-equalizer-watch="news">
+                    <span class="date-square">
+                        <span class="date-square__day">{{ m.dat|date('d') }}</span><br>{{ m.dat|date('m.Y') }}
+                    </span>
+                    <h2><a href="{{ m.url }}">{{ m.name }}</a></h2>
+                    <p></p>{{ m.short|raw }}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

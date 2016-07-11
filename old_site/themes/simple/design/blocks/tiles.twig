@@ -1,0 +1,21 @@
+<div class="content-line">
+    <div class="row">
+        <div class="columns small-12">
+            <ul class="small-block-grid-1 medium-block-grid-3" data-equalizer="advantages">
+                {% for m in widget.getChildren %}
+                <li>
+                    <div class="panel text-center" data-equalizer-watch="advantages">
+                        <p><img src="{{ m.pic }}" alt=""></p>
+                        <h2>{{ m.name }}</h2>
+						{% if m.subtitle is defined and m.subtitle %}
+						{{ m.subtitle|raw }}
+						{% elseif m.short is defined and m.short %}                    
+						{{ m.short|raw }}
+						{% endif %} 
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

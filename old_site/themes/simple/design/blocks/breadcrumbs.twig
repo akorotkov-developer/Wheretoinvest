@@ -1,0 +1,11 @@
+<div class="content-line">
+    <div class="row">
+        <div class="columns small-12">
+            <nav class="breadcrumbs">
+                {% for c in catalog.getPath if c.id %}
+                    <a{% if catalog.id == c.id and (material is not defined or not material) %} class="current"{% endif %} href="{{ c.url }}">{{ c.name|striptags }}</a>
+                {% endfor %}            
+            </nav>
+        </div>
+    </div>
+</div>    

@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="columns small-12">
+        <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
+            {% for m in widget.getChildren %}
+            <li>
+                <a class="project-square" href="{{ m.url }}">
+                    <div class="project-square__image" style="background-image: url({{ m.pic }})">
+                        <div class="project-square__text">
+                            <h2 class="project-square__title">{{ m.name }}</h2>
+							{% if m.short is defined and m.short %}                    
+							{{ m.short|raw }}
+							{% endif %} 
+                        </div>
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

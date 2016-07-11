@@ -1,0 +1,8 @@
+{% extends layout %}
+
+{% block main %}
+
+{# На главной - содержимое виджета "simple_index" #}
+{{ application.getWidget('simple_index').getHtml()|raw }}
+    
+{% endblock %}
