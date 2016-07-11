@@ -31,7 +31,7 @@
         <div class="small-8 small-offset-2 medium-offset-0 medium-5 column small-only-text-center b-header__logotype">
             <img src="images/logo.png">
         </div>
-        <div class="column small-12 b-header__place  medium-2  medium-text-right">
+        <div class="column small-12 b-header__place  medium-2 medium-text-right">
 
             <span class="b-header__firstline-iconreg"></span><!-- не убирать этот коммент
             --><span class="b-header__firstline-linkreg">Москва</span>
@@ -87,13 +87,13 @@
     <div class="medium-3 small-12 columns accord">
         <ul class="accord__list">
             <li class="accord__li">
-                <a href="#" class="accord__link ">Контакты</a>
+                <a href="#" class="accord__link accord__link_active">Настройки аккаунта</a>
             </li>
             <li class="accord__li">
                 <a href="#" class="accord__link">Реквизиты организации</a>
             </li>
             <li class="accord__li">
-                <a href="#" class="accord__link accord__link_active accord__link_no-bord">Контакты</a>
+                <a href="#" class="accord__link accord__link_no-bord">Контакты</a>
             </li>
             <li class="accord__li accord__li_profit">
                 Доходность
@@ -120,102 +120,105 @@
     </div>
     <div class="medium-9 small-12 columns content">
         <div class="row">
-            <div class="columns content__title">Банковские вклады</div>
-            <div class="columns filter">
-                <div class="filter__title">Фильтр: <span class="filter__span">Все регионы</span>
-
-                    <div class="filter__arr"></div>
+            <div class="columns content__title">Детали предложения</div>
+            <div class="columns content__law">
+                <div class="content__wrp">
+                    <input type="checkbox" name="address" id="add2" class="content__checkbox">
+                    <label for="add2" class="content__chck">Для физ. лиц</label>
                 </div>
-                <div class="filter__main">
-
-                    <select name="aaa" id="a" class="filter__select">
-                        <option value="">Все регионы</option>
-                        <option value="">Москва</option>
-                        <option value="">Санкт-Петербург</option>
-                        <option value="">Ярославль</option>
-                    </select>
-                    <button class="filter__submit" type="submit">Показать</button>
-                    <button class="filter__reset" type="reset">Сбросить</button>
+                <div class="content__wrp">
+                    <input type="checkbox" name="address" id="add3" class="content__checkbox">
+                    <label for="add3" class="content__chck">Для юр. лиц</label>
                 </div>
             </div>
-            <div class="columns invest">
-                <div class="invest__head">
-                    <div class="invest__title">Способ вложения</div>
-                    <div class="invest__who">Для кого</div>
-                </div>
-                <div class="invest__body">
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">Вклад «Капитальный»</a>
-
-                        <div class="invest__face">Физ. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">Вклад «Доходный»</a>
-
-                        <div class="invest__face">Физ. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">А+</a>
-
-                        <div class="invest__face">Физ. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">Вклад</a>
-
-                        <div class="invest__face invest__face_law">Юр. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">Линия жизни</a>
-
-                        <div class="invest__face invest__face_law">Юр. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">Вклад</a>
-
-                        <div class="invest__face">Физ. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">«Мои накопления»</a>
-
-                        <div class="invest__face">Физ. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">Линия жизни</a>
-
-                        <div class="invest__face">Физ. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">Вклад</a>
-
-                        <div class="invest__face">Физ. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">«Мои накопления»</a>
-
-                        <div class="invest__face">Физ. лица</div>
-                    </div>
-
-                </div>
-                <a href="#" class="invest__sentence">+ создать предложение</a>
+            <div class="columns">
+                <label for="#" class="content__label">Способ вложения
+                    <select name="aaa" id="ab" class="content__select">
+                        <option value="">Банковский вклад</option>
+                        <option value="">Другое</option>
+                    </select>
+                </label>
+            </div>
+            <div class="columns">
+                <label for="#" class="content__label">Название предложения
+                    <input type="text" value="Вклад «Доходный»">
+                </label>
+            </div>
+            <div class="columns">
+                <label for="#" class="content__label">Преимущества и особенности (не обязательно)
+                    <textarea name="fsd" id=""></textarea>
+                </label>
+            </div>
+            <div class="columns">
+                <button type="submit" class="content__submit">Сохранить</button>
+                <button class="content__delete">– Удалить предложение</button>
             </div>
         </div>
-        <div class="row pagin">
-            <div class="columns pagin__wrapper">
-                <ul class="pagination pagin__pagination">
-                    <li class="arrow pagin__prev"><a href="">Пред</a></li>
-                    <li ><a href="">1</a></li>
-                    <li class="current"><a href="">2</a></li>
-                    <li><a href="">3</a></li>
-                    <li><a href="">4</a></li>
-                    <li class="hide-for-small-only"><a href="">5</a></li>
-                    <li class="hide-for-small-only"><a href="">6</a></li>
-                    <li class="hide-for-small-only"><a href="">7</a></li>
-                    <li class="unavailable"><a href="">&hellip;</a></li>
-                    <li><a href="">11</a></li>
-                    <li><a href="">12</a></li>
-                    <li><a href="">13</a></li>
-                    <li class="arrow pagin__next"><a href="">След</a></li>
-                </ul>
+        <div class="row">
+            <div class="columns region">
+                <div class="region__main">
+                    <div class="region__title-wrap">
+                        <a href="#" class="region__title">Выбрать регионы действия</a>
+                    </div>
+                    <div class="region__close"></div>
+                    <div class="row">
+                        <div class="columns region__snood">
+                            <label for="#" class="region__label">Валюта
+                                <select name="aa3" id="aс" class="region__select">
+                                    <option value="">Доллар</option>
+                                    <option value="">Евро</option>
+                                </select>
+                            </label>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="columns">
+                            <div class="region__text">
+
+                                <span class="region__tt">Создайте сетку ставок для предложения</span><br>
+                                Добавьте любое количество сумм и сроков и сохраните предложение. <br>Будет создана сетка
+                                ставок, в которой вы сможете указать проценты.
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="columns medium-6 region__net region__snood">
+                            <label for="ggs" class="region__label">Сумма</label>
+                            <input type="text" class="region__inp">
+                            <a href="#" class="region__minus">—</a>
+                            <input type="text" class="region__inp region__inp_no-rad">
+                            <a href="#" class="region__add">+</a>
+                        </div>
+                        <div class="columns medium-6 region__net">
+                            <label for="ggs" class="region__label">Срок</label>
+                            <input type="text" class="region__inp region__inp_mini">
+                            <a href="#" class="region__minus">—</a>
+                            <input type="text" class="region__inp region__inp_mini region__inp_no-rad">
+                            <select name="32" id="bf" class="region__select region__select_mini">
+                                <option value="">Дней</option>
+                                <option value="">Лет</option>
+                            </select>
+                            <a href="#" class="region__add">+</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns region">
+                <div class="region__main">
+                    <div class="region__title-wrap">
+                        <a href="#" class="region__title region__title_green">добавить группу </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns">
+                <button type="submit" class="content__submit">Сохранить</button>
+                <button class="content__delete">– Удалить предложение</button>
             </div>
         </div>
     </div>

@@ -76,41 +76,45 @@
         })();
 
         (function () {
+
             var block = $('.b-sort');
             var header = $('.b-offers__header');
             var blockHei = block.height();
             var compensation = blockHei + header.height();
-            if (block.is('section') && header.is('div')) {
-
+            if (block.is('section')) {
                 var blockPos = block.offset().top;
-
-                function scr() {
-                    block.removeClass('fixed');
-                    blockPos = block.offset().top;
-                    blockHei = block.height();
-                    var y = $(document).scrollTop();
-                    if (y > blockPos) {
-                        block.addClass('fixed');
-                        $('.b-offers').attr('style', "margin-top:" + compensation + 'px;');
-                        header.addClass('fixed').attr('style', 'top:' + (blockHei + 12) + 'px;');
-                    }
-                    else {
-                        $('.b-offers').attr('style', '');
-                        block.removeClass('fixed');
-                        header.removeClass('fixed');
-                    }
-                }
-
-                window.onresize = function () {
-                    scr();
-                }
-                $('.b-sort').resize(function (e) {
-                    scr();
-                });
-                $(document).scroll(function () {
-                    scr();
-                })
             }
+
+
+            function scr() {
+                block.removeClass('fixed');
+                if (block.is('section')) {
+                    blockPos = block.offset().top;
+                }
+                blockHei = block.height();
+                var y = $(document).scrollTop();
+                if (y > blockPos) {
+                    block.addClass('fixed');
+                    $('.b-offers').attr('style', "margin-top:" + compensation + 'px;');
+                    header.addClass('fixed').attr('style', 'top:' + (blockHei + 12) + 'px;');
+                }
+                else {
+                    $('.b-offers').attr('style', '');
+                    block.removeClass('fixed');
+                    header.removeClass('fixed');
+                }
+            }
+
+            window.onresize = function () {
+                scr();
+            };
+            $('.b-sort').resize(function (e) {
+                scr();
+            });
+            $(document).scroll(function () {
+                scr();
+            });
+
 
         })();
 
