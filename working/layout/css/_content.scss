@@ -1,5 +1,13 @@
 .content {
   padding-left: 48px;
+  &__date {
+    color: #9e9e9e;
+    padding-top: 28px;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: right;
+    margin-bottom: 35px;
+  }
   &__law {
     padding-top: 9px;
   }
@@ -139,6 +147,9 @@ label.content__chck {
 
 @media (max-width: 640px) {
   .content {
+    &__date {
+      margin-bottom: 0;
+    }
     &__select {
       width: 100%;
     }
