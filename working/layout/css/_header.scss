@@ -13,6 +13,9 @@
 
     }
   }
+  &__loginform {
+    float: right;
+  }
   &__firstline {
     line-height: rem-calc(96);
 
@@ -96,6 +99,9 @@
 }
 @media (max-width:960px) {
     .b-header {
+      &__loginform {
+
+      }
       &__place  {
         margin-left: 30px;
       }
