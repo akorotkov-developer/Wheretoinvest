@@ -39,7 +39,7 @@
 
         </div>
 
-        <div class="column small-2 medium-4  medium-text-right small-text-center b-header__loginform">
+        <div class="column small-2 medium-5  medium-text-right small-text-center b-header__loginform">
 
             <span class="b-header__firstline-iconlogin"></span><!-- не убирать этот коммент
             --><a href="#" class="b-header__firstline-link">Войти</a>
@@ -93,13 +93,13 @@
                 <a href="#" class="accord__link">Реквизиты организации</a>
             </li>
             <li class="accord__li">
-                <a href="#" class="accord__link accord__link_active accord__link_no-bord">Контакты</a>
+                <a href="#" class="accord__link  accord__link_no-bord">Контакты</a>
             </li>
             <li class="accord__li accord__li_profit">
                 Доходность
             </li>
             <li class="accord__li">
-                <a href="#" class="accord__link">Банковские вклады</a>
+                <a href="#" class="accord__link accord__link_active">Банковские вклады</a>
             </li>
             <li class="accord__li">
                 <a href="#" class="accord__link accord__link_no-bord">Займы</a>
@@ -121,89 +121,98 @@
     <div class="medium-9 small-12 columns content">
         <div class="row">
             <div class="columns content__title">Банковские вклады</div>
-            <div class="columns filter">
-                <div class="filter__title">Фильтр: <span class="filter__span">Все регионы</span>
+            <!-- <div class="columns filter">
+                 <div class="filter__title">Фильтр: <span class="filter__span">Все регионы</span>
 
-                    <div class="filter__arr"></div>
-                </div>
-                <div class="filter__main">
+                     <div class="filter__arr"></div>
+                 </div>
+                 <div class="filter__main">
 
-                    <select name="aaa" id="a" class="filter__select">
-                        <option value="">Все регионы</option>
-                        <option value="">Москва</option>
-                        <option value="">Санкт-Петербург</option>
-                        <option value="">Ярославль</option>
-                    </select>
-                    <button class="filter__submit" type="submit">Показать</button>
-                    <button class="filter__reset" type="reset">Сбросить</button>
-                </div>
-            </div>
+                     <select name="aaa" id="a" class="filter__select">
+                         <option value="">Все регионы</option>
+                         <option value="">Москва</option>
+                         <option value="">Санкт-Петербург</option>
+                         <option value="">Ярославль</option>
+                     </select>
+                     <button class="filter__submit" type="submit">Показать</button>
+                     <button class="filter__reset" type="reset">Сбросить</button>
+                 </div>
+             </div></-->
             <div class="columns invest">
                 <div class="invest__head">
-                    <div class="invest__title">Способ вложения</div>
+
                     <div class="invest__who">Для кого</div>
+                    <div class="invest__title">Наименование предложения</div>
+                    <div class="invest__region">Регион действия</div>
                 </div>
                 <div class="invest__body">
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">Вклад «Капитальный»</a>
-
-                        <div class="invest__face">Физ. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">Вклад «Доходный»</a>
-
-                        <div class="invest__face">Физ. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">А+</a>
-
-                        <div class="invest__face">Физ. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">Вклад</a>
-
-                        <div class="invest__face invest__face_law">Юр. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">Линия жизни</a>
-
-                        <div class="invest__face invest__face_law">Юр. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">Вклад</a>
-
-                        <div class="invest__face">Физ. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">«Мои накопления»</a>
-
-                        <div class="invest__face">Физ. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">Линия жизни</a>
-
-                        <div class="invest__face">Физ. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">Вклад</a>
-
-                        <div class="invest__face">Физ. лица</div>
-                    </div>
-                    <div class="invest__row">
-                        <a href="#" class="invest__deposite">«Мои накопления»</a>
-
-                        <div class="invest__face">Физ. лица</div>
-                    </div>
+                    <a href="#">
+                        <div class="invest__row">
+                            <div class="invest__face">Физ. лица</div>
+                            <div href="#" class="invest__deposite">Вклад «Капитальный»</div>
+                            <div class="invest__place">Ярославль</div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="invest__row">
+                            <div class="invest__face invest__face_law">Юр. лица</div>
+                            <div href="#" class="invest__deposite">Вклад «Капитальный»</div>
+                            <div class="invest__place">Ярославль</div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="invest__row">
+                            <div class="invest__face">Физ. лица</div>
+                            <div href="#" class="invest__deposite">Вклад «Капитальный»</div>
+                            <div class="invest__place">Ярославль</div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="invest__row">
+                            <div class="invest__face">Физ. лица</div>
+                            <div href="#" class="invest__deposite">Вклад «Капитальный»</div>
+                            <div class="invest__place">Ярославль</div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="invest__row">
+                            <div class="invest__face invest__face_law">Юр. лица</div>
+                            <div href="#" class="invest__deposite">Вклад «Капитальный»</div>
+                            <div class="invest__place">Ярославль</div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="invest__row">
+                            <div class="invest__face">Физ. лица</div>
+                            <div href="#" class="invest__deposite">Вклад «Капитальный»</div>
+                            <div class="invest__place">8 регионов РФ</div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="invest__row">
+                            <div class="invest__face invest__face_law">Юр. лица</div>
+                            <div href="#" class="invest__deposite">Вклад «Капитальный»</div>
+                            <div class="invest__place">Все регионы РФ</div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="invest__row">
+                            <div class="invest__face">Физ. лица</div>
+                            <div href="#" class="invest__deposite">Вклад «Капитальный»</div>
+                            <div class="invest__place">Москва</div>
+                        </div>
+                    </a>
 
                 </div>
-                <a href="#" class="invest__sentence">+ создать предложение</a>
+                <a href="#" class="sentence">создать предложение</a>
             </div>
         </div>
+        <!--
         <div class="row pagin">
             <div class="columns pagin__wrapper">
                 <ul class="pagination pagin__pagination">
                     <li class="arrow pagin__prev"><a href="">Пред</a></li>
-                    <li ><a href="">1</a></li>
+                    <li><a href="">1</a></li>
                     <li class="current"><a href="">2</a></li>
                     <li><a href="">3</a></li>
                     <li><a href="">4</a></li>
@@ -217,7 +226,7 @@
                     <li class="arrow pagin__next"><a href="">След</a></li>
                 </ul>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <section class="b-footer">

@@ -1,4 +1,17 @@
 .invest {
+
+  &__region,&__place {
+    color: #202020;
+    font-size: 12px;
+    font-weight: 700;
+    float: left;
+    width: 200px;
+    padding-left: 15px;
+  }
+  &__place {
+    padding-top: 16px;
+    font-weight: 400;
+  }
   &__head {
     background-color: #ebebeb;
     float: left;
@@ -11,8 +24,9 @@
     font-size: 12px;
     font-weight: 700;
     position: relative;
-    width: calc(100% - 144px);
-    padding-left: 20px;
+    width: calc(100% - 344px);
+    padding-left: 0px;
+    padding-right: 16px;
     float: left;
     cursor: pointer;
     &:before {
@@ -21,13 +35,14 @@
       position: absolute;
       width: 16px;
       height: 16px;
-      margin-left: 117px;
+      right: 0;
       background: url(../images/sel.png) no-repeat;
 
     }
   }
   &__who {
     float: left;
+    padding-left: 15px;
     color: #202020;
     font-size: 12px;
     width: 144px;
@@ -37,29 +52,33 @@
     border-bottom: 1px solid #e6e6e6;
     float: left;
     width: 100%;
+    &:hover {
+      background: #fef2d2;
 
+    }
   }
   &__body {
     float: left;
     width: 100%;
+    margin-bottom: 30px;
   }
 
   &__deposite {
     padding-top: 16px;
     padding-bottom: 16px;
     float: left;
-    color: #e53935;
+    color: #000;
     font-size: 12px;
     font-weight: 400;
-    padding-left: 20px;
-    width: calc(100% - 144px);
+    width: calc(100% - 344px);
   }
   &__face {
     width: 144px;
     float: left;
     color: #202020;
     font-size: 12px;
-    padding-left: 20px;
+
+    padding-left: 35px;
     &:before {
       display: inline-block;
       position: absolute;
@@ -79,36 +98,20 @@
     padding-top: 16px;
 
   }
-  &__sentence {
-    color: #0aa468;
-    font-size: 12px;
-    font-weight: 700;
-    float: left;
-    margin-top: 30px;
-    text-transform: uppercase;
-    border: 2px solid #0aa468;
-    border-radius: 3px 2px 2px 3px;
-    padding-left: 16px;
-    transition:.5s;
-    &:hover {
-      background: #0aa468;
-      color: #fff;
-    }
-    padding-right: 16px;
-    padding-top: 9px;
-    padding-bottom: 10px;
-  }
+
 }
-@media (max-width:640px) {
-    .invest {
-      &__title,&__deposite {
-        width:calc(100% - 100px);
-      }
-      &__who,&__face {
-        width: 100px;
-      }
-      &__sentence {
-        margin-left:calc(50% - 100px);
-      }
+
+@media (max-width: 640px) {
+  .invest {
+    &__title, &__deposite {
+      width: calc(100% - 190px);
     }
+    &__region,&__place {
+      width: 110px;
+    }
+    &__who, &__face {
+      width: 80px;
+    }
+
+  }
 }

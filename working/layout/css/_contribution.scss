@@ -1,0 +1,82 @@
+.contribution {
+  margin-top: 42px;
+  &__face {
+    width: 144px;
+    float: left;
+    color: #202020;
+    font-size: 12px;
+    padding-left: 20px;
+    font-weight: 400;
+    padding-bottom: 6px;
+    &:before {
+      display: inline-block;
+      position: absolute;
+      content: '';
+      margin-left: -20px;
+      width: 11px;
+      height: 11px;
+      background: url(../images/phys.png) no-repeat;
+
+    }
+    &_law {
+      &:before {
+        background: url(../images/yur.png) no-repeat;
+      }
+    }
+
+  }
+  &__head {
+    background-color: #ebebeb;
+    float: left;
+    width: 100%;
+  }
+  &__th {
+    color: #202020;
+    font-size: 12px;
+    font-weight: 700;
+    float: left;
+    padding-left: 15px;
+    width: 24%;
+    padding-top: 20px;
+    padding-bottom: 21px;
+    &_second {
+      width: 21%;
+    }
+    &_third {
+      width: 55%;
+    }
+  }
+  &__body {
+
+  }
+  &__row {
+    float: left;
+    width: 100%;
+    border-bottom:1px solid #e6e6e6;
+
+  }
+  &__td {
+    color: #202020;
+    font-size: 12px;
+    font-weight: 400;
+    float: left;
+    padding-left: 15px;
+    padding-top: 16px;
+    line-height: 1.33;
+    width: 24%;
+    &_second {
+      width: 21%;
+    }
+    &_third {
+      width: 55%;
+    }
+  }
+  &__list {
+    margin-bottom: 15px;
+  }
+  &__li {
+    color: #202020;
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
