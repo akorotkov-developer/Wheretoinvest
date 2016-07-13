@@ -24,30 +24,13 @@
     font-size: 12px;
     font-weight: 700;
     position: relative;
-    width: calc(100% - 344px);
-    padding-left: 0px;
-    padding-right: 16px;
+    width: calc(100% - 200px);
+    padding-left: 15px;
     float: left;
     cursor: pointer;
-    &:before {
-      content: '';
-      display: inline-block;
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      right: 0;
-      background: url(../images/sel.png) no-repeat;
 
-    }
   }
-  &__who {
-    float: left;
-    padding-left: 15px;
-    color: #202020;
-    font-size: 12px;
-    width: 144px;
-    font-weight: 700;
-  }
+
   &__row {
     border-bottom: 1px solid #e6e6e6;
     float: left;
@@ -70,48 +53,22 @@
     color: #000;
     font-size: 12px;
     font-weight: 400;
-    width: calc(100% - 344px);
+    padding-left: 15px;
+    width: calc(100% - 200px);
   }
-  &__face {
-    width: 144px;
-    float: left;
-    color: #202020;
-    font-size: 12px;
 
-    padding-left: 35px;
-    &:before {
-      display: inline-block;
-      position: absolute;
-      content: '';
-      margin-left: -20px;
-      width: 11px;
-      height: 11px;
-      background: url(../images/phys.png) no-repeat;
-
-    }
-    &_law {
-      &:before {
-        background: url(../images/yur.png) no-repeat;
-      }
-    }
-    font-weight: 400;
-    padding-top: 16px;
-
-  }
 
 }
 
 @media (max-width: 640px) {
   .invest {
     &__title, &__deposite {
-      width: calc(100% - 190px);
+      width: calc(100% - 140px);
     }
     &__region,&__place {
-      width: 110px;
+      width: 140px;
     }
-    &__who, &__face {
-      width: 80px;
-    }
+
 
   }
 }

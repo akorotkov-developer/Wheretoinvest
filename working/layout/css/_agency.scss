@@ -51,10 +51,16 @@
 @media (max-width: 640px) {
   .agency {
     &__th {
-      width: 33.3%;
+      width: 35%;
+      &_first {
+        width: 65%;
+      }
     }
     &__td {
-      width: 33%;
+      width: 35%;
+      &_first {
+        width: 65%;
+      }
     }
   }
 }
