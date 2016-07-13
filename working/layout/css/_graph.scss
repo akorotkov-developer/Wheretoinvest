@@ -45,14 +45,10 @@
     width: calc((100% - 100px) / 7);
     &:first-child {
       width: 100px;
-      padding-top: 23px;
-      padding-bottom: 0;
+
     }
   }
-  &__grey {
-    color: #818181;
 
-  }
 
 }
 @media (max-width:640px) {

@@ -1,7 +1,7 @@
 .course {
   margin-top: 36px;
   &__usd, &__rur, &__eur {
-    background: #007b13 !important;
+
     &:before {
       display: inline-block;
       content: '';
@@ -13,14 +13,14 @@
     }
   }
   &__rur {
-    background: #797979 !important;
+
     &:before {
       background: url(../images/rur.png) no-repeat;
     }
 
   }
   &__eur {
-    background: #0000fb !important;
+
     &:before {
       background: url(../images/eur.png) no-repeat;
     }
@@ -29,14 +29,26 @@
     display: inline-block;
     font-size: 12px;
     font-weight: 700;
+    border:0;
+    background: none;
+    width: auto;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    border-radius:0;
+    height: auto;
     text-transform: uppercase;
     color: #000;
     border-bottom: 1px dashed #000;
+    &:focus {
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 3px;
+    }
 
   }
-  &__red {
-    color: #e53935;
-  }
+
   .tabs {
     margin-top: 18px;
   }
@@ -44,14 +56,23 @@
     &.active a {
       border: 1px solid #e6e6e6;
       border-bottom: 0;
-      background-color: #fff !important;
+      &.course__usd {
+        background: rgba(0, 199, 22, 0.42) !important;
+      }
+      &.course__eur {
+        background: rgba(0, 0, 224, 0.39) !important;
+      }
+      &.course__rur {
+        background: rgba(0, 0, 0, 0.42) !important;
+      }
+
     }
     a {
       padding-left: 46px;
       padding-right: 20px;
       padding-top: 9px;
       padding-bottom: 10px;
-
+      background-color: #fff !important;
       margin-right: 2px;
 
       border: 1px solid #e6e6e6;
@@ -63,13 +84,14 @@
     }
   }
 }
-@media (max-width:640px) {
-    .course {
-      .tab-title {
-        a {
-          padding-right: 15px;
-          padding-left: 41px;
-        }
+
+@media (max-width: 640px) {
+  .course {
+    .tab-title {
+      a {
+        padding-right: 15px;
+        padding-left: 41px;
       }
     }
+  }
 }
