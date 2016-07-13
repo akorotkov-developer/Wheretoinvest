@@ -1,0 +1,55 @@
+.course {
+  margin-top: 36px;
+  &__usd,&__rur {
+    &:before {
+      display: inline-block;
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      margin-left: -23px;
+      background: url(../images/usd.png) no-repeat;
+    }
+  }
+  &__rur {
+    &:before {
+      background: url(../images/rur.png) no-repeat;
+    }
+  }
+  &__title {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #000;
+    border-bottom: 1px dashed #000;
+
+  }
+  &__red {
+    color: #e53935;
+  }
+  .tabs {
+    margin-top: 18px;
+  }
+  .tab-title {
+    &.active a {
+      border: 1px solid #e6e6e6;
+      border-bottom: 0;
+    }
+    a {
+      padding-left: 46px;
+      padding-right: 20px;
+      padding-top: 9px;
+      padding-bottom: 10px;
+
+      margin-right: 2px;
+      background-color: #ebebeb;
+      border: 1px solid #e6e6e6;
+
+      color: #202020;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+  }
+}

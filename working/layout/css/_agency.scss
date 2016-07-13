@@ -20,7 +20,7 @@
     font-weight: 700;
 
     &_first {
-      width: 48%;
+      width: 74%;
     }
   }
   &__body {
@@ -35,25 +35,26 @@
     padding-bottom: 18px;
     padding-top: 25px;
     color: #202020;
-    width: 26% ;
+    width: 26%;
     font-size: 14px;
     font-weight: 400;
     float: left;
     &_first {
-      width: 48%;
+      width: 74%;
     }
     &_grey {
       color: #9e9e9e;
     }
   }
 }
-@media (max-width:640px) {
-    .agency {
-      &__th {
-        width: 33.3%;
-      }
-      &__td {
-        width: 33%;
-      }
+
+@media (max-width: 640px) {
+  .agency {
+    &__th {
+      width: 33.3%;
     }
+    &__td {
+      width: 33%;
+    }
+  }
 }
