@@ -120,47 +120,22 @@
     </div>
     <div class="medium-9 small-12 columns content">
         <div class="row">
+            <div class="columns"><label for="#" class="content__label">Наименование предложения</label></div>
             <div class="columns content__title">Вклад «Капитальный»</div>
+            <div class="columns">
+                <label for="#" class="content__label">Способ вложения
+                    <input type="text" value="Банковский вклад">
+                </label>
+            </div>
         </div>
-        <!--        <div class="row">
-                    <div class="columns">
-                        <div class="contribution">
-                            <div class="contribution__head">
-                                <div class="contribution__th">Способ сложения</div>
-                                <div class="contribution__th contribution__th_second">Для кого</div>
-                                <div class="contribution__th contribution__th_third">Преимущества и особенности</div>
-                            </div>
-                            <div class="contribution__body">
-                                <div class="contribution__row">
-                                    <div class="contribution__td">Банковский
-                                        вклад
-                                    </div>
-                                    <div class="contribution__td contribution__td_second">
-                                        <div class="contribution__face">Физ. лица</div>
-                                        <div class="contribution__face contribution__face_law">Юр. лица</div>
-                                    </div>
-                                    <div class="contribution__td contribution__td_third">
-                                        <ul class="contribution__list">
-                                            <li class="contribution__li">Максимальный доход без снятия и пополнения;</li>
-                                            <li class="contribution__li">Открытие в интернет-банке;</li>
-                                            <li class="contribution__li">Капитализация процентов.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
+
         <div class="row">
             <div class="columns">
                 <div class="course">
                     <div class="row">
-                        <div class="columns"><select class="course__title">
-                            <option value="" selected>Для 82
-                                регионов РФ</option>
-                            <option value="">Для всех регионов</option>
-                            <option value="" >Московская область</option>
-                        </select></div>
+                        <div class="columns">
+                            <label for="#" class="content__label">Регионы действия</label><a href="#" data-reveal-id="myModal" class="course__title">Для <span
+                                class="course__red">82</span> регионов РФ</a></div>
                     </div>
                     <div class="row">
                         <div class="columns">
@@ -168,10 +143,10 @@
                             <ul class="tabs" data-tab>
                                 <li class="tab-title active"><a href="#panel1" class="course__rur">рубли</a></li>
                                 <li class="tab-title"><a href="#panel2" class="course__usd">Доллар</a></li>
-                                <li class="tab-title"><a href="#panel2" class="course__eur">Евро</a></li>
+                                <li class="tab-title"><a href="#panel3" class="course__eur">Евро</a></li>
                             </ul>
                             <div class="tabs-content">
-                                <div class="content active" id="panel1">
+                                <div class="content active content_rur" id="panel1">
                                     <div class="graph">
                                         <div class="graph__head">
                                             <div class="graph__th">&nbsp;</div>
@@ -335,7 +310,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="content" id="panel2">
+                                <div class="content content_usd" id="panel2">
                                     <div class="graph">
                                         <div class="graph__head">
                                             <div class="graph__th">&nbsp;</div>
@@ -499,7 +474,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="content" id="panel3">
+                                <div class="content content_eur" id="panel3">
                                     <div class="graph">
                                         <div class="graph__head">
                                             <div class="graph__th">&nbsp;</div>
@@ -671,27 +646,270 @@
             </div>
         </div>
         <div class="row">
-
+            <div class="content__change columns">Изменить</div>
+        </div>
+        <div class="row">
             <div class="columns">
                 <div class="course">
                     <div class="row">
-                        <div class="columns"><select class="course__title">
-                            <option value="" selected>Для 2
-                                регионов РФ</option>
-                            <option value="">Для всех регионов</option>
-                            <option value="" >Московская область</option>
-                        </select></div>
+                        <div class="columns"><label for="#" class="content__label">Регионы действия</label><a href="#" data-reveal-id="myModal" class="course__title">Для <span
+                                class="course__red">2</span> регионов РФ</a></div>
+                        <div id="myModal" class="reveal-modal modal" data-reveal aria-labelledby="modalTitle"
+                             aria-hidden="true" role="dialog">
+                            <div class="modal__col">
+                                <div class="modal__title">A</div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd2" class="modal__checkbox">
+                                    <label for="dd2" class="modal__chck">Алтайский край</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd3" class="modal__checkbox">
+                                    <label for="dd3" class="modal__chck">Архангельская область</label>
+                                </div>
+
+                                <div class="modal__title">Б</div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd4" class="modal__checkbox">
+                                    <label for="dd4" class="modal__chck">Белгородская область</label>
+                                </div>
+                                <div class="modal__title">В</div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd5" class="modal__checkbox">
+                                    <label for="dd5" class="modal__chck">Владимирская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd6" class="modal__checkbox">
+                                    <label for="dd6" class="modal__chck">Волгоградская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="d4" class="modal__checkbox">
+                                    <label for="d4" class="modal__chck">Воронежская область</label>
+                                </div>
+                                <div class="modal__title">И</div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd41" class="modal__checkbox">
+                                    <label for="dd41" class="modal__chck">Иркутская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd42" class="modal__checkbox">
+                                    <label for="dd42" class="modal__chck">Ивановская область</label>
+                                </div>
+                                <div class="modal__title">К</div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd43" class="modal__checkbox">
+                                    <label for="dd43" class="modal__chck">Калининградская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd44" class="modal__checkbox">
+                                    <label for="dd44" class="modal__chck">Калужская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd465" class="modal__checkbox">
+                                    <label for="dd465" class="modal__chck">Кемеровская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd45" class="modal__checkbox">
+                                    <label for="dd45" class="modal__chck">Кировская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd46" class="modal__checkbox">
+                                    <label for="dd46" class="modal__chck">Краснодарский край</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd47" class="modal__checkbox">
+                                    <label for="dd47" class="modal__chck">Красноярский край</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd48" class="modal__checkbox">
+                                    <label for="dd48" class="modal__chck">Курганская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd49" class="modal__checkbox">
+                                    <label for="dd49" class="modal__chck">Курская область</label>
+                                </div>
+                                <div class="modal__title">Л</div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd411" class="modal__checkbox">
+                                    <label for="dd411" class="modal__chck">Липецкая область</label>
+                                </div>
+
+                            </div>
+                            <div class="modal__col">
+                                <div class="modal__title">М</div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd12" class="modal__checkbox">
+                                    <label for="dd12" class="modal__chck">Москва и область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd13" class="modal__checkbox">
+                                    <label for="dd13" class="modal__chck">Мурманская область</label>
+                                </div>
+
+                                <div class="modal__title">Н</div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd14" class="modal__checkbox">
+                                    <label for="dd14" class="modal__chck">Нижегородская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd15" class="modal__checkbox">
+                                    <label for="dd15" class="modal__chck">Новосибирская область</label>
+                                </div>
+
+                                <div class="modal__title">О</div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd16" class="modal__checkbox">
+                                    <label for="dd16" class="modal__chck">Омская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd17" class="modal__checkbox">
+                                    <label for="dd17" class="modal__chck">Оренбургская область</label>
+                                </div>
+                                <div class="modal__title">П</div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd18" class="modal__checkbox">
+                                    <label for="dd18" class="modal__chck">Пензенская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd19" class="modal__checkbox">
+                                    <label for="dd19" class="modal__chck">Пермский край</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd20" class="modal__checkbox">
+                                    <label for="dd20" class="modal__chck">Приморский край</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd21" class="modal__checkbox">
+                                    <label for="dd21" class="modal__chck">Псковская область</label>
+                                </div>
+                                <div class="modal__title">Р</div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd22" class="modal__checkbox">
+                                    <label for="dd22" class="modal__chck">Республика Башкортостан</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd23" class="modal__checkbox">
+                                    <label for="dd23" class="modal__chck">Республика Карелия</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd24" class="modal__checkbox">
+                                    <label for="dd24" class="modal__chck">Республика Марий Эл</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd25" class="modal__checkbox">
+                                    <label for="dd25" class="modal__chck">Республика Мордовия</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd26" class="modal__checkbox">
+                                    <label for="dd26" class="modal__chck">Республика Саха (Якутия)</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd27" class="modal__checkbox">
+                                    <label for="dd27" class="modal__chck">Республика Татарстан</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd28" class="modal__checkbox">
+                                    <label for="dd28" class="modal__chck">Республика Хакасия</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd29" class="modal__checkbox">
+                                    <label for="dd29" class="modal__chck">Ростовская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd30" class="modal__checkbox">
+                                    <label for="dd30" class="modal__chck">Рязанская область</label>
+                                </div>
+
+                            </div>
+                            <div class="modal__col">
+                                <div class="modal__title">С</div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd431" class="modal__checkbox">
+                                    <label for="dd431" class="modal__chck">Самарская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd432" class="modal__checkbox">
+                                    <label for="dd432" class="modal__chck">Санкт-Петербург и обл.</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd433" class="modal__checkbox">
+                                    <label for="dd433" class="modal__chck">Саратовская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd434" class="modal__checkbox">
+                                    <label for="dd434" class="modal__chck">Сахалинская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd435" class="modal__checkbox">
+                                    <label for="dd435" class="modal__chck">Свердловская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd436" class="modal__checkbox">
+                                    <label for="dd436" class="modal__chck">Ставропольский край</label>
+                                </div>
+                                <div class="modal__title">Т</div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd441" class="modal__checkbox">
+                                    <label for="dd441" class="modal__chck">Тверская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd442" class="modal__checkbox">
+                                    <label for="dd442" class="modal__chck">Томская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd443" class="modal__checkbox">
+                                    <label for="dd443" class="modal__chck">Тульская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd444" class="modal__checkbox">
+                                    <label for="dd444" class="modal__chck">Тюменская область</label>
+                                </div>
+                                <div class="modal__title">У</div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd54" class="modal__checkbox">
+                                    <label for="dd54" class="modal__chck">Удмуртская Республика</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd554" class="modal__checkbox">
+                                    <label for="dd554" class="modal__chck">Ульяновская область</label>
+                                </div>
+                                <div class="modal__title">Х</div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd64" class="modal__checkbox">
+                                    <label for="dd64" class="modal__chck">Хабаровский край</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd74" class="modal__checkbox">
+                                    <label for="dd74" class="modal__chck">Ханты-Мансийский автономный округ</label>
+                                </div>
+                                <div class="modal__title">Ч</div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd114" class="modal__checkbox">
+                                    <label for="dd114" class="modal__chck">Челябинская область</label>
+                                </div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd224" class="modal__checkbox">
+                                    <label for="dd224" class="modal__chck">Чувашская Республика</label>
+                                </div>
+                                <div class="modal__title">Я</div>
+                                <div class="modal__wrp">
+                                    <input type="checkbox" name="address" id="dd664" class="modal__checkbox">
+                                    <label for="dd664" class="modal__chck">Ярославская область</label>
+                                </div>
+
+                            </div>
+                            <a class="close-reveal-modal modal__close" aria-label="Close">&#215;</a>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="columns">
 
                             <ul class="tabs" data-tab>
-                                <li class="tab-title active"><a href="#pan1" class="course__rur">рубли</a></li>
-                                <li class="tab-title"><a href="#pan2" class="course__usd">Доллар</a></li>
-                                <li class="tab-title"><a href="#pan2" class="course__eur">Евро</a></li>
+                                <li class="tab-title active"><a href="#panel11" class="course__rur">рубли</a></li>
+                                <li class="tab-title"><a href="#panel12" class="course__usd">Доллар</a></li>
+                                <li class="tab-title"><a href="#panel13" class="course__eur">Евро</a></li>
                             </ul>
                             <div class="tabs-content">
-                                <div class="content active" id="pan1">
+                                <div class="content active content_rur" id="panel11">
                                     <div class="graph">
                                         <div class="graph__head">
                                             <div class="graph__th">&nbsp;</div>
@@ -855,7 +1073,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="content" id="pan2">
+                                <div class="content content_usd" id="panel12">
                                     <div class="graph">
                                         <div class="graph__head">
                                             <div class="graph__th">&nbsp;</div>
@@ -1019,7 +1237,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="content" id="pan3">
+                                <div class="content content_eur" id="panel13">
                                     <div class="graph">
                                         <div class="graph__head">
                                             <div class="graph__th">&nbsp;</div>
@@ -1189,10 +1407,9 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="row">
-            <div class="content__change columns">Изменить предложение</div>
+            <div class="content__change columns">Изменить</div>
         </div>
     </div>
 </div>
@@ -1259,6 +1476,7 @@
 <script src="//yastatic.net/jquery/1.11.2/jquery.min.js"></script>
 <script src="js/foundation/foundation.js"></script>
 <script src="js/foundation/foundation.equalizer.js"></script>
+<script src="js/foundation/foundation.reveal.js"></script>
 <script src="js/foundation/foundation.tab.js"></script>
 <script src="js/common.js"></script>
 </body>

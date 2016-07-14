@@ -55,11 +55,23 @@
     width: 100%;
   }
   &__title {
-    color: #000;
+    display: inline-block;
     font-size: 12px;
     font-weight: 700;
-
+    border:0;
+    background: none;
+    width: auto;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-bottom: 0;
+    border-radius:0;
+    height: auto;
     text-transform: uppercase;
+    color: #000;
+    border-bottom: 1px dashed #000;
+
     &_green {
       color: #0aa468;
       border-color: #0aa468;
