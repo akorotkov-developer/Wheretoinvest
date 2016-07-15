@@ -4,7 +4,7 @@
   padding: 35px;
   padding-top: 16px;
   width: 90%;
-  min-height:0;
+  min-height: 0;
   &__close {
     font-size: 0 !important;
     top: 20px !important;
@@ -42,7 +42,7 @@ input.modal__checkbox {
 
 label.modal__chck {
   font-size: 12px;
-  color: #e53935;
+  color: #9e9e9e;
   font-weight: 400;
   margin-right: 0 !important;
 
@@ -68,18 +68,22 @@ label.modal__chck {
 .modal__checkbox:checked + label:after {
   width: 16px;
   height: 16px;
-
   background: url('../images/check.png') no-repeat;
 }
-@media (max-width:640px) {
 
-    .modal {
-      width: 100%;
-      padding-left: 0px;
-      padding-right: 0px;
-      &__col {
-        width: 50%;
+.modal__checkbox:checked + label {
+  color: #000;
+}
 
-      }
+@media (max-width: 640px) {
+
+  .modal {
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    &__col {
+      width: 50%;
+
     }
+  }
 }
