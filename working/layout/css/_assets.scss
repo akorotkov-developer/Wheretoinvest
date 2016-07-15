@@ -1,0 +1,45 @@
+.assets {
+  margin-bottom: 25px;
+  &__head {
+    float: left;
+    width: 100%;
+  }
+  &__title {
+    color: #9e9e9e;
+    font-size: 14px;
+    font-weight: 400;
+    margin-right: 14px;
+    float: left;
+
+  }
+  &__red {
+    color: #e53935;
+    font-size: 14px;
+    float: left;
+    font-weight: 400;
+    margin-left: 7px;
+  }
+  &__tooltip {
+    float: left;
+    width: 18px;
+    height: 18px;
+    background: url(../images/qu.png) no-repeat;
+
+  }
+  &__black {
+    margin-left: 14px;
+    color: #202020;
+    font-size: 14px;
+    font-weight: 400;
+    float: left;
+  }
+  &__text {
+    padding-top: 11px;
+    float: left;
+    width: 100%;
+    color: #202020;
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+}

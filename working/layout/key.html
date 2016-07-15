@@ -120,27 +120,44 @@
     </div>
     <div class="medium-9 small-12 columns content">
         <div class="row">
-            <div class="columns content__title">Сменить электронную почту</div>
-            <form action="#" class="content__form">
-                <div class="columns">
-                    <label for="#" class="content__label">Старый email
-                        <input type="text" value="">
-                    </label>
+            <div class="columns content__title">Ключевые показатели отчётности</div>
+            <div class="assets columns">
+                <div class="assets__head">
+                    <div class="assets__title">Капитал / Активы:</div>
+                    <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip" title="Подсказка"></span>
+                    <span class="assets__black">6,95%</span>
                 </div>
-                <div class="columns">
-                    <label for="#" class="content__label">Новый email
-                        <input type="text" value="">
-                    </label>
+                <div class="assets__text">Для банков соответствует нормативу Н1.1 на последнюю отчетную дату. Для
+                    остальных организаций соответствует отношению величины собственного капитала к активам по балансу, в
+                    процентах
                 </div>
-                <div class="columns">
-                    <label for="#" class="content__label">Повторите новый email
-                        <input type="text" value="">
-                    </label>
+            </div>
+            <div class="assets columns">
+                <div class="assets__head">
+                    <div class="assets__title">Собственный капитал:</div>
+                    <span class="assets__red">167 815 216 тыс. Р</span>
                 </div>
-                <div class="columns">
-                    <button type="submit" class="content__submit">Сохранить</button>
+                <div class="assets__text">Для банков соответствует показателю «Базовый капитал» (строка 102 формы
+                    0409123 «Расчёт собственных средств (капитала) («Базель III»)) на последнюю отчетную дату. Для
+                    остальных организаций соответствует величине собственного капитала по балансу
                 </div>
-            </form>
+            </div>
+            <div class="assets columns">
+                <div class="assets__head">
+                    <div class="assets__title">Активы:</div>
+                    <span class="assets__red">167 815 216 тыс. Р</span>
+                    <span class="assets__black"> / 6,95% =</span>
+                    <span class="assets__red">2 414 607 424 тыс. Р</span>
+                </div>
+                <div class="assets__text">Для банков соответствует отношению показателя «Собственный капитал» к
+                    показателю «Капитал / Активы» на последнюю отчетную дату. Для остальных организаций соответствует
+                    величине активов по балансу
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="content__change columns">Изменить</div>
+            <div class="columns content__date">Обновлено: 01.10.1970 в 12:00</div>
         </div>
     </div>
 </div>
@@ -209,6 +226,7 @@
 <script src="js/foundation/foundation.equalizer.js"></script>
 <script src="js/foundation/foundation.reveal.js"></script>
 <script src="js/foundation/foundation.tab.js"></script>
+<script src="js/foundation/foundation.tooltip.js"></script>
 <script src="js/common.js"></script>
 </body>
 </html>
