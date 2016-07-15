@@ -1,5 +1,9 @@
 .state {
-
+  margin-top: 16px;
+  margin-bottom: 20px;
+  &_high {
+    margin-top: 36px;
+  }
 }
 input.state__checkbox {
   display: none;
@@ -11,12 +15,12 @@ label.state__chck {
   font-weight: 400;
   padding-top: 12px;
   padding-left: 110px;
-  margin-bottom: 20px !important;
 
   &:after {
     position: absolute;
     top: 3px;
     left: 15px;
+
 
     display: block;
 
