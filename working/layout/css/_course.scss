@@ -8,10 +8,11 @@
     display: inline-block;
     font-size: 12px;
     font-weight: 400;
-    font-style: italic;
-    text-transform: uppercase;
-    color: #000;
+    color: #202020;
     border-bottom: 1px dashed #000;
+    &:hover {
+      color: #202020;
+    }
 
   }
 
