@@ -2,7 +2,7 @@
   padding-left: 48px;
   &__span {
     display: block;
-    font-size: 16px;
+    font-size: 14px;
     color: #000;
   }
   &__add {
@@ -10,12 +10,13 @@
     font-weight: 700;
     text-transform: uppercase;
     border: 2px solid #0aa468;
-    -webkit-border-radius:3px;
-    -moz-border-radius:3px;
-    border-radius:3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 9px;color: #0aa468;
+    padding-top: 9px;
+    color: #0aa468;
     margin-right: 14px;
     padding-bottom: 10px;
     background: none;
@@ -78,7 +79,7 @@
   }
   &__label {
     color: #9e9e9e;
-    font-size: 12px;
+    font-size: 14px;
     &_big {
       padding-top: 13px;
     }

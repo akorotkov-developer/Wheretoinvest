@@ -1,7 +1,10 @@
 .edit {
+  &_first {
+    padding-top: 15px;
+  }
   &__label {
     color: #9e9e9e;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
   }
   &__close {
