@@ -1,5 +1,10 @@
 .content {
   padding-left: 48px;
+  &__logo {
+    display: inline-block;
+    padding-top: 14px;
+    padding-bottom: 22px;
+  }
   &__span {
     display: block;
     font-size: 14px;
