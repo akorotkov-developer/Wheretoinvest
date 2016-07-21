@@ -1,0 +1,26 @@
+.met {
+  margin-bottom: 28px;
+  &__rating {
+    color: #202020;
+    font-size: 14px;
+    padding-top: 14px;
+    position: relative;
+    padding-left: 18px;
+    &:before {
+      width: 7px;
+      height: 7px;
+      bottom: 5px;
+      background: url(../images/g.png)no-repeat;
+      content: '';
+      display: inline-block;
+      left: 0;
+      position: absolute;
+    }
+    &_no{
+      color: #9e9e9e;
+      &:before {
+        background: url(../images/cl.png) no-repeat;
+      }
+    }
+  }
+}
