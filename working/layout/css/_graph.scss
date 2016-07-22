@@ -5,6 +5,9 @@
   &_reg {
     margin-top: 5px;
     margin-bottom: 25px;
+    .graph__td {
+      padding-top: 18px;
+    }
   }
   &__add {
     color: #202020;
@@ -74,13 +77,17 @@
       background-color: #ebebeb;
     }
     width: calc((100% - 100px) / 7);
+
     &_reg {
       padding-bottom: 22px;
       padding-top: 17px;
     }
     &:first-child {
       width: 100px;
-
+    }
+    &_js {
+      cursor: pointer;
+      padding-top: 6px !important;
     }
   }
 
@@ -89,7 +96,7 @@
 @media (max-width: 640px) {
   .graph {
     &__th, &__td {
-      width: calc((100% - 100px) / 4);
+      width: calc((100% - 100px) / 3);
     }
   }
 }

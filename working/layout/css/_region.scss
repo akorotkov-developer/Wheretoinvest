@@ -50,6 +50,7 @@
     border: 1px solid #d0d0d0;
     border-radius: 3px 2px 2px 3px;
     margin-top: 45px;
+    padding-top: 10px;
     float: left;
     position: relative;
     width: 100%;
@@ -117,6 +118,7 @@
   }
   &__add {
     float: left;
+    cursor: pointer;
     color: #0aa468;
     border: 2px solid #0aa468;
     border-radius: 3px 2px 2px 3px;
@@ -133,6 +135,8 @@
 input.region__inp {
   float: left;
   width: 105px;
+  padding-left: 10px;
+  padding-right: 10px;
   &_mini {
     width: 63px;
   }
@@ -143,6 +147,9 @@ input.region__inp {
   &_no-rad {
     border-radius: 0;
   }
+}
+input.region__js-percent {
+  margin-bottom: 0;
 }
 
 @media (max-width: 960px) {

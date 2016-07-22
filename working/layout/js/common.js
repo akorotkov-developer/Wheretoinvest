@@ -8,7 +8,6 @@
         // your code goes here
 
 
-
         (function () {
             $('.js-show-menu').on('click', function () {
                 $('.js-menu').toggle(500);
@@ -119,6 +118,136 @@
 
 
         })();
+        //begin of graph tqble edit
+
+
+        (function () {
+            function deleteCol() {
+                var num = $(this).parent().index();
+
+                $(this).closest('.graph').find('.graph__row').each(function () {
+                    $(this).find('.graph__td').eq(num).remove();
+                });
+                $(this).parent().detach();
+            }
+            function deleteRow() {
+                $(this).parent().parent().remove();
+            }
+
+
+
+            //begin of add of rows and columns
+            function panelActive() {
+                return '#' + $('.content.active').attr('id');
+            }
+
+            function inputCreate() {
+
+                var txt = +($(this).val());
+                if (txt) {
+                    $(this).parent().removeClass('graph__td_js').html(txt + '%');
+                }
+            }
+
+            $('.graph__cr:not(.graph__cr_td)').on('click', deleteCol);
+
+            $('.graph__cr_td').click(function () {
+
+                $(this).parent().parent().detach();
+            });
+
+            var graphTd = '<div class="graph__td graph__td_js"><input type="text" class="region__js-percent"></div>';
+
+            $('.region__js-col').click(function () {
+                var firD = $('.region__js-fir').val();
+                var secD = $('.region__js-sec').val();
+                if (firD) {
+                    var idA = panelActive();
+                    var numCol = $(idA + ' .graph__th').length;
+                    if (numCol <= 7) {
+                        var numRow = $(idA + ' .graph__row').length;
+                        if (secD) {
+                            var headText = '<div class="graph__th graph__th_reg"><a class="graph__cr"></a>' + firD + ' –  ' + secD + '<br> дней</div>';
+                        } else {
+                            var headText = '<div class="graph__th graph__th_reg"><a class="graph__cr"></a>' + firD + '<br>дней</div>';
+                        }
+
+                        $(idA + " .graph__head").append(headText);
+                        $('.graph__cr:not(.graph__cr_td)').off('click', deleteCol);
+                        $('.graph__cr:not(.graph__cr_td)').on('click', deleteCol);
+
+                        $(idA + ' .graph__row').each(function () {
+                            $(this).append(graphTd);
+
+                        });
+                        $('.region__js-percent').off('blur', inputCreate);
+                        $('.region__js-percent').on('blur', inputCreate);
+                    }
+                }
+            });
+
+
+            $('.region__js-row').click(function () {
+                var firD = $('.region__js-sum').val();
+                if (firD) {
+                    var idA = panelActive();
+                    var numCol = $(idA + ' .graph__th').length;
+                    var rowText = '<div class="graph__row"><div class="graph__td graph__td_reg">от ' + firD + '<a class="graph__cr graph__cr_td"></a></div>';
+                    for (var i = 1; i < numCol; i++) {
+                        rowText += graphTd;
+                    }
+                    $(idA + " .graph__body").append(rowText);
+                    $('.graph__cr_td').off('click', deleteRow);
+                    $('.graph__cr_td').on('click', deleteRow);
+                    $('.region__js-percent').off('blur', inputCreate);
+                    $('.region__js-percent').on('blur', inputCreate);
+
+                }
+            });
+
+            //end of add of rows and columns
+
+            //begin of graph table hide/show
+            function respoTd() {
+                var beginNum = 4;
+                var endNum = 8;
+                if (window.innerWidth < 640) {
+                    $('.graph__row').each(function () {
+                        for (var i = beginNum; i < endNum; i++) {
+                            $(this).find('.graph__td').eq(i).hide()
+                        }
+
+                    });
+                    $('.graph__head').each(function () {
+                        for (var i = beginNum; i < endNum; i++) {
+                            $(this).find('.graph__th').eq(i).hide()
+                        }
+                    });
+                }
+                else {
+                    $('.graph__row').each(function () {
+                        for (var i = beginNum; i < endNum; i++) {
+                            $(this).find('.graph__td').eq(i).show()
+                        }
+
+                    });
+                    $('.graph__head').each(function () {
+                        for (var i = beginNum; i < endNum; i++) {
+                            $(this).find('.graph__th').eq(i).show()
+                        }
+                    });
+                }
+            }
+
+            window.onresize = function () {
+                respoTd();
+            };
+
+            //end of graph table hide/show
+
+        })();
+        //end of graph tqble edit
+
 
     });
 })(jQuery);

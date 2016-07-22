@@ -22,7 +22,6 @@
   }
   .tab-title {
     &.active {
-      left: -1px;
       a {
         border: 1px solid #e6e6e6;
         border-bottom: 0;
@@ -70,7 +69,7 @@
 
   }
   &.content_eur.active, &.content_eur.active .graph {
-    background: rgba(0, 113, 251, 0.11) ;
+    background: rgba(0, 113, 251, 0.11);
 
   }
 
