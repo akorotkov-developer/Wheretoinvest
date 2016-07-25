@@ -1,5 +1,5 @@
 .recover {
-  max-width:346px;
+  max-width: 346px;
   margin-left: auto;
   margin-right: auto;
   &__link {
@@ -25,14 +25,15 @@
     font-size: 12px;
     margin-bottom: 14px;
     font-weight: 700;
-    text-transform: uppercase;background-color: #e53935;
-    border-radius:3px;
+    text-transform: uppercase;
+    background-color: #e53935;
+    border-radius: 3px;
   }
   &__title {
     color: #202020;
     font-size: 33px;
     font-weight: 100;
-    padding-bottom:21px;
+    padding-bottom: 21px;
   }
   &__text {
     color: #202020;
@@ -58,14 +59,15 @@
     }
   }
 }
-@media (max-width:400px) {
-    .recover {
 
-      max-width:100%;
-      padding-left: 10px;
-      padding-right: 10px;
-      &__title {
-        font-size: 29px;
-      }
+@media (max-width: 400px) {
+  .recover {
+
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    &__title {
+      font-size: 29px;
     }
+  }
 }
