@@ -4,6 +4,9 @@
   &_p {
     margin-top: 37px;
   }
+  &_mini {
+    margin-top: 0;
+  }
   &_last {
     margin-bottom: 40px;
   }
@@ -29,6 +32,10 @@
     font-weight: 400;
     padding-left: 0;
     color: #202020;
+    &_my {
+      padding-left: 15px;
+      margin-bottom: 30px;
+    }
 
   }
 }

@@ -157,12 +157,8 @@
 
                 var tx = $(this).val().replace(",",".");
                 var txt = (+tx).toFixed(2);
-                if (txt) {
-                    $(this).parent().parent().parent().find('.graph__td_active').removeClass('graph__td_active');
-                    $(this).parent().addClass('graph__td_active');
-                    $(this).parent().parent().find('.graph__td_js').removeClass('graph__td_js');
-                    $(this).parent().parent().find('.graph__td:not(.graph__td_reg)').html('-');
-                    $('.graph__td_active').html(txt + '%');
+                if (txt && !(isNaN(txt))) {
+                    $(this).parent().removeClass('graph__td_js').html(txt + '%');
                 }
             }
 
