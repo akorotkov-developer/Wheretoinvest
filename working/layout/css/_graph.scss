@@ -24,8 +24,9 @@
     position: absolute;
     left: calc(50% - 8px);
     &_td {
-      bottom: 9px;
-      top: auto;
+      top: 3px;
+      left: auto;
+      right: 30px;
     }
   }
   &__head {
@@ -81,6 +82,8 @@
     &_reg {
       padding-bottom: 22px;
       padding-top: 17px;
+      text-align: right;
+      padding-right: 10px;
     }
     &:first-child {
       width: 100px;

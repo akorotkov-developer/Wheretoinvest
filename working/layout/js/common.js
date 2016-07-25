@@ -63,6 +63,9 @@
             $('.b-sort__inp').keyup(function (event) {
                 $(this).val(number_format($(this).val()));
             });
+            $('.region__js-sum').keyup(function (event) {
+                $(this).val(number_format($(this).val()));
+            });
         })();
         (function () {
             window.onresize = function () {
@@ -118,9 +121,16 @@
 
 
         })();
+        //begin of number of checked regions
+        (function () {
+            $(document).on('close.fndtn.reveal', '[data-reveal]', function () {
+                var num = $('.reveal-modal').find('input:checked').length;
+                $('.course__title .course__red').text(num);
+            });
+        })();
+        //end of number of checked regions
+
         //begin of graph tqble edit
-
-
         (function () {
             function deleteCol() {
                 var num = $(this).parent().index();
@@ -129,11 +139,13 @@
                     $(this).find('.graph__td').eq(num).remove();
                 });
                 $(this).parent().detach();
-            }
-            function deleteRow() {
-                $(this).parent().parent().remove();
+                respoTd();
             }
 
+            function deleteRow() {
+                $(this).parent().parent().remove();
+                respoTd();
+            }
 
 
             //begin of add of rows and columns
@@ -143,9 +155,14 @@
 
             function inputCreate() {
 
-                var txt = +($(this).val());
+                var tx = $(this).val().replace(",",".");
+                var txt = (+tx).toFixed(2);
                 if (txt) {
-                    $(this).parent().removeClass('graph__td_js').html(txt + '%');
+                    $(this).parent().parent().parent().find('.graph__td_active').removeClass('graph__td_active');
+                    $(this).parent().addClass('graph__td_active');
+                    $(this).parent().parent().find('.graph__td_js').removeClass('graph__td_js');
+                    $(this).parent().parent().find('.graph__td:not(.graph__td_reg)').html('-');
+                    $('.graph__td_active').html(txt + '%');
                 }
             }
 
@@ -184,6 +201,7 @@
                         $('.region__js-percent').on('blur', inputCreate);
                     }
                 }
+                respoTd();
             });
 
 
@@ -203,6 +221,7 @@
                     $('.region__js-percent').on('blur', inputCreate);
 
                 }
+                respoTd();
             });
 
             //end of add of rows and columns
@@ -213,12 +232,19 @@
                 var endNum = 8;
                 if (window.innerWidth < 640) {
                     $('.graph__row').each(function () {
+                        for (var i = 0; i < beginNum; i++) {
+                            $(this).find('.graph__td').eq(i).show()
+                        }
                         for (var i = beginNum; i < endNum; i++) {
                             $(this).find('.graph__td').eq(i).hide()
                         }
 
                     });
                     $('.graph__head').each(function () {
+                        for (var i = 0; i < beginNum; i++) {
+                            $(this).find('.graph__th').eq(i).show()
+                        }
+
                         for (var i = beginNum; i < endNum; i++) {
                             $(this).find('.graph__th').eq(i).hide()
                         }
