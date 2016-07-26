@@ -7,3 +7,18 @@
 body {
   overflow-y: scroll !important;
 }
+
+input {
+  &::-webkit-input-placeholder {
+    color: #202020;
+  }
+  &::-moz-placeholder {
+    color: #202020;
+  }
+  &:-moz-placeholder {
+    color: #202020;
+  }
+  &:-ms-input-placeholder {
+    color: #202020;
+  }
+}
