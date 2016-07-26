@@ -18,6 +18,20 @@
                 $(this).closest('.b-offers__item').toggleClass('active');
             });
             //end of b-offers__item show/hide
+            //begin of select my region
+            (function () {
+
+                if ($('.modal_js-my-region')) {
+
+                    $('.modal_js-my-region label').click(function () {
+                        var txt = $(this).text();
+                        $('.content__js-my-region').val(txt);
+                        $(this).prev('input').prop('disabled', true);
+                        $('#myModal').foundation('reveal', 'close');
+                    });
+                }
+            })();
+            //end of select my region
             //begin of sum menu show/hide
             function sortText() {
                 var sum = $('.b-sort__main .b-sort__inp').val() || 0;
@@ -155,7 +169,7 @@
 
             function inputCreate() {
 
-                var tx = $(this).val().replace(",",".");
+                var tx = $(this).val().replace(",", ".");
                 var txt = (+tx).toFixed(2);
                 if (txt && !(isNaN(txt))) {
                     $(this).parent().removeClass('graph__td_js').html(txt + '%');
