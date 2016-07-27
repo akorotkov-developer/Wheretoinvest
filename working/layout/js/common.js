@@ -58,6 +58,15 @@
                         $('#myModal').foundation('reveal', 'close');
                     });
                 }
+
+                if($('.b-header__firstline-linkreg_js')) {
+                    $('.modal_js-top label').click(function () {
+                        var txt = $(this).text();
+                        $('.b-header__firstline-linkreg_js').text(txt);
+                        $(this).prev('input').prop('disabled', true);
+                        $('#myModal1').foundation('reveal', 'close');
+                    });
+                }
             })();
             //end of select my region
             //begin of sum menu show/hide
