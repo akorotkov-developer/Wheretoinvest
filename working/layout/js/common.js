@@ -7,7 +7,35 @@
 
         // your code goes here
 
+//begin of footer2bottom
+        (function () {
+            if ($('.b-footer')) {
+                var $footer = $('.b-footer');
+                var marT = +($footer.css('margin-top').slice(0, -2));
 
+                function footer2bottom() {
+                    $footer.css('margin-top', 0 + 'px')
+                    if ($('body').height() < $(window).height()) { // если высота body меньше, чем высота окна
+                        var fmargin = $(document).height() - $('body').height() - 2; // вычисляем верхний оступ
+                        $footer.css('margin-top', fmargin + 'px'); // применяем верхний отступ
+                    }
+                    else {
+                        $footer.css('margin-top', marT + 'px');
+                    }
+                }
+
+// обработка события после загрузки дерева DOM
+                $(document).ready(function () {
+                    footer2bottom(); // вызываем функцию для футера
+                });
+                $(window).on('resize', function () { // если окно изменяет размер (можно дописать другие события)
+                    footer2bottom(); // вызываем функцию для футера
+                });
+            }
+
+        })();
+
+//end of footer2bottom
         (function () {
             $('.js-show-menu').on('click', function () {
                 $('.js-menu').toggle(500);
