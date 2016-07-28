@@ -82,9 +82,15 @@ label.modal__chck {
     width: 100%;
     padding-left: 0px;
     padding-right: 0px;
+    &__half {
+      width: 50%;
+      float: left;
+    }
     &__col {
       width: 50%;
-
+      &:nth-of-type(3) {
+        width: 100%;
+      }
     }
   }
 }

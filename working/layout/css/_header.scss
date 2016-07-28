@@ -1,10 +1,10 @@
 .b-header {
-&__place {
-  padding-top: 20px;
-  position: absolute;
-  left: 33%;
-  width: 45% !important;
-}
+  &__place {
+    padding-top: 20px;
+    position: absolute;
+    left: 260px;
+    width:calc(100% - 440px) !important;
+  }
   &__showMenu {
 
     line-height: rem-calc(40);
@@ -23,6 +23,7 @@
     padding-top: 21px;
   }
   &__firstline {
+    position: relative;
     padding-top: 22px;
     padding-bottom: 17px;
 
@@ -30,6 +31,7 @@
 
       display: inline-block;
       position: absolute;
+      margin-left: -10px;
       background: url("../images/regions.png") no-repeat center center;
       width: rem-calc(10);
       height: rem-calc(16);
@@ -37,8 +39,7 @@
     &-linkreg {
       border-bottom: 1px dashed #000;
       cursor: pointer;
-      margin-left: 14px;
-      margin-right: rem-calc(15);
+      margin-left: 5px;
     }
 
     &-iconlogin {
@@ -81,7 +82,7 @@
     &-item {
       float: left;
       margin-right: 12px;
-      width:calc(25% - 9px);
+      width: calc(25% - 9px);
       &:last-child {
         margin-right: 0;
       }
@@ -103,8 +104,8 @@
       border-radius: 8px;
       display: block;
       //background: #595959;
-      
-       &:focus {
+
+      &:focus {
         color: #000;
         border-color: #e23934;
       }
@@ -120,23 +121,20 @@
 @media (max-width: 960px) {
   .b-header {
 
-    &__place {
-      left: 43%;
-      width: 25% !important;
+
+  }
+}
+
+@media (max-width: 800px) {
+  .b-header {
+    &__menu {
+      &-link {
+        height: 71px;
+      }
     }
   }
 }
 
-
-@media (max-width:800px) {
-    .b-header {
-      &__menu {
-        &-link {
-          height: 71px;
-        }
-      }
-    }
-}
 @media (max-width: 640px) {
   .b-header {
     &__logotype {
@@ -163,7 +161,7 @@
     }
     &__place {
       position: absolute;
-      top: 50px;
+      top: 30px;
       width: 100% !important;
       left: 0;
       padding-top: 33px;
@@ -175,11 +173,10 @@
       }
     }
     &__firstline {
-      line-height: 0;
-
-      padding-bottom: 40px;
+      padding-top: 0;
+      padding-bottom: 50px;
       &-iconreg {
-        margin-top: -8px;
+
       }
       &.js-toggle {
         padding-bottom: 0;
@@ -226,8 +223,9 @@
       }
       &-link {
         font-weight: 700;
+        color: #fff;
         border: 0;
-        color: #d2d2d2;
+        background: #d2d2d2;
         font-size: 14px;
         padding-left: 10px;
         padding-right: 10px;
