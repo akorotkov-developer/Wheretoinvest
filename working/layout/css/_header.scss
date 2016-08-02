@@ -3,7 +3,7 @@
     padding-top: 20px;
     position: absolute;
     left: 260px;
-    width:calc(100% - 440px) !important;
+    width: calc(100% - 440px) !important;
   }
   &__showMenu {
 
@@ -91,7 +91,6 @@
     &-link {
       font-size: rem-calc(14);
       border: 3px solid #3b3e43;
-      //color: #fff;
       color: #3b3e43;
       transition: .4s all;
       font-weight: 700;
@@ -103,14 +102,12 @@
       padding-right: 5px;
       border-radius: 8px;
       display: block;
-      //background: #595959;
+      background: #ebebeb;
 
-      &:focus {
-        color: #000;
-        border-color: #e23934;
-      }
-      &:hover {
-        color: #000;
+
+      &:hover, &:focus {
+        color: #fff;
+        background: #3b3e43;
         border-color: #e23934;
       }
     }
@@ -120,7 +117,6 @@
 
 @media (max-width: 960px) {
   .b-header {
-
 
   }
 }

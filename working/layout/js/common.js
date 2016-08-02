@@ -7,6 +7,14 @@
 
         // your code goes here
 
+        
+        //begin of b-sizeinfo close
+        (function() {
+            $('.js-sizeclose').click(function() {
+               $(this).closest('.b-sizeinfo').hide();
+            });
+        })();
+        //end of b-sizeinfo close
 //begin of footer2bottom
         (function () {
             if ($('.b-footer')) {

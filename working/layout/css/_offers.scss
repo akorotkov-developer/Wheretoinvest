@@ -29,10 +29,12 @@
           display: inline-block;
           position: absolute;
           background: url(../images/ari.png) no-repeat right center;
+          -webkit-background-size: 100%;
+          background-size: 100%;
           margin-top: 5px;
           margin-left: 3px;
-          width: 5px;
-          height: 6px;
+          width: 7px;
+          height: 9px;
           -webkit-background-size: 100%;
           background-size: 100%;
         }
@@ -62,7 +64,7 @@
   }
 
   &__item {
-
+    position: relative;
     &.active .b-offers__hidden {
       display: block;
 
@@ -70,7 +72,6 @@
     padding-top: rem-calc(10);
     padding-bottom: rem-calc(10);
     cursor: pointer;
-    //padding-right: rem-calc(30);
     border-bottom: rem-calc(1) solid #e6e6e6;
 
     &:hover {
@@ -94,6 +95,7 @@
   &__firsttd {
     font-size: rem-calc(0);
     padding-right: 0;
+    position: static;
 
   }
   &__logo {
@@ -124,10 +126,10 @@
     height: rem-calc(7);
     background: url("../images/arrows.png") no-repeat top left;
     position: absolute;
-    top: 50%;
+    top: 35px;
     z-index: 5;
     margin-top: -7px;
-    right: rem-calc(12);
+    right: rem-calc(9);
     display: none;
   }
 
@@ -173,8 +175,12 @@
     }
   }
   &__rest {
-    font-size: rem-calc(12);
+    font-size: rem-calc(14);
     color: #202020;
+    &_bot {
+      padding-bottom: 16px;
+    }
+
 
   }
   &__nopadding {
@@ -187,6 +193,7 @@
 
     .b-offers__label {
       margin: 0;
+      font-size: 14px;
 
     }
     &-item {
@@ -217,12 +224,12 @@
     max-width: rem-calc(460);
     min-width: rem-calc(200);
     text-align: center;
-    height: rem-calc(44);
-    line-height: rem-calc(44);
+    padding-top: 10px;
+    padding-bottom: 10px;
     border: rem-calc(1) solid #e6e6e6;
     border-radius: rem-calc(100);
     color: #202020;
-    font-weight: 700;
+    font-weight: 400;
     text-transform: uppercase;
 
     span {
@@ -233,7 +240,13 @@
   }
 
 }
-
+@media (min-width:800px) {
+    .b-offers {
+      &__title {
+        font-size: 14px;
+      }
+    }
+}
 @media (max-width: 960px) {
   .b-offers {
     &__capital {
@@ -296,9 +309,8 @@
     padding-right: 0;
 
     &__arrows {
-      left: calc(300% - 22px);
-
-      top: 58px;
+      right: 20px;
+      top: 48px;
     }
 
     &__logo {
@@ -318,7 +330,7 @@
       padding-left: 0;
     }
     &__item {
-      line-height: rem-calc(40);
+
       &.active {
         background: #fef2d2;
       }
