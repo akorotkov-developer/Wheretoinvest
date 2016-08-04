@@ -3,6 +3,9 @@
   max-width: rem-calc(980);
   margin: 0 auto;
   margin-bottom: rem-calc(10);
+  &__go {
+    padding-left: 0;
+  }
   &__img {
     max-width: 80px;
   }
@@ -193,6 +196,7 @@
       margin: 0;
       font-size: 14px;
       text-align: right;
+
       &_bot {
         padding-bottom: 17px;
       }
@@ -200,12 +204,18 @@
     }
     &-item {
       padding-bottom: rem-calc(10);
+      &_red {
+        * {
+          color: #e53935;
+        }
+      }
     }
   }
   &__link {
     color: #e53935;
     font-size: rem-calc(12);
     font-weight: 700;
+    margin-top: 14px;
     padding: rem-calc(15) rem-calc(25);
     border: rem-calc(2) solid #e53935;
     border-radius: rem-calc(3);
@@ -282,6 +292,9 @@
 
 @media #{$small-only} {
   .b-offers {
+    &__go {
+      padding-left: 10px;
+    }
 
     &__capital {
       padding-left: 10px;

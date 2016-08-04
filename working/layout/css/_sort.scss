@@ -11,6 +11,11 @@
     left: calc(50% - 490px);
     margin-bottom: 0;
   }
+  &__select {
+    select {
+      padding-right: 21px;
+    }
+  }
   &__label {
     font-size: rem-calc(15);
     color: #9e9e9e;

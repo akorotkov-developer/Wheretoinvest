@@ -90,7 +90,7 @@
     }
     &-link {
       font-size: rem-calc(14);
-      border: 3px solid #3b3e43;
+      border: 1px solid #3b3e43;
       color: #3b3e43;
       transition: .4s all;
       font-weight: 700;
@@ -108,7 +108,6 @@
       &:hover, &:focus {
         color: #fff;
         background: #3b3e43;
-        border-color: #e23934;
       }
     }
   }
