@@ -3,6 +3,14 @@
   max-width: rem-calc(980);
   margin: 0 auto;
   margin-bottom: rem-calc(10);
+  &__bility {
+    padding-right: 35px;
+  }
+  &__infl {
+    * {
+      color: #e53935;
+    }
+  }
   &__go {
     padding-left: 0;
   }
@@ -17,7 +25,7 @@
     z-index: 10;
     &.fixed {
       position: fixed;
-      width:100%;
+      width: 100%;
       left: calc(50% - 490px);
     }
 
@@ -147,7 +155,9 @@
     font-size: rem-calc(28);
     font-family: 'Conv_HelveticaNeueCyr-Thin', sans-serif;
     padding-top: 5px;
-
+    &_infl {
+      font-weight: 700;
+    }
     span {
       font-size: rem-calc(12);
     }
@@ -204,11 +214,7 @@
     }
     &-item {
       padding-bottom: rem-calc(10);
-      &_red {
-        * {
-          color: #e53935;
-        }
-      }
+
     }
   }
   &__link {
@@ -292,6 +298,12 @@
 
 @media #{$small-only} {
   .b-offers {
+    &__bility {
+      padding-right: 10px;
+    }
+    &__percent {
+      padding-right: 0;
+    }
     &__go {
       padding-left: 10px;
     }
@@ -372,9 +384,15 @@
     }
     &__prof {
       padding-top: 33px;
+      &_infl {
+        padding-top: 0;
+      }
     }
     &__type {
       padding: 0;
+      &_infl {
+        padding-top: 11px;
+      }
 
     }
     &__name_small {
