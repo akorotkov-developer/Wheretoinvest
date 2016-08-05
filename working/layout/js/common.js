@@ -38,10 +38,10 @@
 
 // обработка события после загрузки дерева DOM
                 $(document).ready(function () {
-                    footer2bottom(); // вызываем функцию для футера
+                    footer2bottom();
                 });
-                $(window).on('resize', function () { // если окно изменяет размер (можно дописать другие события)
-                    footer2bottom(); // вызываем функцию для футера
+                $(window).on('resize', function () {
+                    footer2bottom();
                 });
             }
 
@@ -79,6 +79,19 @@
                         $('#myModal1').foundation('reveal', 'close');
                     });
                 }
+                var choose = $('.modal__js-choose-all');
+                if (choose) {
+                    choose.click(function () {
+                        $(this).closest('.reveal-modal').find('input').prop('checked', true);
+                    });
+                }
+                var disrobe = $('.modal__js-disrobe-all');
+                if (disrobe) {
+                    disrobe.click(function () {
+                        $(this).closest('.reveal-modal').find('input').prop('checked', false);
+                    });
+                }
+
             })();
             //end of select my region
             //begin of sum menu show/hide

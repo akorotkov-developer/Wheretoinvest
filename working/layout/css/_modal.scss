@@ -5,7 +5,18 @@
   padding-top: 16px;
   width: 90%;
   min-height: 0;
-
+  &__service {
+    border-radius: 4px;
+    background: #fff;
+    color: #3b3e43;
+    text-align: center;
+    border: 1px solid #3b3e43;
+    transition: .5s all;
+    &:hover {
+      color: #fff;
+      background: #3b3e43;
+    }
+  }
   &__close {
     font-size: 0 !important;
     top: 20px !important;
