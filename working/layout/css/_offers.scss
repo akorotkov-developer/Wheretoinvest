@@ -4,9 +4,10 @@
   margin: 0 auto;
   margin-bottom: rem-calc(10);
   &__bility {
-    padding-right: 35px;
+    padding-right: 50px;
   }
   &__infl {
+    border-bottom: 1px solid #e6e6e6;
     * {
       color: #e53935;
     }
@@ -57,7 +58,7 @@
     }
 
     &.first {
-      padding-left: rem-calc(15);
+      padding-left: rem-calc(45);
     }
   }
 
@@ -149,15 +150,16 @@
 
   &__type {
     padding-top: rem-calc(14);
+    &_infl {
+      padding-bottom: 14px;
+    }
 
   }
   &__prof {
     font-size: rem-calc(28);
     font-family: 'Conv_HelveticaNeueCyr-Thin', sans-serif;
     padding-top: 5px;
-    &_infl {
-      font-weight: 700;
-    }
+
     span {
       font-size: rem-calc(12);
     }
@@ -269,6 +271,11 @@
 
 @media (max-width: 960px) {
   .b-offers {
+    &__th {
+      &.first {
+        padding-left: 47px;
+      }
+    }
     &__capital {
       padding-left: 0;
       padding-right: 0;
@@ -386,12 +393,14 @@
       padding-top: 33px;
       &_infl {
         padding-top: 0;
+        padding-top: 5px;
       }
     }
     &__type {
       padding: 0;
       &_infl {
-        padding-top: 11px;
+        padding-top: 16px;
+        padding-bottom: 11px;
       }
 
     }
