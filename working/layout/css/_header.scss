@@ -104,7 +104,6 @@
       display: block;
       background: #ebebeb;
 
-
       &:hover, &:focus {
         color: #fff;
         background: #3b3e43;
@@ -218,12 +217,11 @@
       }
       &-link {
         font-weight: 700;
-        color: #fff;
-        border: 0;
-        background: #d2d2d2;
+
         font-size: 14px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 6px;
+        text-align: center;
+        padding-right: 6px;
         padding-top: 46px;
         height: 100%;
 

@@ -305,6 +305,9 @@
 
 @media #{$small-only} {
   .b-offers {
+    &__rest {
+      padding-top: 6px;
+    }
     &__bility {
       padding-right: 10px;
     }
@@ -390,17 +393,17 @@
       margin-bottom: 17px;
     }
     &__prof {
-      padding-top: 33px;
+      padding-top: 40px;
       &_infl {
         padding-top: 0;
-        padding-top: 5px;
+        padding-top: 9px;
       }
     }
     &__type {
       padding: 0;
       &_infl {
         padding-top: 16px;
-        padding-bottom: 11px;
+        padding-bottom: 20px;
       }
 
     }
@@ -412,7 +415,7 @@
     &__label {
       float: left;
       width: 47%;
-      padding-top: 4px;
+      padding-top: 6px;
       text-align: left;
       margin-bottom: 0;
     }
