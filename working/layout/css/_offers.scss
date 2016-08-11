@@ -297,6 +297,21 @@
 
 @media (max-width: 790px) {
   .b-offers {
+    &__prof {
+
+      &_infl {
+
+        padding-top: 30px;
+      }
+    }
+    &__type {
+
+      &_infl {
+        padding-top: 36px;
+        padding-bottom: 30px;
+      }
+
+    }
     &__arrows {
       display: block;
     }
@@ -394,14 +409,14 @@
       padding-top: 40px;
       &_infl {
 
-        padding-top: 15px;
+        padding-top: 30px;
       }
     }
     &__type {
       padding: 0;
       &_infl {
-        padding-top: 16px;
-        padding-bottom: 20px;
+        padding-top: 31px;
+        padding-bottom: 35px;
       }
 
     }
