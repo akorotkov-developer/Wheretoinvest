@@ -38,27 +38,30 @@
 <script type="text/javascript">
     $(function () {
         (function () {
-            if ($('.b-header__firstline-linkreg_js')) {
-                $('.modal_js-top label').on("click", function () {
-                    var name = $(this).text(),
-                        input = $(this).prev('input'),
-                        id = input.val();
-
-                    $.ajax({
-                        url: "<?=$templateFolder?>/ajax.php",
-                        data: {
-                            id: id,
-                            name: name
-                        },
-                        method: "post",
-                        success: function () {
-                            $('.b-header__firstline-linkreg_js').text(name);
-                            input.prop('disabled', true);
-                            $('#<?=$arParams["MODAL_ID"]?>').foundation('reveal', 'close');
-                        }
-                    });
+            $('#<?=$arParams["MODAL_ID"]?> label').on("click", function () {
+                $('#<?=$arParams["MODAL_ID"]?> label').each(function () {
+                    $(this).prev('input')
+                        .prop("disabled", false)
+                        .prop("checked", false);
                 });
-            }
+
+                var name = $(this).text(),
+                    input = $(this).prev('input'),
+                    id = input.val();
+
+                $.ajax({
+                    url: "<?=$templateFolder?>/ajax.php",
+                    data: {
+                        id: id,
+                        name: name
+                    },
+                    method: "post"
+                });
+
+                $('.b-header__firstline-linkreg_js').text(name);
+                input.prop('disabled', true).prop("checked", true);
+                $('#<?=$arParams["MODAL_ID"]?>').foundation('reveal', 'close');
+            });
 
             <? if(empty($arResult["CURRENT_LOC_ID"]) && empty($_SESSION["CURRENT_LOC_MODAL"])): ?>
             $('#<?=$arParams["MODAL_ID"]?>').foundation('reveal', 'open');

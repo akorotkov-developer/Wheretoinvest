@@ -19,17 +19,18 @@
                 ),
                 false
             ); ?>
-            <div class="b-footer__icons">
-                <a href="#" class="b-footer__icon">
-                    <img src="<?= WIC_TEMPLATE_PATH ?>/images/icon.png">
-                </a>
-                <a href="#" class="b-footer__icon">
-                    <img src="<?= WIC_TEMPLATE_PATH ?>/images/tw.png">
-                </a>
-                <a href="#" class="b-footer__icon">
-                    <img src="<?= WIC_TEMPLATE_PATH ?>/images/vk.png">
-                </a>
-            </div>
+            <? $APPLICATION->IncludeComponent("bitrix:main.include", "", array(
+                "AREA_FILE_SHOW" => "file",
+                "AREA_FILE_SUFFIX" => "",
+                "PATH" => "/include/social.php",
+                "AREA_FILE_RECURSIVE" => "Y",
+                "EDIT_TEMPLATE" => "standard.php"
+            ),
+                false,
+                array(
+                    "ACTIVE_COMPONENT" => "N"
+                )
+            ); ?>
         </div>
         <div class="column medium-4 medium-push-2">
             <? $APPLICATION->IncludeComponent("bitrix:menu", "bottom", Array(

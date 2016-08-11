@@ -3,14 +3,6 @@
         "use strict";
         $(document).foundation();
 
-        //begin of b-sizeinfo close
-        (function () {
-            $('.js-sizeclose').click(function () {
-                $(this).closest('.b-sizeinfo').hide();
-            });
-        })();
-        //end of b-sizeinfo close
-
         //begin of footer2bottom
         var $footer = $('.b-footer');
         var marT = +($footer.css('margin-top').slice(0, -2));

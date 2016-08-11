@@ -2,36 +2,20 @@
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 $APPLICATION->SetTitle("Куда вложить - помощь в выборе банка и вклада");
 ?>
-    <section class="row b-sizeinfo ">
-        <div class="column medium-9">
-            <div class="b-sizeinfo__title">
-                Размер ставки или надежность?
-                <div class="b-sizeinfo__close js-sizeclose"></div>
-            </div>
-            <div class="b-sizeinfo__text">
-                Выбирайте наиболее приемлемое соотношение доходности и риска. Изучайте предложения, применяя сортировку
-                «по
-                доходности», «по надежности», либо по
-                обоим параметрам одновременно, сравнивайте с инфляцией.
-            </div>
-        </div>
-        <div class="column medium-2 b-sizeinfo__scales small-only-text-center">
-
-            <img src="<?=WIC_TEMPLATE_PATH?>/images/scales.png">
-        </div>
-        <div class="column medium-1 medium-text-right show-for-medium-up">
-            <div class="b-sizeinfo__close js-sizeclose"></div>
-        </div>
-    </section>
+<? $APPLICATION->IncludeComponent("bitrix:main.include", "", Array(
+        "AREA_FILE_SHOW" => "file",
+        "AREA_FILE_SUFFIX" => "",
+        "PATH" => "/include/main_info.php",
+        "AREA_FILE_RECURSIVE" => "Y",
+        "EDIT_TEMPLATE" => "standard.php"
+    )
+); ?>
     <section class="b-sort row">
         <div class="b-sort__arr"></div>
         <div class="columns b-sort__all">100 000 000 ₽ на 1 год</div>
         <div class="b-sort__main">
-
-
             <div class="column medium-7">
                 <span class="b-sort__label">Сумма:</span>
-
                 <input type="text" class="b-sort__inp" value="10 000 000">
             </div>
             <div class="column small-5 medium-2 b-sort__select">
@@ -173,7 +157,8 @@ $APPLICATION->SetTitle("Куда вложить - помощь в выборе �
                             </div>
                             <div class="column medium-9 small-6 b-offers__nopadding">
                                 <div class="b-offers__res2">
-                                    <div class="b-offers__img"><img src="./<?=WIC_TEMPLATE_PATH?>/images/asb.jpg" alt=""></div>
+                                    <div class="b-offers__img"><img src="./<?= WIC_TEMPLATE_PATH ?>/images/asb.jpg"
+                                                                    alt=""></div>
                                 </div>
                             </div>
                         </div>
@@ -263,7 +248,7 @@ $APPLICATION->SetTitle("Куда вложить - помощь в выборе �
         <div class="b-offers__item row active">
             <div class="column medium-4  small-4 b-offers__firsttd">
                 <div class="b-offers__logo">
-                    <img src="<?=WIC_TEMPLATE_PATH?>/images/logo1.png">
+                    <img src="<?= WIC_TEMPLATE_PATH ?>/images/logo1.png">
                 </div>
                 <div class="b-offers__name">
                     Альфа банк
@@ -340,7 +325,8 @@ $APPLICATION->SetTitle("Куда вложить - помощь в выборе �
                             </div>
                             <div class="column medium-9 small-6 b-offers__nopadding">
                                 <div class="b-offers__res2">
-                                    <div class="b-offers__img"><img src="./<?=WIC_TEMPLATE_PATH?>/images/asb.jpg" alt=""></div>
+                                    <div class="b-offers__img"><img src="./<?= WIC_TEMPLATE_PATH ?>/images/asb.jpg"
+                                                                    alt=""></div>
                                 </div>
                             </div>
                         </div>
