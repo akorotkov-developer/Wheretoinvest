@@ -1,0 +1,25 @@
+@media #{$small-only} {
+  .small-padding-noleft {
+    padding-left: 0;
+  }
+}
+
+body {
+  overflow-y: scroll !important;
+  height: auto;
+}
+
+input {
+  &::-webkit-input-placeholder {
+    color: #202020;
+  }
+  &::-moz-placeholder {
+    color: #202020;
+  }
+  &:-moz-placeholder {
+    color: #202020;
+  }
+  &:-ms-input-placeholder {
+    color: #202020;
+  }
+}

@@ -1,0 +1,72 @@
+.invest {
+
+  &__region, &__place {
+    color: #202020;
+    font-size: 12px;
+    font-weight: 700;
+    float: left;
+    width: 200px;
+    padding-left: 15px;
+  }
+  &__place {
+    padding-top: 16px;
+    font-weight: 400;
+  }
+  &__head {
+    background-color: #ebebeb;
+    float: left;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  &__title {
+    color: #202020;
+    font-size: 12px;
+    font-weight: 700;
+    position: relative;
+    width: calc(100% - 200px);
+    padding-left: 15px;
+    float: left;
+    cursor: pointer;
+
+  }
+
+  &__row {
+    border-bottom: 1px solid #e6e6e6;
+    float: left;
+    width: 100%;
+    &:hover {
+      background: #fef2d2;
+
+    }
+  }
+  &__body {
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  &__deposite {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    float: left;
+    color: #000;
+    font-size: 12px;
+    font-weight: 400;
+    padding-left: 15px;
+    width: calc(100% - 200px);
+  }
+
+}
+
+@media (max-width: 640px) {
+  .invest {
+    &__title, &__deposite {
+      width: calc(100% - 140px);
+    }
+    &__region, &__place {
+      width: 140px;
+    }
+
+  }
+}

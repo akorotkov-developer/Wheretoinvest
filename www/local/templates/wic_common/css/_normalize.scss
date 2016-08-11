@@ -409,10 +409,13 @@ optgroup {
 /* Tables
    ========================================================================== */
 
+/**
+ * Remove most spacing between table cells.
+ */
+
 table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 3px;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 td,

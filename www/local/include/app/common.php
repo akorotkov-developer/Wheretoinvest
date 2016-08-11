@@ -10,27 +10,26 @@
  */
 function writeLog()
 {
-  $logFileName = '/local/php_interface/wic.log';
+    $logFileName = '/local/php_interface/wic.log';
 
-  $backtrace = debug_backtrace();
-  $backtracePath = array();
-  foreach($backtrace as $k => $bt)
-  {
-    if($k > 2)
-      break;
-    $backtracePath[] = substr($bt['file'], strlen($_SERVER['DOCUMENT_ROOT'])) . ':' . $bt['line'];
-  }
+    $backtrace = debug_backtrace();
+    $backtracePath = array();
+    foreach ($backtrace as $k => $bt) {
+        if ($k > 2)
+            break;
+        $backtracePath[] = substr($bt['file'], strlen($_SERVER['DOCUMENT_ROOT'])) . ':' . $bt['line'];
+    }
 
-  $data = func_get_args();
-  if(count($data) == 0)
-    return;
-  elseif(count($data) == 1)
-    $data = current($data);
+    $data = func_get_args();
+    if (count($data) == 0)
+        return;
+    elseif (count($data) == 1)
+        $data = current($data);
 
-  if(!is_string($data) && !is_numeric($data))
-    $data = var_export($data, 1);
+    if (!is_string($data) && !is_numeric($data))
+        $data = var_export($data, 1);
 
-  file_put_contents($_SERVER['DOCUMENT_ROOT'] . $logFileName, "\n--------------------------" . date('Y-m-d H:i:s ') . microtime() . "-----------------------\n Backtrace: " . implode(' → ', $backtracePath) . "\n" . $data, FILE_APPEND);
+    file_put_contents($_SERVER['DOCUMENT_ROOT'] . $logFileName, "\n--------------------------" . date('Y-m-d H:i:s ') . microtime() . "-----------------------\n Backtrace: " . implode(' → ', $backtracePath) . "\n" . $data, FILE_APPEND);
 }
 
 /**
@@ -39,10 +38,23 @@ function writeLog()
  */
 function clearShowAll()
 {
-  if(!empty($_GET))
-    foreach ($_GET as $key => $value) 
-    {
-      if(strpos($key, 'SHOWALL') === 0)
-        unset($_GET[$key]);
+    if (!empty($_GET))
+        foreach ($_GET as $key => $value) {
+            if (strpos($key, 'SHOWALL') === 0)
+                unset($_GET[$key]);
+        }
+}
+
+function cl($text, $return = false)
+{
+    global $USER;
+    if (($USER->IsAuthorized() || $return)) {
+        if (function_exists("dump")) {
+            dump($text);
+        } else {
+            echo "<pre style='background: #ffffff; display: block; clear: both;'>";
+            var_dump($text);
+            echo "</pre>";
+        }
     }
 }

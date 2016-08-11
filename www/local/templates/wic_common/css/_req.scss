@@ -1,0 +1,41 @@
+.req {
+  margin-top: 14px;
+  letter-spacing: .6px;
+  &_p {
+    margin-top: 37px;
+  }
+  &_mini {
+    margin-top: 0;
+  }
+  &_last {
+    margin-bottom: 40px;
+  }
+  &__link {
+    font-size: 14px;
+    font-weight: 400;
+    color: #2199e8;
+    text-decoration: underline;
+  }
+  &__name {
+    font-size: 14px;
+    font-weight: 400;
+
+    color: #9e9e9e;
+    &_hi {
+
+      padding-top: 5px;
+    }
+
+  }
+  &__value {
+    font-size: 14px;
+    font-weight: 400;
+    padding-left: 0;
+    color: #202020;
+    &_my {
+      padding-left: 15px;
+      margin-bottom: 30px;
+    }
+
+  }
+}

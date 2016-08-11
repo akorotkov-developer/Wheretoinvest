@@ -1,0 +1,38 @@
+.fileform {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  vertical-align: middle;
+  margin-left: 40px;
+  overflow: hidden;
+  &__sel {
+    cursor: pointer;
+    border-radius: 3px;
+    float: right;
+    padding-top: 10px;
+    padding-bottom: 9px;
+
+    padding-left: 18px;
+    padding-right: 18px;
+
+    color: #e53935;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 2px solid #e53935;
+  }
+}
+
+input.fileform__file {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  -moz-opacity: 0;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  font-size: 150px;
+  height: 40px;
+  z-index: 20;
+}

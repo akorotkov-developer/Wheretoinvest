@@ -1,7 +1,6 @@
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
-
 @import 'global';
 
 //
@@ -15,7 +14,7 @@
 
 $include-html-range-slider-classes: $include-html-classes !default;
 
-// These variabels define the slider bar styles
+// These variables define the slider bar styles
 $range-slider-bar-width: 100% !default;
 $range-slider-bar-height: rem-calc(16) !default;
 
@@ -31,7 +30,7 @@ $range-slider-active-segment-bg-color: scale-color($secondary-color, $lightness:
 $range-slider-vertical-bar-width: rem-calc(16) !default;
 $range-slider-vertical-bar-height: rem-calc(200) !default;
 
-// These variabels define the slider handle styles
+// These variables define the slider handle styles
 $range-slider-handle-width: rem-calc(32) !default;
 $range-slider-handle-height: rem-calc(22) !default;
 $range-slider-handle-position-top: rem-calc(-5) !default;
@@ -67,14 +66,21 @@ $range-slider-disabled-cursor: $cursor-disabled-value !default;
     width: $range-slider-bar-width;
   }
 }
+
 @mixin range-slider-bar-style(
   $bg: true,
   $radius: false,
   $round: false,
   $disabled: false) {
-  @if $bg == true { background: $range-slider-bar-bg-color; }
-  @if $radius == true { @include radius($range-slider-radius); }
-  @if $round == true { @include radius($range-slider-round); }
+  @if $bg == true {
+    background: $range-slider-bar-bg-color;
+  }
+  @if $radius == true {
+    @include radius($range-slider-radius);
+  }
+  @if $round == true {
+    @include radius($range-slider-round);
+  }
   @if $disabled == true {
     cursor: $range-slider-disabled-cursor;
     opacity: $range-slider-disabled-opacity;
@@ -108,9 +114,15 @@ $range-slider-disabled-cursor: $cursor-disabled-value !default;
   $radius: false,
   $round: false,
   $disabled: false) {
-  @if $bg == true { background: $range-slider-handle-bg-color; }
-  @if $radius == true { @include radius($range-slider-radius); }
-  @if $round == true { @include radius($range-slider-round); }
+  @if $bg == true {
+    background: $range-slider-handle-bg-color;
+  }
+  @if $radius == true {
+    @include radius($range-slider-radius);
+  }
+  @if $round == true {
+    @include radius($range-slider-round);
+  }
   @if $disabled == true {
     cursor: $cursor-default-value;
     opacity: $range-slider-disabled-opacity;
@@ -130,7 +142,7 @@ $range-slider-disabled-cursor: $cursor-disabled-value !default;
   @if $include-html-range-slider-classes {
     .range-slider {
       @include range-slider-bar-base;
-      @include range-slider-bar-style($bg:true, $radius:false);
+      @include range-slider-bar-style($bg: true, $radius: false);
       &.vertical-range {
         @include range-slider-bar-base($vertical: true);
         .range-slider-handle {
@@ -149,16 +161,22 @@ $range-slider-disabled-cursor: $cursor-disabled-value !default;
         }
       }
       &.radius {
-        @include range-slider-bar-style($radius:true);
-        .range-slider-handle { @include range-slider-handle-style($radius: true); }
+        @include range-slider-bar-style($radius: true);
+        .range-slider-handle {
+          @include range-slider-handle-style($radius: true);
+        }
       }
       &.round {
-        @include range-slider-bar-style($round:true);
-        .range-slider-handle { @include range-slider-handle-style($round: true); }
+        @include range-slider-bar-style($round: true);
+        .range-slider-handle {
+          @include range-slider-handle-style($round: true);
+        }
       }
       &.disabled, &[disabled] {
-        @include range-slider-bar-style($disabled:true);
-        .range-slider-handle { @include range-slider-handle-style($disabled: true); }
+        @include range-slider-bar-style($disabled: true);
+        .range-slider-handle {
+          @include range-slider-handle-style($disabled: true);
+        }
       }
     }
     .range-slider-active-segment {
@@ -171,7 +189,7 @@ $range-slider-disabled-cursor: $cursor-disabled-value !default;
     }
     .range-slider-handle {
       @include range-slider-handle-base;
-      @include range-slider-handle-style($bg:true, $radius: false);
+      @include range-slider-handle-style($bg: true, $radius: false);
     }
   }
 }

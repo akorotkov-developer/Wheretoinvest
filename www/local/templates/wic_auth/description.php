@@ -1,0 +1,1 @@
+<?$arTemplate = Array("NAME"=>"wic auth", "DESCRIPTION"=> "");?>

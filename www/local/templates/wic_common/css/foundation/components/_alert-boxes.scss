@@ -1,7 +1,6 @@
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
-
 @import 'global';
 
 //
@@ -76,8 +75,11 @@ $alert-transition-ease: ease-out !default;
   border-color: scale-color($bg, $lightness: $alert-function-factor);
 
   // We control the text color for you based on the background color.
-  @if $bg-lightness > 70% { color: $alert-font-color-alt; }
-  @else                   { color: $alert-font-color; }
+  @if $bg-lightness > 70% {
+    color: $alert-font-color-alt;
+  } @else {
+    color: $alert-font-color;
+  }
 
 }
 
@@ -94,7 +96,9 @@ $alert-transition-ease: ease-out !default;
   position: absolute;
   top: $alert-close-top;
   &:hover,
-  &:focus { opacity: $alert-close-opacity-hover; }
+  &:focus {
+    opacity: $alert-close-opacity-hover;
+  }
 }
 
 // We use this to quickly create alerts with a single mixin.
@@ -112,17 +116,35 @@ $alert-transition-ease: ease-out !default;
     .alert-box {
       @include alert;
 
-      .close      { @include alert-close; }
+      .close {
+        @include alert-close;
+      }
 
-      &.radius    { @include radius($alert-radius); }
-      &.round     { @include radius($global-rounded); }
+      &.radius {
+        @include radius($alert-radius);
+      }
+      &.round {
+        @include radius($global-rounded);
+      }
 
-      &.success   { @include alert-style($success-color); }
-      &.alert     { @include alert-style($alert-color); }
-      &.secondary { @include alert-style($secondary-color); }
-      &.warning { @include alert-style($warning-color); }
-      &.info { @include alert-style($info-color); }
-      &.alert-close { opacity: 0}
+      &.success {
+        @include alert-style($success-color);
+      }
+      &.alert {
+        @include alert-style($alert-color);
+      }
+      &.secondary {
+        @include alert-style($secondary-color);
+      }
+      &.warning {
+        @include alert-style($warning-color);
+      }
+      &.info {
+        @include alert-style($info-color);
+      }
+      &.alert-close {
+        opacity: 0
+      }
     }
   }
 }

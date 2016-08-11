@@ -1,0 +1,105 @@
+.graph {
+  float: left;
+  width: 100%;
+
+  &_reg {
+    margin-top: 5px;
+    margin-bottom: 25px;
+    .graph__td {
+      padding-top: 18px;
+    }
+  }
+  &__add {
+    color: #202020;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  &__cr {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    position: relative;
+    background: url(../images/cr.png) no-repeat;
+    top: 16px;
+    position: absolute;
+    left: calc(50% - 8px);
+    &_td {
+      top: 3px;
+      left: auto;
+      right: 30px;
+    }
+  }
+  &__head {
+    background-color: #ebebeb;
+    float: left;
+    width: 100%;
+  }
+  &__th {
+    position: relative;
+    float: left;
+    width: calc((100% - 100px) / 7);
+    color: #202020;
+    font-size: 12px;
+    padding-top: 15px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-bottom: 15px;
+    text-align: center;
+    line-height: 1.17;
+    &_reg {
+      padding-top: 37px;
+    }
+    &:first-child {
+      width: 100px;
+    }
+  }
+  &__body {
+    float: left;
+    width: 100%;
+  }
+  &__row {
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #e6e6e6;
+  }
+  &__td {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #202020;
+    text-align: center;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 11px;
+    padding-bottom: 12px;
+    position: relative;
+    float: left;
+    &:first-child {
+      background-color: #ebebeb;
+    }
+    width: calc((100% - 100px) / 7);
+
+    &_reg {
+      padding-bottom: 22px;
+      padding-top: 17px;
+      text-align: right;
+      padding-right: 10px;
+    }
+    &:first-child {
+      width: 100px;
+    }
+    &_js {
+      cursor: pointer;
+      padding-top: 6px !important;
+    }
+  }
+
+}
+
+@media (max-width: 640px) {
+  .graph {
+    &__th, &__td {
+      width: calc((100% - 100px) / 3);
+    }
+  }
+}

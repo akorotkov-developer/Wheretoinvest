@@ -1,62 +1,53 @@
+// 1. Скачать последний foundation с https://github.com/zurb/bower-foundation
+// 2. Скопировать содержимое папки /scss/ в эту папку (/css/)
+// 3. переименовать foundation.scss в _foundation.scss, normalize.scss в _normalize.scss
+// 4. переместить _settings.scss из /css/foundation/_settings.scss в /css/_settings.scss
+// 5. создавать свои файлы .scss начиная с нижнего подчеркивания, помещать в блок "Layout files" ниже в этом файле
+// 6. настройки стилей foundation менять в _settings.scss, туда же можно помещать свои настройки
+//
+// @see http://foundation.zurb.com/docs/
+// @see http://foundation.zurb.com/docs/using-sass.html
+// @see http://foundation.zurb.com/docs/sass-files.html
+@import 'normalize';
 @import "settings";
-@import "normalize";
-
-@import 'foundation/components/grid';
-@import 'foundation/components/accordion';
-@import 'foundation/components/alert-boxes';
-@import 'foundation/components/block-grid';
-@import 'foundation/components/breadcrumbs';
-@import 'foundation/components/button-groups';
-@import 'foundation/components/buttons';
-@import 'foundation/components/clearing';
-@import 'foundation/components/dropdown';
-@import 'foundation/components/dropdown-buttons';
-@import 'foundation/components/flex-video';
-@import 'foundation/components/forms';
-@import 'foundation/components/icon-bar';
-@import 'foundation/components/inline-lists';
-@import 'foundation/components/joyride';
-@import 'foundation/components/keystrokes';
-@import 'foundation/components/labels';
-@import 'foundation/components/magellan';
-@import 'foundation/components/orbit';
-@import 'foundation/components/pagination';
-@import 'foundation/components/panels';
-@import 'foundation/components/pricing-tables';
-@import 'foundation/components/progress-bars';
-@import 'foundation/components/range-slider';
-@import 'foundation/components/reveal';
-@import 'foundation/components/side-nav';
-@import 'foundation/components/split-buttons';
-@import 'foundation/components/sub-nav';
-@import 'foundation/components/switches';
-@import 'foundation/components/tables';
-@import 'foundation/components/tabs';
-@import 'foundation/components/thumbs';
-@import 'foundation/components/tooltips';
-@import 'foundation/components/top-bar';
-@import 'foundation/components/type';
-@import 'foundation/components/offcanvas';
-@import 'foundation/components/visibility';
-
-@import "slick";
-@import "slick-theme";
-
-@import "calendar";
-@import "logo";
-@import "client-logo";
-@import "content-line";
-@import "date-round";
-@import "date-square";
-@import "event-line";
+@import "foundation";
+@import "fonts";
+@import "header";
+@import "sizeinfo";
+@import "sort";
+@import "offers";
 @import "footer";
-@import "map-contacts";
-@import "menu";
-@import "menu-top";
-@import "phone-top";
-@import "project-square";
-@import "switch-text";
-@import "text-big";
-@import "share";
-@import "navigation";
-@import "pictures";
+@import "common";
+@import "breadcrumbs";
+@import "accord";
+@import "content";
+@import "filter";
+@import "invest";
+@import "pagin";
+@import "region";
+@import "agency";
+@import "sentence";
+@import "contribution";
+@import "course";
+@import "graph";
+@import "modal";
+@import "state";
+@import "assets";
+@import "req";
+@import "edit";
+@import "fileform";
+@import "level";
+@import "recover";
+@import "acc";
+@import "met";
+@import "reg";
+@import "check";
+@import "form";
+
+/**
+* Layout files
+*/
+/*@import "common";
+@import "header";
+//@import "....";
+@import "footer";*/

@@ -1,7 +1,6 @@
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
-
 @import 'global';
 
 // @variables
@@ -10,7 +9,7 @@ $include-html-orbit-classes: $include-html-classes !default;
 
 // We use these to control the caption styles
 $orbit-container-bg: none !default;
-$orbit-caption-bg: rgba(51,51,51, .8) !default;
+$orbit-caption-bg: rgba(51, 51, 51, .8) !default;
 $orbit-caption-font-color: $white !default;
 $orbit-caption-font-size: rem-calc(14) !default;
 $orbit-caption-position: "bottom" !default; // Supported values: "bottom", "under"
@@ -19,12 +18,12 @@ $orbit-caption-height: auto !default;
 
 // We use these to control the left/right nav styles
 $orbit-nav-bg: transparent !default;
-$orbit-nav-bg-hover: rgba(0,0,0,0.3) !default;
+$orbit-nav-bg-hover: rgba(0, 0, 0, 0.3) !default;
 $orbit-nav-arrow-color: $white !default;
 $orbit-nav-arrow-color-hover: $white !default;
 
 // We use these to control the timer styles
-$orbit-timer-bg: rgba(255,255,255,0.3) !default;
+$orbit-timer-bg: rgba(255, 255, 255, 0.3) !default;
 $orbit-timer-show-progress-bar: true !default;
 
 // We use these to control the bullet nav styles
@@ -33,7 +32,7 @@ $orbit-bullet-nav-color-active: $aluminum !default;
 $orbit-bullet-radius: rem-calc(9) !default;
 
 // We use these to controls the style of slide numbers
-$orbit-slide-number-bg: rgba(0,0,0,0) !default;
+$orbit-slide-number-bg: rgba(0, 0, 0, 0) !default;
 $orbit-slide-number-font-color: $white !default;
 $orbit-slide-number-padding: rem-calc(5) !default;
 
@@ -46,7 +45,6 @@ $orbit-nav-hide-for-small: true !default;
 $orbit-bullet-hide-for-small: true !default;
 $orbit-timer-hide-for-small: true !default;
 
-
 @include exports("orbit") {
   @if $include-html-orbit-classes {
 
@@ -56,24 +54,23 @@ $orbit-timer-hide-for-small: true !default;
         transform: rotate(0deg);
       }
       to {
-          -webkit-transform: rotate(360deg);
-          transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
       }
     }
 
-
     @keyframes rotate {
       from {
-          -webkit-transform: rotate(0deg);
-          -moz-transform: rotate(0deg);
-          -ms-transform: rotate(0deg);
-          transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
       }
       to {
-          -webkit-transform: rotate(360deg);
-          -moz-transform: rotate(360deg);
-          -ms-transform: rotate(360deg);
-          transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
       }
     }
 
@@ -88,18 +85,26 @@ $orbit-timer-hide-for-small: true !default;
 
         // Hide all list items
         li,
-        li .orbit-caption { display: none; }
+        li .orbit-caption {
+          display: none;
+        }
 
         // ...except for the first one
-        li:first-child { display: block; }
+        li:first-child {
+          display: block;
+        }
       }
 
-      .orbit-container { background-color: transparent;
+      .orbit-container {
+        background-color: transparent;
 
         // Show images when .orbit-container is loaded
-        li { display: block;
+        li {
+          display: block;
 
-          .orbit-caption { display: block; }
+          .orbit-caption {
+            display: block;
+          }
         }
         .orbit-bullets li {
           display: inline-block;
@@ -126,7 +131,6 @@ $orbit-timer-hide-for-small: true !default;
       }
     }
 
-
     .orbit-container {
       background: $orbit-container-bg;
       overflow: hidden;
@@ -146,7 +150,10 @@ $orbit-timer-hide-for-small: true !default;
         -o-transform: translateZ(0);
         transform: translateZ(0);
 
-        img { display: block; max-width: 100%; }
+        img {
+          display: block;
+          max-width: 100%;
+        }
 
         > * {
           position: absolute;
@@ -154,16 +161,14 @@ $orbit-timer-hide-for-small: true !default;
           width: 100%;
           @if $text-direction == rtl {
             margin-right: 100%;
-          }
-          @else {
+          } @else {
             margin-left: 100%;
           }
 
           &:first-child {
             @if $text-direction == rtl {
               margin-right: 0;
-            }
-            @else {
+            } @else {
               margin-left: 0;
             }
           }
@@ -191,20 +196,22 @@ $orbit-timer-hide-for-small: true !default;
         color: $orbit-slide-number-font-color;
         font-size: 12px;
         position: absolute;
-        span { font-weight: 700; padding: $orbit-slide-number-padding;}
+        span {
+          font-weight: 700;
+          padding: $orbit-slide-number-padding;
+        }
         top: 10px;
         z-index: 10;
       }
 
       .orbit-timer {
-        
+
         position: absolute;
         top: 12px;
         #{$opposite-direction}: 10px;
         height: 6px;
         width: 100px;
         z-index: 10;
-        
 
         .orbit-progress {
           @if $orbit-timer-show-progress-bar {
@@ -215,7 +222,7 @@ $orbit-timer-hide-for-small: true !default;
             position: relative;
             right: 20px;
             top: 5px;
-            
+
           }
         }
 
@@ -251,9 +258,9 @@ $orbit-timer-hide-for-small: true !default;
         }
       }
 
-
-
-      &:hover .orbit-timer > span { display: block; }
+      &:hover .orbit-timer > span {
+        display: block;
+      }
 
       // Let's get those controls to be right in the center on each side
       .orbit-prev,
@@ -283,7 +290,8 @@ $orbit-timer-hide-for-small: true !default;
           width: 0;
         }
       }
-      .orbit-prev { #{$default-float}: 0;
+      .orbit-prev {
+        #{$default-float}: 0;
         & > span {
           border-#{$opposite-direction}-style: solid;
           border-color: transparent;
@@ -293,7 +301,8 @@ $orbit-timer-hide-for-small: true !default;
           border-#{$opposite-direction}-color: $orbit-nav-arrow-color-hover;
         }
       }
-      .orbit-next { #{$opposite-direction}: 0;
+      .orbit-next {
+        #{$opposite-direction}: 0;
         & > span {
           border-color: transparent;
           border-#{$default-float}-style: solid;
@@ -307,7 +316,9 @@ $orbit-timer-hide-for-small: true !default;
       }
     }
 
-    .orbit-bullets-container { text-align: center; }
+    .orbit-bullets-container {
+      text-align: center;
+    }
     .orbit-bullets {
       display: block;
       float: none;
@@ -333,38 +344,49 @@ $orbit-timer-hide-for-small: true !default;
           background: $orbit-bullet-nav-color-active;
         }
 
-        &:last-child { margin-#{$opposite-direction}: 0; }
+        &:last-child {
+          margin-#{$opposite-direction}: 0;
+        }
       }
     }
 
     .touch {
       .orbit-container {
         .orbit-prev,
-        .orbit-next { display: none; }
+        .orbit-next {
+          display: none;
+        }
       }
 
-      .orbit-bullets { display: none; }
+      .orbit-bullets {
+        display: none;
+      }
     }
-
 
     @media #{$medium-up} {
 
       .touch {
         .orbit-container {
           .orbit-prev,
-          .orbit-next { display: inherit; }
+          .orbit-next {
+            display: inherit;
+          }
         }
 
-        .orbit-bullets { display: block; }
+        .orbit-bullets {
+          display: block;
+        }
       }
 
     }
 
     @media #{$small-only} {
       .orbit-stack-on-small {
-        .orbit-slides-container {height: auto !important;}
+        .orbit-slides-container {
+          height: auto !important;
+        }
         .orbit-slides-container > * {
-          margin:0  !important;
+          margin: 0 !important;
           opacity: 1 !important;
           position: relative;
         }
@@ -375,13 +397,19 @@ $orbit-timer-hide-for-small: true !default;
       }
 
       @if $orbit-timer-hide-for-small {
-         .orbit-timer{display: none;}
+        .orbit-timer {
+          display: none;
+        }
       }
       @if $orbit-nav-hide-for-small {
-         .orbit-next,.orbit-prev{display: none;}
+        .orbit-next, .orbit-prev {
+          display: none;
+        }
       }
       @if $orbit-bullet-hide-for-small {
-         .orbit-bullets{display: none;}
+        .orbit-bullets {
+          display: none;
+        }
       }
     }
   }

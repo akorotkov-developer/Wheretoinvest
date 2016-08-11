@@ -1,7 +1,6 @@
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
-
 @import 'global';
 
 //
@@ -14,13 +13,13 @@ $accordion-navigation-padding: rem-calc(16) !default;
 $accordion-navigation-bg-color: $silver !default;
 $accordion-navigation-hover-bg-color: scale-color($accordion-navigation-bg-color, $lightness: -5%) !default;
 $accordion-navigation-active-bg-color: scale-color($accordion-navigation-bg-color, $lightness: -3%) !default;
+$accordion-navigation-active-font-color: $jet !default;
 $accordion-navigation-font-color: $jet !default;
 $accordion-navigation-font-size: rem-calc(16) !default;
 $accordion-navigation-font-family: $body-font-family !default;
 
 $accordion-content-padding: ($column-gutter/2) !default;
 $accordion-content-active-bg-color: $white !default;
-
 
 //  Mixin: accordion-container()
 //  Decription: Responsible for the container component of accordions, generating styles relating to a margin of zero and a clearfix
@@ -40,16 +39,17 @@ $accordion-content-active-bg-color: $white !default;
 //    @params $font-color [ color or string ]: Color of the font for accordion
 //    @params $font-size [ number ]: Specifiy the font-size of the text inside the navigation element
 //    @params $font-family [ string ]: Specify the font family for the text of the navigation of the accorion
+//    @params $active-font [ color or string ]: Specify the font color for the navigation element when active.
 
-@mixin accordion-navigation( $bg: $accordion-navigation-bg-color, $hover-bg: $accordion-navigation-hover-bg-color, $active-bg: $accordion-navigation-active-bg-color, $padding: $accordion-navigation-padding, $active_class: 'active',  $font-color: $accordion-navigation-font-color, $font-size: $accordion-navigation-font-size, $font-family: $accordion-navigation-font-family ) {
+@mixin accordion-navigation( $bg: $accordion-navigation-bg-color, $hover-bg: $accordion-navigation-hover-bg-color, $active-bg: $accordion-navigation-active-bg-color, $padding: $accordion-navigation-padding, $active_class: 'active',  $font-color: $accordion-navigation-font-color, $font-size: $accordion-navigation-font-size, $font-family: $accordion-navigation-font-family, $active-font: $accordion-navigation-active-font-color ) {
   display: block;
   margin-bottom: 0 !important;
   @if type-of($active_class) != "string" {
     @warn "`#{$active_class}` isn't a valid string. A valid string is needed to correctly be interpolated as a CSS class. CSS classes cannot start with a number or consist of only numbers. CSS will not be generated for the active state of this navigation component."
-  }
-  @else {
+  } @else {
     &.#{ $active_class } > a {
       background: $active-bg;
+      color: $active-font;
     }
   }
   > a {
@@ -61,13 +61,11 @@ $accordion-content-active-bg-color: $white !default;
         @warn "#{$padding} was read as a #{type-of($padding)}";
         @warn "`#{$padding}` isn't a valid number. $accordion-navigation-padding (#{$accordion-navigation-padding}) will be used instead.)";
         padding: $accordion-navigation-padding;
-      }
-      @else {
+      } @else {
         @warn "`#{$padding}` isn't a valid number and $accordion-navigation-padding is missing. A value of `null` is returned to not output an invalid value for padding";
         padding: null;
       }
-    }
-    @else {
+    } @else {
       padding: $padding;
     }
     display: block;
@@ -77,14 +75,12 @@ $accordion-content-active-bg-color: $white !default;
       @if $accordion-navigation-font-size != null {
         @warn "`#{$font-size}` is not a valid number. The value of $accordion-navigation-font-size will be used instead (#{$accordion-navigation-font-size}).";
         font-size: $accordion-navigation-font-size;
-      }
-      @else{
+      } @else {
         @warn "`#{$font-size}` is not a valid number and the default value of $accordion-navigation-font-size is not defined. A value of `null` will be returned to not generate an invalid value for font-size.";
         font-size: null;
 
       }
-    }
-    @else {
+    } @else {
       font-size: $font-size;
     }
     &:hover {
@@ -115,8 +111,7 @@ $accordion-content-active-bg-color: $white !default;
 
   @if type-of($active_class) != "string" {
     @warn "`#{$active_class}` isn't a valid string. A valid string is needed to correctly be interpolated as a CSS class. CSS classes cannot start with a number or consist of only numbers. CSS will not be generated for the active state of the content. "
-  }
-  @else {
+  } @else {
     &.#{$active_class} {
       background: $bg;
       display: block;
@@ -129,10 +124,14 @@ $accordion-content-active-bg-color: $white !default;
     .accordion {
       @include clearfix;
       margin-bottom: 0;
+      margin-left: 0;
       .accordion-navigation, dd {
         display: block;
         margin-bottom: 0 !important;
-        &.active > a { background: $accordion-navigation-active-bg-color; }
+        &.active > a {
+          background: $accordion-navigation-active-bg-color;
+          color: $accordion-navigation-active-font-color;
+        }
         > a {
           background: $accordion-navigation-bg-color;
           color: $accordion-navigation-font-color;
@@ -140,7 +139,9 @@ $accordion-content-active-bg-color: $white !default;
           font-family: $accordion-navigation-font-family;
           font-size: $accordion-navigation-font-size;
           padding: $accordion-navigation-padding;
-          &:hover { background: $accordion-navigation-hover-bg-color; }
+          &:hover {
+            background: $accordion-navigation-hover-bg-color;
+          }
         }
 
         > .content {

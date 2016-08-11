@@ -1,10 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "381751285483b0cedc86c0798b305b1a",
+    "hash": "ebf345640498c563312c2a646e884496",
+    "content-hash": "101ebd4f9d9117c3a33512b7c447a383",
     "packages": [
         {
             "name": "pimple/pimple",
@@ -58,6 +59,7 @@
     "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": [],
     "platform-dev": []
 }

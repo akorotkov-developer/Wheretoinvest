@@ -1,0 +1,87 @@
+.course {
+  margin-top: 29px;
+  &__red {
+    color: #e53935;
+  }
+
+  &__title {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #202020;
+    border-bottom: 1px dashed #000;
+    &:hover {
+      color: #202020;
+    }
+
+  }
+
+  .tabs {
+    margin-top: 18px;
+
+  }
+  .tab-title {
+    &.active {
+      a {
+        border: 1px solid #e6e6e6;
+        border-bottom: 0;
+        padding-bottom: 11px;
+        &:focus {
+          outline: none;
+        }
+        &.course__usd {
+          background: rgba(0, 199, 22, 0.19) !important;
+        }
+        &.course__eur {
+          background: rgba(0, 113, 251, 0.11) !important;
+        }
+        &.course__rur {
+          background: #fef2d2 !important;
+        }
+      }
+
+    }
+    a {
+      padding-left: 30px;
+      padding-right: 30px;
+      padding-top: 9px;
+      padding-bottom: 10px;
+      background-color: #fff !important;
+      margin-right: 2px;
+
+      border: 1px solid #e6e6e6;
+      color: #202020;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+  }
+
+}
+
+.content {
+  &.content_usd.active, &.content_usd.active .graph {
+    background: rgba(0, 199, 22, 0.19);
+
+  }
+  &.content_rur.active, &.content_rur.active .graph {
+    background: #fef2d2;
+
+  }
+  &.content_eur.active, &.content_eur.active .graph {
+    background: rgba(0, 113, 251, 0.11);
+
+  }
+
+}
+
+@media (max-width: 640px) {
+  .course {
+    .tab-title {
+      a {
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+    }
+  }
+}

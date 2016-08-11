@@ -61,8 +61,7 @@ class JsIncludes
      * )
      */
     private static $files = array(
-        'common.jq' => 'http://yandex.st/jquery/1.11.1/jquery.min.js',
-        'common.common' => '#SITE_TEMPLATE_PATH#/js/common.js?v=1',
+        'common.jq' => '',
     );
 
     private static $injectedVariables = array('#SITE_TEMPLATE_PATH#' => SITE_TEMPLATE_PATH);

@@ -1,7 +1,6 @@
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
-
 @import 'global';
 
 $include-html-type-classes: $include-html-classes !default;
@@ -124,45 +123,62 @@ $microformat-abbr-padding: rem-calc(0 1) !default;
 $microformat-abbr-font-weight: $font-weight-bold !default;
 $microformat-abbr-font-decoration: none !default;
 
+// Controls the page margin when printing the website
+$print-margin: 0.34in !default;
+
 // Text alignment class names
-$align-class-names:
-  small-only,
-  small,
-  medium-only,
-  medium,
-  large-only,
-  large,
-  xlarge-only,
-  xlarge,
-  xxlarge-only,
-  xxlarge;
+$align-class-names: small-only,
+small,
+medium-only,
+medium,
+large-only,
+large,
+xlarge-only,
+xlarge,
+xxlarge-only,
+xxlarge;
 
 // Text alignment breakpoints
-$align-class-breakpoints:
-  $small-only,
-  $small-up,
-  $medium-only,
-  $medium-up,
-  $large-only,
-  $large-up,
-  $xlarge-only,
-  $xlarge-up,
-  $xxlarge-only,
-  $xxlarge-up;
+$align-class-breakpoints: $small-only,
+$small-up,
+$medium-only,
+$medium-up,
+$large-only,
+$large-up,
+$xlarge-only,
+$xlarge-up,
+$xxlarge-only,
+$xxlarge-up;
 
 // Generates text align and justify classes
-@mixin align-classes{
-  .text-left    { text-align: left !important; }
-  .text-right   { text-align: right !important; }
-  .text-center  { text-align: center !important; }
-  .text-justify { text-align: justify !important; }
+@mixin align-classes {
+  .text-left {
+    text-align: left !important;
+  }
+  .text-right {
+    text-align: right !important;
+  }
+  .text-center {
+    text-align: center !important;
+  }
+  .text-justify {
+    text-align: justify !important;
+  }
 
   @for $i from 1 through length($align-class-names) {
     @media #{(nth($align-class-breakpoints, $i))} {
-      .#{(nth($align-class-names, $i))}-text-left { text-align: left !important; }
-      .#{(nth($align-class-names, $i))}-text-right   { text-align: right !important; }
-      .#{(nth($align-class-names, $i))}-text-center  { text-align: center !important; }
-      .#{(nth($align-class-names, $i))}-text-justify { text-align: justify !important; }
+      .#{(nth($align-class-names, $i))}-text-left {
+        text-align: left !important;
+      }
+      .#{(nth($align-class-names, $i))}-text-right {
+        text-align: right !important;
+      }
+      .#{(nth($align-class-names, $i))}-text-center {
+        text-align: center !important;
+      }
+      .#{(nth($align-class-names, $i))}-text-justify {
+        text-align: justify !important;
+      }
     }
   }
 }
@@ -184,6 +200,7 @@ $align-class-breakpoints:
   margin-top: $subheader-top-margin;
   margin-bottom: $subheader-bottom-margin;
 }
+
 @include exports("type") {
   @if $include-html-type-classes {
     // Responsive Text alignment
@@ -209,8 +226,8 @@ $align-class-breakpoints:
     blockquote,
     th,
     td {
-      margin:0;
-      padding:0;
+      margin: 0;
+      padding: 0;
     }
 
     /* Default Link Styles */
@@ -223,11 +240,13 @@ $align-class-breakpoints:
       &:focus {
         color: $anchor-font-color-hover;
         @if $anchor-text-decoration-hover != $anchor-text-decoration {
-        	text-decoration: $anchor-text-decoration-hover;
+          text-decoration: $anchor-text-decoration-hover;
         }
       }
 
-      img { border:none; }
+      img {
+        border: none;
+      }
     }
 
     /* Default paragraph styles */
@@ -239,7 +258,9 @@ $align-class-breakpoints:
       margin-bottom: $paragraph-margin-bottom;
       text-rendering: $paragraph-text-rendering;
 
-      &.lead { @include lead; }
+      &.lead {
+        @include lead;
+      }
 
       & aside {
         font-size: $paragraph-aside-font-size;
@@ -266,14 +287,28 @@ $align-class-breakpoints:
       }
     }
 
-    h1 { font-size: $h1-font-size - $h1-font-reduction; }
-    h2 { font-size: $h2-font-size - $h2-font-reduction; }
-    h3 { font-size: $h3-font-size - $h3-font-reduction; }
-    h4 { font-size: $h4-font-size - $h4-font-reduction; }
-    h5 { font-size: $h5-font-size - $h5-font-reduction; }
-    h6 { font-size: $h6-font-size - $h6-font-reduction; }
+    h1 {
+      font-size: $h1-font-size - $h1-font-reduction;
+    }
+    h2 {
+      font-size: $h2-font-size - $h2-font-reduction;
+    }
+    h3 {
+      font-size: $h3-font-size - $h3-font-reduction;
+    }
+    h4 {
+      font-size: $h4-font-size - $h4-font-reduction;
+    }
+    h5 {
+      font-size: $h5-font-size - $h5-font-reduction;
+    }
+    h6 {
+      font-size: $h6-font-size - $h6-font-reduction;
+    }
 
-    .subheader { @include subheader; }
+    .subheader {
+      @include subheader;
+    }
 
     hr {
       border: $hr-border-style $hr-border-color;
@@ -325,17 +360,6 @@ $align-class-breakpoints:
 
     ul {
       margin-#{$default-float}: $list-side-margin;
-      &.no-bullet {
-        margin-#{$default-float}: $list-side-margin-no-bullet;
-        li {
-          ul,
-          ol {
-            margin-#{$default-float}: $list-nested-margin;
-            margin-bottom: 0;
-            list-style: none;
-          }
-        }
-      }
     }
 
     /* Unordered Lists */
@@ -350,13 +374,23 @@ $align-class-breakpoints:
       &.square,
       &.circle,
       &.disc {
-        li ul { list-style: inherit; }
+        li ul {
+          list-style: inherit;
+        }
       }
 
-      &.square { list-style-type: square; margin-#{$default-float}: $list-side-margin;}
-      &.circle { list-style-type: circle; margin-#{$default-float}: $list-side-margin;}
-      &.disc { list-style-type: disc; margin-#{$default-float}: $list-side-margin;}
-      &.no-bullet { list-style: none; }
+      &.square {
+        list-style-type: square;
+        margin-#{$default-float}: $list-side-margin;
+      }
+      &.circle {
+        list-style-type: circle;
+        margin-#{$default-float}: $list-side-margin;
+      }
+      &.disc {
+        list-style-type: disc;
+        margin-#{$default-float}: $list-side-margin;
+      }
     }
 
     /* Ordered Lists */
@@ -371,13 +405,30 @@ $align-class-breakpoints:
       }
     }
 
+    // Lists without bullets
+    .no-bullet {
+      list-style-type: none;
+      margin-#{$default-float}: $list-side-margin-no-bullet;
+
+      li {
+        ul,
+        ol {
+          margin-#{$default-float}: $list-nested-margin;
+          margin-bottom: 0;
+          list-style: none;
+        }
+      }
+    }
+
     /* Definition Lists */
     dl {
       dt {
         margin-bottom: $definition-list-header-margin-bottom;
         font-weight: $definition-list-header-weight;
       }
-      dd { margin-bottom: $definition-list-margin-bottom; }
+      dd {
+        margin-bottom: $definition-list-margin-bottom;
+      }
     }
 
     /* Abbreviations */
@@ -439,7 +490,9 @@ $align-class-breakpoints:
     }
 
     .vevent {
-      .summary { font-weight: $microformat-summary-font-weight; }
+      .summary {
+        font-weight: $microformat-summary-font-weight;
+      }
 
       abbr {
         cursor: $cursor-default-value;
@@ -450,15 +503,101 @@ $align-class-breakpoints:
       }
     }
 
-
     @media #{$medium-up} {
-      h1, h2, h3, h4, h5, h6 { line-height: $header-line-height; }
-      h1 { font-size: $h1-font-size; }
-      h2 { font-size: $h2-font-size; }
-      h3 { font-size: $h3-font-size; }
-      h4 { font-size: $h4-font-size; }
-      h5 { font-size: $h5-font-size; }
-      h6 { font-size: $h6-font-size; }
+      h1, h2, h3, h4, h5, h6 {
+        line-height: $header-line-height;
+      }
+      h1 {
+        font-size: $h1-font-size;
+      }
+      h2 {
+        font-size: $h2-font-size;
+      }
+      h3 {
+        font-size: $h3-font-size;
+      }
+      h4 {
+        font-size: $h4-font-size;
+      }
+      h5 {
+        font-size: $h5-font-size;
+      }
+      h6 {
+        font-size: $h6-font-size;
+      }
     }
+
+    // Only include these styles if you want them.
+    @if $include-print-styles {
+      /*
+       * Print styles.
+       *
+       * Inlined to avoid required HTTP connection: www.phpied.com/delay-loading-your-print-css/
+       * Credit to Paul Irish and HTML5 Boilerplate (html5boilerplate.com)
+      */
+      @media print {
+        * {
+          background: transparent !important;
+          color: $black !important; /* Black prints faster: h5bp.com/s */
+          box-shadow: none !important;
+          text-shadow: none !important;
+        }
+
+        a,
+        a:visited {
+          text-decoration: underline;
+        }
+        a[href]:after {
+          content: " (" attr(href) ")";
+        }
+
+        abbr[title]:after {
+          content: " (" attr(title) ")";
+        }
+
+        // Don't show links for images, or javascript/internal links
+        .ir a:after,
+        a[href^="javascript:"]:after,
+        a[href^="#"]:after {
+          content: "";
+        }
+
+        pre,
+        blockquote {
+          border: 1px solid $aluminum;
+          page-break-inside: avoid;
+        }
+
+        thead {
+          display: table-header-group; /* h5bp.com/t */
+        }
+
+        tr,
+        img {
+          page-break-inside: avoid;
+        }
+
+        img {
+          max-width: 100% !important;
+        }
+
+        @page {
+          margin: $print-margin;
+        }
+
+        p,
+        h2,
+        h3 {
+          orphans: 3;
+          widows: 3;
+        }
+
+        h2,
+        h3 {
+          page-break-after: avoid;
+        }
+      }
+    }
+
   }
 }

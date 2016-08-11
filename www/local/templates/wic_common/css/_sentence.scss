@@ -1,0 +1,24 @@
+.sentence {
+  color: #e53935;
+  font-size: 12px;
+  font-weight: 700;
+  float: left;
+  text-transform: uppercase;
+  border: 2px solid #e53935;
+  border-radius: 3px 2px 2px 3px;
+  padding-left: 16px;
+  transition: .5s;
+  &:hover {
+    background: #e53935;
+    color: #fff;
+  }
+  padding-right: 16px;
+  padding-top: 9px;
+  padding-bottom: 10px;
+}
+
+@media (max-width: 640px) {
+  .sentence {
+    margin-left: calc(50% - 100px);
+  }
+}

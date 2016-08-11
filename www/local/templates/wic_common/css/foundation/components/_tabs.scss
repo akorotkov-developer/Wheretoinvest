@@ -1,7 +1,6 @@
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
-
 @import 'global';
 @import 'grid';
 
@@ -52,7 +51,7 @@ $tabs-vertical-navigation-margin-bottom: 1.25rem !default;
           }
         }
 
-        &.active a {
+        &.active > a {
           background-color: $tabs-navigation-active-bg-color;
           color: $tabs-navigation-active-font-color;
         }
@@ -61,12 +60,16 @@ $tabs-vertical-navigation-margin-bottom: 1.25rem !default;
       &.radius {
         dd:first-child,
         .tab:first-child {
-          a { @include side-radius($default-float, $global-radius); }
+          a {
+            @include side-radius($default-float, $global-radius);
+          }
         }
 
         dd:last-child,
         .tab:last-child {
-          a { @include side-radius($opposite-direction, $global-radius); }
+          a {
+            @include side-radius($opposite-direction, $global-radius);
+          }
         }
       }
 
