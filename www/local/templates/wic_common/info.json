@@ -1,8 +1,0 @@
-{
-    "version": "2.17",
-    "cms_version_min": "3.16.0",
-    "title": "Простая",
-    "description": "Базовая тема. Построена на Foundation",
-    "author": "<a href='http://www.cetera.ru'>Cetera Labs</a>",
-    "configClass": "Theme.simple.Config"
-}
