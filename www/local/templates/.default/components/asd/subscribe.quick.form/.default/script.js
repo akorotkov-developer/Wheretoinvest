@@ -20,13 +20,12 @@ if (typeof($) !== 'undefined') {
                 function (data) {
                     $('#asd_subscribe_submit').removeAttr('disabled');
                     if (data.status == 'error') {
-                        $('#asd_subscribe_res .mess').css('color', 'red');
+                        $('#asd_subscribe_res .mess').addClass('error');
                     } else {
-                        $('#asd_subscribe_res .mess').css('color', 'green');
                         $("#asd_subscribe_form input[name='asd_email']").val("");
+                        $('#asd_subscribe_res .mess').removeClass('error');
                     }
                     $('#asd_subscribe_res .mess').html(data.message);
-                    //$('#asd_subscribe_res').show();
                     $('#asd_subscribe_res').foundation("reveal", "open");
                 }, 'json');
             return false;

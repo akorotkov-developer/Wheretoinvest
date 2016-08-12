@@ -4,9 +4,9 @@ if (method_exists($this, 'setFrameMode')) {
     $this->setFrameMode(true);
 }
 ?>
-<div id="asd_subscribe_res" class="reveal-modal modal modal_js-top" data-reveal aria-labelledby="modalTitle"
+<div id="asd_subscribe_res" class="reveal-modal modal modal_js-top xlarge" data-reveal aria-labelledby="modalTitle"
      aria-hidden="true" role="dialog">
-    <h4 class="mess">
+    <div class="mess b-sizeinfo__title i-sizeinfo__title_subscribe">
         <?
         if ($arResult['ACTION']['status'] == 'error') {
             ShowError($arResult['ACTION']['message']);
@@ -14,7 +14,7 @@ if (method_exists($this, 'setFrameMode')) {
             ShowNote($arResult['ACTION']['message']);
         }
         ?>
-    </h4>
+    </div>
     <a class="close-reveal-modal modal__close" aria-label="Close">&#215;</a>
 </div>
 
