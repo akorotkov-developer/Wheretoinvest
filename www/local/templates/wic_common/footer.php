@@ -10,7 +10,7 @@
                 array(
                     "FORMAT" => "html",
                     "INC_JQUERY" => "N",
-                    "NOT_CONFIRM" => "Y",
+                    "NOT_CONFIRM" => "N",
                     "RUBRICS" => array(
                         0 => "1",
                     ),

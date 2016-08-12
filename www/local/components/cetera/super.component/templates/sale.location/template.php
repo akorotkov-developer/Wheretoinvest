@@ -10,12 +10,16 @@
         <?
         $i = 0;
         $nextCol = false;
+        $rowCount = 1;
         ?>
         <ul class="small-block-grid-1 medium-block-grid-<?= $arParams["COL_CNT"] ?>">
             <li>
                 <? foreach ($arResult["REGIONS"] as $char => $list): ?>
                 <? if ($nextCol): ?>
-                <? $nextCol = false; ?>
+                <?
+                $nextCol = false;
+                $rowCount++;
+                ?>
             </li>
             <li>
                 <? endif; ?>
@@ -26,7 +30,7 @@
                                value="<?= $value["ID"] ?>" <? if ($value["ID"] == $arResult["CURRENT_LOC_ID"]): ?> disabled checked<? endif; ?>>
                         <label for="address_<?= $value["ID"] ?>" class="modal__chck"><?= $value["NAME"] ?></label>
                     </div>
-                    <? if ($i !== 0 && $i % ceil($arResult["TOTAL_COUNT"] / $arParams["COL_CNT"]) == 0) $nextCol = true; ?>
+                    <? if ($i !== 0 && $i % (ceil($arResult["TOTAL_COUNT"] / $arParams["COL_CNT"]) - 2) == 0 && $rowCount < $arParams["COL_CNT"]) $nextCol = true; ?>
                     <? ++$i; ?>
                 <? endforeach; ?>
                 <? endforeach; ?>
