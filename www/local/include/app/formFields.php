@@ -396,22 +396,24 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                         <? if ($arItem["LIST_VIEW"] === "BLOCK"): ?>
                                             <div>
                                         <? endif; ?>
+                                        <input type="radio"
+                                               <? if (!empty($arItem["INPUT_CLASS"])): ?>class="<?= $arItem["INPUT_CLASS"] ?>"<? endif; ?>
+                                               name="<?= $arKey ?>"
+                                               value="<?= $key; ?>"<? if ((!is_array($arItem["VALUE"]) && (string)$arItem["VALUE"] === (string)$key) || (is_array($arItem["VALUE"]) && in_array($key, $arItem["VALUE"]))): ?> checked<? endif; ?><?
+                                        if (!empty($arItem["REQUIRED"])): ?> required<?endif;
+                                        ?><?
+                                        if (!empty($arItem["DISABLED"])): ?> disabled <?endif;
+                                        ?>
+                                               <? if (count($arItem["PARAMS"])):
+                                               foreach ($arItem["PARAMS"] as $k => $v): ?>
+                                               <?= $k ?>="<?= addslashes($v) ?>"
+                                        <?endforeach;
+                                        endif; ?>
+                                               class="check__checkbox"
+                                               id="<?= $arKey ?>_<?= $key; ?>">
                                         <label
-                                            class="b-form__label<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                            <input type="radio"
-                                                   <? if (!empty($arItem["INPUT_CLASS"])): ?>class="<?= $arItem["INPUT_CLASS"] ?>"<? endif; ?>
-                                                   name="<?= $arKey ?>"
-                                                   value="<?= $key; ?>"<? if ((!is_array($arItem["VALUE"]) && (string)$arItem["VALUE"] === (string)$key) || (is_array($arItem["VALUE"]) && in_array($key, $arItem["VALUE"]))): ?> checked<? endif; ?><?
-                                            if (!empty($arItem["REQUIRED"])): ?> required<?endif;
-                                            ?><?
-                                            if (!empty($arItem["DISABLED"])): ?> disabled <?endif;
-                                            ?>
-                                                   <? if (count($arItem["PARAMS"])):
-                                                   foreach ($arItem["PARAMS"] as $k => $v): ?>
-                                                   <?= $k ?>="<?= addslashes($v) ?>"
-                                            <?endforeach;
-                                            endif; ?>
-                                                   class="b-form__input_radio">
+                                            class="check__chck <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>"
+                                            for="<?= $arKey ?>_<?= $key; ?>">
                                             <?= $val; ?>
                                         </label>
                                         <? if ($arItem["LIST_VIEW"] === "BLOCK"): ?>
@@ -457,7 +459,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                             <div>
                                         <? endif; ?>
                                         <label
-                                            class="b-form__label<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
+                                            class="modal__chck <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
                                             <input type="checkbox"
                                                    <? if (!empty($arItem["INPUT_CLASS"])): ?>class="<?= $arItem["INPUT_CLASS"] ?>"<? endif; ?>
                                                    name="<?= $arKey ?><? if (empty($arItem["SINGLE"])): ?>[]<? endif; ?>"
@@ -643,6 +645,57 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                             <? endif; ?>
                             <div class="column small-12">
                                 <?= $arItem["TEXT"]; ?>
+                                <? if (!empty($arItem["DESCRIPTION"])): ?>
+                                    <div class="b-form__title-desc">
+                                        <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
+                                    </div>
+                                <? endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?
+                    break;
+                case "DATE":
+                    ?>
+                    <div
+                        class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                        <div class="row">
+                            <? if (!empty($arItem["BLOCK_TITLE"])): ?>
+                                <div class="column small-12">
+                                    <div
+                                        class="b-form__title <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
+                                        <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
+                                    </div>
+                                </div>
+                            <? endif; ?>
+                            <div class="column small-<?= $inputSize; ?> end">
+                                <input
+                                    class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
+                                    type="date"
+                                    value="<?= $arItem["VALUE"] ?>"
+                                    name="<?= $arKey ?>"
+                                    id="FIELD_<?= $arKey ?>" <?
+                                    if (!empty($arItem["REQUIRED"])): ?>required <?endif;
+                                    ?><?
+                                if (!empty($arItem["PLACEHOLDER"])): ?>placeholder="<?= $arItem["PLACEHOLDER"] ?>"
+                                    <?endif;
+                                    ?><?
+                                    if (!empty($arItem["READONLY"])): ?>readonly <?endif;
+                                    ?><?
+                                if (!empty($arItem["DISABLED"])): ?>disabled <?endif;
+                                ?>
+
+                                    <? if (count($arItem["PARAMS"])):
+                                    foreach ($arItem["PARAMS"] as $k => $v): ?>
+                                    <?= $k ?>="<?= addslashes($v) ?>"
+                                    <?endforeach;
+                                    endif; ?>/>
+                            </div>
+                            <div class="column small-12">
+                                <? if (!empty($arItem["ERROR"])): ?>
+                                    <div
+                                        class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
+                                <? endif; ?>
                                 <? if (!empty($arItem["DESCRIPTION"])): ?>
                                     <div class="b-form__title-desc">
                                         <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
