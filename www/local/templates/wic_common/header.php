@@ -19,13 +19,13 @@ CJSCore::Init(array("fx"));
     <title><?php $APPLICATION->ShowTitle() ?></title>
     <link rel="icon" href="/uploads/favicon-96.png" type="image/x-icon">
     <link rel="shortcut icon" href="/uploads/favicon-96.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-60x60.png">
     <? /*?>
     <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-29x29.png">
     <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-40x40.png">
     <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-50x50.png">
     <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-58x58.png">
-    <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-76x76.png">
     <link rel="apple-touch-icon" href="/uploads/apple-touch-icon-80x80.png">

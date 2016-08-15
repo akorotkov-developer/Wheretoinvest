@@ -8,9 +8,11 @@
         var marT = +($footer.css('margin-top').slice(0, -2));
 
         function footer2bottom() {
-            $footer.css('margin-top', 0 + 'px')
+            $footer.css('margin-top', 0 + 'px');
             if ($('body').height() < $(window).height()) { // если высота body меньше, чем высота окна
                 var fmargin = $(document).height() - $('body').height() - 2; // вычисляем верхний оступ
+
+                fmargin = fmargin > 60 ? fmargin : 60;
                 $footer.css('margin-top', fmargin + 'px'); // применяем верхний отступ
             }
             else {
@@ -25,6 +27,9 @@
                     footer2bottom();
                 });
                 $(window).on('resize', function () {
+                    footer2bottom();
+                });
+                $(document).on('close.fndtn.alert', function(event) {
                     footer2bottom();
                 });
             }
