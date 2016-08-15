@@ -7,6 +7,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
     global $USER;
 
     $return = "";
+    $vertical = defined("VERTICAL_FORMS") && VERTICAL_FORMS === true ? true : false;
     if (count($data)) {
         ob_start(); ?>
 
@@ -42,6 +43,15 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
             <?
             $arItem["ROW_CLASS"] .= " " . $row_class;
             ?>
+
+            <?
+            if ($vertical) {
+                $arItem["NO_LABEL"] = "Y";
+                $arItem["BLOCK_TITLE"] = $arItem["TITLE"];
+                $arItem["TITLE"] = "";
+            }
+            ?>
+
             <? if (!$fromBlock): ?>
                 <div class="b-form__row<? if (!empty($arItem["ROW_CLASS"])): ?> <?= $arItem["ROW_CLASS"]; ?><? endif; ?><? if (!empty($arItem["DISABLED"])): ?> x-row-disabled<? endif; ?>"<? if ($arItem["HIDE"] === "Y"): ?> style="display: none;"<? endif; ?>>
                 <div class="row">
