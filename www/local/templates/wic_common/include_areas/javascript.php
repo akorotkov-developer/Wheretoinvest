@@ -12,6 +12,7 @@ JsIncludes::registerFile('common.foundation.equalizer', '#WIC_TEMPLATE_PATH#/js/
 //JsIncludes::registerFile('common.foundation.tooltip', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.tooltip.js?v=1');
 //JsIncludes::registerFile('common.foundation.accordion', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.accordion.js?v=1');
 JsIncludes::registerFile('common.js.resize', '#WIC_TEMPLATE_PATH#/js/vendor/jquery.resize.js?v=1');
+JsIncludes::registerFile('common.js.maskedinput', '#WIC_TEMPLATE_PATH#/js/vendor/jquery.maskedinput.js?v=1');
 
 JsIncludes::includeFiles('common.foundation');
 JsIncludes::includeFiles('common.js');

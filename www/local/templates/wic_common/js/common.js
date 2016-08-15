@@ -324,6 +324,9 @@
         })();
         //end of graph tqble edit
 
+        if ($.fn.mask) {
+            $(".js-phone").mask('+7(999)999-99-99');
+        }
 
     });
 })(jQuery);

@@ -75,7 +75,7 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                     "NAME" => Array(
                         "BLOCK_TITLE" => "Ваше имя для сайта",
                         "TYPE" => "TEXT",
-                        "VALUE" => $arResult["NAME"],
+                        "VALUE" => $_REQUEST["NAME"],
                         "REQUIRED" => "Y",
                         "NO_LABEL" => "Y",
                     ),
@@ -103,8 +103,10 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                 );
                 ?>
                 <form method="post" action="<?= $arResult["AUTH_URL"] ?>" name="bform">
+                    <br>
                     <input type="hidden" name="AUTH_FORM" value="Y"/>
                     <input type="hidden" name="TYPE" value="REGISTRATION"/>
+                    <input type="hidden" name="FROM_PUBLIC" value="Y"/>
                     <? if (strlen($arResult["BACKURL"]) > 0): ?>
                         <input type="hidden" name="backurl" value="<?= $arResult["BACKURL"] ?>"/>
                     <? endif ?>
@@ -123,35 +125,74 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                 </form>
             </div>
             <div class="content" id="partner">
-                <form action="">
-                    <input type="hidden" name="partner" value="Y">
-                    <label for="31" class="reg__label">Сокращенное наименование организации
-                        (согласно уставу)
-                        <input type="text" id="31">
-                    </label>
-                    <label for="41" class="reg__label">Контактное лицо
-
-                        <input type="text" id="41">
-                    </label>
-                    <label for="51" class="reg__label">Контактный телефон
-
-                        <input type="text" id="51">
-                    </label>
-                    <label for="52" class="reg__label">Электронная почта
-
-                        <input type="email" id="52">
-                    </label>
-
-                    <div class="reg__info">Будет логином на сайт. Вы должны иметь к ней доступ, чтобы подтвердить
-                        регистрацию
-                    </div>
-                    <label for="22" class="reg__label">Придумайте пароль
-
-                        <input type="password" id="22">
-                    </label>
-                    <button class="reg__submit" type="submit">зарегистрироваться</button>
-                    <div class="reg__already">Уже зарегистрированы? <a href="#" class="reg__link">Войти</a></div>
-
+                <?
+                $arResult["FORM_FIELDS_PARTNER"] = Array(
+                    "WORK_COMPANY" => Array(
+                        "BLOCK_TITLE" => "Сокращенное наименование организации (согласно уставу)",
+                        "TYPE" => "TEXT",
+                        "VALUE" => $_REQUEST["WORK_COMPANY"],
+                        "REQUIRED" => "Y",
+                        "NO_LABEL" => "Y",
+                    ),
+                    "NAME" => Array(
+                        "BLOCK_TITLE" => "Контактное лицо",
+                        "TYPE" => "TEXT",
+                        "VALUE" => $_REQUEST["NAME"],
+                        "REQUIRED" => "Y",
+                        "NO_LABEL" => "Y",
+                    ),
+                    "PERSONAL_PHONE" => Array(
+                        "BLOCK_TITLE" => "Контактный телефон",
+                        "TYPE" => "TEXT",
+                        "VALUE" => $_REQUEST["PERSONAL_PHONE"],
+                        "REQUIRED" => "Y",
+                        "NO_LABEL" => "Y",
+                        "INPUT_CLASS" => "js-phone"
+                    ),
+                    "USER_EMAIL" => Array(
+                        "BLOCK_TITLE" => "Электронная почта",
+                        "TYPE" => "EMAIL",
+                        "VALUE" => $arResult["USER_EMAIL"],
+                        "REQUIRED" => "Y",
+                        "NO_LABEL" => "Y",
+                        "DESCRIPTION" => "Будет логином на сайт. Вы должны иметь к ней доступ, чтобы подтвердить регистрацию",
+                        "PARAMS" => Array(
+                            "autocomplete" => "off"
+                        )
+                    ),
+                    "USER_PASSWORD" => Array(
+                        "BLOCK_TITLE" => "Придумайте пароль",
+                        "TYPE" => "PASSWORD",
+                        "VALUE" => $arResult["USER_PASSWORD"],
+                        "REQUIRED" => "Y",
+                        "NO_LABEL" => "Y",
+                        "PARAMS" => Array(
+                            "autocomplete" => "off"
+                        )
+                    ),
+                );
+                ?>
+                <form method="post" action="<?= $arResult["AUTH_URL"] ?>" name="bform">
+                    <br>
+                    <input type="hidden" name="AUTH_FORM" value="Y"/>
+                    <input type="hidden" name="TYPE" value="REGISTRATION"/>
+                    <input type="hidden" name="FROM_PUBLIC" value="Y"/>
+                    <input type="hidden" name="partner" value="Y"/>
+                    <? if (strlen($arResult["BACKURL"]) > 0): ?>
+                        <input type="hidden" name="backurl" value="<?= $arResult["BACKURL"] ?>"/>
+                    <? endif ?>
+                    <? foreach ($arResult["POST"] as $key => $value): ?>
+                        <input type="hidden" name="<?= $key ?>" value="<?= $value ?>"/>
+                    <? endforeach ?>
+                    <? foreach ($arResult["POST"] as $key => $value): ?>
+                        <input type="hidden" name="<?= $key ?>" value="<?= $value ?>"/>
+                    <? endforeach ?>
+                    <?= getFormFields($arResult["FORM_FIELDS_PARTNER"], 12, "b-form__row_small-margin") ?>
+                    <button class="reg__submit" type="submit" name="Register" value="Y">зарегистрироваться</button>
+                    <noindex>
+                        <div class="reg__already">Уже зарегистрированы? <a href="<?= $arResult["AUTH_AUTH_URL"] ?>"
+                                                                           class="reg__link">Войти</a></div>
+                    </noindex>
                 </form>
             </div>
         </div>

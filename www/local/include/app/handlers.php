@@ -8,7 +8,6 @@
 $eventManager = \Bitrix\Main\EventManager::getInstance();
 
 
-
 /**
  * Удалить из GET параметр SHOWALL (отображает все элементы на 1 странице)
  * почти всегда это приводит к полному зависанию сервака
@@ -26,19 +25,32 @@ class UserEx
 {
     public function OnBeforeUserRegister(&$arFields)
     {
-
         if (empty($arFields["ID"]) || (!empty($arFields["ID"]) && $arFields["ID"] != "1")) {
             $arFields["CONFIRM_PASSWORD"] = $arFields["PASSWORD"];
             $arFields["LOGIN"] = $arFields["EMAIL"];
-            $arFields["GROUP_ID"][] = $_POST["group_id"]; // где id - номер необходимой группы
-        }
 
+            if (!empty($_REQUEST["FROM_PUBLIC"])) {
+                if (empty($_REQUEST["partner"])) {
+                    $arFields["PERSONAL_GENDER"] = $_REQUEST["PERSONAL_GENDER"];
+                    if (!empty($_REQUEST["PERSONAL_BIRTHDAY"]))
+                        $arFields["PERSONAL_BIRTHDAY"] = date("d.m.Y", strtotime($_REQUEST["PERSONAL_BIRTHDAY"]));
+                    $arFields["NAME"] = $_REQUEST["NAME"];
+                    $arFields["UF_TYPE"] = 1;
+                } else {
+                    $arFields["GROUP_ID"] = 6;
+                    $arFields["UF_TYPE"] = 2;
+                    $arFields["NAME"] = $_REQUEST["NAME"];
+                    $arFields["PERSONAL_PHONE"] = $_REQUEST["PERSONAL_PHONE"];
+                    $arFields["WORK_COMPANY"] = $_REQUEST["WORK_COMPANY"];
+                }
+            }
+        }
     }
+
     public function OnAfterUserRegister(&$arFields)
     {
-        print_r($arFields);
-
     }
+
     function OnBeforeUserLogin($arFields)
     {
         $filter = Array("EMAIL" => $arFields["LOGIN"]);
