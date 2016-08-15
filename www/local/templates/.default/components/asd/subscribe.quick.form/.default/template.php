@@ -4,7 +4,7 @@ if (method_exists($this, 'setFrameMode')) {
     $this->setFrameMode(true);
 }
 ?>
-<div id="asd_subscribe_res" class="reveal-modal modal modal_js-top xlarge" data-reveal aria-labelledby="modalTitle"
+<div id="asd_subscribe_res" class="reveal-modal modal modal_js-top" data-reveal aria-labelledby="modalTitle"
      aria-hidden="true" role="dialog">
     <div class="mess b-sizeinfo__title i-sizeinfo__title_subscribe">
         <?
