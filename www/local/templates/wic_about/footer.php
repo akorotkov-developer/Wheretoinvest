@@ -1,9 +1,6 @@
 <?php if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
-
     </div>
-
     <div class="columns small-12 medium-5 large-4">
-
         <?$APPLICATION->IncludeComponent("bitrix:menu", "about", Array(
 	"ROOT_MENU_TYPE" => "about",	// Тип меню для первого уровня
 		"MAX_LEVEL" => "1",	// Уровень вложенности меню
@@ -18,8 +15,6 @@
 	),
 	false
 );?>
-
-
     </div>
     </div>
 
