@@ -126,7 +126,7 @@ $select-hover-bg-color: scale-color($select-bg-color, $lightness: -3%) !default;
   border-radius: 3px;
   /* padding: 15px; */
   font-size: 14px;
-  color: #202020;
+  color: $input-font-color;
   font-weight: normal;
   font-family: 'Open sans', sans-serif;
   padding-left: 15px;
