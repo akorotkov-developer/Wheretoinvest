@@ -47,7 +47,8 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
             <?
             if ($vertical) {
                 $arItem["NO_LABEL"] = "Y";
-                $arItem["BLOCK_TITLE"] = $arItem["TITLE"];
+                if (empty($arItem["BLOCK_TITLE"]))
+                    $arItem["BLOCK_TITLE"] = $arItem["TITLE"];
                 $arItem["TITLE"] = "";
             }
             ?>

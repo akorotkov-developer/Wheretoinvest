@@ -3,6 +3,11 @@
         "use strict";
         $(document).foundation();
 
+        $(document).on('close.fndtn.reveal', '[data-reveal]', function () {
+            $(this).find(".alert-box .close").trigger("click");
+            $(this).find(".alert-box").foundation("alert", "reflow");
+        });
+
         //begin of footer2bottom
         var $footer = $('.b-footer');
         var marT = +($footer.css('margin-top').slice(0, -2));
@@ -29,7 +34,7 @@
                 $(window).on('resize', function () {
                     footer2bottom();
                 });
-                $(document).on('close.fndtn.alert', function(event) {
+                $(document).on('close.fndtn.alert', function (event) {
                     footer2bottom();
                 });
             }
@@ -331,6 +336,7 @@
 
         if ($.fn.mask) {
             $(".js-phone").mask('+7(999)999-99-99');
+            $(".js-date").mask('99.99.9999');
         }
 
     });

@@ -57,7 +57,7 @@ CJSCore::Init(array("fx"));
 <header class="b_header">
     <div class="b-header__firstline row">
         <div class="small-8 small-offset-2 medium-offset-0 medium-5 column small-only-text-center b-header__logotype">
-            <a href="/"><img src="<?= WIC_TEMPLATE_PATH ?>/images/logo.png" alt=""></a>
+            <a href="/"><img src="<?= WIC_TEMPLATE_PATH ?>/images/logo.png" alt="" class="b-header__logo"></a>
         </div>
         <div class="column b-header__place text-center">
             <? $APPLICATION->IncludeComponent(

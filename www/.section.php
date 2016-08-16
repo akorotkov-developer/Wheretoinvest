@@ -1,5 +1,5 @@
 <?
-$sSectionName = "Куда вложить";
+$sSectionName = "Главная";
 $arDirProperties = array(
    "description" => "",
    "keywords" => "",
