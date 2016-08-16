@@ -48,7 +48,7 @@
     border-bottom: 0;
     margin-right: 3px;
 
-    &:nth-of-type(1) {
+    /*&:nth-of-type(1) {
       a:before {
         content: '';
         display: inline-block;
@@ -71,14 +71,12 @@
         bottom: 15px;
         background: url(../images/yur.png) no-repeat;
       }
-    }
+    }*/
     & > a {
       background: #ebebeb;
       position: relative;
-      padding-top: 11px;
-      padding-bottom: 10px;
-      padding-left: 40px;
-      padding-right: 13px;
+      //padding-left: 40px;
+      padding: 11px 13px 10px;
       color: #202020;
       font-size: 12px;
       text-transform: uppercase;

@@ -423,7 +423,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                                class="check__checkbox"
                                                id="<?= $arKey ?>_<?= $key; ?>">
                                         <label
-                                            class="check__chck <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>"
+                                            class="check__chck b-form__label <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>"
                                             for="<?= $arKey ?>_<?= $key; ?>">
                                             <?= $val; ?>
                                         </label>
