@@ -1,7 +1,7 @@
 <?
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
-$APPLICATION->SetTitle("Вход");
-$APPLICATION->AddChainItem("Вход", $APPLICATION->GetCurPage());
+$APPLICATION->SetTitle("Войти в личный кабинет");
+$APPLICATION->AddChainItem("Войти в личный кабинет", $APPLICATION->GetCurPage());
 ?>
 
 <? if (!empty($_REQUEST["Login"]) && !empty($arParams["~AUTH_RESULT"])): ?>
@@ -21,7 +21,7 @@ $APPLICATION->AddChainItem("Вход", $APPLICATION->GetCurPage());
 <div class="row">
     <div class="column small-12 medium-6 large-5 small-centered">
         <div class="recover__title">
-            Вход
+            Войти в личный кабинет
         </div>
         <form name="form_auth" method="post" target="_top"
               action="<?= $arResult["AUTH_URL"] ?>">

@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
-$APPLICATION->SetTitle("Куда вложить - помощь в выборе банка и вклада");
+$APPLICATION->SetTitle("Куда вложить деньги");
 ?>
 <? $APPLICATION->IncludeComponent("bitrix:main.include", "", Array(
         "AREA_FILE_SHOW" => "file",

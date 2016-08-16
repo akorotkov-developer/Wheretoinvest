@@ -33,12 +33,12 @@
   }
 
   &__copyr {
-    margin-top: rem-calc(30);
     font-size: 15px;
+    line-height: rem-calc(29);
   }
   &__menu {
     list-style: none;
-    margin: 0;
+    margin: 0 0 rem-calc(20);
   }
   &__smalltext {
     color: #d2d2d2;
