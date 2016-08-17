@@ -12,21 +12,35 @@ $aMenuLinks = Array(
         "/cabinet/info/",
         Array(),
         Array(),
-        ""
+        "!getContainer('User')->isPartner()"
     ),
     Array(
         "Мой регион",
         "/cabinet/region/",
         Array(),
         Array(),
-        ""
+        "!getContainer('User')->isPartner()"
     ),
     Array(
         "Моя методика определения надежности",
         "/cabinet/method/",
         Array(),
         Array(),
-        ""
-    )
+        "!getContainer('User')->isPartner()"
+    ),
+    Array(
+        "Реквизиты организации",
+        "/cabinet/details/",
+        Array(),
+        Array(),
+        "getContainer('User')->isPartner()"
+    ),
+    Array(
+        "Контакты",
+        "/cabinet/info/",
+        Array(),
+        Array(),
+        "getContainer('User')->isPartner()"
+    ),
 );
 ?>

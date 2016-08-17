@@ -1,185 +1,29 @@
-<?
-define("NEED_AUTH", true);
-require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
-$APPLICATION->SetTitle("Настройки аккаунта");
+<? define("NEED_AUTH", true);
+require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php"); ?>
 
-$arResult["EMAIL_FIELDS"] = Array(
-    "HEADER" => Array(
-        "TYPE" => "STATIC",
-        "NO_LABEL" => "Y",
-        "TEXT" => '
-        <div class="b-form__title-desc">Email - это Ваш логин в личный кабинет. <br> После смены, используйте для входа новый email.</div>
-        '
-    ),
-    "OLD_EMAIL" => Array(
-        "TITLE" => "Текущий email",
-        "TYPE" => "EMAIL",
-        "VALUE" => "",
-        "REQUIRED" => "Y",
-        "PARAMS" => [
-            "autocomplete" => "off"
-        ]
-    ),
-    "NEW_EMAIL" => Array(
-        "TITLE" => "Новый email",
-        "TYPE" => "EMAIL",
-        "VALUE" => "",
-        "REQUIRED" => "Y",
-        "PARAMS" => [
-            "autocomplete" => "off"
-        ]
-    ),
-    "NEW_EMAIL_CONFIRM" => Array(
-        "TITLE" => "Повторите новый email",
-        "TYPE" => "EMAIL",
-        "VALUE" => "",
-        "REQUIRED" => "Y",
-        "PARAMS" => [
-            "autocomplete" => "off"
-        ]
-    ),
-);
-
-$arResult["PASSWORD_FIELDS"] = Array(
-    "OLD_PASSWORD" => Array(
-        "TITLE" => "Старый пароль",
-        "TYPE" => "PASSWORD",
-        "VALUE" => "",
-        "REQUIRED" => "Y",
-        "PARAMS" => [
-            "autocomplete" => "off"
-        ]
-    ),
-    "NEW_PASSWORD" => Array(
-        "TITLE" => "Новый пароль",
-        "TYPE" => "PASSWORD",
-        "VALUE" => "",
-        "REQUIRED" => "Y",
-        "PARAMS" => [
-            "autocomplete" => "off"
-        ]
-    ),
-    "NEW_PASSWORD_CONFIRM" => Array(
-        "TITLE" => "Повторите новый пароль",
-        "TYPE" => "PASSWORD",
-        "VALUE" => "",
-        "REQUIRED" => "Y",
-        "PARAMS" => [
-            "autocomplete" => "off"
-        ]
-    ),
-);
-?>
-    <div class=" content__key">
-        Электронная почта: <a href="mailto:<?= $USER->GetEmail() ?>"
-                              class="content__link js-email-link"><?= $USER->GetEmail() ?></a>
-    </div>
-    <a class="content__change" href="#" data-reveal-id="email">Изменить</a>
-    <br>
-    <br>
-    <div class="content__key">
-        Пароль: ********
-    </div>
-    <a class="content__change" href="#" data-reveal-id="password">Изменить</a>
-
-<? if (!empty($arResult["EMAIL_FIELDS"])): ?>
-    <div id="email" class="reveal-modal tiny modal" data-reveal aria-labelledby="modalTitle"
-         aria-hidden="true"
-         role="dialog">
-        <div class="row">
-            <div class="column small-12">
-                <form action="" class="b-form x-save-form" enctype="multipart/form-data">
-                    <input type="hidden" name="sessid" value="<?= bitrix_sessid(); ?>">
-                    <input type="hidden" name="ajax" value="Y">
-                    <input type="hidden" name="action" value="changeEmail">
-
-                    <h2 class="content__title">Сменить email</h2>
-
-                    <div class="b-main-block__body"></div>
-
-                    <?= getFormFields($arResult["EMAIL_FIELDS"], 4, "b-form__row_small-margin"); ?>
-                    <br>
-
-                    <div class="row">
-                        <div class="column small-12 medium-5 small-centered">
-                            <button class="b-form__btn" type="submit">Сохранить</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <a class="close-reveal-modal modal__close" aria-label="Close">×</a>
-    </div>
-<? endif; ?>
-<? if (!empty($arResult["PASSWORD_FIELDS"])): ?>
-    <div id="password" class="reveal-modal tiny modal" data-reveal aria-labelledby="modalTitle"
-         aria-hidden="true"
-         role="dialog">
-        <div class="row">
-            <div class="column small-12">
-                <form action="" class="b-form x-save-form" enctype="multipart/form-data">
-                    <input type="hidden" name="sessid" value="<?= bitrix_sessid(); ?>">
-                    <input type="hidden" name="ajax" value="Y">
-                    <input type="hidden" name="action" value="changePass">
-
-                    <h2 class="content__title">Сменить пароль</h2>
-
-                    <div class="b-main-block__body"></div>
-
-                    <?= getFormFields($arResult["PASSWORD_FIELDS"], 4, "b-form__row_small-margin"); ?>
-                    <br>
-
-                    <div class="row">
-                        <div class="column small-12 medium-5 small-centered">
-                            <button class="b-form__btn" type="submit">Сохранить</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <a class="close-reveal-modal modal__close" aria-label="Close">×</a>
-    </div>
-<? endif; ?>
-    <script type="text/javascript">
-        $(function () {
-            $(".x-save-form").on("submit", function () {
-                var data = $(this).serialize(),
-                    _this = $(this);
-                _this.find(".b-form__error").detach();
-                _this.find(".alert-box").detach();
-
-                $.ajax({
-                    url: "/local/ajax/editAccInfo.php",
-                    data: data,
-                    method: "POST",
-                    dataType: "json",
-                    success: function (response) {
-                        if (response.ERRORS !== undefined) {
-                            $.each(response.ERRORS, function (i, item) {
-                                _this.find('input[name="' + i + '"]').after('<div class="b-form__error">' + item + '</div>');
-                            });
-                        }
-                        else if (response.ERROR !== undefined) {
-                            _this.find(".b-main-block__body").prepend('<div data-alert class="alert-box alert radius">' + response.ERROR + '<a href="#" class="close">&times;</a></div>');
-                            $(document).foundation('alert', 'reflow');
-                        }
-                        else if (response.SUCCESS !== undefined) {
-                            _this.find(".b-main-block__body").prepend('<div data-alert class="alert-box success radius">' + response.SUCCESS + '<a href="#" class="close">&times;</a></div>');
-                            $(document).foundation('alert', 'reflow');
-                            if (response.NEW_EMAIL !== undefined) {
-                                $(".js-email-link").text(response.NEW_EMAIL).attr("href", "mailto:" + response.NEW_EMAIL);
-                            }
-                            $(':input', _this)
-                                .not(':button, :submit, :reset, :hidden')
-                                .val('')
-                                .removeAttr('checked')
-                                .removeAttr('selected');
-                        }
-                    }
-                });
-                return false;
-            });
-        });
-    </script>
+<? $APPLICATION->IncludeComponent(
+	"cetera:user.cabinet", 
+	".default", 
+	array(
+		"CACHE_TIME" => "3600",
+		"CACHE_TYPE" => "A",
+		"COMPONENT_TEMPLATE" => ".default",
+		"FILTER_NAME" => "arrFilter",
+		"NAME_TEMPLATE" => "#LAST_NAME# #NAME# #SECOND_NAME#",
+		"PAGER_TEMPLATE" => "",
+		"PAGE_COUNT" => "10",
+		"PROFILE" => "",
+		"SEF_FOLDER" => "/cabinet/",
+		"SEF_MODE" => "Y",
+		"SET_STATUS_404" => "N",
+		"SEF_URL_TEMPLATES" => array(
+			"index" => "",
+			"info" => "info/",
+			"method" => "method/",
+			"region" => "region/",
+		)
+	),
+	false
+); ?>
 
 <? require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>
