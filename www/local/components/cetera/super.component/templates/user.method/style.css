@@ -1,0 +1,32 @@
+.content__wrp.content__wrp_sortable {
+    display: block;
+    padding: 0;
+    margin-bottom: 10px;
+    float: none;
+    clear: both;
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+
+.sortable {
+    position: relative;
+    list-style-type: none;
+    display: block;
+    margin: 0 0 20px;
+}
+
+.sortable-highlight {
+    display: block;
+    height: 25px;
+    margin-bottom: 10px;
+    border: 1px dashed #202020;
+    border-radius: 3px;
+    opacity: 0.35;
+}
+
+.sortable-state-disabled {
+    color: #9e9e9e;
+}

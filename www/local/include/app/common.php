@@ -58,3 +58,67 @@ function cl($text, $return = false)
         }
     }
 }
+
+function getUserMethods()
+{
+    global $USER;
+    global $USER_FIELD_MANAGER;
+
+    $obCache = new CPHPCache();
+    $cacheLifetime = 86400 * 7;
+    $cacheID = 'user_method';
+    if ($USER->IsAuthorized())
+        $cacheID .= "_" . $USER->GetID();
+
+    $cachePath = '/user_methods/' . $cacheID;
+    $arMethods = Array();
+
+    if ($obCache->InitCache($cacheLifetime, $cacheID, $cachePath)) {
+        $arMethods = $obCache->GetVars();
+    } elseif ($obCache->StartDataCache()) {
+        $arFields = $USER_FIELD_MANAGER->GetUserFields("HLBLOCK_6");
+        $obEnum = new CUserFieldEnum;
+
+        foreach ($arFields as $key => $arField) {
+            if ($arField["USER_TYPE_ID"] == "enumeration") {
+                $rsEnum = $obEnum->GetList(array(), array("USER_FIELD_ID" => $arField["ID"]));
+                while ($arEnum = $rsEnum->GetNext()) {
+                    if ($key == "UF_METHOD") {
+                        $arMethods[$arEnum["ID"]] = Array(
+                            "ID" => $arEnum["ID"],
+                            "NAME" => $arEnum["VALUE"],
+                            "ACTIVE" => true,
+                            "SORT" => intval($arEnum["SORT"])
+                        );
+                    }
+                }
+            }
+        }
+
+        if ($USER->IsAuthorized()) {
+            $hblock = new \Cetera\HBlock\SimpleHblockObject(6);
+            $list = $hblock->getList(Array("filter" => Array("UF_USER" => $USER->GetID())));
+            while ($el = $list->fetch()) {
+                $arMethods[$el["UF_METHOD"]]["ACTIVE"] = !empty($el["UF_ACTIVE"]) ? true : false;
+                $arMethods[$el["UF_METHOD"]]["SORT"] = intval($el["UF_SORT"]);
+            }
+        }
+
+        $sort = Array();
+        foreach ($arMethods as $key => $val) {
+            $sort[$val["SORT"]] = $val;
+        }
+
+        ksort($sort);
+        $arMethods = $sort;
+
+        $obCache->EndDataCache($arMethods);
+    }
+
+    return $arMethods;
+}
+
+function getContainer($varName)
+{
+    return \Cetera\Tools\DIContainer::$DIC[$varName];
+}

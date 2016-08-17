@@ -3,13 +3,13 @@
   &__rating {
     color: #202020;
     font-size: 14px;
-    padding-top: 14px;
+    margin-bottom: 14px;
     position: relative;
     padding-left: 18px;
     &:before {
       width: 7px;
       height: 7px;
-      bottom: 5px;
+      top: 7px;
       background: url(../images/g.png) no-repeat;
       content: '';
       display: inline-block;

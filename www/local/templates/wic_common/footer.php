@@ -74,8 +74,6 @@
     </div>
 </section>
 
-<?php require($_SERVER['DOCUMENT_ROOT'] . WIC_TEMPLATE_PATH . '/include_areas/javascript.php'); ?>
-
 <? $APPLICATION->IncludeComponent("bitrix:main.include", "", Array(
         "AREA_FILE_SHOW" => "file",
         "AREA_FILE_SUFFIX" => "",

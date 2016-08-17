@@ -3,11 +3,10 @@ define("NEED_AUTH", true);
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 $APPLICATION->SetTitle("Данные пользователя");
 
-$userInfo = \CUser::GetByID($USER->GetID())->GetNext();
-//cl($userInfo);
+$userInfo = getContainer("User");
 ?>
     <div class="row">
-        <? if (!CSite::InGroup(array(6))): ?>
+        <? if ($userInfo->isPartner()): ?>
             <div class="columns req_p">
                 <div class="row">
                     <div class="req__name medium-4 small-5 columns">ФИО</div>

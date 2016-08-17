@@ -5,11 +5,11 @@
 
 namespace Wic;
 
-use Wic\Exception\Exception;
-use Wic\User\User;
 use Bitrix\Main\EventManager;
 use Bitrix\Main\Loader;
 use Cetera\Tools;
+use Wic\Exception\Exception;
+use Wic\User\User;
 
 /**
  * Class Application
@@ -18,75 +18,77 @@ use Cetera\Tools;
  */
 class Application
 {
-  /**
-   * Инициализация приложения
-   *
-   * @throws \Bitrix\Main\LoaderException
-   * @throws Exception
-   */
-  public static function init()
-  {
     /**
-     * Загрузка модулей
+     * Инициализация приложения
+     *
+     * @throws \Bitrix\Main\LoaderException
+     * @throws Exception
      */
-    $bxModulesToLoad = array(
-      "iblock",
-      "highloadblock"
-    );
-    foreach($bxModulesToLoad as $module)
-      if(!Loader::includeModule($module))
-        throw new Exception("Модуль {$module} не был загружен");
-
-    Tools\DIContainer::init();
-
-    /**
-     * Application
-     */
-    global $APPLICATION;
-    Tools\DIContainer::$DIC['Application'] = Tools\DIContainer::$DIC->factory(function () use ($APPLICATION)
+    public static function init()
     {
-      return $APPLICATION;
-    });
+        /**
+         * Загрузка модулей
+         */
+        $bxModulesToLoad = array(
+            "iblock",
+            "highloadblock"
+        );
+        foreach ($bxModulesToLoad as $module)
+            if (!Loader::includeModule($module))
+                throw new Exception("Модуль {$module} не был загружен");
 
-    self::initHandlers();
-  }
+        Tools\DIContainer::init();
 
-  /**
-   * отложенная инициализация
-   * на OnBeforeProlog
-   */
-  public static function deferredInit()
-  {
-    global $USER;
+        /**
+         * Application
+         */
+        global $APPLICATION;
+        Tools\DIContainer::$DIC['Application'] = Tools\DIContainer::$DIC->factory(function () use ($APPLICATION) {
+            return $APPLICATION;
+        });
+
+        Tools\DIContainer::$DIC['userMethod'] = Tools\DIContainer::$DIC->factory(function () {
+            return getUserMethods();
+        });
+
+        self::initHandlers();
+    }
 
     /**
-     * Пользователь
+     * Иницилизация отложенных функций
      */
-    Tools\DIContainer::$DIC['User'] = Tools\DIContainer::$DIC->factory(function () use ($USER)
+    public static function initHandlers()
     {
-      return new User($USER);
-    });
+        /**
+         * отложенная инициализация некоторых переменных
+         */
+        EventManager::getInstance()->addEventHandler("main", "OnBeforeProlog", Array(
+            "Wic\\Application",
+            "deferredInit"
+        ), false, 100);
+    }
 
     /**
-     * Include javascript
+     * отложенная инициализация
+     * на OnBeforeProlog
      */
-    Tools\JsIncludes::includeFiles(array(
-      'common',
-    ));
-  }
+    public static function deferredInit()
+    {
+        global $USER;
 
-  /**
-   * Иницилизация отложенных функций
-   */
-  public static function initHandlers()
-  {
-    /**
-     * отложенная инициализация некоторых переменных
-     */
-    EventManager::getInstance()->addEventHandler("main", "OnBeforeProlog", Array(
-      "Wic\\Application",
-      "deferredInit"
-    ), false, 100);
-  }
+        /**
+         * Пользователь
+         */
+        Tools\DIContainer::$DIC['User'] = Tools\DIContainer::$DIC->factory(function () use ($USER) {
+            return new User($USER);
+        });
+
+        /**
+         * Include javascript
+         */
+        Tools\JsIncludes::includeFiles(array(
+            'common',
+        ));
+    }
 
 }
