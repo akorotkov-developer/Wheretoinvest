@@ -8,6 +8,17 @@
             $(this).find(".alert-box").foundation("alert", "reflow");
         });
 
+        function scrollToAlert() {
+            var alert = $("[data-alert]:visible");
+            if (alert.length) {
+                $('html, body').animate({
+                    scrollTop: alert.eq(0).offset().top - 80
+                }, 500);
+            }
+        }
+
+        scrollToAlert();
+
         //begin of footer2bottom
         var $footer = $('.b-footer');
         var marT = +($footer.css('margin-top').slice(0, -2));

@@ -22,6 +22,7 @@ $arDefaultUrlTemplates404 = array(
     "method" => "method/",
     "region" => "region/",
     "details" => "details/",
+    "details_edit" => "details/edit/",
 );
 
 $arDefaultVariableAliases404 = array();
@@ -95,6 +96,9 @@ if ($arParams["SEF_MODE"] == "Y") {
             break;
         case "details":
             $componentPage = "details";
+            break;
+        case "details_edit":
+            $componentPage = "details_edit";
             break;
         default:
             $componentPage = "index";

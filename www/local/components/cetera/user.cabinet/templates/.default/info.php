@@ -214,7 +214,7 @@ $APPLICATION->AddChainItem($name);
                     var alert = $("[data-alert]:visible");
                     if (alert.length) {
                         $('html, body').animate({
-                            scrollTop: alert.eq(0).offset().top - 20
+                            scrollTop: alert.eq(0).offset().top - 80
                         }, 500);
                     }
                 }

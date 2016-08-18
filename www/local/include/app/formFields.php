@@ -151,71 +151,71 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
 
             switch ($arItem["TYPE"]) {
                 //Вывод input text
-                case "TEXT":
-                    ?>
-                    <div
-                        class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
-                        <div class="row">
-                            <? if (!empty($arItem["BLOCK_TITLE"])): ?>
-                                <div class="column small-12">
-                                    <div
-                                        class="b-form__title <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                        <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
-                                    </div>
+            case "TEXT":
+                ?>
+                <div
+                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    <div class="row">
+                        <? if (!empty($arItem["BLOCK_TITLE"])): ?>
+                            <div class="column small-12">
+                                <div
+                                    class="b-form__title <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
+                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
+                                </div>
+                            </div>
+                        <? endif; ?>
+                        <div class="column small-<?= $inputSize; ?> end">
+                            <input
+                                class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
+                                type="text"
+                                value="<?= $arItem["VALUE"] ?>"
+                                name="<?= $arKey ?>"
+                                id="FIELD_<?= $arKey ?>" <?
+                                if (!empty($arItem["REQUIRED"])): ?>required <?endif;
+                                ?><?
+                            if (!empty($arItem["PLACEHOLDER"])): ?>placeholder="<?= $arItem["PLACEHOLDER"] ?>"
+                                <?endif;
+                                ?><?
+                                if (!empty($arItem["READONLY"])): ?>readonly <?endif;
+                                ?><?
+                            if (!empty($arItem["DISABLED"])): ?>disabled <?endif;
+                            ?>
+
+                                <? if (count($arItem["PARAMS"])):
+                                foreach ($arItem["PARAMS"] as $k => $v): ?>
+                                <?= $k ?>="<?= addslashes($v) ?>"
+                                <?endforeach;
+                                endif; ?>/>
+                        </div>
+                        <div class="column small-12">
+                            <? if (!empty($arItem["ERROR"])): ?>
+                                <div
+                                    class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
+                            <? endif; ?>
+                            <? if (!empty($arItem["DESCRIPTION"])): ?>
+                                <div class="b-form__title-desc">
+                                    <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
                                 </div>
                             <? endif; ?>
-                            <div class="column small-<?= $inputSize; ?> end">
-                                <input
-                                    class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
-                                    type="text"
-                                    value="<?= $arItem["VALUE"] ?>"
-                                    name="<?= $arKey ?>"
-                                    id="FIELD_<?= $arKey ?>" <?
-                                    if (!empty($arItem["REQUIRED"])): ?>required <?endif;
-                                    ?><?
-                                if (!empty($arItem["PLACEHOLDER"])): ?>placeholder="<?= $arItem["PLACEHOLDER"] ?>"
-                                    <?endif;
-                                    ?><?
-                                    if (!empty($arItem["READONLY"])): ?>readonly <?endif;
-                                    ?><?
-                                if (!empty($arItem["DISABLED"])): ?>disabled <?endif;
-                                ?>
-
-                                    <? if (count($arItem["PARAMS"])):
-                                    foreach ($arItem["PARAMS"] as $k => $v): ?>
-                                    <?= $k ?>="<?= addslashes($v) ?>"
-                                    <?endforeach;
-                                    endif; ?>/>
-                            </div>
-                            <div class="column small-12">
-                                <? if (!empty($arItem["ERROR"])): ?>
-                                    <div
-                                        class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
-                                <? endif; ?>
-                                <? if (!empty($arItem["DESCRIPTION"])): ?>
-                                    <div class="b-form__title-desc">
-                                        <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
-                                    </div>
-                                <? endif; ?>
-                            </div>
                         </div>
                     </div>
-                    <?
-                    break;
-                case "TEXTAREA":
-                    ?>
-                    <div
-                        class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
-                        <div class="row">
-                            <? if (!empty($arItem["BLOCK_TITLE"])): ?>
-                                <div class="column small-12">
-                                    <div
-                                        class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                        <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
-                                    </div>
+                </div>
+            <?
+            break;
+            case "TEXTAREA":
+            ?>
+                <div
+                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    <div class="row">
+                        <? if (!empty($arItem["BLOCK_TITLE"])): ?>
+                            <div class="column small-12">
+                                <div
+                                    class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
+                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
                                 </div>
-                            <? endif; ?>
-                            <div class="column small-<?= $inputSize; ?> end">
+                            </div>
+                        <? endif; ?>
+                        <div class="column small-<?= $inputSize; ?> end">
                                         <textarea
                                             class="b-form__textarea<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
                                             name="<?= $arKey ?>"
@@ -235,71 +235,123 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                             <?= $k ?>="<?= addslashes($v) ?>"
                                             <?endforeach;
                                             endif; ?>><?= $arItem["VALUE"] ?></textarea>
-                            </div>
-                            <div class="column small-12">
-                                <? if (!empty($arItem["ERROR"])): ?>
-                                    <div
-                                        class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
-                                <? endif; ?>
-                                <? if (!empty($arItem["DESCRIPTION"])): ?>
-                                    <div class="b-form__title-desc">
-                                        <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
-                                    </div>
-                                <? endif; ?>
-                            </div>
                         </div>
-                    </div>
-                    <?
-                    break;
-                case "TEXT_BLOCK":
-                    ?>
-                    <div
-                        class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
-                        <div class="row">
-                            <? if (!empty($arItem["BLOCK_TITLE"])): ?>
-                                <div class="column small-12">
-                                    <div
-                                        class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                        <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
-                                    </div>
+                        <div class="column small-12">
+                            <? if (!empty($arItem["ERROR"])): ?>
+                                <div
+                                    class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
+                            <? endif; ?>
+                            <? if (!empty($arItem["DESCRIPTION"])): ?>
+                                <div class="b-form__title-desc">
+                                    <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
                                 </div>
                             <? endif; ?>
-                            <? foreach ($arItem["LIST"] as $arSubKey => $arSubItem): ?>
-                                <? if (!empty($arItem["DISABLED"])) $arSubItem["DISABLED"] = "Y"; ?>
-                                <?= getFormFields(Array($arSubKey => $arSubItem), $col, $row_class, $form_name, true, ++$itemDepth); ?>
-                            <? endforeach; ?>
-                            <div class="column small-12">
-                                <? if (!empty($arItem["ERROR"])): ?>
-                                    <div
-                                        class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
-                                <? endif; ?>
-                                <? if (!empty($arItem["DESCRIPTION"])): ?>
-                                    <div class="b-form__title-desc">
-                                        <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
-                                    </div>
-                                <? endif; ?>
-                            </div>
                         </div>
                     </div>
-                    <?
-                    break;
-                case "EMAIL":
-                    ?>
-                    <div
-                        class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
-                        <div class="row">
-                            <? if (!empty($arItem["BLOCK_TITLE"])): ?>
-                                <div class="column small-12">
-                                    <div
-                                        class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                        <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
-                                    </div>
+                </div>
+            <?
+            break;
+            case "TEXT_BLOCK":
+            ?>
+                <div
+                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    <div class="row">
+                        <? if (!empty($arItem["BLOCK_TITLE"])): ?>
+                            <div class="column small-12">
+                                <div
+                                    class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
+                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
+                                </div>
+                            </div>
+                        <? endif; ?>
+                        <? foreach ($arItem["LIST"] as $arSubKey => $arSubItem): ?>
+                            <? if (!empty($arItem["DISABLED"])) $arSubItem["DISABLED"] = "Y"; ?>
+                            <?= getFormFields(Array($arSubKey => $arSubItem), $col, $row_class, $form_name, true, ++$itemDepth); ?>
+                        <? endforeach; ?>
+                        <div class="column small-12">
+                            <? if (!empty($arItem["ERROR"])): ?>
+                                <div
+                                    class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
+                            <? endif; ?>
+                            <? if (!empty($arItem["DESCRIPTION"])): ?>
+                                <div class="b-form__title-desc">
+                                    <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
                                 </div>
                             <? endif; ?>
-                            <div class="column small-<?= $inputSize; ?> end">
+                        </div>
+                    </div>
+                </div>
+            <?
+            break;
+            case "EMAIL":
+            ?>
+                <div
+                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    <div class="row">
+                        <? if (!empty($arItem["BLOCK_TITLE"])): ?>
+                            <div class="column small-12">
+                                <div
+                                    class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
+                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
+                                </div>
+                            </div>
+                        <? endif; ?>
+                        <div class="column small-<?= $inputSize; ?> end">
+                            <input
+                                class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
+                                type="email"
+                                value="<?= $arItem["VALUE"] ?>"
+                                name="<?= $arKey ?>"
+                                id="FIELD_<?= $arKey ?>" <?
+                                if (!empty($arItem["REQUIRED"])): ?>required <?endif;
+                                ?><?
+                            if (!empty($arItem["PLACEHOLDER"])): ?>placeholder="<?= $arItem["PLACEHOLDER"] ?>"
+                                <?endif;
+                                ?><?
+                                if (!empty($arItem["READONLY"])): ?>readonly <?endif;
+                                ?><?
+                            if (!empty($arItem["DISABLED"])): ?>disabled <?endif;
+                            ?>
+
+                                <? if (count($arItem["PARAMS"])):
+                                foreach ($arItem["PARAMS"] as $k => $v): ?>
+                                <?= $k ?>="<?= addslashes($v) ?>"
+                                <?endforeach;
+                                endif; ?>/>
+                        </div>
+                        <div class="column small-12">
+                            <? if (!empty($arItem["ERROR"])): ?>
+                                <div
+                                    class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
+                            <? endif; ?>
+                            <? if (!empty($arItem["DESCRIPTION"])): ?>
+                                <div class="b-form__title-desc">
+                                    <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
+                                </div>
+                            <? endif; ?>
+                        </div>
+                    </div>
+                </div>
+            <?
+            break;
+            case "PASSWORD":
+            ?>
+                <div
+                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    <div class="row">
+                        <? if (!empty($arItem["BLOCK_TITLE"])): ?>
+                            <div class="column small-12">
+                                <div
+                                    class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
+                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
+                                </div>
+                            </div>
+                        <? endif; ?>
+                        <div class="column small-<?= $inputSize; ?> end">
+                            <div class="b-form__input-password-wrapper">
                                 <input
                                     class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
-                                    type="email"
+                                    type="password"
                                     value="<?= $arItem["VALUE"] ?>"
                                     name="<?= $arKey ?>"
                                     id="FIELD_<?= $arKey ?>" <?
@@ -319,370 +371,382 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                     <?endforeach;
                                     endif; ?>/>
                             </div>
-                            <div class="column small-12">
-                                <? if (!empty($arItem["ERROR"])): ?>
-                                    <div
-                                        class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
-                                <? endif; ?>
-                                <? if (!empty($arItem["DESCRIPTION"])): ?>
-                                    <div class="b-form__title-desc">
-                                        <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
-                                    </div>
-                                <? endif; ?>
-                            </div>
                         </div>
-                    </div>
-                    <?
-                    break;
-                case "PASSWORD":
-                    ?>
-                    <div
-                        class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
-                        <div class="row">
-                            <? if (!empty($arItem["BLOCK_TITLE"])): ?>
-                                <div class="column small-12">
-                                    <div
-                                        class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                        <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
-                                    </div>
+                        <div class="column small-12">
+                            <? if (!empty($arItem["ERROR"])): ?>
+                                <div
+                                    class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
+                            <? endif; ?>
+                            <? if (!empty($arItem["DESCRIPTION"])): ?>
+                                <div class="b-form__title-desc">
+                                    <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
                                 </div>
                             <? endif; ?>
-                            <div class="column small-<?= $inputSize; ?> end">
-                                <div class="b-form__input-password-wrapper">
-                                    <input
-                                        class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
-                                        type="password"
-                                        value="<?= $arItem["VALUE"] ?>"
-                                        name="<?= $arKey ?>"
-                                        id="FIELD_<?= $arKey ?>" <?
-                                        if (!empty($arItem["REQUIRED"])): ?>required <?endif;
-                                        ?><?
-                                    if (!empty($arItem["PLACEHOLDER"])): ?>placeholder="<?= $arItem["PLACEHOLDER"] ?>"
-                                        <?endif;
-                                        ?><?
-                                        if (!empty($arItem["READONLY"])): ?>readonly <?endif;
-                                        ?><?
-                                    if (!empty($arItem["DISABLED"])): ?>disabled <?endif;
+                        </div>
+                    </div>
+                </div>
+            <?
+            break;
+            case "RADIO":
+            ?>
+                <div
+                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    <div class="row">
+                        <? if (!empty($arItem["BLOCK_TITLE"])): ?>
+                            <div class="column small-12">
+                                <div
+                                    class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
+                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
+                                </div>
+                            </div>
+                        <? endif; ?>
+                        <div class="column small-<?= $inputSize; ?> end">
+                            <input type="hidden" name="<?= $arKey ?>" value="">
+                            <? if (count($arItem["LIST"])): ?>
+                                <? foreach ($arItem["LIST"] as $key => $val): ?>
+                                    <? if ($arItem["LIST_VIEW"] === "BLOCK"): ?>
+                                        <div>
+                                    <? endif; ?>
+                                    <input type="radio"
+                                           <? if (!empty($arItem["INPUT_CLASS"])): ?>class="<?= $arItem["INPUT_CLASS"] ?>"<? endif; ?>
+                                           name="<?= $arKey ?>"
+                                           value="<?= $key; ?>"<? if ((!is_array($arItem["VALUE"]) && (string)$arItem["VALUE"] === (string)$key) || (is_array($arItem["VALUE"]) && in_array($key, $arItem["VALUE"]))): ?> checked<? endif; ?><?
+                                    if (!empty($arItem["REQUIRED"])): ?> required<?endif;
+                                    ?><?
+                                    if (!empty($arItem["DISABLED"])): ?> disabled <?endif;
                                     ?>
-
-                                        <? if (count($arItem["PARAMS"])):
-                                        foreach ($arItem["PARAMS"] as $k => $v): ?>
-                                        <?= $k ?>="<?= addslashes($v) ?>"
-                                        <?endforeach;
-                                        endif; ?>/>
-                                </div>
-                            </div>
-                            <div class="column small-12">
-                                <? if (!empty($arItem["ERROR"])): ?>
-                                    <div
-                                        class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
-                                <? endif; ?>
-                                <? if (!empty($arItem["DESCRIPTION"])): ?>
-                                    <div class="b-form__title-desc">
-                                        <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
-                                    </div>
-                                <? endif; ?>
-                            </div>
+                                           <? if (count($arItem["PARAMS"])):
+                                           foreach ($arItem["PARAMS"] as $k => $v): ?>
+                                           <?= $k ?>="<?= addslashes($v) ?>"
+                                    <?endforeach;
+                                    endif; ?>
+                                           class="check__checkbox"
+                                           id="<?= $arKey ?>_<?= $key; ?>">
+                                    <label
+                                        class="check__chck b-form__label <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>"
+                                        for="<?= $arKey ?>_<?= $key; ?>">
+                                        <?= $val; ?>
+                                    </label>
+                                    <? if ($arItem["LIST_VIEW"] === "BLOCK"): ?>
+                                        </div>
+                                    <? endif; ?>
+                                <? endforeach; ?>
+                            <? endif; ?>
                         </div>
-                    </div>
-                    <?
-                    break;
-                case "RADIO":
-                    ?>
-                    <div
-                        class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
-                        <div class="row">
-                            <? if (!empty($arItem["BLOCK_TITLE"])): ?>
-                                <div class="column small-12">
-                                    <div
-                                        class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                        <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
-                                    </div>
+                        <div class="column small-12">
+                            <? if (!empty($arItem["ERROR"])): ?>
+                                <div
+                                    class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
+                            <? endif; ?>
+                            <? if (!empty($arItem["DESCRIPTION"])): ?>
+                                <div class="b-form__title-desc">
+                                    <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
                                 </div>
                             <? endif; ?>
-                            <div class="column small-<?= $inputSize; ?> end">
-                                <input type="hidden" name="<?= $arKey ?>" value="">
-                                <? if (count($arItem["LIST"])): ?>
-                                    <? foreach ($arItem["LIST"] as $key => $val): ?>
-                                        <? if ($arItem["LIST_VIEW"] === "BLOCK"): ?>
-                                            <div>
-                                        <? endif; ?>
-                                        <input type="radio"
+                        </div>
+                    </div>
+                </div>
+            <?
+            break;
+            case "CHECKBOX":
+            ?>
+                <div
+                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    <div class="row">
+                        <? if (!empty($arItem["BLOCK_TITLE"])): ?>
+                            <div class="column small-12">
+                                <div
+                                    class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
+                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
+                                </div>
+                            </div>
+                        <? endif; ?>
+                        <div class="column small-<?= $inputSize; ?> end">
+                            <? if (empty($arItem["NO_SKIP"])): ?><input type="hidden" name="<?= $arKey ?>"
+                                                                        value=""><? endif; ?>
+                            <? if (count($arItem["LIST"])): ?>
+                                <? foreach ($arItem["LIST"] as $key => $val): ?>
+                                    <? if ($arItem["LIST_VIEW"] === "BLOCK"): ?>
+                                        <div>
+                                    <? endif; ?>
+                                    <label
+                                        class="modal__chck <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
+                                        <input type="checkbox"
                                                <? if (!empty($arItem["INPUT_CLASS"])): ?>class="<?= $arItem["INPUT_CLASS"] ?>"<? endif; ?>
-                                               name="<?= $arKey ?>"
+                                               name="<?= $arKey ?><? if (empty($arItem["SINGLE"])): ?>[]<? endif; ?>"
                                                value="<?= $key; ?>"<? if ((!is_array($arItem["VALUE"]) && (string)$arItem["VALUE"] === (string)$key) || (is_array($arItem["VALUE"]) && in_array($key, $arItem["VALUE"]))): ?> checked<? endif; ?><?
-                                        if (!empty($arItem["REQUIRED"])): ?> required<?endif;
-                                        ?><?
                                         if (!empty($arItem["DISABLED"])): ?> disabled <?endif;
                                         ?>
                                                <? if (count($arItem["PARAMS"])):
                                                foreach ($arItem["PARAMS"] as $k => $v): ?>
                                                <?= $k ?>="<?= addslashes($v) ?>"
                                         <?endforeach;
-                                        endif; ?>
-                                               class="check__checkbox"
-                                               id="<?= $arKey ?>_<?= $key; ?>">
-                                        <label
-                                            class="check__chck b-form__label <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>"
-                                            for="<?= $arKey ?>_<?= $key; ?>">
-                                            <?= $val; ?>
-                                        </label>
-                                        <? if ($arItem["LIST_VIEW"] === "BLOCK"): ?>
-                                            </div>
+                                        endif; ?><? if (count($arItem["LIST"]) === 1): ?>
+                                            id="FIELD_<?= $arKey; ?>"
                                         <? endif; ?>
-                                    <? endforeach; ?>
-                                <? endif; ?>
-                            </div>
-                            <div class="column small-12">
-                                <? if (!empty($arItem["ERROR"])): ?>
-                                    <div
-                                        class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
-                                <? endif; ?>
-                                <? if (!empty($arItem["DESCRIPTION"])): ?>
-                                    <div class="b-form__title-desc">
-                                        <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
-                                    </div>
-                                <? endif; ?>
-                            </div>
-                        </div>
-                    </div>
-                    <?
-                    break;
-                case "CHECKBOX":
-                    ?>
-                    <div
-                        class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
-                        <div class="row">
-                            <? if (!empty($arItem["BLOCK_TITLE"])): ?>
-                                <div class="column small-12">
-                                    <div
-                                        class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                        <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
-                                    </div>
-                                </div>
-                            <? endif; ?>
-                            <div class="column small-<?= $inputSize; ?> end">
-                                <? if (empty($arItem["NO_SKIP"])): ?><input type="hidden" name="<?= $arKey ?>"
-                                                                            value=""><? endif; ?>
-                                <? if (count($arItem["LIST"])): ?>
-                                    <? foreach ($arItem["LIST"] as $key => $val): ?>
-                                        <? if ($arItem["LIST_VIEW"] === "BLOCK"): ?>
-                                            <div>
-                                        <? endif; ?>
-                                        <label
-                                            class="modal__chck <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                            <input type="checkbox"
-                                                   <? if (!empty($arItem["INPUT_CLASS"])): ?>class="<?= $arItem["INPUT_CLASS"] ?>"<? endif; ?>
-                                                   name="<?= $arKey ?><? if (empty($arItem["SINGLE"])): ?>[]<? endif; ?>"
-                                                   value="<?= $key; ?>"<? if ((!is_array($arItem["VALUE"]) && (string)$arItem["VALUE"] === (string)$key) || (is_array($arItem["VALUE"]) && in_array($key, $arItem["VALUE"]))): ?> checked<? endif; ?><?
-                                            if (!empty($arItem["DISABLED"])): ?> disabled <?endif;
-                                            ?>
-                                                   <? if (count($arItem["PARAMS"])):
-                                                   foreach ($arItem["PARAMS"] as $k => $v): ?>
-                                                   <?= $k ?>="<?= addslashes($v) ?>"
-                                            <?endforeach;
-                                            endif; ?><? if (count($arItem["LIST"]) === 1): ?>
-                                                id="FIELD_<?= $arKey; ?>"
-                                            <? endif; ?>
-                                                   class="b-form__input_radio">
-                                            <?= $val; ?>
-                                        </label>
-                                        <? if ($arItem["LIST_VIEW"] === "BLOCK"): ?>
-                                            </div>
-                                        <? endif; ?>
-                                    <? endforeach; ?>
-                                <? endif; ?>
-                            </div>
-                            <div class="column small-12">
-                                <? if (!empty($arItem["ERROR"])): ?>
-                                    <div
-                                        class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
-                                <? endif; ?>
-                                <? if (!empty($arItem["DESCRIPTION"])): ?>
-                                    <div class="b-form__title-desc">
-                                        <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
-                                    </div>
-                                <? endif; ?>
-                            </div>
-                        </div>
-                    </div>
-                    <?
-                    break;
-                case "SELECT":
-                    ?>
-                    <div
-                        class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
-                        <div class="row">
-                            <? if (!empty($arItem["BLOCK_TITLE"])): ?>
-                                <div class="column small-12">
-                                    <div
-                                        class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                        <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
-                                    </div>
-                                </div>
-                            <? endif; ?>
-                            <div class="column small-<?= $inputSize; ?> end">
-                                <? if (empty($arItem["PLACEHOLDER"])) $arItem["PLACEHOLDER"] = "Выбрать из списка"; ?>
-                                <? $first = true; ?>
-                                <? if (!empty($arItem["MORE_BTN"])): ?>
-                                    <div class="x-more-btn-container">
-                                        <?
-                                        if (!is_array($arItem["VALUE"]))
-                                            $arItem["VALUE"] = Array($arItem["VALUE"]);
-                                        ?>
-                                        <? foreach ($arItem["VALUE"] as $listKey => $listVal): ?>
-                                            <?
-                                            $inputClass = $arItem["INPUT_CLASS"];
-                                            if ($first) {
-                                                $inputClass .= " x-more-btn-field";
-                                            }
-                                            $hasVal = false;
-                                            ?>
-                                            <? if (!$first): ?>
-                                                <div class="x-more-btn-wrap">
-                                                <a href="#"
-                                                   class="b-yellow b-button_remove has-tip tip-top x-more-btn-remove"
-                                                   data-tooltip title="Удалить"></a>
-                                            <? endif; ?>
-                                            <select
-                                                name="<?= $arKey ?><? if (!empty($arItem["MULTIPLE"]) || !empty($arItem["MORE_BTN"])): ?>[]<? endif; ?>"
-                                                <? if (!empty($inputClass)): ?>class="<?= $inputClass ?>"<? endif; ?>
-                                                id="FIELD_<?= $arKey ?>"
-                                                <? if (count($arItem["LIST_DESC"])): ?> data-desc=""<? endif; ?> <?
-                                                if (!empty($arItem["REQUIRED"])): ?>required <?endif;
-                                                ?><?
-                                            if (!empty($arItem["DISABLED"])): ?>disabled <?endif;
-                                                ?><?
-                                            if (!empty($arItem["PLACEHOLDER"])): ?>data-placeholder="<?= $arItem["PLACEHOLDER"] ?>"
-                                                <?endif;
-                                                ?><?
-                                                if (!empty($arItem["READONLY"])): ?>readonly <?endif;
-                                                ?><? if (!empty($arItem["MULTIPLE"])): ?>multiple <? endif; ?>
-                                                <? if (count($arItem["PARAMS"])):
-                                                foreach ($arItem["PARAMS"] as $k => $v): ?>
-                                                <?= $k ?>="<?= addslashes($v) ?>"
-                                            <?endforeach;
-                                            endif; ?>>
-                                                <option value="" data-desc=""></option>
-                                                <? foreach ($arItem["LIST"] as $key => $val): ?>
-                                                    <option
-                                                        value="<?= $key ?>"
-                                                        <? if (!empty($arItem["LIST_DESC"][$key])): ?>
-                                                            data-desc="<?= $arItem["LIST_DESC"][$key] ?>"
-                                                        <? endif; ?>
-                                                        <? if (is_array($arItem["VALUE"]) && in_array($key, $arItem["VALUE"]) && !$hasVal): ?> selected<?
-                                                            $hasVal = true;
-                                                            foreach ($arItem["VALUE"] as $vKey => $vVal):
-                                                                if ($key == $vVal):
-                                                                    unset($arItem["VALUE"][$vKey]);
-                                                                    break;
-                                                                endif;
-                                                            endforeach;
-                                                        endif; ?>><?= $val; ?></option>
-                                                <? endforeach; ?>
-                                            </select>
-                                            <? if (!$first): ?>
-                                                </div>
-                                            <? endif; ?>
-                                            <? if ($first)
-                                                $first = false; ?>
-                                        <? endforeach; ?>
-                                    </div>
-                                <? else: ?>
-                                    <select
-                                        name="<?= $arKey ?><? if (!empty($arItem["MULTIPLE"])): ?>[]<? endif; ?>"
-                                        <? if (!empty($arItem["INPUT_CLASS"])): ?>class="<?= $arItem["INPUT_CLASS"] ?>"<? endif; ?>
-                                        id="FIELD_<?= $arKey ?>"
-                                        <? if (count($arItem["LIST_DESC"])): ?> data-desc=""<? endif; ?> <?
-                                        if (!empty($arItem["REQUIRED"])): ?>required <?endif;
-                                        ?><?
-                                    if (!empty($arItem["DISABLED"])): ?>disabled <?endif;
-                                        ?><?
-                                    if (!empty($arItem["PLACEHOLDER"])): ?>data-placeholder="<?= $arItem["PLACEHOLDER"] ?>"
-                                        <?endif;
-                                        ?><?
-                                        if (!empty($arItem["READONLY"])): ?>readonly <?endif;
-                                        ?><? if (!empty($arItem["MULTIPLE"])): ?>multiple <? endif; ?>
-                                        <? if (count($arItem["PARAMS"])):
-                                        foreach ($arItem["PARAMS"] as $k => $v): ?>
-                                        <?= $k ?>="<?= addslashes($v) ?>"
-                                    <?endforeach;
-                                    endif; ?>>
-                                        <option value="" data-desc=""></option>
-                                        <? foreach ($arItem["LIST"] as $key => $val): ?>
-                                            <option
-                                                value="<?= $key ?>"
-                                                <? if (!empty($arItem["LIST_DESC"][$key])): ?>
-                                                    data-desc="<?= $arItem["LIST_DESC"][$key] ?>"
-                                                <? endif; ?><? if ((!is_array($arItem["VALUE"]) && (string)$arItem["VALUE"] === (string)$key) || (is_array($arItem["VALUE"]) && in_array($key, $arItem["VALUE"]))): ?> selected<? endif; ?>><?= $val; ?></option>
-                                        <? endforeach; ?>
-                                    </select>
-                                <? endif; ?>
-                            </div>
-                            <div class="column small-12">
-                                <? if (!empty($arItem["ERROR"])): ?>
-                                    <div
-                                        class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
-                                <? endif; ?>
-                                <? if (!empty($arItem["DESCRIPTION"])): ?>
-                                    <div class="b-form__title-desc">
-                                        <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
-                                    </div>
-                                <? endif; ?>
-                                <? if (!empty($arItem["MORE_BTN"])): ?>
-                                    <div class="row">
-                                        <div class="column small-4">
-                                            <a href="#" class="b-btn x-more-btn">Добавить</a>
+                                               class="b-form__input_radio">
+                                        <?= $val; ?>
+                                    </label>
+                                    <? if ($arItem["LIST_VIEW"] === "BLOCK"): ?>
                                         </div>
-                                    </div>
-                                <? endif; ?>
-                            </div>
+                                    <? endif; ?>
+                                <? endforeach; ?>
+                            <? endif; ?>
                         </div>
-                    </div>
-                    <?
-                    break;
-                case "STATIC":
-                    ?>
-                    <div
-                        class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
-                        <div class="row">
-                            <? if (!empty($arItem["BLOCK_TITLE"])): ?>
-                                <div class="column small-12">
-                                    <div
-                                        class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                        <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
-                                    </div>
+                        <div class="column small-12">
+                            <? if (!empty($arItem["ERROR"])): ?>
+                                <div
+                                    class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
+                            <? endif; ?>
+                            <? if (!empty($arItem["DESCRIPTION"])): ?>
+                                <div class="b-form__title-desc">
+                                    <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
                                 </div>
                             <? endif; ?>
+                        </div>
+                    </div>
+                </div>
+            <?
+            break;
+            case "SELECT":
+            ?>
+                <div
+                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    <div class="row">
+                        <? if (!empty($arItem["BLOCK_TITLE"])): ?>
                             <div class="column small-12">
-                                <?= $arItem["TEXT"]; ?>
-                                <? if (!empty($arItem["DESCRIPTION"])): ?>
-                                    <div class="b-form__title-desc">
-                                        <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
-                                    </div>
-                                <? endif; ?>
+                                <div
+                                    class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
+                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
+                                </div>
                             </div>
+                        <? endif; ?>
+                        <div class="column small-<?= $inputSize; ?> end">
+                            <? if (empty($arItem["PLACEHOLDER"])) $arItem["PLACEHOLDER"] = "Выбрать из списка"; ?>
+                            <? $first = true; ?>
+                            <? if (!empty($arItem["MORE_BTN"])): ?>
+                                <div class="x-more-btn-container">
+                                    <?
+                                    if (!is_array($arItem["VALUE"]))
+                                        $arItem["VALUE"] = Array($arItem["VALUE"]);
+                                    ?>
+                                    <? foreach ($arItem["VALUE"] as $listKey => $listVal): ?>
+                                        <?
+                                        $inputClass = $arItem["INPUT_CLASS"];
+                                        if ($first) {
+                                            $inputClass .= " x-more-btn-field";
+                                        }
+                                        $hasVal = false;
+                                        ?>
+                                        <? if (!$first): ?>
+                                            <div class="x-more-btn-wrap">
+                                            <a href="#"
+                                               class="b-yellow b-button_remove has-tip tip-top x-more-btn-remove"
+                                               data-tooltip title="Удалить"></a>
+                                        <? endif; ?>
+                                        <select
+                                            name="<?= $arKey ?><? if (!empty($arItem["MULTIPLE"]) || !empty($arItem["MORE_BTN"])): ?>[]<? endif; ?>"
+                                            <? if (!empty($inputClass)): ?>class="<?= $inputClass ?>"<? endif; ?>
+                                            id="FIELD_<?= $arKey ?>"
+                                            <? if (count($arItem["LIST_DESC"])): ?> data-desc=""<? endif; ?> <?
+                                            if (!empty($arItem["REQUIRED"])): ?>required <?endif;
+                                            ?><?
+                                        if (!empty($arItem["DISABLED"])): ?>disabled <?endif;
+                                            ?><?
+                                        if (!empty($arItem["PLACEHOLDER"])): ?>data-placeholder="<?= $arItem["PLACEHOLDER"] ?>"
+                                            <?endif;
+                                            ?><?
+                                            if (!empty($arItem["READONLY"])): ?>readonly <?endif;
+                                            ?><? if (!empty($arItem["MULTIPLE"])): ?>multiple <? endif; ?>
+                                            <? if (count($arItem["PARAMS"])):
+                                            foreach ($arItem["PARAMS"] as $k => $v): ?>
+                                            <?= $k ?>="<?= addslashes($v) ?>"
+                                        <?endforeach;
+                                        endif; ?>>
+                                            <option value="" data-desc=""></option>
+                                            <? foreach ($arItem["LIST"] as $key => $val): ?>
+                                                <option
+                                                    value="<?= $key ?>"
+                                                    <? if (!empty($arItem["LIST_DESC"][$key])): ?>
+                                                        data-desc="<?= $arItem["LIST_DESC"][$key] ?>"
+                                                    <? endif; ?>
+                                                    <? if (is_array($arItem["VALUE"]) && in_array($key, $arItem["VALUE"]) && !$hasVal): ?> selected<?
+                                                        $hasVal = true;
+                                                        foreach ($arItem["VALUE"] as $vKey => $vVal):
+                                                            if ($key == $vVal):
+                                                                unset($arItem["VALUE"][$vKey]);
+                                                                break;
+                                                            endif;
+                                                        endforeach;
+                                                    endif; ?>><?= $val; ?></option>
+                                            <? endforeach; ?>
+                                        </select>
+                                        <? if (!$first): ?>
+                                            </div>
+                                        <? endif; ?>
+                                        <? if ($first)
+                                            $first = false; ?>
+                                    <? endforeach; ?>
+                                </div>
+                            <? else: ?>
+                                <select
+                                    name="<?= $arKey ?><? if (!empty($arItem["MULTIPLE"])): ?>[]<? endif; ?>"
+                                    <? if (!empty($arItem["INPUT_CLASS"])): ?>class="<?= $arItem["INPUT_CLASS"] ?>"<? endif; ?>
+                                    id="FIELD_<?= $arKey ?>"
+                                    <? if (count($arItem["LIST_DESC"])): ?> data-desc=""<? endif; ?> <?
+                                    if (!empty($arItem["REQUIRED"])): ?>required <?endif;
+                                    ?><?
+                                if (!empty($arItem["DISABLED"])): ?>disabled <?endif;
+                                    ?><?
+                                if (!empty($arItem["PLACEHOLDER"])): ?>data-placeholder="<?= $arItem["PLACEHOLDER"] ?>"
+                                    <?endif;
+                                    ?><?
+                                    if (!empty($arItem["READONLY"])): ?>readonly <?endif;
+                                    ?><? if (!empty($arItem["MULTIPLE"])): ?>multiple <? endif; ?>
+                                    <? if (count($arItem["PARAMS"])):
+                                    foreach ($arItem["PARAMS"] as $k => $v): ?>
+                                    <?= $k ?>="<?= addslashes($v) ?>"
+                                <?endforeach;
+                                endif; ?>>
+                                    <option value="" data-desc=""></option>
+                                    <? foreach ($arItem["LIST"] as $key => $val): ?>
+                                        <option
+                                            value="<?= $key ?>"
+                                            <? if (!empty($arItem["LIST_DESC"][$key])): ?>
+                                                data-desc="<?= $arItem["LIST_DESC"][$key] ?>"
+                                            <? endif; ?><? if ((!is_array($arItem["VALUE"]) && (string)$arItem["VALUE"] === (string)$key) || (is_array($arItem["VALUE"]) && in_array($key, $arItem["VALUE"]))): ?> selected<? endif; ?>><?= $val; ?></option>
+                                    <? endforeach; ?>
+                                </select>
+                            <? endif; ?>
                         </div>
-                    </div>
-                    <?
-                    break;
-                case "DATE":
-                    ?>
-                    <div
-                        class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
-                        <div class="row">
-                            <? if (!empty($arItem["BLOCK_TITLE"])): ?>
-                                <div class="column small-12">
-                                    <div
-                                        class="b-form__title <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                        <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
+                        <div class="column small-12">
+                            <? if (!empty($arItem["ERROR"])): ?>
+                                <div
+                                    class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
+                            <? endif; ?>
+                            <? if (!empty($arItem["DESCRIPTION"])): ?>
+                                <div class="b-form__title-desc">
+                                    <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
+                                </div>
+                            <? endif; ?>
+                            <? if (!empty($arItem["MORE_BTN"])): ?>
+                                <div class="row">
+                                    <div class="column small-4">
+                                        <a href="#" class="b-btn x-more-btn">Добавить</a>
                                     </div>
                                 </div>
                             <? endif; ?>
-                            <div class="column small-<?= $inputSize; ?> end">
+                        </div>
+                    </div>
+                </div>
+            <?
+            break;
+            case "STATIC":
+            ?>
+                <div
+                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    <div class="row">
+                        <? if (!empty($arItem["BLOCK_TITLE"])): ?>
+                            <div class="column small-12">
+                                <div
+                                    class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
+                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
+                                </div>
+                            </div>
+                        <? endif; ?>
+                        <div class="column small-12">
+                            <?= $arItem["TEXT"]; ?>
+                            <? if (!empty($arItem["DESCRIPTION"])): ?>
+                                <div class="b-form__title-desc">
+                                    <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
+                                </div>
+                            <? endif; ?>
+                        </div>
+                    </div>
+                </div>
+            <?
+            break;
+            case "DATE":
+            ?>
+                <div
+                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    <div class="row">
+                        <? if (!empty($arItem["BLOCK_TITLE"])): ?>
+                            <div class="column small-12">
+                                <div
+                                    class="b-form__title <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
+                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
+                                </div>
+                            </div>
+                        <? endif; ?>
+                        <div class="column small-<?= $inputSize; ?> end">
+                            <input
+                                class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
+                                type="date"
+                                value="<?= $arItem["VALUE"] ?>"
+                                name="<?= $arKey ?>"
+                                id="FIELD_<?= $arKey ?>" <?
+                                if (!empty($arItem["REQUIRED"])): ?>required <?endif;
+                                ?><?
+                            if (!empty($arItem["PLACEHOLDER"])): ?>placeholder="<?= $arItem["PLACEHOLDER"] ?>"
+                                <?endif;
+                                ?><?
+                                if (!empty($arItem["READONLY"])): ?>readonly <?endif;
+                                ?><?
+                            if (!empty($arItem["DISABLED"])): ?>disabled <?endif;
+                            ?>
+
+                                <? if (count($arItem["PARAMS"])):
+                                foreach ($arItem["PARAMS"] as $k => $v): ?>
+                                <?= $k ?>="<?= addslashes($v) ?>"
+                                <?endforeach;
+                                endif; ?>/>
+                        </div>
+                        <div class="column small-12">
+                            <? if (!empty($arItem["ERROR"])): ?>
+                                <div
+                                    class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
+                            <? endif; ?>
+                            <? if (!empty($arItem["DESCRIPTION"])): ?>
+                                <div class="b-form__title-desc">
+                                    <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
+                                </div>
+                            <? endif; ?>
+                        </div>
+                    </div>
+                </div>
+            <?
+            break;
+            case "IMAGE":
+            ?>
+                <div
+                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    <div class="row">
+                        <? if (!empty($arItem["BLOCK_TITLE"])): ?>
+                            <div class="column small-12">
+                                <div
+                                    class="b-form__title <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
+                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
+                                </div>
+                            </div>
+                        <? endif; ?>
+                        <div class="column small-<?= $inputSize; ?> end">
+                            <div class="content__logo">
+                                <? if (!empty($arItem["VALUE"])): ?>
+                                    <img src="<?= CFile::GetPath($arItem["VALUE"]) ?>"
+                                         alt="<?= $arItem["BLOCK_TITLE"] ?>" class="content__logo-img"/>
+                                    <?
+                                else:?>
+                                    <img src=""
+                                         alt="<?= $arItem["BLOCK_TITLE"] ?>"
+                                         class="content__logo-img content__logo-img_hide"/>
+                                <? endif; ?>
+                            </div>
+                            <div class="fileform">
+                                <div class="fileform__sel">загрузить <?= $arItem["BLOCK_TITLE"] ?></div>
                                 <input
-                                    class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
-                                    type="date"
+                                    class="fileform__file <? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
+                                    type="file"
                                     value="<?= $arItem["VALUE"] ?>"
                                     name="<?= $arKey ?>"
                                     id="FIELD_<?= $arKey ?>" <?
@@ -702,21 +766,67 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                     <?endforeach;
                                     endif; ?>/>
                             </div>
-                            <div class="column small-12">
-                                <? if (!empty($arItem["ERROR"])): ?>
-                                    <div
-                                        class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
-                                <? endif; ?>
-                                <? if (!empty($arItem["DESCRIPTION"])): ?>
-                                    <div class="b-form__title-desc">
-                                        <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
-                                    </div>
-                                <? endif; ?>
-                            </div>
+                        </div>
+                        <div class="column small-12">
+                            <? if (!empty($arItem["ERROR"])): ?>
+                                <div
+                                    class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
+                            <? endif; ?>
+                            <? if (!empty($arItem["DESCRIPTION"])): ?>
+                                <div class="b-form__title-desc">
+                                    <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
+                                </div>
+                            <? endif; ?>
                         </div>
                     </div>
-                    <?
-                    break;
+                </div>
+                <script type="text/javascript">
+                    $(function () {
+                        window.URL = window.URL || window.webkitURL;
+                        var elBrowse = $("#FIELD_<?= $arKey ?>"),
+                            elPreview = elBrowse.closest(".column").find(".content__logo"),
+                            useBlob = false && window.URL; // `true` to use Blob instead of Data-URL
+
+                        function readImage(file) {
+                            var reader = new FileReader();
+                            reader.addEventListener("load", function () {
+                                var image = new Image();
+                                image.addEventListener("load", function () {
+                                    $(this).addClass("content__logo-img");
+                                    elPreview.html(this);
+                                });
+                                image.src = useBlob ? window.URL.createObjectURL(file) : reader.result;
+                                if (useBlob) {
+                                    window.URL.revokeObjectURL(file); // Free memory
+                                }
+                            });
+                            reader.readAsDataURL(file);
+                        }
+
+                        elBrowse.on("change", function () {
+                            var files = this.files;
+                            var errors = "";
+                            if (!files) {
+                                errors += "File upload not supported by your browser.";
+                            }
+                            if (files && files[0]) {
+                                for (var i = 0; i < files.length; i++) {
+                                    var file = files[i];
+                                    if ((/\.(png|jpeg|jpg|gif)$/i).test(file.name)) {
+                                        readImage(file);
+                                    } else {
+                                        errors += file.name + " Unsupported Image extension\n";
+                                    }
+                                }
+                            }
+                            if (errors) {
+                                alert(errors);
+                            }
+                        });
+                    })
+                </script>
+                <?
+                break;
             }
             ?>
             <? if (!$fromBlock): ?>

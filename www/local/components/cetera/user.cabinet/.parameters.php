@@ -61,12 +61,17 @@ $arComponentParameters = array(
             ),
             "region" => array(
                 "NAME" => "Регион",
-                "DEFAULT" => "region",
+                "DEFAULT" => "region/",
                 "VARIABLES" => array(),
             ),
             "details" => array(
                 "NAME" => "Реквизиты организации",
-                "DEFAULT" => "details",
+                "DEFAULT" => "details/",
+                "VARIABLES" => array(),
+            ),
+            "details_edit" => array(
+                "NAME" => "Редактирование реквизитов организации",
+                "DEFAULT" => "details/edit/",
                 "VARIABLES" => array(),
             ),
             /*"profile" => array(

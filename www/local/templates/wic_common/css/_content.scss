@@ -7,6 +7,17 @@
     display: inline-block;
     padding-top: 14px;
     padding-bottom: 22px;
+    float: left;
+
+    .content__logo-img {
+      margin-right: 40px;
+      max-width: 100px;
+      display: inline-block;
+
+      &.content__logo-img_hide {
+        display: none;
+      }
+    }
   }
   &__rating {
     padding-top: 11px;

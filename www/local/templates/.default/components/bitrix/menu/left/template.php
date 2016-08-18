@@ -6,10 +6,16 @@
                 continue;
             ?>
             <? $class = !empty($arItem["PARAMS"]["class"]) ? $arItem["PARAMS"]["class"] : ""; ?>
-            <li class="accord__li">
-                <a class="accord__link <?= $class ?><? if ($arItem["SELECTED"]): ?> accord__link_active<? endif; ?>"
-                   href="<?= $arItem["LINK"] ?>"><?= $arItem["TEXT"] ?></a>
-            </li>
+            <? if (!empty($arItem["LINK"])): ?>
+                <li class="accord__li">
+                    <a class="accord__link <?= $class ?><? if ($arItem["SELECTED"]): ?> accord__link_active<? endif; ?>"
+                       href="<?= $arItem["LINK"] ?>"><?= $arItem["TEXT"] ?></a>
+                </li>
+            <? else: ?>
+                <li class="accord__li <?= $class ?>">
+                    <?= $arItem["TEXT"] ?>
+                </li>
+            <? endif; ?>
         <? endforeach ?>
     </ul>
 <? endif ?>

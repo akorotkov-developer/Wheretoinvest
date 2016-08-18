@@ -4,17 +4,14 @@
   position: relative;
   text-align: left;
   vertical-align: middle;
-  margin-left: 40px;
   overflow: hidden;
+  margin-top: 14px;
+
   &__sel {
     cursor: pointer;
     border-radius: 3px;
     float: right;
-    padding-top: 10px;
-    padding-bottom: 9px;
-
-    padding-left: 18px;
-    padding-right: 18px;
+    padding: 10px 18px 9px;
 
     color: #e53935;
     font-size: 12px;
