@@ -146,6 +146,13 @@
                                 $(".js-method-list").append(item);
                             });
                         }
+
+                        var alert = $("[data-alert]:visible");
+                        if (alert.length) {
+                            $('html, body').animate({
+                                scrollTop: alert.eq(0).offset().top - 20
+                            }, 500);
+                        }
                     }
                 });
                 return false;

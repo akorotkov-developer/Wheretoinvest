@@ -10,12 +10,16 @@ $APPLICATION->AddChainItem($name);
 
 ?>
 <div class="row">
-    <? if (!$userInfo->isPartner()): ?>
+    <? if ($userInfo->isPartner()): ?>
         <div class="columns req_p">
             <div class="row">
                 <div class="req__name medium-4 small-5 columns">ФИО</div>
+                <?
+                $userName = \CUser::FormatName("#LAST_NAME# #NAME# #SECOND_NAME#", $userInfo, true);
+                $userName = $userName == $userInfo->GetEmail() ? "Не заполнено" : $userName;
+                ?>
                 <div
-                    class="req__value medium-8 small-7 columns js-profile-name"><?= \CUser::FormatName("#LAST_NAME# #NAME# #SECOND_NAME#", $userInfo, false); ?></div>
+                    class="req__value medium-8 small-7 columns js-profile-name"><?= $userName; ?></div>
             </div>
         </div>
         <div class="columns req">
@@ -54,12 +58,23 @@ $APPLICATION->AddChainItem($name);
                     "autocomplete" => "off"
                 )
             ),
-            "NAME" => Array(
-                "BLOCK_TITLE" => "ФИО",
+            "LAST_NAME" => Array(
+                "BLOCK_TITLE" => "Фамилия",
                 "TYPE" => "TEXT",
-                "VALUE" => trim(CUser::FormatName("#LAST_NAME# #NAME# #SECOND_NAME#", $userInfo, true)) == $userInfo["EMAIL"] ? "" : CUser::FormatName("#LAST_NAME# #NAME# #SECOND_NAME#", $userInfo, true),
+                "VALUE" => $userInfo["LAST_NAME"],
                 "REQUIRED" => "Y",
-                "NO_LABEL" => "Y",
+            ),
+            "NAME" => Array(
+                "BLOCK_TITLE" => "Имя",
+                "TYPE" => "TEXT",
+                "VALUE" => $userInfo["NAME"],
+                "REQUIRED" => "Y",
+            ),
+            "SECOND_NAME" => Array(
+                "BLOCK_TITLE" => "Отчество",
+                "TYPE" => "TEXT",
+                "VALUE" => $userInfo["SECOND_NAME"],
+                "REQUIRED" => "Y",
             ),
         ); ?>
     <? else: ?>
@@ -172,9 +187,14 @@ $APPLICATION->AddChainItem($name);
                     else if (response.SUCCESS !== undefined) {
                         _this.find(".b-main-block__body").prepend('<div data-alert class="alert-box success radius">' + response.SUCCESS + '<a href="#" class="close">&times;</a></div>');
                         $(document).foundation('alert', 'reflow');
+
                         if (response.NEW !== undefined) {
-                            if (response.NEW.NAME !== undefined) {
-                                $(".js-profile-name").text(response.NEW.NAME);
+                            if (response.NEW.NAME !== undefined || response.NEW.LAST_NAME !== undefined || response.NEW.SECOND_NAME !== undefined) {
+                                var name = "";
+                                name += response.NEW.LAST_NAME !== undefined ? response.NEW.LAST_NAME + " " : "";
+                                name += response.NEW.NAME !== undefined ? response.NEW.NAME + " " : "";
+                                name += response.NEW.SECOND_NAME !== undefined ? response.NEW.SECOND_NAME : "";
+                                $(".js-profile-name").text(name.trim());
                             }
                             if (response.NEW.PERSONAL_GENDER !== undefined) {
                                 $(".js-profile-gender").text(response.NEW.PERSONAL_GENDER);
@@ -189,6 +209,13 @@ $APPLICATION->AddChainItem($name);
                                 $(".js-profile-phone").text(response.NEW.PERSONAL_PHONE);
                             }
                         }
+                    }
+
+                    var alert = $("[data-alert]:visible");
+                    if (alert.length) {
+                        $('html, body').animate({
+                            scrollTop: alert.eq(0).offset().top - 20
+                        }, 500);
                     }
                 }
             });

@@ -2,12 +2,16 @@
 <?
 global $USER;
 if ($USER->IsAuthorized()):?>
-    <span class="b-header__firstline-iconlogin"></span><!-- не убирать этот коммент
-            --><a href="/cabinet/" class="b-header__firstline-link">Личный кабинет</a>
+    <?
+    $userInfo = getContainer("User");
+    $userName = $userInfo->isPartner() ? (!empty($userInfo["WORK_COMPANY"]) ? $userInfo["WORK_COMPANY"] : \CUser::FormatName("#LAST_NAME# #NAME#", $userInfo, true)) : \CUser::FormatName("#LAST_NAME# #NAME#", $userInfo, true);
+    ?>
+    <span class="b-header__firstline-iconlogin show-for-touch"></span><!-- не убирать этот коммент
+            --><a href="/cabinet/" class="b-header__firstline-link" title="Личный кабинет"><?= trim($userName) ?></a>
     <span class="b-header__firstline-slash">|</span>
     <a href="?logout=yes" class="b-header__firstline-link">Выйти</a>
-<? else:?>
-    <span class="b-header__firstline-iconlogin"></span><!-- не убирать этот коммент
+<? else: ?>
+    <span class="b-header__firstline-iconlogin show-for-touch"></span><!-- не убирать этот коммент
             --><a href="/cabinet/auth/" class="b-header__firstline-link">Войти</a>
     <span class="b-header__firstline-slash">|</span>
     <a href="/cabinet/auth/?register=yes" class="b-header__firstline-link">Регистрация</a>

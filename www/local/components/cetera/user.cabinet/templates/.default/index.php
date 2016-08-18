@@ -81,7 +81,7 @@ $arResult["PASSWORD_FIELDS"] = Array(
 ?>
 <div class=" content__key">
     Электронная почта: <a href="mailto:<?= $USER->GetEmail() ?>"
-                          class="content__link js-email-link"><?= $USER->GetEmail() ?></a>
+                          class="js-email-link"><?= $USER->GetEmail() ?></a>
 </div>
 <a class="content__change" href="#" data-reveal-id="email">Изменить</a>
 <br>
@@ -183,6 +183,13 @@ $arResult["PASSWORD_FIELDS"] = Array(
                             .val('')
                             .removeAttr('checked')
                             .removeAttr('selected');
+                    }
+
+                    var alert = $("[data-alert]:visible");
+                    if (alert.length) {
+                        $('html, body').animate({
+                            scrollTop: alert.eq(0).offset().top - 20
+                        }, 500);
                     }
                 }
             });

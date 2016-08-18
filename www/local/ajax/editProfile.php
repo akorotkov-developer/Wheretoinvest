@@ -8,7 +8,9 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
     switch (trim($_REQUEST["action"])) {
         case "changeProfile":
             $avaliableFields = Array(
+                "LAST_NAME",
                 "NAME",
+                "SECOND_NAME",
                 "PERSONAL_BIRTHDAY",
                 "PERSONAL_GENDER",
                 "WORK_COMPANY",
@@ -21,10 +23,6 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                     continue;
 
                 switch ($key) {
-                    case "NAME":
-                        $arResult["NEW"][$key] = $val;
-                        list($arFields["LAST_NAME"], $arFields["NAME"], $arFields["SECOND_NAME"]) = explode(" ", $val);
-                        break;
                     case "PERSONAL_BIRTHDAY":
                         if (!empty($val)) {
                             $arFields[$key] = date("d.m.Y", strtotime($val));

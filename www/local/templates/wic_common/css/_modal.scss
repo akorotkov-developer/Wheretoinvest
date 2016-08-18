@@ -3,6 +3,7 @@
   padding: 16px 35px;
   width: 90%;
   min-height: 0;
+
   &__service {
     border-radius: 4px;
     background: #fff;
@@ -97,5 +98,11 @@ label.modal__chck {
         width: 100%;
       }
     }
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  .modal.tiny {
+    min-width: rem-calc(570);
   }
 }
