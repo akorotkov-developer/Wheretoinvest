@@ -190,6 +190,12 @@ $arResult["PASSWORD_FIELDS"] = Array(
                         $('html, body').animate({
                             scrollTop: alert.eq(0).offset().top - 80
                         }, 500);
+
+                        setTimeout(function () {
+                            alert.find(".close").trigger("click", function () {
+                                alert.foundation("alert", "reflow");
+                            });
+                        }, 2000);
                     }
                 }
             });
