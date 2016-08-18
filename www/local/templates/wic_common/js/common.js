@@ -4,8 +4,10 @@
         $(document).foundation();
 
         $(document).on('close.fndtn.reveal', '[data-reveal]', function () {
-            $(this).find(".alert-box .close").trigger("click");
-            $(this).find(".alert-box").foundation("alert", "reflow");
+            var _this = this;
+            $(this).find(".alert-box .close").trigger("click", function () {
+                $("[data-alert]").foundation("alert", "reflow");
+            });
         });
 
         function scrollToAlert() {
@@ -14,6 +16,13 @@
                 $('html, body').animate({
                     scrollTop: alert.eq(0).offset().top - 80
                 }, 500);
+
+                setTimeout(function () {
+                    alert.find(".close").trigger("click", function () {
+                        alert.foundation("alert", "reflow");
+                        footer2bottom();
+                    });
+                }, 2000);
             }
         }
 

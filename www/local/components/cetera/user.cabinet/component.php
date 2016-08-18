@@ -24,6 +24,8 @@ $arDefaultUrlTemplates404 = array(
     "details" => "details/",
     "details_edit" => "details/edit/",
     "gov" => "gov/",
+    "rating" => "rating/",
+    "rating_edit" => "rating/edit/",
 );
 
 $arDefaultVariableAliases404 = array();
@@ -68,6 +70,8 @@ if ($arParams["SEF_MODE"] == "Y") {
         case "details":
         case "details_edit":
         case "gov":
+        case "rating":
+        case "rating_edit":
             if (!getContainer('User')->isPartner() && !getContainer('User')->isAdmin()) {
                 $b404 = true;
             }
@@ -124,6 +128,12 @@ if ($arParams["SEF_MODE"] == "Y") {
             break;
         case "gov":
             $componentPage = "gov";
+            break;
+        case "rating":
+            $componentPage = "rating";
+            break;
+        case "rating_edit":
+            $componentPage = "rating_edit";
             break;
         default:
             $componentPage = "index";

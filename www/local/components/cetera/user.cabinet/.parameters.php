@@ -79,6 +79,16 @@ $arComponentParameters = array(
                 "DEFAULT" => "gov/",
                 "VARIABLES" => array(),
             ),
+            "rating" => array(
+                "NAME" => "Рейтинги организации",
+                "DEFAULT" => "rating/",
+                "VARIABLES" => array(),
+            ),
+            "rating_edit" => array(
+                "NAME" => "Редактировать рейтинги",
+                "DEFAULT" => "rating_edit/",
+                "VARIABLES" => array(),
+            ),
             /*"profile" => array(
                 "NAME" => GetMessage("PROFILE_PAGE"),
                 "DEFAULT" => "profile/",

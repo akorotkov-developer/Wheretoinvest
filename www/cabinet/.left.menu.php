@@ -50,11 +50,18 @@ $aMenuLinks = Array(
         "getContainer('User')->isPartner()"
     ),
     Array(
+        "Рейтинги",
+        "/cabinet/rating/",
+        Array(),
+        Array(),
+        "getContainer('User')->isPartner()"
+    ),
+    Array(
         "Участие государства",
         "/cabinet/gov/",
         Array(),
         Array(),
         "getContainer('User')->isPartner()"
-    )
+    ),
 );
 ?>

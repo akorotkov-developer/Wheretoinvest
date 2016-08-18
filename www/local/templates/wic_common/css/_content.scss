@@ -27,7 +27,7 @@
     font-size: 14px;
     color: #000;
   }
-  &__add {
+  &__add, &__add:focus {
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
@@ -35,14 +35,17 @@
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 9px;
     color: #0aa468;
     margin-right: 14px;
-    padding-bottom: 10px;
+    padding: 9px 20px 10px;
     background: none;
+    outline: none;
+
+    &:hover {
+      border-color: #c81e1a;
+    }
   }
+
   &__i {
     max-width: 260px;
 
