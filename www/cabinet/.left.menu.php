@@ -39,8 +39,22 @@ $aMenuLinks = Array(
         "Контакты",
         "/cabinet/info/",
         Array(),
-        Array(),
+        Array("class" => "accord__link_no-bord"),
         "getContainer('User')->isPartner()"
     ),
+    Array(
+        "Надежность",
+        "",
+        Array(),
+        Array("class" => "accord__li_security"),
+        "getContainer('User')->isPartner()"
+    ),
+    Array(
+        "Участие государства",
+        "/cabinet/gov/",
+        Array(),
+        Array(),
+        "getContainer('User')->isPartner()"
+    )
 );
 ?>

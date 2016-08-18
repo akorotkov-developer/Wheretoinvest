@@ -15,7 +15,7 @@ require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php"); ?>
 		"PROFILE" => "",
 		"SEF_FOLDER" => "/cabinet/",
 		"SEF_MODE" => "Y",
-		"SET_STATUS_404" => "N",
+		"SET_STATUS_404" => "Y",
 		"SEF_URL_TEMPLATES" => array(
 			"index" => "",
 			"info" => "info/",

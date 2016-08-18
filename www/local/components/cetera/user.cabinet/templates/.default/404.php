@@ -9,7 +9,6 @@ global $USER;
 /** @global CMain $APPLICATION */
 global $APPLICATION;
 
-$APPLICATION->SetTitle("404 - Страница не найдена");
+$APPLICATION->SetTitle("404 - Страница не найдена, либо доступ запрещен.");
 ?>
-<h1>404 - Страница не найдена, либо доступ запрещен.</h1>
 

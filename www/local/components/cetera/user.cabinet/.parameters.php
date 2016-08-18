@@ -74,6 +74,11 @@ $arComponentParameters = array(
                 "DEFAULT" => "details/edit/",
                 "VARIABLES" => array(),
             ),
+            "gov" => array(
+                "NAME" => "Участие государства",
+                "DEFAULT" => "gov/",
+                "VARIABLES" => array(),
+            ),
             /*"profile" => array(
                 "NAME" => GetMessage("PROFILE_PAGE"),
                 "DEFAULT" => "profile/",

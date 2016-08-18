@@ -10,7 +10,7 @@ $APPLICATION->AddChainItem($name);
 
 ?>
 <div class="row">
-    <? if ($userInfo->isPartner()): ?>
+    <? if (!$userInfo->isPartner()): ?>
         <div class="columns req_p">
             <div class="row">
                 <div class="req__name medium-4 small-5 columns">ФИО</div>

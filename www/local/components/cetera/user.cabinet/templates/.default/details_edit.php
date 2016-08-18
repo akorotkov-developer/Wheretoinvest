@@ -103,7 +103,7 @@ $arResult["FORM_FIELDS"] = Array(
             _this.find(".alert-box").detach();
 
             $.ajax({
-                url: "/local/ajax/editDetails.php",
+                url: "/local/ajax/editProfile.php",
                 data: data,
                 method: "POST",
                 dataType: "json",

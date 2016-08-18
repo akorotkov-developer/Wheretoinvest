@@ -23,6 +23,7 @@ $arDefaultUrlTemplates404 = array(
     "region" => "region/",
     "details" => "details/",
     "details_edit" => "details/edit/",
+    "gov" => "gov/",
 );
 
 $arDefaultVariableAliases404 = array();
@@ -49,23 +50,44 @@ if ($arParams["SEF_MODE"] == "Y") {
     );
 
     $b404 = false;
-    if (!$componentPage) {
+    if (empty($componentPage)) {
         $componentPage = "index";
+        $b404 = true;
     }
 
     if (!$USER->IsAuthorized())
         LocalRedirect("/");
 
     switch ($componentPage) {
-        case "test":
-            if (!CSite::InGroup(Array())) {
+        case "method":
+        case "region":
+            if (getContainer('User')->isPartner()) {
                 $b404 = true;
             }
             break;
+        case "details":
+        case "details_edit":
+        case "gov":
+            if (!getContainer('User')->isPartner() && !getContainer('User')->isAdmin()) {
+                $b404 = true;
+            }
             break;
     }
 
-    if ($b404) {
+    if ($b404 && $arParams["SET_STATUS_404"] == "Y") {
+        $folder404 = str_replace("\\", "/", $arParams["SEF_FOLDER"]);
+        if ($folder404 != "/") {
+            $folder404 = "/" . trim($folder404, "/ \t\n\r\0\x0B") . "/";
+        }
+        if (substr($folder404, -1) == "/") {
+            $folder404 .= "index.php";
+        }
+
+        if ($folder404 != $APPLICATION->GetCurPage(true)) {
+            $componentPage = "404";
+            CHTTP::SetStatus("404 Not Found");
+        }
+    } elseif ($b404) {
         LocalRedirect("/");
     }
 
@@ -99,6 +121,9 @@ if ($arParams["SEF_MODE"] == "Y") {
             break;
         case "details_edit":
             $componentPage = "details_edit";
+            break;
+        case "gov":
+            $componentPage = "gov";
             break;
         default:
             $componentPage = "index";
