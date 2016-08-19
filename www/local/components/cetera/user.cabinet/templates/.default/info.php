@@ -26,14 +26,14 @@ $APPLICATION->AddChainItem($name);
             <div class="row">
                 <div class="req__name medium-4 small-5 columns">Пол</div>
                 <div
-                    class="req__value medium-8 small-7 columns js-profile-gender"><?= empty($userInfo["PERSONAL_GENDER"]) ? "Не задан" : ($userInfo["PERSONAL_GENDER"] == "M" ? "Мужской" : "Женский") ?></div>
+                    class="req__value medium-8 small-7 columns js-profile-gender"><?= empty($userInfo["PERSONAL_GENDER"]) ? "<span class='req__name'>—</span>" : ($userInfo["PERSONAL_GENDER"] == "M" ? "Мужской" : "Женский") ?></div>
             </div>
         </div>
         <div class="columns req req_last">
             <div class="row">
                 <div class="req__name medium-4 small-5 columns">Дата рождения</div>
                 <div
-                    class="req__value medium-8 small-7 columns js-profile-birthday"><?= empty($userInfo["PERSONAL_BIRTHDAY"]) ? "Не задана" : date("d.m.Y", strtotime($userInfo["PERSONAL_BIRTHDAY"])) ?></div>
+                    class="req__value medium-8 small-7 columns js-profile-birthday"><?= empty($userInfo["PERSONAL_BIRTHDAY"]) ? "<span class='req__name'>—</span>" : date("d.m.Y", strtotime($userInfo["PERSONAL_BIRTHDAY"])) ?></div>
             </div>
         </div>
         <? $arResult["FORM_FIELDS"] = Array(
@@ -84,7 +84,7 @@ $APPLICATION->AddChainItem($name);
                     уставу)
                 </div>
                 <div
-                    class="req__value medium-8 small-7 columns js-profile-work"><?= empty($userInfo["WORK_COMPANY"]) ? "Не задано" : $userInfo["WORK_COMPANY"] ?></div>
+                    class="req__value medium-8 small-7 columns js-profile-work"><?= empty($userInfo["WORK_COMPANY"]) ? "<span class='req__name'>—</span>" : $userInfo["WORK_COMPANY"] ?></div>
             </div>
         </div>
         <div class="columns req">
@@ -98,7 +98,7 @@ $APPLICATION->AddChainItem($name);
             <div class="row">
                 <div class="req__name medium-4 small-5 columns">Контактный телефон</div>
                 <div
-                    class="req__value medium-8 small-7 columns js-profile-phone"><?= empty($userInfo["PERSONAL_PHONE"]) ? "Не задан" : $userInfo["PERSONAL_PHONE"] ?></div>
+                    class="req__value medium-8 small-7 columns js-profile-phone"><?= empty($userInfo["PERSONAL_PHONE"]) ? "<span class='req__name'>—</span>" : $userInfo["PERSONAL_PHONE"] ?></div>
             </div>
         </div>
         <? $arResult["FORM_FIELDS"] = Array(
