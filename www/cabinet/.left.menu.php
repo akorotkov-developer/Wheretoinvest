@@ -63,5 +63,19 @@ $aMenuLinks = Array(
         Array(),
         "getContainer('User')->isPartner()"
     ),
+    Array(
+        "Капитал и активы",
+        "/cabinet/assets/",
+        Array(),
+        Array(),
+        "getContainer('User')->isPartner()"
+    ),
+    Array(
+        "Выйти",
+        "?logout=Y",
+        Array(),
+        Array("class" => "show-for-small-only"),
+        '$USER->IsAuthorized()'
+    ),
 );
 ?>

@@ -9,7 +9,7 @@ JsIncludes::registerFile('common.foundation.tab', '#WIC_TEMPLATE_PATH#/js/founda
 JsIncludes::registerFile('common.foundation.alert', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.alert.js?v=1');
 JsIncludes::registerFile('common.foundation.reveal', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.reveal.js?v=1');
 JsIncludes::registerFile('common.foundation.equalizer', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.equalizer.js?v=1');
-//JsIncludes::registerFile('common.foundation.tooltip', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.tooltip.js?v=1');
+JsIncludes::registerFile('common.foundation.tooltip', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.tooltip.js?v=1');
 //JsIncludes::registerFile('common.foundation.accordion', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.accordion.js?v=1');
 JsIncludes::registerFile('common.js.resize', '#WIC_TEMPLATE_PATH#/js/vendor/jquery.resize.js?v=1');
 JsIncludes::registerFile('common.js.maskedinput', '#WIC_TEMPLATE_PATH#/js/vendor/jquery.maskedinput.js?v=1');

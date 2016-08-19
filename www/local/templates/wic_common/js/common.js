@@ -17,12 +17,12 @@
                     scrollTop: alert.eq(0).offset().top - 80
                 }, 500);
 
-                setTimeout(function () {
+                /*setTimeout(function () {
                     alert.find(".close").trigger("click", function () {
                         alert.foundation("alert", "reflow");
                         footer2bottom();
                     });
-                }, 2000);
+                }, 2000);*/
             }
         }
 

@@ -26,6 +26,7 @@ $arDefaultUrlTemplates404 = array(
     "gov" => "gov/",
     "rating" => "rating/",
     "rating_edit" => "rating/edit/",
+    "assets" => "assets/",
 );
 
 $arDefaultVariableAliases404 = array();
@@ -72,6 +73,7 @@ if ($arParams["SEF_MODE"] == "Y") {
         case "gov":
         case "rating":
         case "rating_edit":
+        case "assets":
             if (!getContainer('User')->isPartner() && !getContainer('User')->isAdmin()) {
                 $b404 = true;
             }
@@ -135,6 +137,9 @@ if ($arParams["SEF_MODE"] == "Y") {
         case "rating_edit":
             $componentPage = "rating_edit";
             break;
+        case "assets":
+            $componentPage = "assets";
+            break;
         default:
             $componentPage = "index";
     }
@@ -150,4 +155,5 @@ if ($arParams["SEF_MODE"] == "Y") {
     );
 }
 
+$APPLICATION->AddChainItem("Личный кабинет", "/cabinet/");
 $this->IncludeComponentTemplate($componentPage);

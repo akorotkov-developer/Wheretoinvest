@@ -89,6 +89,11 @@ $arComponentParameters = array(
                 "DEFAULT" => "rating_edit/",
                 "VARIABLES" => array(),
             ),
+            "assets" => array(
+                "NAME" => "Ключевые показатели отчётности",
+                "DEFAULT" => "assets/",
+                "VARIABLES" => array(),
+            ),
             /*"profile" => array(
                 "NAME" => GetMessage("PROFILE_PAGE"),
                 "DEFAULT" => "profile/",

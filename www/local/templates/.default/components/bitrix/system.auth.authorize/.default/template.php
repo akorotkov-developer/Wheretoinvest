@@ -72,6 +72,14 @@ $APPLICATION->AddChainItem("Войти в личный кабинет", $APPLICA
                     </button>
                 </div>
             </div>
+            <div class="row show-for-small-only">
+                <div class="column small-12">
+                    <noindex>
+                        <div class="reg__already">Еще не с нами? <a href="/cabinet/auth/?register=yes" class="reg__link">Зарегистрироваться</a>
+                        </div>
+                    </noindex>
+                </div>
+            </div>
         </form>
     </div>
 </div>

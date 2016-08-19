@@ -37,7 +37,7 @@ class UserEx
                     $arFields["NAME"] = $_REQUEST["NAME"];
                     $arFields["UF_TYPE"] = 1;
                 } else {
-                    $arFields["GROUP_ID"] = 6;
+                    $arFields["GROUP_ID"] = Array(6);
                     $arFields["UF_TYPE"] = 2;
                     $arFields["NAME"] = $_REQUEST["NAME"];
                     $arFields["PERSONAL_PHONE"] = $_REQUEST["PERSONAL_PHONE"];
