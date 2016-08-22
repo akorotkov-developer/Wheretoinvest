@@ -9,15 +9,15 @@ $APPLICATION->SetTitle($name);
 $APPLICATION->AddChainItem($name);
 
 ?>
+<?
+$userName = \CUser::FormatName("#LAST_NAME# #NAME# #SECOND_NAME#", $userInfo, true);
+$userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</span>" : $userName;
+?>
 <div class="row">
     <? if (!$userInfo->isPartner()): ?>
-        <div class="columns req_p">
+        <div class="columns req">
             <div class="row">
                 <div class="req__name medium-4 small-5 columns">ФИО</div>
-                <?
-                $userName = \CUser::FormatName("#LAST_NAME# #NAME# #SECOND_NAME#", $userInfo, true);
-                $userName = $userName == $userInfo->GetEmail() ? "Не заполнено" : $userName;
-                ?>
                 <div
                     class="req__value medium-8 small-7 columns js-profile-name"><?= $userName; ?></div>
             </div>
@@ -29,7 +29,7 @@ $APPLICATION->AddChainItem($name);
                     class="req__value medium-8 small-7 columns js-profile-gender"><?= empty($userInfo["PERSONAL_GENDER"]) ? "<span class='req__name'>—</span>" : ($userInfo["PERSONAL_GENDER"] == "M" ? "Мужской" : "Женский") ?></div>
             </div>
         </div>
-        <div class="columns req req_last">
+        <div class="columns req">
             <div class="row">
                 <div class="req__name medium-4 small-5 columns">Дата рождения</div>
                 <div
@@ -78,7 +78,7 @@ $APPLICATION->AddChainItem($name);
             ),
         ); ?>
     <? else: ?>
-        <div class="columns req_p">
+        <div class="columns req">
             <div class="row">
                 <div class="req__name medium-4 small-5 columns">Сокращенное наименование организации (согласно
                     уставу)
@@ -91,10 +91,10 @@ $APPLICATION->AddChainItem($name);
             <div class="row">
                 <div class="req__name medium-4 small-5 columns">Контактное лицо</div>
                 <div
-                    class="req__value medium-8 small-7 columns js-profile-name"><?= \CUser::FormatName("#LAST_NAME# #NAME# #SECOND_NAME#", $userInfo, false); ?></div>
+                    class="req__value medium-8 small-7 columns js-profile-name"><?= $userName; ?></div>
             </div>
         </div>
-        <div class="columns req req_last">
+        <div class="columns req">
             <div class="row">
                 <div class="req__name medium-4 small-5 columns">Контактный телефон</div>
                 <div
@@ -109,7 +109,7 @@ $APPLICATION->AddChainItem($name);
                 "REQUIRED" => "Y",
                 "NO_LABEL" => "Y",
             ),
-            "NAME" => Array(
+            "FULL_NAME" => Array(
                 "BLOCK_TITLE" => "Контактное лицо",
                 "TYPE" => "TEXT",
                 "VALUE" => trim(CUser::FormatName("#LAST_NAME# #NAME# #SECOND_NAME#", $userInfo, true)) == $userInfo["EMAIL"] ? "" : CUser::FormatName("#LAST_NAME# #NAME# #SECOND_NAME#", $userInfo, true),

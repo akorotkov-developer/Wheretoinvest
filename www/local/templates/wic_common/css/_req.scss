@@ -1,13 +1,7 @@
 .req {
-  margin-top: 14px;
-  &_p {
-    margin-top: 37px;
-  }
+  margin-bottom: rem-calc(15);
   &_mini {
     margin-top: 0;
-  }
-  &_last {
-    margin-bottom: 40px;
   }
   &__link {
     font-size: 14px;

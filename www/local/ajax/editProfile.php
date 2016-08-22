@@ -11,6 +11,7 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                 "LAST_NAME",
                 "NAME",
                 "SECOND_NAME",
+                "FULL_NAME",
                 "PERSONAL_BIRTHDAY",
                 "PERSONAL_GENDER",
                 "WORK_COMPANY",
@@ -23,22 +24,28 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                     continue;
 
                 switch ($key) {
+                    case "FULL_NAME":
+                        list($arFields["LAST_NAME"], $arFields["NAME"], $arFields["SECOND_NAME"]) = explode(" ", $val);
+                        $arResult["NEW"]["LAST_NAME"] = $arFields["LAST_NAME"];
+                        $arResult["NEW"]["NAME"] = $arFields["NAME"];
+                        $arResult["NEW"]["SECOND_NAME"] = $arFields["SECOND_NAME"];
+                        break;
                     case "PERSONAL_BIRTHDAY":
                         if (!empty($val)) {
                             $arFields[$key] = date("d.m.Y", strtotime($val));
                             $arResult["NEW"][$key] = $arFields[$key];
                         } else {
                             $arFields[$key] = $val;
-                            $arResult["NEW"][$key] = "Не задан";
+                            $arResult["NEW"][$key] = "<span class='req__name'>—</span>";
                         }
                         break;
                     case "PERSONAL_GENDER":
                         $arFields[$key] = $val;
-                        $arResult["NEW"][$key] = empty($arFields[$key]) ? "Не задан" : ($arFields[$key] == "M" ? "Мужской" : "Женский");
+                        $arResult["NEW"][$key] = empty($arFields[$key]) ? "<span class='req__name'>—</span>" : ($arFields[$key] == "M" ? "Мужской" : "Женский");
                         break;
                     default:
                         $arFields[$key] = trim($val);
-                        $arResult["NEW"][$key] = !empty($arFields[$key]) ? $arFields[$key] : "Не задан";
+                        $arResult["NEW"][$key] = !empty($arFields[$key]) ? $arFields[$key] : "<span class='req__name'>—</span>";
                         break;
                 }
             }
@@ -87,7 +94,7 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                         break;
                     default:
                         $arFields[$key] = trim($val);
-                        $arResult["NEW"][$key] = !empty($arFields[$key]) ? $arFields[$key] : "Не задан";
+                        $arResult["NEW"][$key] = !empty($arFields[$key]) ? $arFields[$key] : "<span class='req__name'>—</span>";
                         break;
                 }
             }

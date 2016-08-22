@@ -80,14 +80,13 @@ $arResult["PASSWORD_FIELDS"] = Array(
 );
 ?>
 <div class=" content__key">
-    Электронная почта: <a href="mailto:<?= $USER->GetEmail() ?>"
+    <span class="b-form__title">Электронная почта:</span> <a href="mailto:<?= $USER->GetEmail() ?>"
                           class="js-email-link"><?= $USER->GetEmail() ?></a>
 </div>
 <a class="content__change" href="#" data-reveal-id="email">Изменить</a>
 <br>
-<br>
 <div class="content__key">
-    Пароль: ********
+    <span class="b-form__title">Пароль</span>: ********
 </div>
 <a class="content__change" href="#" data-reveal-id="password">Изменить</a>
 
@@ -107,7 +106,6 @@ $arResult["PASSWORD_FIELDS"] = Array(
                     <div class="b-main-block__body"></div>
 
                     <?= getFormFields($arResult["EMAIL_FIELDS"], 4, "b-form__row_small-margin"); ?>
-                    <br>
 
                     <div class="row">
                         <div class="column small-12 medium-5 small-centered">
@@ -136,7 +134,6 @@ $arResult["PASSWORD_FIELDS"] = Array(
                     <div class="b-main-block__body"></div>
 
                     <?= getFormFields($arResult["PASSWORD_FIELDS"], 4, "b-form__row_small-margin"); ?>
-                    <br>
 
                     <div class="row">
                         <div class="column small-12 medium-5 small-centered">

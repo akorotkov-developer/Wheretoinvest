@@ -1,11 +1,15 @@
 .met {
-  margin-bottom: 28px;
+  margin-bottom: 15px;
   &__rating {
     color: #202020;
     font-size: 14px;
     margin-bottom: 14px;
     position: relative;
     padding-left: 18px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
     &:before {
       width: 7px;
       height: 7px;
