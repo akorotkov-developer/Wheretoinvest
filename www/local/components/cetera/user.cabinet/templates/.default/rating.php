@@ -12,12 +12,21 @@ global $APPLICATION;
 $APPLICATION->SetTitle("Рейтинги организации");
 $APPLICATION->AddChainItem("Рейтинги организации");
 
+$ratingList = Array();
+$hblock = new \Cetera\HBlock\SimpleHblockObject(8);
+$list = $hblock->getList();
+while ($el = $list->fetch()) {
+    $ratingList[$el["ID"]] = $el;
+}
+
 $rating = Array();
 $hblock = new \Cetera\HBlock\SimpleHblockObject(7);
 $list = $hblock->getList(Array("filter" => Array("UF_USER" => $USER->GetID())));
 while ($el = $list->fetch()) {
-    $rating[] = $el;
+    $rating[$el["UF_AGENCY"]] = $el;
 }
+
+
 ?>
 
 <? if (!empty($_SESSION["SUCCESS"])): ?>
@@ -26,7 +35,7 @@ while ($el = $list->fetch()) {
     <? unset($_SESSION["SUCCESS"]); ?>
 <? endif; ?>
 
-<? if (count($rating)): ?>
+<? if (count($ratingList)): ?>
     <div class="row">
         <div class="columns agency">
             <div class="agency__main">
@@ -35,13 +44,13 @@ while ($el = $list->fetch()) {
                     <div class="agency__th">Способ вложения</div>
                 </div>
                 <div class="agency__body">
-                    <? foreach ($rating as $item): ?>
+                    <? foreach ($ratingList as $key => $item): ?>
                         <div class="row agency__row">
                             <div class="agency__td agency__td_first">
-                                <?= $item["UF_AGENCY"] ?>
+                                <span class='req__name'><?= $item["UF_NAME"] ?></span>
                             </div>
                             <div class="agency__td">
-                                <?= $item["UF_RATING"] ?>
+                                <?= !empty($rating[$key]["UF_RATING"]) ? $rating[$key]["UF_RATING"] : "<span class='req__name'>—</span>"; ?>
                             </div>
                         </div>
                     <? endforeach; ?>
@@ -53,4 +62,4 @@ while ($el = $list->fetch()) {
     <? ShowNote("Рейтинги отсутствуют"); ?>
 <? endif; ?>
 
-<a class="content__change" href="edit/"><? if (!count($rating)): ?>Добавить<? else: ?>Изменить<? endif; ?></a>
+<a class="content__change" href="edit/">Изменить</a>

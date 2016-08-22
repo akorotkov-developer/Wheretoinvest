@@ -16,6 +16,11 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
             foreach ($_REQUEST["rating"] as $ratingID => $val) {
                 $id = 0;
                 $arFields = Array();
+                if (!empty($val["rating"]) && empty($val["date"])) {
+                    $arResult["ERROR"] = "Не заполнено поле \"Дата получения\"";
+                    break;
+                }
+
                 if (!empty($arResult["RATINGS"][$ratingID])) {
                     $id = $arResult["RATINGS"][$ratingID]["ID"];
                     unset($arResult["RATINGS"][$ratingID]["ID"]);
@@ -45,12 +50,15 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                 }
             }
 
-            foreach ($arResult["RATINGS"] as $ratingID => $val) {
-                $hblock->delete($ratingID);
-            }
+            if (empty($arResult["ERROR"])) {
 
-            $arResult["SUCCESS"] = "Данные успешно изменены.";
-            $_SESSION["SUCCESS"] = "Данные успешно изменены.";
+                foreach ($arResult["RATINGS"] as $ratingID => $val) {
+                    $hblock->delete($ratingID);
+                }
+
+                $arResult["SUCCESS"] = "Данные успешно изменены.";
+                $_SESSION["SUCCESS"] = "Данные успешно изменены.";
+            }
 
             break;
         default:

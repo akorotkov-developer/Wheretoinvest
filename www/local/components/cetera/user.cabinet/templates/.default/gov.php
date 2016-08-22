@@ -18,7 +18,7 @@ $userInfo = getContainer("User");
 <div class="b-main-block__body"></div>
 
 <div class="row">
-    <div class="columns state state_high">
+    <div class="columns state">
         <input type="checkbox" name="address" id="state_particip"
                class="state__checkbox js-participate"<? if (!empty($userInfo["UF_STATE_PARTICIP"])): ?> checked<? endif; ?>
                data-type="state" value="24">
