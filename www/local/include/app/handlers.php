@@ -25,15 +25,18 @@ class UserEx
 {
     public function OnBeforeUserRegister(&$arFields)
     {
+        global $USER;
         if (empty($arFields["ID"]) || (!empty($arFields["ID"]) && $arFields["ID"] != "1")) {
             $arFields["CONFIRM_PASSWORD"] = $arFields["PASSWORD"];
             $arFields["LOGIN"] = $arFields["EMAIL"];
 
-            $filter = Array("EMAIL" => $arFields["LOGIN"]);
-            $rsUsers = \CUser::GetList(($by = "ID"), ($order = "asc"), $filter);
-            if ($user = $rsUsers->GetNext()) {
-                $GLOBALS['APPLICATION']->ThrowException('Пользователь с таким e-mail (' . $arFields["EMAIL"] . ') уже существует.');
-                return false;
+            if (!$USER->IsAuthorized()) {
+                $filter = Array("EMAIL" => $arFields["LOGIN"]);
+                $rsUsers = \CUser::GetList(($by = "ID"), ($order = "asc"), $filter);
+                if ($user = $rsUsers->GetNext()) {
+                    $GLOBALS['APPLICATION']->ThrowException('Пользователь с таким e-mail (' . $arFields["EMAIL"] . ') уже существует.');
+                    return false;
+                }
             }
 
             if (!empty($_REQUEST["FROM_PUBLIC"])) {

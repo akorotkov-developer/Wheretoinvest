@@ -29,7 +29,7 @@ $userInfo = getContainer("User");
     </div>
     <div class="columns req req_p">
         <div class="row">
-            <div class="req__name medium-6 small-5 columns">Краткое наименование:</div>
+            <div class="req__name medium-6 small-5 columns">Сокращенное наименование:</div>
             <div
                 class="req__value medium-6 small-7 columns js-detail-work_company"><?= !empty($userInfo["WORK_COMPANY"]) ? $userInfo["WORK_COMPANY"] : "<span class='req__name'>—</span>"; ?></div>
         </div>

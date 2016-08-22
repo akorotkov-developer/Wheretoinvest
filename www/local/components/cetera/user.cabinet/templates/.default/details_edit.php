@@ -12,7 +12,8 @@ $userInfo = getContainer("User");
 $arResult["FORM_FIELDS"] = Array(
     "WORK_COMPANY" => Array(
         "TYPE" => "TEXT",
-        "TITLE" => "Краткое наименование",
+        "TITLE" => "Сокращенное наименование",
+        "REQUIRED" => "Y",
         "VALUE" => $userInfo["WORK_COMPANY"]
     ),
     "UF_FULL_WORK_NAME" => Array(

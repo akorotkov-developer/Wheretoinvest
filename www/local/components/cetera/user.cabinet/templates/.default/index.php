@@ -81,7 +81,7 @@ $arResult["PASSWORD_FIELDS"] = Array(
 ?>
 <div class=" content__key">
     <span class="b-form__title">Логин (ваш e-mail):</span> <a href="mailto:<?= $USER->GetEmail() ?>"
-                          class="js-email-link"><?= $USER->GetEmail() ?></a>
+                          class="js-email-link req__link"><?= $USER->GetEmail() ?></a>
 </div>
 <a class="content__change" href="#" data-reveal-id="email">Изменить</a>
 <br>
