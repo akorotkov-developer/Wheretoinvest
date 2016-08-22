@@ -44,7 +44,7 @@ $arResult["LAST_LOGIN"] = !empty($arResult["LAST_LOGIN"]) ? $arResult["LAST_LOGI
                     "ROW_CLASS" => "b-form__row_no-margin"
                 ),
                 "USER_LOGIN" => Array(
-                    "BLOCK_TITLE" => "Адрес электронной почты",
+                    "BLOCK_TITLE" => "Логин (ваш e-mail)",
                     "TYPE" => "EMAIL",
                     "VALUE" => $arResult["LAST_LOGIN"],
                     "REQUIRED" => "Y",

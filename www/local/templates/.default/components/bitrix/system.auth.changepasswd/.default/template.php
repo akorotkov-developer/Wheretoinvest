@@ -36,7 +36,7 @@ $APPLICATION->AddChainItem("Изменить пароль", $APPLICATION->GetCur
             <?
             $arResult["FORM_FIELDS"] = Array(
                 "USER_LOGIN" => Array(
-                    "BLOCK_TITLE" => "Адрес электронной почты",
+                    "BLOCK_TITLE" => "Логин (ваш e-mail)",
                     "TYPE" => "EMAIL",
                     "VALUE" => $arResult["LAST_LOGIN"],
                     "REQUIRED" => "Y",

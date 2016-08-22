@@ -44,7 +44,7 @@ $APPLICATION->AddChainItem("Войти в личный кабинет", $APPLICA
             <?
             $arResult["FORM_FIELDS"] = Array(
                 "USER_LOGIN" => Array(
-                    "BLOCK_TITLE" => "Ваш email",
+                    "BLOCK_TITLE" => "Логин (ваш e-mail)",
                     "TYPE" => "EMAIL",
                     "VALUE" => $arResult["LAST_LOGIN"],
                     "REQUIRED" => "Y",

@@ -49,11 +49,6 @@ $arComponentParameters = array(
                 "DEFAULT" => "",
                 "VARIABLES" => array(),
             ),
-            "info" => array(
-                "NAME" => "Данные пользователя",
-                "DEFAULT" => "info/",
-                "VARIABLES" => array(),
-            ),
             "method" => array(
                 "NAME" => "Методика определения надежности",
                 "DEFAULT" => "method/",

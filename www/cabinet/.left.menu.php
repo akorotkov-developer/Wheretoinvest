@@ -8,13 +8,6 @@ $aMenuLinks = Array(
         ""
     ),
     Array(
-        "Данные пользователя",
-        "/cabinet/info/",
-        Array(),
-        Array(),
-        "!getContainer('User')->isPartner()"
-    ),
-    Array(
         "Мой регион",
         "/cabinet/region/",
         Array(),
@@ -31,13 +24,6 @@ $aMenuLinks = Array(
     Array(
         "Реквизиты организации",
         "/cabinet/details/",
-        Array(),
-        Array(),
-        "getContainer('User')->isPartner()"
-    ),
-    Array(
-        "Контакты",
-        "/cabinet/info/",
         Array(),
         Array("class" => "accord__link_no-bord"),
         "getContainer('User')->isPartner()"

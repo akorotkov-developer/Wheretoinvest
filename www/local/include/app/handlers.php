@@ -65,12 +65,17 @@ class UserEx
     {
         $filter = Array("EMAIL" => $arFields["LOGIN"]);
         $rsUsers = \CUser::GetList(($by = "LAST_NAME"), ($order = "asc"), $filter);
-        if ($user = $rsUsers->GetNext())
+        if ($user = $rsUsers->GetNext()) {
             $arFields["LOGIN"] = $user["LOGIN"];
+
+            if ($user["ACTIVE"] !== "Y") {
+                $GLOBALS['APPLICATION']->ThrowException('Ваш аккаунт заблокирован или удален. Для восстановления доступа обратитесь к администрации сайта.');
+                return false;
+            }
+        }
     }
 }
 
 $eventManager->addEventHandler("main", "OnBeforeUserLogin", array("UserEx", "OnBeforeUserLogin"), false, 100);
 $eventManager->addEventHandler("main", "OnBeforeUserRegister", array("UserEx", "OnBeforeUserRegister"), false, 100);
-$eventManager->addEventHandler("main", "OnBeforeUserUpdate", array("UserEx", "OnBeforeUserRegister"), false, 100);
 $eventManager->addEventHandler("main", "OnAfterUserRegister", array("UserEx", "OnAfterUserRegister"), false, 100);

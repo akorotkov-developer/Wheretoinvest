@@ -18,7 +18,6 @@ if ($arParams["USE_FILTER"] == "Y") {
 
 $arDefaultUrlTemplates404 = array(
     "index" => "",
-    "info" => "info/",
     "method" => "method/",
     "region" => "region/",
     "details" => "details/",
@@ -113,9 +112,6 @@ if ($arParams["SEF_MODE"] == "Y") {
     $componentPage = "index";
 
     switch ($_GET["action"]) {
-        case "info":
-            $componentPage = "info";
-            break;
         case "method":
             $componentPage = "method";
             break;

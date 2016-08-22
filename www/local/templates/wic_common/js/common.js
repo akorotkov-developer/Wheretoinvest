@@ -355,7 +355,7 @@
         //end of graph tqble edit
 
         if ($.fn.mask) {
-            $(".js-phone").mask('+7(999)999-99-99');
+            $(".js-phone").mask('+7 (999) 999-99-99');
             $(".js-date").mask('99.99.9999');
         }
     });

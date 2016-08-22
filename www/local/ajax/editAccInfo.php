@@ -103,6 +103,16 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                 }
             }
             break;
+        case "removeAcc":
+            $cUser = new \CUser();
+            if ($cUser->Update($USER->GetID(), Array("ACTIVE" => "N"))) {
+                $arResult["SUCCESS"] = "Аккаунт успешно удален.";
+                $USER->Logout();
+            } else {
+                $arResult["ERROR"] = $cUser->LAST_ERROR;
+            }
+
+            break;
         default:
             die();
     }
