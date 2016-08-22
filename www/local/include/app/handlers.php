@@ -29,6 +29,13 @@ class UserEx
             $arFields["CONFIRM_PASSWORD"] = $arFields["PASSWORD"];
             $arFields["LOGIN"] = $arFields["EMAIL"];
 
+            $filter = Array("EMAIL" => $arFields["LOGIN"]);
+            $rsUsers = \CUser::GetList(($by = "ID"), ($order = "asc"), $filter);
+            if ($user = $rsUsers->GetNext()) {
+                $GLOBALS['APPLICATION']->ThrowException('Пользователь с таким e-mail (' . $arFields["EMAIL"] . ') уже существует.');
+                return false;
+            }
+
             if (!empty($_REQUEST["FROM_PUBLIC"])) {
                 if (empty($_REQUEST["partner"])) {
                     $arFields["PERSONAL_GENDER"] = $_REQUEST["PERSONAL_GENDER"];
