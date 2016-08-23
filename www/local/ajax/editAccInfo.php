@@ -105,12 +105,25 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
             break;
         case "removeAcc":
             $cUser = new \CUser();
-            if ($cUser->Update($USER->GetID(), Array("ACTIVE" => "N"))) {
-                $arResult["SUCCESS"] = "Аккаунт успешно удален.";
-                $USER->Logout();
-            } else {
-                $arResult["ERROR"] = $cUser->LAST_ERROR;
-            }
+            $checkword = randString(16);
+            $cUser->Update($USER->GetID(), Array("UF_CHECKWORD" => $checkword));
+
+            $userInfo = getContainer("User");
+
+            $arFields = Array(
+                "USER_ID" => $USER->GetID(),
+                "STATUS" => $userInfo["ACTIVE"] == "Y" ? "активен" : "не активен",
+                "MESSAGE" => "Вы сделали запрос на удаление аккаунта.",
+                "LOGIN" => $userInfo["LOGIN"],
+                "URL_LOGIN" => urlencode($userInfo["LOGIN"]),
+                "NAME" => $userInfo["NAME"],
+                "LAST_NAME" => $userInfo["LAST_NAME"],
+                "EMAIL" => $userInfo["EMAIL"],
+                "CHECKWORD" => $checkword,
+            );
+
+            \CEvent::SendImmediate("USER_ACC_REMOVE", SITE_ID, $arFields, "N");
+            $arResult["SUCCESS"] = "На email было выслано письмо с кодом подтверждения удаления аккаунта.<br>Пожалуйста, дождитесь письма, т.к. при повторном запросе код подтверждения будет изменен.";
 
             break;
         default:

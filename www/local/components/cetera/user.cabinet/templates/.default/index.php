@@ -85,16 +85,34 @@ $userInfo = getContainer("User");
 $userName = \CUser::FormatName("#LAST_NAME# #NAME# #SECOND_NAME#", $userInfo, true);
 $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</span>" : $userName;
 ?>
-<div class=" content__key">
-    <span class="b-form__title">Логин (ваш e-mail):</span> <a href="mailto:<?= $USER->GetEmail() ?>"
-                                                              class="js-email-link req__link"><?= $USER->GetEmail() ?></a>
+<div class="js-alert"></div>
+<div class="row">
+    <div class="columns req">
+        <div class="row">
+            <div class="req__name medium-4 small-5 columns">Логин (ваш e-mail)</div>
+            <div
+                class="req__value medium-8 small-7 columns"><a href="mailto:<?= $USER->GetEmail() ?>"
+                                                               class="js-email-link req__link"><?= $USER->GetEmail() ?></a>
+            </div>
+        </div>
+    </div>
+    <div class="columns">
+        <a class="content__change" href="#" data-reveal-id="email">Изменить</a>
+        <br><br>
+    </div>
+    <div class="columns req">
+        <div class="row">
+            <div class="req__name medium-4 small-5 columns">Пароль</div>
+            <div
+                class="req__value medium-8 small-7 columns">********
+            </div>
+        </div>
+    </div>
+    <div class="columns">
+        <a class="content__change" href="#" data-reveal-id="password">Изменить</a>
+        <br><br>
+    </div>
 </div>
-<a class="content__change" href="#" data-reveal-id="email">Изменить</a>
-<br>
-<div class="content__key">
-    <span class="b-form__title">Пароль</span>: ********
-</div>
-<a class="content__change" href="#" data-reveal-id="password">Изменить</a>
 
 <div class="row">
     <? if (!$userInfo->isPartner()): ?>
@@ -163,8 +181,7 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
     <? else: ?>
         <div class="columns req">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">Сокращенное наименование организации (согласно
-                    уставу)
+                <div class="req__name medium-4 small-5 columns">Наименование организации
                 </div>
                 <div
                     class="req__value medium-8 small-7 columns js-profile-work"><?= empty($userInfo["WORK_COMPANY"]) ? "<span class='req__name'>—</span>" : $userInfo["WORK_COMPANY"] ?></div>
@@ -215,7 +232,7 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
     <div class="columns">
         <a href="#" class="content__change" data-reveal-id="profile">Изменить</a></div>
 </div>
-
+<br>
 <div class="row">
     <div class="columns">
         <a href="#" class="content__remove js-remove-acc">Удалить аккаунт</a></div>
@@ -316,6 +333,9 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
                         "ajax": "Y",
                         "sessid": "<?=bitrix_sessid()?>"
                     };
+
+                $(".js-alert").html("");
+
                 $.ajax({
                     url: url,
                     data: data,
@@ -323,11 +343,12 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
                     dataType: "json",
                     success: function (response) {
                         if (response.ERRORS !== undefined) {
-                            alert(response.ERRORS);
+                            $(".js-alert").prepend('<div data-alert class="alert-box alert radius">' + response.ERROR + '<a href="#" class="close">&times;</a></div>');
+                            $(document).foundation('alert', 'reflow');
                         }
                         else if (response.SUCCESS !== undefined) {
-                            alert(response.SUCCESS);
-                            window.location.href = "/";
+                            $(".js-alert").prepend('<div data-alert class="alert-box success radius">' + response.SUCCESS + '<a href="#" class="close">&times;</a></div>');
+                            $(document).foundation('alert', 'reflow');
                         }
                     }
                 });
@@ -341,6 +362,7 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
                 url = _this.attr("action") !== "" ? _this.attr("action") : "/local/ajax/editAccInfo.php";
             _this.find(".b-form__error").detach();
             _this.find(".alert-box").detach();
+            $(".js-alert").html("");
 
             $.ajax({
                 url: url,

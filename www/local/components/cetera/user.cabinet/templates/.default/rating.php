@@ -26,7 +26,6 @@ while ($el = $list->fetch()) {
     $rating[$el["UF_AGENCY"]] = $el;
 }
 
-
 ?>
 
 <? if (!empty($_SESSION["SUCCESS"])): ?>
@@ -37,26 +36,15 @@ while ($el = $list->fetch()) {
 
 <? if (count($ratingList)): ?>
     <div class="row">
-        <div class="columns agency">
-            <div class="agency__main">
-                <div class="agency__head">
-                    <div class="agency__th agency__th_first">Рейтинговое агентство</div>
-                    <div class="agency__th">Способ вложения</div>
-                </div>
-                <div class="agency__body">
-                    <? foreach ($ratingList as $key => $item): ?>
-                        <div class="row agency__row">
-                            <div class="agency__td agency__td_first">
-                                <span class='req__name'><?= $item["UF_NAME"] ?></span>
-                            </div>
-                            <div class="agency__td">
-                                <?= !empty($rating[$key]["UF_RATING"]) ? $rating[$key]["UF_RATING"] : "<span class='req__name'>—</span>"; ?>
-                            </div>
-                        </div>
-                    <? endforeach; ?>
+        <? foreach ($ratingList as $key => $item): ?>
+            <div class="columns req">
+                <div class="row">
+                    <div class="req__name medium-4 small-5 columns"><?= $item["UF_NAME"] ?></div>
+                    <div
+                        class="req__value medium-8 small-7 columns"><?= !empty($rating[$key]["UF_RATING"]) ? $rating[$key]["UF_RATING"] : "<span class='req__name'>—</span>"; ?></div>
                 </div>
             </div>
-        </div>
+        <? endforeach; ?>
     </div>
 <? else: ?>
     <? ShowNote("Рейтинги отсутствуют"); ?>

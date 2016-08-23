@@ -4,7 +4,7 @@ global $USER;
 if ($USER->IsAuthorized()):?>
     <?
     $userInfo = getContainer("User");
-    $userName = $userInfo->isPartner() ? (!empty($userInfo["WORK_COMPANY"]) ? $userInfo["WORK_COMPANY"] : \CUser::FormatName("#LAST_NAME# #NAME#", $userInfo, true)) : \CUser::FormatName("#LAST_NAME# #NAME#", $userInfo, true);
+    $userName = $userInfo->isPartner() ? (!empty($userInfo["UF_FULL_WORK_NAME"]) ? $userInfo["UF_FULL_WORK_NAME"] : (!empty($userInfo["WORK_COMPANY"]) ? $userInfo["WORK_COMPANY"] : \CUser::FormatName("#LAST_NAME# #NAME#", $userInfo, true))) : \CUser::FormatName("#LAST_NAME# #NAME#", $userInfo, true);
     ?>
     <a href="/cabinet/" class="b-header__firstline-link" title="Личный кабинет"><?= trim($userName) ?></a>
     <span class="b-header__firstline-slash">|</span>

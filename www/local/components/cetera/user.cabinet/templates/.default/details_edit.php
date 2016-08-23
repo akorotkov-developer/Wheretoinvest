@@ -12,18 +12,19 @@ $userInfo = getContainer("User");
 $arResult["FORM_FIELDS"] = Array(
     "WORK_COMPANY" => Array(
         "TYPE" => "TEXT",
-        "TITLE" => "Сокращенное наименование",
+        "TITLE" => "Сокращенное наименование (согласно Уставу)",
         "REQUIRED" => "Y",
         "VALUE" => $userInfo["WORK_COMPANY"]
     ),
     "UF_FULL_WORK_NAME" => Array(
         "TYPE" => "TEXT",
-        "TITLE" => "Полное наименование",
+        "REQUIRED" => "Y",
+        "TITLE" => "Наименование (для отображения на главной странице)",
         "VALUE" => $userInfo["UF_FULL_WORK_NAME"]
     ),
     "UF_SHORT_WORK_EN" => Array(
         "TYPE" => "TEXT",
-        "TITLE" => "Краткое наименование на английском языке",
+        "TITLE" => "Сокращенное наименование на английском языке (согласно Уставу)",
         "VALUE" => $userInfo["UF_SHORT_WORK_EN"]
     ),
     "WORK_LOGO" => Array(

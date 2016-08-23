@@ -27,28 +27,30 @@ $userInfo = getContainer("User");
             </div>
         </div>
     </div>
-    <div class="columns req req_p">
+    <div class="columns req">
+        <br>
         <div class="row">
-            <div class="req__name medium-6 small-5 columns">Сокращенное наименование:</div>
+            <div class="req__name medium-6 small-5 columns">Сокращенное наименование (согласно Уставу):</div>
             <div
                 class="req__value medium-6 small-7 columns js-detail-work_company"><?= !empty($userInfo["WORK_COMPANY"]) ? $userInfo["WORK_COMPANY"] : "<span class='req__name'>—</span>"; ?></div>
         </div>
     </div>
     <div class="columns req">
         <div class="row">
-            <div class="req__name medium-6 small-5 columns">Полное наименование:</div>
+            <div class="req__name medium-6 small-5 columns">Сокращенное наименование на английском языке (согласно Уставу):</div>
+            <div
+                class="req__value medium-6 small-7 columns js-detail-uf_short_work_en"><?= !empty($userInfo["UF_SHORT_WORK_EN"]) ? $userInfo["UF_SHORT_WORK_EN"] : "<span class='req__name'>—</span>"; ?></div>
+        </div>
+    </div>
+    <div class="columns req">
+        <div class="row">
+            <div class="req__name medium-6 small-5 columns">Наименование (для отображения на главной странице):</div>
             <div
                 class="req__value medium-6 small-7 columns js-detail-uf_full_work_name"><?= !empty($userInfo["UF_FULL_WORK_NAME"]) ? $userInfo["UF_FULL_WORK_NAME"] : "<span class='req__name'>—</span>"; ?></div>
         </div>
     </div>
     <div class="columns req">
-        <div class="row">
-            <div class="req__name medium-6 small-5 columns">Краткое наименование на английском языке:</div>
-            <div
-                class="req__value medium-6 small-7 columns js-detail-uf_short_work_en"><?= !empty($userInfo["UF_SHORT_WORK_EN"]) ? $userInfo["UF_SHORT_WORK_EN"] : "<span class='req__name'>—</span>"; ?></div>
-        </div>
-    </div>
-    <div class="columns req req_p">
+        <br>
         <div class="row">
             <div class="req__name medium-6 small-5 columns">ОГРН:</div>
             <div
@@ -76,7 +78,17 @@ $userInfo = getContainer("User");
                 class="req__value medium-6 small-7 columns js-detail-uf_kpp"><?= !empty($userInfo["UF_KPP"]) ? $userInfo["UF_KPP"] : "<span class='req__name'>—</span>"; ?></div>
         </div>
     </div>
-    <div class="columns req req_p">
+    <div class="columns req">
+        <br>
+        <div class="row">
+            <div class="req__name medium-6 small-5 columns">Сайт:</div>
+            <div
+                class="req__value medium-6 small-7 columns"><?= !empty($userInfo["UF_SITE"]) ? '<a href="' . $userInfo["UF_SITE"] . '" class="req__link js-detail-uf_site" target="_blank">' . $userInfo["UF_SITE"] . '</a>' : "<span class='req__name'>—</span>"; ?>
+            </div>
+        </div>
+    </div>
+    <div class="columns req">
+        <br>
         <div class="row">
             <div class="req__name medium-6 small-5 columns">Расчётный счёт:</div>
             <div
@@ -102,14 +114,6 @@ $userInfo = getContainer("User");
             <div class="req__name medium-6 small-5 columns">Корр. счёт:</div>
             <div
                 class="req__value medium-6 small-7 columns js-detail-uf_c_account"><?= !empty($userInfo["UF_C_ACCOUNT"]) ? $userInfo["UF_C_ACCOUNT"] : "<span class='req__name'>—</span>"; ?></div>
-        </div>
-    </div>
-    <div class="columns req req_p req_last">
-        <div class="row">
-            <div class="req__name medium-6 small-5 columns">Сайт:</div>
-            <div
-                class="req__value medium-6 small-7 columns"><?= !empty($userInfo["UF_SITE"]) ? '<a href="' . $userInfo["UF_SITE"] . '" class="req__link js-detail-uf_site" target="_blank">' . $userInfo["UF_SITE"] . '</a>' : "<span class='req__name'>—</span>"; ?>
-            </div>
         </div>
     </div>
 </div>
