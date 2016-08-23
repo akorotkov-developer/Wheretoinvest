@@ -12,7 +12,7 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                 "NAME",
                 "SECOND_NAME",
                 "FULL_NAME",
-                "PERSONAL_BIRTHDAY",
+                "UF_BIRTHDAY",
                 "PERSONAL_GENDER",
                 "WORK_COMPANY",
                 "PERSONAL_PHONE",
@@ -30,9 +30,13 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                         $arResult["NEW"]["NAME"] = $arFields["NAME"];
                         $arResult["NEW"]["SECOND_NAME"] = $arFields["SECOND_NAME"];
                         break;
-                    case "PERSONAL_BIRTHDAY":
+                    case "UF_BIRTHDAY":
                         if (!empty($val)) {
-                            $arFields[$key] = date("d.m.Y", strtotime($val));
+                            if (!preg_match("#\d{4,4}#is", $val)) {
+                                $arResult["ERROR"] = "Некорректно указан год рождения.";
+                                break;
+                            }
+                            $arFields[$key] = $val;
                             $arResult["NEW"][$key] = $arFields[$key];
                         } else {
                             $arFields[$key] = $val;
@@ -50,7 +54,7 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                 }
             }
 
-            if (empty($arResult["ERRORS"])) {
+            if (empty($arResult["ERRORS"]) && empty($arResult["ERROR"])) {
                 if (count($arFields)) {
                     $cUser = new \CUser();
                     if ($cUser->Update($USER->GetID(), $arFields)) {

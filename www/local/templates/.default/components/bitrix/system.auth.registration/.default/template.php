@@ -60,16 +60,16 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                             "F" => "Женский",
                         ),
                         "REQUIRED" => "Y",
-                        "NO_LABEL" => "Y"
                     ),
-                    "PERSONAL_BIRTHDAY" => Array(
-                        "BLOCK_TITLE" => "Дата рождения",
-                        "TYPE" => "DATE",
-                        "VALUE" => $_REQUEST["PERSONAL_BIRTHDAY"],
+                    "UF_BIRTHDAY" => Array(
+                        "BLOCK_TITLE" => "Год рождения",
+                        "TYPE" => "TEXT",
+                        "VALUE" => $_REQUEST["UF_BIRTHDAY"],
                         "REQUIRED" => "Y",
-                        "NO_LABEL" => "Y",
+                        "PLACEHOLDER" => "гггг",
                         "PARAMS" => Array(
-                            "autocomplete" => "off"
+                            "autocomplete" => "off",
+                            "maxlength" => "4"
                         )
                     ),
                     "NAME" => Array(
@@ -77,14 +77,12 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                         "TYPE" => "TEXT",
                         "VALUE" => $_REQUEST["NAME"],
                         "REQUIRED" => "Y",
-                        "NO_LABEL" => "Y",
                     ),
                     "USER_EMAIL" => Array(
                         "BLOCK_TITLE" => "Электронная почта",
                         "TYPE" => "EMAIL",
                         "VALUE" => $arResult["USER_EMAIL"],
                         "REQUIRED" => "Y",
-                        "NO_LABEL" => "Y",
                         "DESCRIPTION" => "Будет логином на сайт. Вы должны иметь к ней доступ, чтобы подтвердить регистрацию",
                         "PARAMS" => Array(
                             "autocomplete" => "off"
@@ -95,7 +93,6 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                         "TYPE" => "PASSWORD",
                         "VALUE" => $arResult["USER_PASSWORD"],
                         "REQUIRED" => "Y",
-                        "NO_LABEL" => "Y",
                         "PARAMS" => Array(
                             "autocomplete" => "off"
                         )
@@ -132,21 +129,18 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                         "TYPE" => "TEXT",
                         "VALUE" => $_REQUEST["WORK_COMPANY"],
                         "REQUIRED" => "Y",
-                        "NO_LABEL" => "Y",
                     ),
                     "NAME" => Array(
                         "BLOCK_TITLE" => "Контактное лицо",
                         "TYPE" => "TEXT",
                         "VALUE" => $_REQUEST["NAME"],
                         "REQUIRED" => "Y",
-                        "NO_LABEL" => "Y",
                     ),
                     "PERSONAL_PHONE" => Array(
                         "BLOCK_TITLE" => "Контактный телефон",
                         "TYPE" => "TEXT",
                         "VALUE" => $_REQUEST["PERSONAL_PHONE"],
                         "REQUIRED" => "Y",
-                        "NO_LABEL" => "Y",
                         "INPUT_CLASS" => "js-phone"
                     ),
                     "USER_EMAIL" => Array(
@@ -154,7 +148,6 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                         "TYPE" => "EMAIL",
                         "VALUE" => $arResult["USER_EMAIL"],
                         "REQUIRED" => "Y",
-                        "NO_LABEL" => "Y",
                         "DESCRIPTION" => "Будет логином на сайт. Вы должны иметь к ней доступ, чтобы подтвердить регистрацию",
                         "PARAMS" => Array(
                             "autocomplete" => "off"
@@ -165,7 +158,6 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                         "TYPE" => "PASSWORD",
                         "VALUE" => $arResult["USER_PASSWORD"],
                         "REQUIRED" => "Y",
-                        "NO_LABEL" => "Y",
                         "PARAMS" => Array(
                             "autocomplete" => "off"
                         )

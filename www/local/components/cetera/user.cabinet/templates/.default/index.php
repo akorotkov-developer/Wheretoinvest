@@ -13,15 +13,8 @@ $APPLICATION->SetTitle("Настройки аккаунта");
 $APPLICATION->AddChainItem("Настройки аккаунта");
 
 $arResult["EMAIL_FIELDS"] = Array(
-    "HEADER" => Array(
-        "TYPE" => "STATIC",
-        "NO_LABEL" => "Y",
-        "TEXT" => '
-        <div class="b-form__title-desc">Email - это Ваш логин в личный кабинет. <br> После смены, используйте для входа новый email.</div>
-        '
-    ),
     "OLD_EMAIL" => Array(
-        "TITLE" => "Текущий email",
+        "TITLE" => "Текущий логин (ваш e-mail)",
         "TYPE" => "EMAIL",
         "VALUE" => "",
         "REQUIRED" => "Y",
@@ -30,7 +23,7 @@ $arResult["EMAIL_FIELDS"] = Array(
         ]
     ),
     "NEW_EMAIL" => Array(
-        "TITLE" => "Новый email",
+        "TITLE" => "Новый логин (ваш e-mail)",
         "TYPE" => "EMAIL",
         "VALUE" => "",
         "REQUIRED" => "Y",
@@ -39,7 +32,7 @@ $arResult["EMAIL_FIELDS"] = Array(
         ]
     ),
     "NEW_EMAIL_CONFIRM" => Array(
-        "TITLE" => "Повторите новый email",
+        "TITLE" => "Повторите новый логин",
         "TYPE" => "EMAIL",
         "VALUE" => "",
         "REQUIRED" => "Y",
@@ -51,7 +44,7 @@ $arResult["EMAIL_FIELDS"] = Array(
 
 $arResult["PASSWORD_FIELDS"] = Array(
     "OLD_PASSWORD" => Array(
-        "TITLE" => "Старый пароль",
+        "TITLE" => "Действующий пароль",
         "TYPE" => "PASSWORD",
         "VALUE" => "",
         "REQUIRED" => "Y",
@@ -89,7 +82,7 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
 <div class="row">
     <div class="columns req">
         <div class="row">
-            <div class="req__name medium-4 small-5 columns">Логин (ваш e-mail)</div>
+            <div class="req__name medium-4 small-5 columns">Логин (ваш e-mail): </div>
             <div
                 class="req__value medium-8 small-7 columns"><a href="mailto:<?= $USER->GetEmail() ?>"
                                                                class="js-email-link req__link"><?= $USER->GetEmail() ?></a>
@@ -102,7 +95,7 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
     </div>
     <div class="columns req">
         <div class="row">
-            <div class="req__name medium-4 small-5 columns">Пароль</div>
+            <div class="req__name medium-4 small-5 columns">Пароль: </div>
             <div
                 class="req__value medium-8 small-7 columns">********
             </div>
@@ -118,23 +111,23 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
     <? if (!$userInfo->isPartner()): ?>
         <div class="columns req">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">ФИО</div>
+                <div class="req__name medium-4 small-5 columns">ФИО: </div>
                 <div
                     class="req__value medium-8 small-7 columns js-profile-name"><?= $userName; ?></div>
             </div>
         </div>
         <div class="columns req">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">Пол</div>
+                <div class="req__name medium-4 small-5 columns">Пол: </div>
                 <div
                     class="req__value medium-8 small-7 columns js-profile-gender"><?= empty($userInfo["PERSONAL_GENDER"]) ? "<span class='req__name'>—</span>" : ($userInfo["PERSONAL_GENDER"] == "M" ? "Мужской" : "Женский") ?></div>
             </div>
         </div>
         <div class="columns req">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">Дата рождения</div>
+                <div class="req__name medium-4 small-5 columns">Год рождения: </div>
                 <div
-                    class="req__value medium-8 small-7 columns js-profile-birthday"><?= empty($userInfo["PERSONAL_BIRTHDAY"]) ? "<span class='req__name'>—</span>" : date("d.m.Y", strtotime($userInfo["PERSONAL_BIRTHDAY"])) ?></div>
+                    class="req__value medium-8 small-7 columns js-profile-birthday"><?= empty($userInfo["UF_BIRTHDAY"]) ? "<span class='req__name'>—</span>" : $userInfo["UF_BIRTHDAY"] ?></div>
             </div>
         </div>
         <? $arResult["FORM_FIELDS"] = Array(
@@ -149,21 +142,22 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
                 "REQUIRED" => "Y",
                 "NO_LABEL" => "Y"
             ),
-            "PERSONAL_BIRTHDAY" => Array(
-                "BLOCK_TITLE" => "Дата рождения",
-                "TYPE" => "DATE",
-                "VALUE" => !empty($userInfo["PERSONAL_BIRTHDAY"]) ? date("Y-m-d", strtotime($userInfo["PERSONAL_BIRTHDAY"])) : "",
+            "UF_BIRTHDAY" => Array(
+                "BLOCK_TITLE" => "Год рождения",
+                "TYPE" => "TEXT",
+                "VALUE" => !empty($userInfo["UF_BIRTHDAY"]) ? $userInfo["UF_BIRTHDAY"] : "",
                 "REQUIRED" => "Y",
                 "NO_LABEL" => "Y",
+                "PLACEHOLDER" => "гггг",
                 "PARAMS" => Array(
-                    "autocomplete" => "off"
+                    "autocomplete" => "off",
+                    "maxlength" => "4"
                 )
             ),
             "LAST_NAME" => Array(
                 "BLOCK_TITLE" => "Фамилия",
                 "TYPE" => "TEXT",
                 "VALUE" => $userInfo["LAST_NAME"],
-                "REQUIRED" => "Y",
             ),
             "NAME" => Array(
                 "BLOCK_TITLE" => "Имя",
@@ -175,13 +169,12 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
                 "BLOCK_TITLE" => "Отчество",
                 "TYPE" => "TEXT",
                 "VALUE" => $userInfo["SECOND_NAME"],
-                "REQUIRED" => "Y",
             ),
         ); ?>
     <? else: ?>
         <div class="columns req">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">Наименование организации
+                <div class="req__name medium-4 small-5 columns">Наименование организации:
                 </div>
                 <div
                     class="req__value medium-8 small-7 columns js-profile-work"><?= empty($userInfo["WORK_COMPANY"]) ? "<span class='req__name'>—</span>" : $userInfo["WORK_COMPANY"] ?></div>
@@ -189,14 +182,14 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
         </div>
         <div class="columns req">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">Контактное лицо</div>
+                <div class="req__name medium-4 small-5 columns">Контактное лицо: </div>
                 <div
                     class="req__value medium-8 small-7 columns js-profile-name"><?= $userName; ?></div>
             </div>
         </div>
         <div class="columns req">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">Контактный телефон</div>
+                <div class="req__name medium-4 small-5 columns">Контактный телефон: </div>
                 <div
                     class="req__value medium-8 small-7 columns js-profile-phone"><?= empty($userInfo["PERSONAL_PHONE"]) ? "<span class='req__name'>—</span>" : $userInfo["PERSONAL_PHONE"] ?></div>
             </div>
@@ -278,7 +271,7 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
                     <input type="hidden" name="ajax" value="Y">
                     <input type="hidden" name="action" value="changeEmail">
 
-                    <h2 class="content__title">Сменить email</h2>
+                    <h2 class="content__title">Изменить логин</h2>
 
                     <div class="b-main-block__body"></div>
 
@@ -306,7 +299,7 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
                     <input type="hidden" name="ajax" value="Y">
                     <input type="hidden" name="action" value="changePass">
 
-                    <h2 class="content__title">Сменить пароль</h2>
+                    <h2 class="content__title">Изменить пароль</h2>
 
                     <div class="b-main-block__body"></div>
 
@@ -396,8 +389,8 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
                         if (response.NEW.PERSONAL_GENDER !== undefined) {
                             $(".js-profile-gender").text(response.NEW.PERSONAL_GENDER);
                         }
-                        if (response.NEW.PERSONAL_BIRTHDAY !== undefined) {
-                            $(".js-profile-birthday").text(response.NEW.PERSONAL_BIRTHDAY);
+                        if (response.NEW.UF_BIRTHDAY !== undefined) {
+                            $(".js-profile-birthday").text(response.NEW.UF_BIRTHDAY);
                         }
                         if (response.NEW.WORK_COMPANY !== undefined) {
                             $(".js-profile-work").text(response.NEW.WORK_COMPANY);

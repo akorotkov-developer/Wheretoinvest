@@ -42,8 +42,11 @@ class UserEx
             if (!empty($_REQUEST["FROM_PUBLIC"])) {
                 if (empty($_REQUEST["partner"])) {
                     $arFields["PERSONAL_GENDER"] = $_REQUEST["PERSONAL_GENDER"];
-                    if (!empty($_REQUEST["PERSONAL_BIRTHDAY"]))
-                        $arFields["PERSONAL_BIRTHDAY"] = date("d.m.Y", strtotime($_REQUEST["PERSONAL_BIRTHDAY"]));
+                    if(!empty($_REQUEST["UF_BIRTHDAY"]) && !preg_match("#\d{4,4}#is", $_REQUEST["UF_BIRTHDAY"])){
+                        $GLOBALS['APPLICATION']->ThrowException('Некорректно указан год рождения.');
+                        return false;
+                    }
+                    $arFields["UF_BIRTHDAY"] = $_REQUEST["UF_BIRTHDAY"];
                     $arFields["NAME"] = $_REQUEST["NAME"];
                     $arFields["UF_TYPE"] = 1;
                 } else {
