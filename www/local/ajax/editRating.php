@@ -16,10 +16,6 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
             foreach ($_REQUEST["rating"] as $ratingID => $val) {
                 $id = 0;
                 $arFields = Array();
-                if (!empty($val["rating"]) && empty($val["date"])) {
-                    $arResult["ERROR"] = "Не заполнено поле \"Дата получения\"";
-                    break;
-                }
 
                 if (!empty($arResult["RATINGS"][$ratingID])) {
                     $id = $arResult["RATINGS"][$ratingID]["ID"];
@@ -29,13 +25,11 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
 
                     $arFields["UF_RATING"] = $val["rating"];
                     $arFields["UF_AGENCY"] = $val["agency"];
-                    $arFields["UF_DATE"] = !empty($val["date"]) ? date("d.m.Y", strtotime($val["date"])) : "";
                 } else {
                     $arFields = Array(
                         "UF_USER" => $USER->GetID(),
                         "UF_RATING" => $val["rating"],
                         "UF_AGENCY" => $val["agency"],
-                        "UF_DATE" => !empty($val["date"]) ? date("d.m.Y", strtotime($val["date"])) : ""
                     );
                 }
 
