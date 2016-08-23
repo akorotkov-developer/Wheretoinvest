@@ -19,47 +19,51 @@ $userInfo = getContainer("User");
 <div class="row">
     <div class="assets columns">
         <div class="assets__head">
-            <div class="assets__title">Капитал / Активы:</div>
-            <span
-                class="assets__black js-capital-assets"><?= !empty($userInfo["UF_CAPITAL_ASSETS"]) ? $userInfo["UF_CAPITAL_ASSETS"] . "%" : "Не задано" ?></span>
-        </div>
-        <div class="assets__text">Для банков соответствует нормативу Н1.1 на последнюю отчетную дату. Для
+            <div class="assets__title">
+            <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip" title="Для банков соответствует нормативу Н1.1 на последнюю отчетную дату. Для
             остальных организаций соответствует отношению величины собственного капитала к активам по балансу, в
-            процентах
-        </div>
-    </div>
-    <div class="assets columns">
-        <div class="assets__head">
-            <div class="assets__title">Собственный капитал:</div>
+            процентах"></span> Капитал / Активы:
+            </div>
             <span
-                class="assets__red js-capital"><?= !empty($userInfo["UF_CAPITAL"]) ? number_format(intval($userInfo["UF_CAPITAL"])) . " тыс. Р" : "Не задано" ?></span>
-        </div>
-        <div class="assets__text">Для банков соответствует показателю «Базовый капитал» (строка 102 формы
-            0409123 «Расчёт собственных средств (капитала) («Базель III»)) на последнюю отчетную дату. Для
-            остальных организаций соответствует величине собственного капитала по балансу
+                class="assets__black js-capital-assets"><?= !empty($userInfo["UF_CAPITAL_ASSETS"]) ? $userInfo["UF_CAPITAL_ASSETS"] . "%" : "<span class='req__name'>—</span>" ?></span>
         </div>
     </div>
     <div class="assets columns">
         <div class="assets__head">
-            <div class="assets__title">Активы:</div>
-            <? if (!empty($userInfo["UF_CAPITAL_ASSETS"]) && !empty($userInfo["UF_CAPITAL"]) && !empty($userInfo["UF_ASSETS"])): ?>
-                <span class="assets__red js-capital"><?= number_format(intval($userInfo["UF_CAPITAL"])) ?> тыс. Р</span>
-                <span class="assets__black"> / <span class="js-capital-assets"><?= $userInfo["UF_CAPITAL_ASSETS"] ?>
-                        %</span> =</span>
-                <span class="assets__red js-assets"><?= number_format(intval($userInfo["UF_ASSETS"])) ?> тыс. Р</span>
-            <? else: ?>
-                <span
-                    class="assets__red js-assets"><?= !empty($userInfo["UF_ASSETS"]) ? number_format(intval($userInfo["UF_ASSETS"])) . " тыс. Р" : "Не задано" ?></span>
-            <? endif; ?>
+            <div class="assets__title">
+            <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip" title="Для банков соответствует показателю «Базовый капитал» (строка 102 формы
+            0409123 «Расчёт собственных средств (капитала) («Базель III»)) на последнюю отчетную дату. Для
+            остальных организаций соответствует величине собственного капитала по балансу"></span> Собственный капитал:
+            </div>
+            <span
+                class="assets__red js-capital"><?= !empty($userInfo["UF_CAPITAL"]) ? $userInfo["UF_CAPITAL"] . " тыс. Р" : "<span class='req__name'>—</span>" ?></span>
         </div>
-        <div class="assets__text"> Для банков соответствует отношению показателя «Собственный капитал» к
+    </div>
+    <div class="assets columns">
+        <div class="assets__head">
+            <div class="assets__title">
+            <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip" title="Для банков соответствует отношению показателя «Собственный капитал» к
             показателю «Капитал / Активы» на последнюю отчетную дату . Для остальных организаций соответствует
-            величине активов по балансу
+            величине активов по балансу"></span> Активы:
+            </div>
+            <div class="js-assets-parent">
+                <? if (!empty($userInfo["UF_CAPITAL_ASSETS"]) && !empty($userInfo["UF_CAPITAL"]) && !empty($userInfo["UF_ASSETS"])): ?>
+                    <span class="assets__red js-capital"><?= $userInfo["UF_CAPITAL"] ?>
+                        тыс. Р</span>
+                    <span class="assets__black"> / <span class="js-capital-assets"><?= $userInfo["UF_CAPITAL_ASSETS"] ?>
+                            %</span> =</span>
+                    <span class="assets__red js-assets"><?= $userInfo["UF_ASSETS"] ?>
+                        тыс. Р</span>
+                <? else: ?>
+                    <span
+                        class="assets__red js-assets"><?= !empty($userInfo["UF_ASSETS"]) ? $userInfo["UF_ASSETS"] . " тыс. Р" : "<span class='req__name'>—</span>" ?></span>
+                <? endif; ?>
+            </div>
         </div>
     </div>
 
     <div class="columns">
-        <a href="#" class="content__change" data-reveal-id="assets"> Изменить</a>
+        <a href="#" class="content__change" data-reveal-id="assets">Изменить</a>
     </div>
     <div
         class="columns content__date"><? if (!empty($userInfo["UF_ASSETS_DATE"])): ?>Обновлено: <?= date("d.m.Y в H:i", strtotime($userInfo["UF_ASSETS_DATE"])) ?><? endif; ?></div>
@@ -201,39 +205,53 @@ $userInfo = getContainer("User");
             }
         });
 
-        $(".js-participate"). on("change", function () {
-            var
-                type = $(this). data("type"),
-                val = $(this). is(":checked") ? $(this). val() : "";
-
-            $(".b-form__error"). detach();
-            $(".alert-box"). detach();
+        $(".x-save-form").on("submit", function () {
+            var data = $(this).serialize(),
+                _this = $(this),
+                url = _this.attr("action") !== "" ? _this.attr("action") : "/local/ajax/editAssets.php";
+            _this.find(".b-form__error").detach();
+            _this.find(".alert-box").detach();
 
             $.ajax({
-                url: "/local/ajax/editProfile.php",
-                data: {
-                    action: "setParticipate",
-                    type: type,
-                    val: val,
-                    ajax: "Y",
-                    sessid: "<?= bitrix_sessid(); ?>"
-                },
+                url: url,
+                data: data,
                 method: "POST",
                 dataType: "json",
                 success: function (response) {
-                    if (response.ERROR !== undefined) {
-                        $(".b-main-block__body"). prepend('<div data-alert class="alert-box alert radius">' + response.ERROR + '<a href="#" class="close">&times;</a></div>');
-                        $(document). foundation('alert', 'reflow');
-                    } else if (response.SUCCESS !== undefined) {
-                        $(".b-main-block__body"). prepend('<div data-alert class="alert-box success radius">' + response.SUCCESS + '<a href="#" class="close">&times;</a></div>');
-                        $(document). foundation('alert', 'reflow');
+                    if (response.ERRORS !== undefined) {
+                        $.each(response.ERRORS, function (i, item) {
+                            _this.find('input[name="' + i + '"]').after('<div class="b-form__error">' + item + '</div>');
+                        });
+                    }
+                    else if (response.ERROR !== undefined) {
+                        _this.find(".b-main-block__body").prepend('<div data-alert class="alert-box alert radius">' + response.ERROR + '<a href="#" class="close">&times;</a></div>');
+                        $(document).foundation('alert', 'reflow');
+                    }
+                    else if (response.SUCCESS !== undefined) {
+                        _this.find(".b-main-block__body").prepend('<div data-alert class="alert-box success radius">' + response.SUCCESS + '<a href="#" class="close">&times;</a></div>');
+                        $(document).foundation('alert', 'reflow');
+
+                        if (response.NEW.UF_ASSETS !== undefined) {
+                            if (response.NEW.UF_CAPITAL_ASSETS !== undefined && response.NEW.UF_CAPITAL !== undefined) {
+                                $(".js-assets-parent").html('<span class="assets__red js-capital"></span><span class="assets__black"> / <span class="js-capital-assets"></span> =</span><span class="assets__red js-assets"></span>');
+                            }
+                            else {
+                                $(".js-assets-parent").html('<span class="assets__red js-assets"></span>');
+                            }
+                            $(".js-assets").text(response.NEW.UF_ASSETS + " тыс. Р");
+                        }
+                        if (response.NEW.UF_CAPITAL_ASSETS !== undefined) {
+                            $(".js-capital-assets").text(response.NEW.UF_CAPITAL_ASSETS + "%");
+                        }
+                        if (response.NEW.UF_CAPITAL !== undefined) {
+                            $(".js-capital").text(response.NEW.UF_CAPITAL + " тыс. Р");
+                        }
                     }
 
-                    var
-                        alert = $("[data-alert]:visible");
+                    var alert = $("[data-alert]:visible");
                     if (alert.length) {
-                        $('html, body'). animate({
-                            scrollTop: alert. eq(0). offset().top - 80
+                        $('html, body').animate({
+                            scrollTop: alert.eq(0).offset().top - 80
                         }, 500);
                     }
                 }
