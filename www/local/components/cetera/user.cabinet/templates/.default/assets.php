@@ -9,44 +9,44 @@ global $USER;
 /** @global CMain $APPLICATION */
 global $APPLICATION;
 
-$APPLICATION->SetTitle("Ключевые показатели отчётности");
-$APPLICATION->AddChainItem("Ключевые показатели отчётности");
+$APPLICATION->SetTitle("Капитал и активы");
+$APPLICATION->AddChainItem("Капитал и активы");
 
 $userInfo = getContainer("User");
 
 ?>
 
 <div class="row">
-    <div class="assets columns">
-        <div class="assets__head">
-            <div class="assets__title">
-            <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip" title="Для банков соответствует нормативу Н1.1 на последнюю отчетную дату. Для
+
+    <div class="columns req">
+        <div class="row">
+            <div class="req__name medium-4 small-5 columns">Капитал / Активы:</div>
+            <div class="req__value medium-8 small-7 columns">
+                <span
+                    class="assets__black js-capital-assets"><?= !empty($userInfo["UF_CAPITAL_ASSETS"]) ? $userInfo["UF_CAPITAL_ASSETS"] . "%" : "<span class='req__name'>—</span>" ?></span>
+                &nbsp;<span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip" title="Для банков соответствует нормативу Н1.1 на последнюю отчетную дату. Для
             остальных организаций соответствует отношению величины собственного капитала к активам по балансу, в
-            процентах"></span> Капитал / Активы:
+            процентах"></span>
             </div>
-            <span
-                class="assets__black js-capital-assets"><?= !empty($userInfo["UF_CAPITAL_ASSETS"]) ? $userInfo["UF_CAPITAL_ASSETS"] . "%" : "<span class='req__name'>—</span>" ?></span>
         </div>
     </div>
-    <div class="assets columns">
-        <div class="assets__head">
-            <div class="assets__title">
-            <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip" title="Для банков соответствует показателю «Базовый капитал» (строка 102 формы
+    <div class="columns req">
+        <div class="row">
+            <div class="req__name medium-4 small-5 columns">Собственный капитал:</div>
+            <div class="req__value medium-8 small-7 columns">
+<span
+    class="assets__red js-capital"><?= !empty($userInfo["UF_CAPITAL"]) ? $userInfo["UF_CAPITAL"] . " тыс. Р" : "<span class='req__name'>—</span>" ?></span>
+                &nbsp;<span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip" title="Для банков соответствует показателю «Базовый капитал» (строка 102 формы
             0409123 «Расчёт собственных средств (капитала) («Базель III»)) на последнюю отчетную дату. Для
-            остальных организаций соответствует величине собственного капитала по балансу"></span> Собственный капитал:
+            остальных организаций соответствует величине собственного капитала по балансу"></span>
             </div>
-            <span
-                class="assets__red js-capital"><?= !empty($userInfo["UF_CAPITAL"]) ? $userInfo["UF_CAPITAL"] . " тыс. Р" : "<span class='req__name'>—</span>" ?></span>
         </div>
     </div>
-    <div class="assets columns">
-        <div class="assets__head">
-            <div class="assets__title">
-            <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip" title="Для банков соответствует отношению показателя «Собственный капитал» к
-            показателю «Капитал / Активы» на последнюю отчетную дату . Для остальных организаций соответствует
-            величине активов по балансу"></span> Активы:
-            </div>
-            <div class="js-assets-parent">
+    <div class="columns req">
+        <div class="row">
+            <div class="req__name medium-4 small-5 columns">Активы:</div>
+            <div class="req__value medium-8 small-7 columns">
+<span class="js-assets-parent">
                 <? if (!empty($userInfo["UF_CAPITAL_ASSETS"]) && !empty($userInfo["UF_CAPITAL"]) && !empty($userInfo["UF_ASSETS"])): ?>
                     <span class="assets__red js-capital"><?= $userInfo["UF_CAPITAL"] ?>
                         тыс. Р</span>
@@ -58,6 +58,10 @@ $userInfo = getContainer("User");
                     <span
                         class="assets__red js-assets"><?= !empty($userInfo["UF_ASSETS"]) ? $userInfo["UF_ASSETS"] . " тыс. Р" : "<span class='req__name'>—</span>" ?></span>
                 <? endif; ?>
+            </span>
+                &nbsp;<span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip" title="Для банков соответствует отношению показателя «Собственный капитал» к
+            показателю «Капитал / Активы» на последнюю отчетную дату . Для остальных организаций соответствует
+            величине активов по балансу"></span>
             </div>
         </div>
     </div>
