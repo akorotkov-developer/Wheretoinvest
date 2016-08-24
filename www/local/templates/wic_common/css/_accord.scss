@@ -42,9 +42,9 @@
         background: url(../images/secur.png) no-repeat;
       }
     }
-    &:last-child {
+    &:first-child {
       .accord__link {
-        border-bottom: 0;
+        border-top: 0;
       }
     }
   }
@@ -52,14 +52,14 @@
     color: #202020;
     font-size: 12px;
     font-weight: 400;
-    border-bottom: 1px solid #e6e6e6;
+    border-top: 1px solid #e6e6e6;
     padding-bottom: 14px;
     display: block;
     padding-top: 14px;
-    &_no-bord {
-      border-bottom: 0;
-    }
     text-transform: uppercase;
+    &_no-bord {
+      border-top: 0;
+    }
     &:hover, &_active {
       color: #e53935;
     }

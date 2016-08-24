@@ -9,3 +9,30 @@
 .i-req__name_middle {
     line-height: 40px;
 }
+
+.assets__red, .assets__black {
+    font-size: 28px !important;
+    font-family: 'Conv_HelveticaNeueCyr-Thin', sans-serif;
+    color: #202020 !important;
+}
+
+.assets__small {
+    font-size: 12px !important;
+}
+
+.assets__first-column {
+    padding-top: 7px;
+}
+
+.assets__num_right {
+    display: inline-block;
+    margin-right: 5px;
+    text-align: right;
+    min-width: 215px;
+}
+
+@media only screen and (max-width: 850px) {
+    .assets__num_right {
+        min-width: 0;
+    }
+}
