@@ -26,6 +26,9 @@ $arDefaultUrlTemplates404 = array(
     "rating" => "rating/",
     "rating_edit" => "rating/edit/",
     "assets" => "assets/",
+    "offers" => "offers/#type#/",
+    "offers_edit" => "offers/#type#/edit/#ID#/",
+    "offers_add" => "offers/#type#/add/",
 );
 
 $arDefaultVariableAliases404 = array();
@@ -37,6 +40,7 @@ $arComponentVariables = array(
     "ID",
     "CODE",
     "action",
+    "type",
 );
 
 if ($arParams["SEF_MODE"] == "Y") {
@@ -73,6 +77,9 @@ if ($arParams["SEF_MODE"] == "Y") {
         case "rating":
         case "rating_edit":
         case "assets":
+        case "offers_add":
+        case "offers_edit":
+        case "offers":
             if (!getContainer('User')->isPartner() && !getContainer('User')->isAdmin()) {
                 $b404 = true;
             }
@@ -134,6 +141,15 @@ if ($arParams["SEF_MODE"] == "Y") {
             $componentPage = "rating_edit";
             break;
         case "assets":
+            $componentPage = "assets";
+            break;
+        case "offers":
+            $componentPage = "assets";
+            break;
+        case "offers_edit":
+            $componentPage = "assets";
+            break;
+        case "offers_add":
             $componentPage = "assets";
             break;
         default:

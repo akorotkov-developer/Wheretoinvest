@@ -1,0 +1,12 @@
+.js-percent-text {
+    padding: 12px 2px 0;
+    display: inline-block;
+}
+
+.graph__td:not(.i-show-text) .js-percent-text {
+    display: none;
+}
+
+.graph__td.i-show-text input {
+    display: none;
+}

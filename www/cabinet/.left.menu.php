@@ -29,6 +29,27 @@ $aMenuLinks = Array(
         "getContainer('User')->isPartner()"
     ),
     Array(
+        "Доходность",
+        "",
+        Array(),
+        Array("class" => "accord__li_profit"),
+        "getContainer('User')->isPartner()"
+    ),
+    Array(
+        "Для физ. лиц",
+        "/cabinet/offers/private/",
+        Array(),
+        Array("class" => "accord__link_no-bord"),
+        "getContainer('User')->isPartner()"
+    ),
+    Array(
+        "Для юр. лиц",
+        "/cabinet/offers/legal/",
+        Array(),
+        Array(),
+        "getContainer('User')->isPartner()"
+    ),
+    Array(
         "Надежность",
         "",
         Array(),

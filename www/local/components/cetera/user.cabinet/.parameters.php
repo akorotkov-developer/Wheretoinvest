@@ -89,6 +89,28 @@ $arComponentParameters = array(
                 "DEFAULT" => "assets/",
                 "VARIABLES" => array(),
             ),
+            "offers" => array(
+                "NAME" => "Список предложение",
+                "DEFAULT" => "offers/#type#/",
+                "VARIABLES" => array(
+                    "type" => "type"
+                ),
+            ),
+            "offers_edit" => array(
+                "NAME" => "Редактирование предложения",
+                "DEFAULT" => "offers/#type#/edit/#ID#/",
+                "VARIABLES" => array(
+                    "type" => "type",
+                    "ID" => "ID"
+                ),
+            ),
+            "offers_add" => array(
+                "NAME" => "Создание предложения",
+                "DEFAULT" => "offers/#type#/add/",
+                "VARIABLES" => array(
+                    "type" => "type"
+                ),
+            ),
             /*"profile" => array(
                 "NAME" => GetMessage("PROFILE_PAGE"),
                 "DEFAULT" => "profile/",
