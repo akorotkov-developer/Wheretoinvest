@@ -25,6 +25,11 @@ $APPLICATION->SetTitle("Создать предложение");
 $APPLICATION->AddChainItem("Предложения для " . $name . " лиц", preg_replace("#add/#is", "", $APPLICATION->GetCurPage()));
 $APPLICATION->AddChainItem("Создать предложение");
 
+if (defined("NO_LEGAL") && $type == "27"):?>
+    <div class="content__title" style="color: #9e9e9e;">Раздел временно не работает</div>
+    <? return false; ?>
+<? endif;
+
 $APPLICATION->IncludeComponent("cetera:super.component", "offer.edit", Array(
     "TYPE" => $type,
 ));

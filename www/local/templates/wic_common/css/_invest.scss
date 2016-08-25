@@ -2,7 +2,7 @@
 
   &__region, &__place {
     color: #202020;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     float: left;
     width: 200px;
@@ -21,7 +21,7 @@
   }
   &__title {
     color: #202020;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     position: relative;
     width: calc(100% - 200px);
@@ -35,9 +35,27 @@
     border-bottom: 1px solid #e6e6e6;
     float: left;
     width: 100%;
-    &:hover {
-      background: #fef2d2;
+    position: relative;
 
+    &:hover {
+      &:after {
+        display: inline-block;
+      }
+    }
+
+    &:after {
+      width: 16px;
+      height: 16px;
+      display: none;
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      margin-top: -8px;
+      cursor: pointer;
+      content: '';
+      z-index: 10;
+      transform: rotate(-90deg);
+      background: url(../images/sel.png) no-repeat center;
     }
   }
   &__body {
@@ -51,7 +69,7 @@
     padding-bottom: 16px;
     float: left;
     color: #000;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     padding-left: 15px;
     width: calc(100% - 200px);

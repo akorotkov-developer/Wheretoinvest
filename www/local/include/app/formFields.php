@@ -16,7 +16,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
             <? if (empty($arItem["TYPE"])) continue; ?>
             <? if ($arItem["TYPE"] === "HIDDEN"): ?>
                 <input type="hidden"
-                       value="<?= $arItem["VALUE"] ?>"
+                       value="<?= htmlentities($arItem["VALUE"]) ?>"
                        name="<?= $arKey ?>"
                        id="FIELD_<?= $arKey ?>" <?
                        if (!empty($arItem["DISABLED"])): ?>disabled <?endif;
@@ -24,7 +24,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
 
                        <? if (count($arItem["PARAMS"])):
                        foreach ($arItem["PARAMS"] as $k => $v): ?>
-                       <?= $k ?>="<?= addslashes($v) ?>"
+                       <?= $k ?>="<?= htmlentities($v) ?>"
                     <?endforeach;
                     endif; ?>/>
                 <? continue; ?>
@@ -170,7 +170,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                             <input
                                 class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
                                 type="text"
-                                value="<?= $arItem["VALUE"] ?>"
+                                value="<?= htmlentities($arItem["VALUE"]) ?>"
                                 name="<?= $arKey ?>"
                                 id="FIELD_<?= $arKey ?>" <?
                                 if (!empty($arItem["REQUIRED"])): ?>required <?endif;
@@ -185,7 +185,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
 
                                 <? if (count($arItem["PARAMS"])):
                                 foreach ($arItem["PARAMS"] as $k => $v): ?>
-                                <?= $k ?>="<?= addslashes($v) ?>"
+                                <?= $k ?>="<?= htmlentities($v) ?>"
                                 <?endforeach;
                                 endif; ?>/>
                         </div>
@@ -236,7 +236,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
 
                                             <? if (count($arItem["PARAMS"])):
                                             foreach ($arItem["PARAMS"] as $k => $v): ?>
-                                            <?= $k ?>="<?= addslashes($v) ?>"
+                                            <?= $k ?>="<?= htmlentities($v) ?>"
                                             <?endforeach;
                                             endif; ?>><?= $arItem["VALUE"] ?></textarea>
                         </div>
@@ -308,7 +308,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                             <input
                                 class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
                                 type="email"
-                                value="<?= $arItem["VALUE"] ?>"
+                                value="<?= htmlentities($arItem["VALUE"]) ?>"
                                 name="<?= $arKey ?>"
                                 id="FIELD_<?= $arKey ?>" <?
                                 if (!empty($arItem["REQUIRED"])): ?>required <?endif;
@@ -323,7 +323,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
 
                                 <? if (count($arItem["PARAMS"])):
                                 foreach ($arItem["PARAMS"] as $k => $v): ?>
-                                <?= $k ?>="<?= addslashes($v) ?>"
+                                <?= $k ?>="<?= htmlentities($v) ?>"
                                 <?endforeach;
                                 endif; ?>/>
                         </div>
@@ -362,7 +362,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 <input
                                     class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
                                     type="password"
-                                    value="<?= $arItem["VALUE"] ?>"
+                                    value="<?= htmlentities($arItem["VALUE"]) ?>"
                                     name="<?= $arKey ?>"
                                     id="FIELD_<?= $arKey ?>" <?
                                     if (!empty($arItem["REQUIRED"])): ?>required <?endif;
@@ -377,7 +377,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
 
                                     <? if (count($arItem["PARAMS"])):
                                     foreach ($arItem["PARAMS"] as $k => $v): ?>
-                                    <?= $k ?>="<?= addslashes($v) ?>"
+                                    <?= $k ?>="<?= htmlentities($v) ?>"
                                     <?endforeach;
                                     endif; ?>/>
                             </div>
@@ -429,7 +429,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                     ?>
                                            <? if (count($arItem["PARAMS"])):
                                            foreach ($arItem["PARAMS"] as $k => $v): ?>
-                                           <?= $k ?>="<?= addslashes($v) ?>"
+                                           <?= $k ?>="<?= htmlentities($v) ?>"
                                     <?endforeach;
                                     endif; ?>
                                            class="check__checkbox"
@@ -493,7 +493,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                         ?>
                                                <? if (count($arItem["PARAMS"])):
                                                foreach ($arItem["PARAMS"] as $k => $v): ?>
-                                               <?= $k ?>="<?= addslashes($v) ?>"
+                                               <?= $k ?>="<?= htmlentities($v) ?>"
                                         <?endforeach;
                                         endif; ?><? if (count($arItem["LIST"]) === 1): ?>
                                             id="FIELD_<?= $arKey; ?>"
@@ -576,7 +576,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                             ?><? if (!empty($arItem["MULTIPLE"])): ?>multiple <? endif; ?>
                                             <? if (count($arItem["PARAMS"])):
                                             foreach ($arItem["PARAMS"] as $k => $v): ?>
-                                            <?= $k ?>="<?= addslashes($v) ?>"
+                                            <?= $k ?>="<?= htmlentities($v) ?>"
                                         <?endforeach;
                                         endif; ?>>
                                             <option value="" data-desc=""></option>
@@ -621,7 +621,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                     ?><? if (!empty($arItem["MULTIPLE"])): ?>multiple <? endif; ?>
                                     <? if (count($arItem["PARAMS"])):
                                     foreach ($arItem["PARAMS"] as $k => $v): ?>
-                                    <?= $k ?>="<?= addslashes($v) ?>"
+                                    <?= $k ?>="<?= htmlentities($v) ?>"
                                 <?endforeach;
                                 endif; ?>>
                                     <option value="" data-desc=""></option>
@@ -703,7 +703,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                             <input
                                 class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
                                 type="date"
-                                value="<?= $arItem["VALUE"] ?>"
+                                value="<?= htmlentities($arItem["VALUE"]) ?>"
                                 name="<?= $arKey ?>"
                                 id="FIELD_<?= $arKey ?>" <?
                                 if (!empty($arItem["REQUIRED"])): ?>required <?endif;
@@ -718,7 +718,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
 
                                 <? if (count($arItem["PARAMS"])):
                                 foreach ($arItem["PARAMS"] as $k => $v): ?>
-                                <?= $k ?>="<?= addslashes($v) ?>"
+                                <?= $k ?>="<?= htmlentities($v) ?>"
                                 <?endforeach;
                                 endif; ?>/>
                         </div>
@@ -769,7 +769,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 <input
                                     class="fileform__file <? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
                                     type="file"
-                                    value="<?= $arItem["VALUE"] ?>"
+                                    value="<?= htmlentities($arItem["VALUE"]) ?>"
                                     name="<?= $arKey ?>"
                                     id="FIELD_<?= $arKey ?>" <?
                                     if (!empty($arItem["REQUIRED"])): ?>required <?endif;
@@ -784,7 +784,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
 
                                     <? if (count($arItem["PARAMS"])):
                                     foreach ($arItem["PARAMS"] as $k => $v): ?>
-                                    <?= $k ?>="<?= addslashes($v) ?>"
+                                    <?= $k ?>="<?= htmlentities($v) ?>"
                                     <?endforeach;
                                     endif; ?>/>
                             </div>

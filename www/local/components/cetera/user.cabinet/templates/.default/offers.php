@@ -24,20 +24,10 @@ switch ($arResult["VARIABLES"]["type"]) {
 $APPLICATION->SetTitle("Предложения для " . $name . " лиц");
 $APPLICATION->AddChainItem("Предложения для " . $name . " лиц");
 
-if (CModule::IncludeModule("sale")) {
-    $list = \CSaleLocation::GetRegionList();
-    while ($el = $list->Fetch()) {
-        $arResult["REGIONS"][mb_substr($el["NAME"], 0, 1)][] = $el;
-        $arResult["TOTAL_COUNT"]++;
-    }
-
-    $list = \CSaleLocation::GetList(Array(), Array("CODE" => Array("0000073738", "0000103664", "0001092542"), "LID" => LANGUAGE_ID));
-    while ($el = $list->Fetch()) {
-        $el["NAME"] = $el["CITY_NAME"];
-        $arResult["REGIONS"][$el["ID"]] = $el;
-        $arResult["TOTAL_COUNT"]++;
-    }
-}
+if (defined("NO_LEGAL") && $type == "27"):?>
+    <div class="content__title" style="color: #9e9e9e;">Раздел временно не работает</div>
+    <? return false; ?>
+<? endif;
 
 $hblock = new Cetera\HBlock\SimpleHblockObject(3);
 $list = $hblock->getList(Array("filter" => Array("UF_USER_ID" => intval($USER->GetID()), "UF_TYPE" => $type)));
@@ -47,7 +37,8 @@ while ($el = $list->fetch()) {
 ?>
 
 <? if (!empty($_SESSION["SUCCESS"])): ?>
-    <div data-alert class="alert-box success radius"><?= $_SESSION["SUCCESS"] ?><a href="#" class="close">&times;</a>
+    <div data-alert class="alert-box success radius"><?= $_SESSION["SUCCESS"] ?><a href="#"
+                                                                                   class="close">&times;</a>
     </div>
     <? unset($_SESSION["SUCCESS"]); ?>
 <? endif; ?>
@@ -67,7 +58,7 @@ while ($el = $list->fetch()) {
                             <?
                             $region = "";
                             if (count($arItem["UF_REGIONS"]) === 1) {
-                                $region = $arResult["REGIONS"][reset($arItem["UF_REGIONS"])]["NAME"];
+                                $region = "1 регион РФ";
                             } elseif (count($arItem["UF_REGIONS"]) == $arResult["TOTAL_COUNT"]) {
                                 $region = "Все регионы РФ";
                             } else {

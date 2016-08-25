@@ -26,7 +26,7 @@ if (defined("ERROR_404"))
         </div>
         <div class="columns">
             <label for="#" class="content__label">Наименование предложения
-                <input type="text" name="UF_NAME" value="<?= $arResult["ITEM"]["UF_NAME"] ?>" required/>
+                <input type="text" name="UF_NAME" value="<?= htmlentities($arResult["ITEM"]["UF_NAME"]) ?>" required/>
             </label>
         </div>
     </div>
@@ -268,6 +268,8 @@ if (defined("ERROR_404"))
                         $('.region__js-percent').unbind().on('blur', inputCreate);
                     }
                 }
+                $('.region__js-fir').val("");
+                $('.region__js-sec').val("");
                 respoTd();
             });
 
@@ -294,6 +296,7 @@ if (defined("ERROR_404"))
                         $('.region__js-percent').unbind().on('blur', inputCreate);
                     }
                 }
+                $('.region__js-sum').val("");
                 respoTd();
             });
 
