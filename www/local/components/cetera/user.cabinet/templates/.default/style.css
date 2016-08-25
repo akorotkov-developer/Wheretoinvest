@@ -36,3 +36,8 @@
         min-width: 0;
     }
 }
+
+.content__title_small {
+    font-size: 14px;
+    color: #9e9e9e;
+}

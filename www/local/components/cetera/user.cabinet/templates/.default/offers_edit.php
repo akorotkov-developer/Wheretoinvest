@@ -26,7 +26,7 @@ $APPLICATION->AddChainItem("Предложения для " . $name . " лиц",
 $APPLICATION->AddChainItem("Изменить предложение");
 
 if (defined("NO_LEGAL") && $type == "27"):?>
-    <div class="content__title" style="color: #9e9e9e;">Раздел временно не работает</div>
+    <div class="content__title_small">Раздел временно не работает</div>
     <? return false; ?>
 <? endif;
 
