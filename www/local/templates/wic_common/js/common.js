@@ -67,11 +67,6 @@
                 $('.js-menu').toggle(500);
                 $('.b-header__place, .b-header__showMenu,.b-header__firstline').toggleClass('js-toggle');
             });
-            //begin of b-offers__item show/hide
-            $('.b-offers__arrows').click(function () {
-                $(this).closest('.b-offers__item').toggleClass('active');
-            });
-            //end of b-offers__item show/hide
 
             //begin of select my region
             (function () {

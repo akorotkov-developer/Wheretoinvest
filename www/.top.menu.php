@@ -2,28 +2,28 @@
 $aMenuLinks = Array(
 	Array(
 		"Все способы", 
-		"/all/", 
+		"/",
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Банковские вклады", 
-		"/bank/", 
+		"/?method=3",
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Займы", 
-		"/zaim/", 
+		"/?method=6",
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Избранные", 
-		"/favorite/", 
+		"/?favorite=Y",
 		Array(), 
 		Array("class"=>"b-header__menu-link_star"), 
 		"" 

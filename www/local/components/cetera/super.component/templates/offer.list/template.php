@@ -1,0 +1,378 @@
+<? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
+    <form action="" class="x-filter">
+        <?
+        $request = http_build_query($_REQUEST);
+        $list = explode("&", $request);
+        ?>
+        <? foreach ($list as $item): ?>
+            <? list($key, $val) = explode("=", $item); ?>
+            <? if (in_array($key, Array("summ", "currency", "time"))) continue; ?>
+            <input type="hidden" name="<?= urldecode($key) ?>" value="<?= $val ?>">
+        <? endforeach; ?>
+        <section class="b-sort row">
+            <div class="b-sort__arr"></div>
+            <div class="columns b-sort__all">на 1 год</div>
+            <div class="b-sort__main">
+                <div class="column medium-7">
+                    <span class="b-sort__label">Сумма:</span>
+                    <input type="text" class="b-sort__inp" value="<?= $_REQUEST["summ"] ?>" name="summ">
+                </div>
+                <div class="column small-5 medium-2 b-sort__select">
+                    <span class="b-sort__label">Валюта:</span>
+                    <select name="currency">
+                        <? foreach ($arResult["FIELDS"]["UF_CURRENCY"] as $key => $name): ?>
+                            <option
+                                value="<?= $key ?>"<? if ($_REQUEST["currency"] == $key): ?> selected<? endif; ?>><?= $name ?></option>
+                        <? endforeach; ?>
+                    </select>
+                </div>
+                <div class="column small-7 medium-3">
+                    <span class="b-sort__label">Срок:</span>
+                    <?
+                    $timeList = Array(
+                        "31" => "1 месяц",
+                        "93" => "3 месяца",
+                        "182" => "6 месяцев",
+                        "365" => "1 год",
+                        ">365" => "1 год и более",
+                        "1095" => "3 года",
+                        ">1095" => "3 года и более",
+                        "3650" => "10 лет",
+                        ">3650" => "10 лет и более",
+                        "7300" => "20 лет",
+                        ">7300" => "20 лет и более",
+                    );
+                    ?>
+                    <select name="time">
+                        <option value="">Срок не выбран</option>
+                        <? foreach ($timeList as $key => $name): ?>
+                            <option
+                                value="<?= $key ?>"<? if ($_REQUEST["time"] == $key): ?> selected<? endif; ?>><?= $name ?></option>
+                        <? endforeach; ?>
+                    </select>
+                </div>
+            </div>
+        </section>
+        <button type="submit" class="hide"></button>
+        <script type="text/javascript">
+            $(function () {
+                $(".x-filter select").on("change", function () {
+                    $(this).closest(".x-filter").submit();
+                });
+
+                $(".x-filter input").on("blur", function () {
+                    $(this).closest(".x-filter").submit();
+                });
+            });
+        </script>
+    </form>
+<? if (count($arResult["ITEMS"])): ?>
+    <section class="b-offers">
+        <div class="row  b-offers__header small-only-text-center">
+
+            <div class="column medium-4 small-4 ">
+                <div class="b-offers__th first">
+                    <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[org]=" . ($_REQUEST["SORT"]["org"] == "D" ? "A" : "D"), Array("SORT")) ?>"
+                       class="b-offers__title <? if (!empty($_REQUEST["SORT"]["org"])): ?><? if ($_REQUEST["SORT"]["org"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
+                        Организация
+                    </a>
+                </div>
+            </div>
+            <div class="column medium-2 hide-for-small-only">
+                <div class="b-offers__th">
+                    <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[method]=" . ($_REQUEST["SORT"]["method"] == "D" ? "A" : "D"), Array("SORT")) ?>"
+                       class="b-offers__title <? if (!empty($_REQUEST["SORT"]["method"])): ?><? if ($_REQUEST["SORT"]["method"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
+                        Способ вложения
+                    </a>
+
+                </div>
+            </div>
+            <div class="column medium-3 small-4 medium-text-right small-text-center b-offers__bility">
+                <div class="b-offers__th">
+                    <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[percent]=" . (empty($_REQUEST["SORT"]["percent"]) || $_REQUEST["SORT"]["percent"] == "D" ? "A" : "D"), Array("SORT")) ?>"
+                       class="b-offers__title  <? if (empty($_REQUEST["SORT"]) || !empty($_REQUEST["SORT"]["percent"])): ?><? if (empty($_REQUEST["SORT"]) || $_REQUEST["SORT"]["percent"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
+                        Доходность
+                    </a>
+
+                </div>
+            </div>
+            <div class="column medium-2 small-4 medium-text-right small-text-center">
+                <div class="b-offers__th">
+                    <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[safety]=" . ($_REQUEST["SORT"]["safety"] == "D" ? "A" : "D"), Array("SORT")) ?>"
+                       class="b-offers__title <? if (!empty($_REQUEST["SORT"]["safety"])): ?><? if ($_REQUEST["SORT"]["safety"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
+                        Надежность
+                    </a>
+
+                </div>
+            </div>
+            <div class="column medium-1 show-for-medium-up">
+                <div class="b-offers__th">&nbsp;</div>
+            </div>
+        </div>
+        <div class="row b-offers__infl">
+            <div class="columns medium-2 medium-offset-4 small-4 small-text-center medium-text-left">
+                <div class="b-offers__type b-offers__type_infl">Инфляция</div>
+            </div>
+            <div class="columns medium-3 small-3 text-right end b-offers__percent b-offers__bility">
+                <div class="b-offers__prof b-offers__prof_infl">11.5<span>%</span></div>
+            </div>
+        </div>
+
+        <div class="b-offers__list">
+            <? if (!empty($_REQUEST["ajax"])) {
+                $APPLICATION->RestartBuffer();
+            } ?>
+            <? foreach ($arResult["ITEMS"] as $arItem): ?>
+                <?
+                $user = $arItem["USER"];
+                $offer = $arItem["OFFER"];
+                ?>
+                <div class="b-offers__item row">
+                    <div class="column medium-4  small-4 b-offers__firsttd">
+                        <div class="b-offers__logo">
+                            <? if (!empty($user["WORK_LOGO"])): ?>
+                                <img src="<?= \CFile::GetPath($user["WORK_LOGO"]); ?>">
+                            <? endif; ?>
+                        </div>
+                        <div class="b-offers__name">
+                            <?= $arItem["UF_ORG"] ?>
+                        </div>
+                        <div class="b-offers__arrows"></div>
+                    </div>
+
+                    <div class="column medium-2 hide-for-small-only">
+                        <div class="b-offers__type">
+                            <?= $arItem["UF_METHOD"]; ?>
+                        </div>
+                    </div>
+                    <div class="column small-3 medium-3  text-right b-offers__profit b-offers__bility">
+                        <div class="b-offers__prof"><?= floatval($arItem["UF_PERCENT"]); ?><span>%</span></div>
+                    </div>
+                    <div class="column small-5 medium-2  text-right">
+                        <div class="b-offers__prof">36 <span>из 745</span></div>
+                    </div>
+                    <div class="column hide-for-small-only medium-1 text-left  ">
+                        <div class="b-offers__stars" data-id="<?= $arItem["ID"] ?>"></div>
+                    </div>
+
+                    <div class="column small-12 b-offers__hidden">
+                        <div class="row b-offers__more">
+                            <div class="column medium-1 show-for-medium-up">
+                                &nbsp;
+                            </div>
+                            <div class="column medium-11">
+                                <div class="row b-offers__more-item">
+                                    <div class="column medium-3 small-6">
+                                        <div class="b-offers__label">Наименование</div>
+                                    </div>
+                                    <div class="column medium-9 small-6 b-offers__nopadding">
+                                        <div class="b-offers__res2">
+                                            <div class="b-offers__rest">
+                                                <?= $offer["UF_NAME"] ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row b-offers__more-item">
+                                    <div class="column medium-3 small-6">
+                                        <div class="b-offers__label">Рейтинг организации</div>
+                                    </div>
+                                    <div class="column medium-9 small-6 b-offers__nopadding">
+                                        <div class="b-offers__res2">
+                                            <div class="b-offers__rest">
+                                                <?= !empty($user["RATING"]) ? $user["RATING"] : "-" ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row b-offers__more-item">
+                                    <div class="column medium-3 small-6">
+                                        <div class="b-offers__label b-offers__label_bot">Участие государства в капитале
+                                            организации
+                                        </div>
+                                    </div>
+                                    <div class="column medium-9 small-6 b-offers__nopadding">
+                                        <div class="b-offers__res2">
+                                            <div class="b-offers__rest">
+                                                <?= !empty($user["UF_STATE_PARTICIP"]) ? "Да" : "-" ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row b-offers__more-item">
+                                    <div class="column medium-3 small-6">
+                                        <div class="b-offers__label b-offers__label_bot">Участие в системе страхования
+                                            вкладов
+                                        </div>
+
+                                    </div>
+                                    <div class="column medium-9 small-6 b-offers__nopadding">
+                                        <div class="b-offers__res2">
+                                            <div class="b-offers__img">
+                                                <?= !empty($user["UF_BANK_PARTICIP"]) ? '<img src="' . WIC_TEMPLATE_PATH . '/images/asb.jpg" alt="">' : '-' ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row b-offers__more-item">
+                                    <div class="column medium-3 small-6">
+                                        <div class="b-offers__label">Капитал / Активы</div>
+
+                                    </div>
+                                    <div class="column medium-9 small-6 b-offers__nopadding">
+                                        <div class="b-offers__res2">
+                                            <? if (!empty($user["UF_CAPITAL_ASSETS"])): ?>
+                                                <div class="b-offers__prof">
+                                                    <?= $user["UF_CAPITAL_ASSETS"]; ?>
+                                                    <span>%</span>
+                                                </div>
+                                            <? else: ?>
+                                                -
+                                            <? endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row b-offers__more-item">
+                                    <div class="column medium-3 small-6">
+                                        <div class="b-offers__label">Капитал</div>
+
+                                    </div>
+                                    <div class="column medium-9 small-6 b-offers__nopadding">
+                                        <div class="b-offers__res2">
+                                            <? if (!empty($user["UF_CAPITAL"])): ?>
+                                                <div class="b-offers__prof">
+                                                    <?= $user["UF_CAPITAL"] ?>
+                                                    <span>тыс. рублей</span>
+                                                </div>
+                                            <? else: ?>
+                                                -
+                                            <? endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row b-offers__more-item">
+                                    <div class="column medium-3 small-6">
+                                        <div class="b-offers__label">Активы</div>
+                                    </div>
+                                    <div class="column medium-9 small-6 b-offers__nopadding">
+                                        <div class="b-offers__res2">
+                                            <? if (!empty($user["UF_ASSETS"])): ?>
+                                                <div class="b-offers__prof">
+                                                    <?= $user["UF_ASSETS"] ?>
+                                                    <span>тыс. рублей</span>
+                                                </div>
+                                            <? else: ?>
+                                                -
+                                            <? endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row b-offers__more-item">
+                                    <div class="column medium-3 small-6">
+                                        <div class="b-offers__label">Организация</div>
+
+                                    </div>
+                                    <div class="column medium-9 small-6 b-offers__nopadding">
+                                        <div class="b-offers__res2">
+                                            <div class="b-offers__rest">
+                                                <?= $user["FULL_WORK_COMPANY"] ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row b-offers__more-item">
+                                    <div class="column medium-3 small-6">
+                                        <div class="b-offers__label">Обновлено</div>
+
+                                    </div>
+                                    <div class="column medium-9 small-6 b-offers__nopadding">
+                                        <div class="b-offers__res2">
+                                            <div class="b-offers__rest">
+                                                <?= date("d.m.Y в H:i", strtotime($user["TIMESTAMP_X"])); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns show-for-small-only b-offers__best">
+                                <div class="b-offers__liked">Избранное</div>
+                                <div class="b-offers__stars"></div>
+                            </div>
+                            <? if (!empty($user["UF_SITE"])): ?>
+                                <div class="column medium-6 medium-offset-4 b-offers__go">
+                                    <a href="<?= $user["UF_SITE"] ?>" class="b-offers__link" target="_blank">Перейти на
+                                        сайт</a>
+                                </div>
+                            <? endif; ?>
+                        </div>
+                    </div>
+                </div>
+            <? endforeach; ?>
+
+            <script>
+                window.paging = {
+                    pageNum: parseInt("<?=$arResult["NAV_PAGE_NUM"]?>"),
+                    pageCount: parseInt("<?=$arResult["NAV_PAGE_COUNT"]?>")
+                };
+
+                $(function () {
+                    //begin of b-offers__item show/hide
+                    $('.b-offers__arrows').unbind().click(function () {
+                        $(this).closest('.b-offers__item').toggleClass('active');
+                    });
+                    //end of b-offers__item show/hide
+                });
+            </script>
+
+            <? if (!empty($_REQUEST["ajax"])) {
+                die();
+            } ?>
+        </div>
+
+        <? if ($arResult["NAV_PAGE_NUM"] < $arResult["NAV_PAGE_COUNT"]): ?>
+            <div class="b-offers__bottom">
+                <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("", Array("page")); ?>"
+                   class="b-offers__showmore js-show-more"><span>+</span>Показать ещё</a>
+            </div>
+
+            <script type="text/javascript">
+                $(function () {
+                    $(".js-show-more").on("click", function () {
+                        var data = $(this).attr("href");
+                        if (data.indexOf("?") > -1) {
+                            data = data.split("?");
+                            data = data[1];
+                        }
+                        else {
+                            data = "";
+                        }
+                        data += "&ajax=Y&page=" + (window.paging.pageNum + 1);
+
+                        $.ajax({
+                            url: "/include/main_offer.php",
+                            data: data,
+                            method: "get",
+                            success: function (response) {
+                                $(".b-offers__list").append(response)
+
+                                if (window.paging.pageNum == window.paging.pageCount) {
+                                    $(".js-show-more").detach();
+                                }
+                            }
+                        });
+                        return false;
+                    });
+                });
+            </script>
+        <? endif; ?>
+    </section>
+<? else: ?>
+    <div class="row">
+        <div class="column small-12">
+            <h2><?= ShowError("По Вашему запросу ничего не найдено") ?></h2>
+        </div>
+    </div>
+<? endif; ?>

@@ -32,30 +32,10 @@
 
   }
   &__th {
-
     font-size: rem-calc(12);
 
     padding-top: rem-calc(20);
     padding-bottom: rem-calc(20);
-    &_sort {
-      .b-offers__title {
-        &:after {
-          content: '';
-          display: inline-block;
-          position: absolute;
-          background: url(../images/ari.png) no-repeat right center;
-          -webkit-background-size: 100%;
-          background-size: 100%;
-          margin-top: 5px;
-          margin-left: 3px;
-          width: 7px;
-          height: 9px;
-          -webkit-background-size: 100%;
-          background-size: 100%;
-        }
-      }
-
-    }
 
     &.first {
       padding-left: rem-calc(45);
@@ -69,11 +49,30 @@
     color: #202020;
     &_sort {
       border-bottom: 1px dashed #000;
+
+      &:after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        background: url(../images/ari.png) no-repeat right center;
+        -webkit-background-size: 100%;
+        background-size: 100%;
+        margin-top: 5px;
+        margin-left: 3px;
+        width: 7px;
+        height: 9px;
+      }
+
+      &.b-offers__title_sort_desc {
+        &:after {
+          transform: rotate(180deg);
+        }
+      }
     }
+
     &:hover {
       border: none;
       color: #202020;
-
     }
 
   }
