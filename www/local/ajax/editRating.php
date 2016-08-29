@@ -33,6 +33,8 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                     );
                 }
 
+                $arFields["UF_UPDATED"] = date("d.m.Y H:i:s");
+
                 if (!empty($id)) {
                     if (!$hblock->update($id, $arFields)) {
                         $arResult["ERROR"] = "Ошибка сохранения данных.";

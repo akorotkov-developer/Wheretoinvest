@@ -297,7 +297,7 @@
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
                                             <div class="b-offers__rest">
-                                                <?= date("d.m.Y в H:i", strtotime($user["TIMESTAMP_X"])); ?>
+                                                <?= CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"])); ?>
                                             </div>
                                         </div>
                                     </div>

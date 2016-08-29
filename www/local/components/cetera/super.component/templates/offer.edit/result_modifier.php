@@ -95,25 +95,27 @@ if (intval($arParams["ID"]) > 0) {
         $arResult["MATRIX_COLS"][$el["UF_CURRENCY"]][$row] = $row;
     }
 } else {
-    $currency = reset(array_keys($arResult["FIELDS"]["UF_CURRENCY"]));
-    $arResult["MATRIX"][$currency] = Array(
-        "10 000" => Array(
-            "90" => "1.00",
-            "180" => "3.00",
-            "365" => "5.00",
-        ),
-        "100 000" => Array(
-            "90" => "2.00",
-            "180" => "4.00",
-            "365" => "6.00",
-        )
-    );
+    foreach (array_keys($arResult["FIELDS"]["UF_CURRENCY"]) as $currency) {
 
-    $arResult["MATRIX_COLS"][$currency] = Array(
-        "90" => "90",
-        "180" => "180",
-        "365" => "365",
-    );
+        $arResult["MATRIX"][$currency] = Array(
+            "10 000" => Array(
+                "90" => "0.00",
+                "180" => "0.00",
+                "365" => "0.00",
+            ),
+            "100 000" => Array(
+                "90" => "0.00",
+                "180" => "0.00",
+                "365" => "0.00",
+            )
+        );
+
+        $arResult["MATRIX_COLS"][$currency] = Array(
+            "90" => "90",
+            "180" => "180",
+            "365" => "365",
+        );
+    }
 }
 
 // saving template name to cache array

@@ -52,6 +52,7 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
         }
 
         if (empty($arResult["ERRORS"]) && count($arFields)) {
+            $arFields["UF_UPDATED"] = date("d.m.Y H:i:s");
             $arFields["UF_USER_ID"] = $USER->GetID();
             $hblock = new \Cetera\HBlock\SimpleHblockObject(3);
             if (intval($_REQUEST["ID"]) > 0) {

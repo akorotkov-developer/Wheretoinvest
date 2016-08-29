@@ -68,8 +68,11 @@ $userInfo = getContainer("User");
     <div class="columns">
         <a href="#" class="content__change" data-reveal-id="assets">Изменить</a>
     </div>
-    <div
-        class="columns content__date"><? if (!empty($userInfo["UF_ASSETS_DATE"])): ?>Обновлено: <?= date("d.m.Y в H:i", strtotime($userInfo["UF_ASSETS_DATE"])) ?><? endif; ?></div>
+
+    <? if (!empty($userInfo["TIMESTAMP_X"])): ?>
+        <div class="columns content__date">
+            Обновлено: <?= CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($userInfo["TIMESTAMP_X"])); ?></div>
+    <? endif; ?>
 </div>
 
 <div id="assets" class="reveal-modal tiny modal" data-reveal aria-labelledby="modalTitle"

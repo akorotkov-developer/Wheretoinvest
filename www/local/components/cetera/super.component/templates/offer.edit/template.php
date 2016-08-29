@@ -105,7 +105,7 @@ if (defined("ERROR_404"))
                                             <div class="graph__th graph__th_reg">&nbsp;</div>
                                             <? foreach ($arResult["MATRIX_COLS"][$key] as $col): ?>
                                                 <div class="graph__th graph__th_reg" data-id="<?= $col ?>"><a
-                                                        class="graph__cr"></a><?= $col ?><br>дней
+                                                        class="graph__cr"></a>от <?= explode(" - ", $col)[0] ?><br>дней
                                                 </div>
                                             <? endforeach; ?>
                                         </div>
@@ -232,41 +232,44 @@ if (defined("ERROR_404"))
                 var secD = $('.region__js-sec').val();
                 if (firD) {
                     var canAdd = true;
-                    var idA = panelActive();
-                    if (secD) {
-                        if ($(".graph__th.graph__th_reg[data-id='" + firD + "-" + secD + "']", idA).length) {
-                            canAdd = false;
-                        }
-                    }
-                    else {
-                        if ($(".graph__th.graph__th_reg[data-id='" + firD + "']", idA).length) {
-                            canAdd = false;
-                        }
-                    }
 
-                    var numCol = $(idA + ' .graph__th').length;
-                    if (numCol <= 7 && canAdd) {
-                        var numRow = $(idA + ' .graph__row').length;
-                        var dataId = '';
+                    $(".region__main .tabs-content .content").each(function () {
+                        var idA = "#" + $(this).attr("id");
+
                         if (secD) {
-                            dataId = firD + '-' + secD;
-                            var headText = '<div class="graph__th graph__th_reg" data-id="' + dataId + '"><a class="graph__cr"></a>' + firD + ' –  ' + secD + '<br> дней</div>';
-                        } else {
-                            dataId = firD;
-                            var headText = '<div class="graph__th graph__th_reg" data-id="' + dataId + '"><a class="graph__cr"></a>' + firD + '<br>дней</div>';
+                            if ($(".graph__th.graph__th_reg[data-id='" + firD + "-" + secD + "']", idA).length) {
+                                canAdd = false;
+                            }
+                        }
+                        else {
+                            if ($(".graph__th.graph__th_reg[data-id='" + firD + "']", idA).length) {
+                                canAdd = false;
+                            }
                         }
 
-                        $(idA + " .graph__head").append(headText);
-                        $('.graph__cr:not(.graph__cr_td)').unbind().on('click', deleteCol);
+                        var numCol = $(idA + ' .graph__th').length;
+                        if (numCol <= 7 && canAdd) {
+                            var numRow = $(idA + ' .graph__row').length;
+                            var dataId = '';
+                            if (secD) {
+                                dataId = firD + '-' + secD;
+                            } else {
+                                dataId = firD;
+                            }
+                            var headText = '<div class="graph__th graph__th_reg" data-id="' + dataId + '"><a class="graph__cr"></a>от ' + firD + '<br>дней</div>';
 
-                        $(idA + ' .graph__row').each(function () {
-                            var item = $(graphTd);
-                            var colID = $(this).data("id");
-                            item.find("input").attr("name", "UF_MATRIX[" + idA + "][" + colID + "][" + dataId + "]");
-                            $(this).append($('<div>').append(item.clone()).html());
-                        });
-                        $('.region__js-percent').unbind().on('blur', inputCreate);
-                    }
+                            $(idA + " .graph__head").append(headText);
+                            $('.graph__cr:not(.graph__cr_td)').unbind().on('click', deleteCol);
+
+                            $(idA + ' .graph__row').each(function () {
+                                var item = $(graphTd);
+                                var colID = $(this).data("id");
+                                item.find("input").attr("name", "UF_MATRIX[" + idA + "][" + colID + "][" + dataId + "]");
+                                $(this).append($('<div>').append(item.clone()).html());
+                            });
+                            $('.region__js-percent').unbind().on('blur', inputCreate);
+                        }
+                    });
                 }
                 $('.region__js-fir').val("");
                 $('.region__js-sec').val("");

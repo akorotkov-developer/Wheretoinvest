@@ -82,28 +82,31 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
 <div class="row">
     <div class="columns req">
         <div class="row">
-            <div class="req__name medium-4 small-5 columns">Логин (ваш e-mail): </div>
-            <div
-                class="req__value medium-8 small-7 columns"><a href="mailto:<?= $USER->GetEmail() ?>"
-                                                               class="js-email-link req__link"><?= $USER->GetEmail() ?></a>
+            <div class="req__name medium-4 small-5 columns">Логин:</div>
+            <div class="req__value medium-8 small-7 columns">
+                <a href="mailto:<?= $USER->GetEmail() ?>" class="js-email-link req__link"><?= $USER->GetEmail() ?></a>
             </div>
         </div>
-    </div>
-    <div class="columns">
-        <a class="content__change" href="#" data-reveal-id="email">Изменить</a>
-        <br><br>
+        <div class="row">
+            <div class="req__name medium-4 small-5 columns">&nbsp;</div>
+            <div class="req__value medium-8 small-7 columns">
+                <a class="content__change content__change_new" href="#" data-reveal-id="email">Изменить</a>
+            </div>
+        </div>
     </div>
     <div class="columns req">
         <div class="row">
-            <div class="req__name medium-4 small-5 columns">Пароль: </div>
-            <div
-                class="req__value medium-8 small-7 columns">********
+            <div class="req__name medium-4 small-5 columns">Пароль:</div>
+            <div class="req__value medium-8 small-7 columns">
+                ********
             </div>
         </div>
-    </div>
-    <div class="columns">
-        <a class="content__change" href="#" data-reveal-id="password">Изменить</a>
-        <br><br>
+        <div class="row">
+            <div class="req__name medium-4 small-5 columns">&nbsp;</div>
+            <div class="req__value medium-8 small-7 columns">
+                <a class="content__change content__change_new" href="#" data-reveal-id="password">Изменить</a>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -111,21 +114,21 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
     <? if (!$userInfo->isPartner()): ?>
         <div class="columns req">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">ФИО: </div>
+                <div class="req__name medium-4 small-5 columns">ФИО:</div>
                 <div
                     class="req__value medium-8 small-7 columns js-profile-name"><?= $userName; ?></div>
             </div>
         </div>
         <div class="columns req">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">Пол: </div>
+                <div class="req__name medium-4 small-5 columns">Пол:</div>
                 <div
                     class="req__value medium-8 small-7 columns js-profile-gender"><?= empty($userInfo["PERSONAL_GENDER"]) ? "<span class='req__name'>—</span>" : ($userInfo["PERSONAL_GENDER"] == "M" ? "Мужской" : "Женский") ?></div>
             </div>
         </div>
         <div class="columns req">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">Год рождения: </div>
+                <div class="req__name medium-4 small-5 columns">Год рождения:</div>
                 <div
                     class="req__value medium-8 small-7 columns js-profile-birthday"><?= empty($userInfo["UF_BIRTHDAY"]) ? "<span class='req__name'>—</span>" : $userInfo["UF_BIRTHDAY"] ?></div>
             </div>
@@ -182,14 +185,14 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
         </div>
         <div class="columns req">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">Контактное лицо: </div>
+                <div class="req__name medium-4 small-5 columns">Контактное лицо:</div>
                 <div
                     class="req__value medium-8 small-7 columns js-profile-name"><?= $userName; ?></div>
             </div>
         </div>
         <div class="columns req">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">Контактный телефон: </div>
+                <div class="req__name medium-4 small-5 columns">Контактный телефон:</div>
                 <div
                     class="req__value medium-8 small-7 columns js-profile-phone"><?= empty($userInfo["PERSONAL_PHONE"]) ? "<span class='req__name'>—</span>" : $userInfo["PERSONAL_PHONE"] ?></div>
             </div>
@@ -220,15 +223,19 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
         );
         ?>
     <? endif; ?>
-</div>
-<div class="row">
-    <div class="columns">
-        <a href="#" class="content__change" data-reveal-id="profile">Изменить</a></div>
+    <div class="columns req">
+        <div class="row">
+            <div class="req__name medium-4 small-5 columns">&nbsp;</div>
+            <div class="medium-8 small-7 columns req__value">
+                <a href="#" class="content__change content__change_new" data-reveal-id="profile">Изменить</a>
+            </div>
+        </div>
+    </div>
 </div>
 <br>
 <div class="row">
     <div class="columns">
-        <a href="#" class="content__remove js-remove-acc">Удалить аккаунт</a></div>
+        <a href="#" class="sentence js-remove-acc">Удалить аккаунт</a></div>
 </div>
 
 <div id="profile" class="reveal-modal tiny modal" data-reveal aria-labelledby="modalTitle"

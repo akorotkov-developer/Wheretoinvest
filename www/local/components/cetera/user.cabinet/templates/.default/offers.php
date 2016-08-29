@@ -48,24 +48,15 @@ while ($el = $list->fetch()) {
         <? if (count($arResult["ITEMS"])): ?>
             <div class="invest__head">
                 <div class="invest__title">Наименование предложения</div>
-                <div class="invest__region">Регион действия</div>
+                <div class="invest__region">Дата обновления</div>
             </div>
             <div class="invest__body">
                 <? foreach ($arResult["ITEMS"] as $arItem): ?>
                     <a href="edit/<?= $arItem["ID"] ?>/">
                         <div class="invest__row">
-                            <div href="#" class="invest__deposite"><?= $arItem["UF_NAME"] ?></div>
-                            <?
-                            $region = "";
-                            if (count($arItem["UF_REGIONS"]) === 1) {
-                                $region = "1 регион РФ";
-                            } elseif (count($arItem["UF_REGIONS"]) == $arResult["TOTAL_COUNT"]) {
-                                $region = "Все регионы РФ";
-                            } else {
-                                $region = count($arItem["UF_REGIONS"]) . " " . \Cetera\Tools\Utils::pluralForm(count($arItem["UF_REGIONS"]), "регион РФ", "региона РФ", "регионов РФ", "регионов РФ");
-                            }
-                            ?>
-                            <div class="invest__place"><?= $region; ?></div>
+                            <div class="invest__deposite"><?= $arItem["UF_NAME"] ?></div>
+                            <div
+                                class="invest__place"><?= !empty($arItem["UF_UPDATED"]) ? CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($arItem["UF_UPDATED"])) : ""; ?></div>
                         </div>
                     </a>
                 <? endforeach; ?>
