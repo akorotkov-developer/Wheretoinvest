@@ -116,5 +116,12 @@ $userInfo = getContainer("User");
                 class="req__value medium-8 small-7 columns js-detail-uf_c_account"><?= !empty($userInfo["UF_C_ACCOUNT"]) ? $userInfo["UF_C_ACCOUNT"] : "<span class='req__name'>—</span>"; ?></div>
         </div>
     </div>
+    <div class="columns req">
+        <div class="row">
+            <div class="req__name medium-4 small-5 columns">&nbsp;</div>
+            <div class="req__value medium-8 small-7 columns">
+                <a class="content__change" href="edit/">Изменить</a>
+            </div>
+        </div>
+    </div>
 </div>
-<a class="content__change" href="edit/">Изменить</a>

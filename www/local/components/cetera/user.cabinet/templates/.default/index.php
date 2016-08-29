@@ -82,16 +82,20 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
 <div class="row">
     <div class="columns req">
         <div class="row">
-            <div class="req__name small-4 columns">Логин:</div>
-            <div class="req__value small-4 columns">
+            <div class="req__name medium-4 small-5 columns">Логин:</div>
+            <div class="req__value medium-8 small-7 columns">
                 <a href="mailto:<?= $USER->GetEmail() ?>" class="js-email-link req__link"><?= $USER->GetEmail() ?></a>
             </div>
-            <div class="small-4 columns">
+        </div>
+        <div class="row">
+            <div class="req__name medium-4 small-5 columns">&nbsp;</div>
+            <div class="req__value medium-8 small-7 columns">
                 <a class="content__change content__change_new" href="#" data-reveal-id="email">Изменить</a>
             </div>
         </div>
     </div>
     <div class="columns req">
+        <br>
         <div class="row">
             <div class="req__name medium-4 small-5 columns">Пароль:</div>
             <div class="req__value medium-8 small-7 columns">
@@ -106,7 +110,7 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
         </div>
     </div>
 </div>
-
+<br>
 <div class="row">
     <? if (!$userInfo->isPartner()): ?>
         <div class="columns req">

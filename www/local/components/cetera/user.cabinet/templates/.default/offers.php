@@ -62,6 +62,6 @@ while ($el = $list->fetch()) {
                 <? endforeach; ?>
             </div>
         <? endif; ?>
-        <a href="add/" class="sentence">создать предложение</a>
+        <a href="add/" class="sentence">Создать предложение</a>
     </div>
 </div>

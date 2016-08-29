@@ -123,13 +123,14 @@
     width: 100%;
     display: block;
     color: #fff;
-    padding: rem-calc(11 32 12);
-    font-size: rem-calc(12);
-    margin-bottom: rem-calc(14);
-    margin-top: rem-calc(5);
-    font-weight: 700;
-    text-transform: uppercase;
-    background-color: #e53935;
-    border-radius: rem-calc(3);
+    border-radius: 3px 2px 2px 3px;
+    font-size: 14px;
+    background: #e53935;
+    border: 1px solid #e53935;
+    padding: rem-calc(5 16 6);
+    text-align: center;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all .5s;
   }
 }
