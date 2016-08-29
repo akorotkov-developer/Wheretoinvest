@@ -18,11 +18,11 @@
                 }, 500);
 
                 /*setTimeout(function () {
-                    alert.find(".close").trigger("click", function () {
-                        alert.foundation("alert", "reflow");
-                        footer2bottom();
-                    });
-                }, 2000);*/
+                 alert.find(".close").trigger("click", function () {
+                 alert.foundation("alert", "reflow");
+                 footer2bottom();
+                 });
+                 }, 2000);*/
             }
         }
 
@@ -100,10 +100,43 @@
             //begin of sum menu show/hide
             function sortText() {
                 var sum = $('.b-sort__main .b-sort__inp').val() || 0;
-                var currency = $('.b-sort__main select').eq(0).val();
-                var time = $('.b-sort__main select').eq(1).val();
+                var currency_val = $('.b-sort__main select').eq(0).val();
+                var currency = "";
+                var time_val = $('.b-sort__main select').eq(1).val();
+                var time = "";
 
-                $('.b-sort__all').text(sum + " " + currency + " на " + time);
+                $(".b-sort__main select").eq(0).find("option").each(function () {
+                    if ($(this).attr("value") == currency_val)
+                        currency = $(this).text();
+                });
+
+                $(".b-sort__main select").eq(1).find("option").each(function () {
+                    if ($(this).attr("value") == time_val)
+                        time = $(this).text();
+                });
+
+                var text = sum;
+                switch (currency) {
+                    case "В рублях":
+                        currency = "руб.";
+                        break;
+                    case "В долларах":
+                        currency = "долл. США";
+                        break;
+                    case "В евро":
+                        currency = "евро";
+                        break;
+                    default:
+                        break;
+                }
+
+                text += " " + currency;
+
+                if (time_val !== "") {
+                    text += " на " + time;
+                }
+
+                $('.b-sort__all').text(text);
             }
 
             $('.b-sort__arr').click(function () {
