@@ -66,7 +66,12 @@ $userInfo = getContainer("User");
     </div>
 
     <div class="columns">
-        <a href="#" class="content__change" data-reveal-id="assets">Изменить</a>
+        <div class="row">
+            <div class="columns small-5 medium-4 req__name">&nbsp;</div>
+            <div class="columns small-7 medium-8 req__value">
+                <span class='assets__num_right assets__num_right_margin'><a href="#" class="content__change" data-reveal-id="assets">Изменить</a></span>
+            </div>
+        </div>
     </div>
 
     <? if (!empty($userInfo["TIMESTAMP_X"])): ?>

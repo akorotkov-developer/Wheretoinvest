@@ -30,7 +30,16 @@ $arResult["FORM_FIELDS"] = Array(
     "WORK_LOGO" => Array(
         "TYPE" => "IMAGE",
         "TITLE" => "Логотип",
-        "VALUE" => $userInfo["WORK_LOGO"]
+        "VALUE" => $userInfo["WORK_LOGO"],
+        "ROW_CLASS" => "b-form__row_no-margin"
+    ),
+    "WORK_LOGO_DEL" => Array(
+        "TYPE" => "CHECKBOX",
+        "VALUE" => "",
+        "LIST" => Array(
+            "1" => "Удалить логотип"
+        ),
+        "SINGLE" => "Y"
     ),
     "UF_SITE" => Array(
         "TYPE" => "TEXT",

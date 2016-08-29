@@ -112,6 +112,13 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                 }
             }
 
+            if (!empty($_REQUEST["WORK_LOGO_DEL"])) {
+                $arIMAGE = Array();
+                $arIMAGE["del"] = "Y";
+                $arIMAGE["MODULE_ID"] = "main";
+                $arFields["WORK_LOGO"] = $arIMAGE;
+            }
+
             if (empty($arResult["ERRORS"])) {
                 if (count($arFields)) {
                     $cUser = new \CUser();

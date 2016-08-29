@@ -160,7 +160,8 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                             <div class="column small-12">
                                 <div
                                     class="b-form__title <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
+                                    <span
+                                        class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
                                         <sup
                                             class="b-form__required">*</sup><? endif; ?>
                                 </div>
@@ -213,7 +214,8 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                             <div class="column small-12">
                                 <div
                                     class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
+                                    <span
+                                        class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
                                         <sup
                                             class="b-form__required">*</sup><? endif; ?>
                                 </div>
@@ -264,7 +266,8 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                             <div class="column small-12">
                                 <div
                                     class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
+                                    <span
+                                        class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
                                         <sup
                                             class="b-form__required">*</sup><? endif; ?>
                                 </div>
@@ -298,7 +301,8 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                             <div class="column small-12">
                                 <div
                                     class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
+                                    <span
+                                        class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
                                         <sup
                                             class="b-form__required">*</sup><? endif; ?>
                                 </div>
@@ -351,7 +355,8 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                             <div class="column small-12">
                                 <div
                                     class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
+                                    <span
+                                        class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
                                         <sup
                                             class="b-form__required">*</sup><? endif; ?>
                                 </div>
@@ -406,7 +411,8 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                             <div class="column small-12">
                                 <div
                                     class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
+                                    <span
+                                        class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
                                         <sup
                                             class="b-form__required">*</sup><? endif; ?>
                                 </div>
@@ -469,7 +475,8 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                             <div class="column small-12">
                                 <div
                                     class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
+                                    <span
+                                        class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
                                         <sup
                                             class="b-form__required">*</sup><? endif; ?>
                                 </div>
@@ -483,22 +490,23 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                     <? if ($arItem["LIST_VIEW"] === "BLOCK"): ?>
                                         <div>
                                     <? endif; ?>
+                                    <input type="checkbox"
+                                           <? if (!empty($arItem["INPUT_CLASS"])): ?>class="<?= $arItem["INPUT_CLASS"] ?>"<? endif; ?>
+                                           name="<?= $arKey ?><? if (empty($arItem["SINGLE"])): ?>[]<? endif; ?>"
+                                           value="<?= $key; ?>"<? if ((!is_array($arItem["VALUE"]) && (string)$arItem["VALUE"] === (string)$key) || (is_array($arItem["VALUE"]) && in_array($key, $arItem["VALUE"]))): ?> checked<? endif; ?><?
+                                    if (!empty($arItem["DISABLED"])): ?> disabled <?endif;
+                                    ?>
+                                           <? if (count($arItem["PARAMS"])):
+                                           foreach ($arItem["PARAMS"] as $k => $v): ?>
+                                           <?= $k ?>="<?= htmlentities($v) ?>"
+                                    <?endforeach;
+                                    endif; ?><? if (count($arItem["LIST"]) === 1): ?>
+                                        id="FIELD_<?= $arKey; ?>"
+                                    <? endif; ?>
+                                           class="modal__checkbox">
                                     <label
-                                        class="modal__chck <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                        <input type="checkbox"
-                                               <? if (!empty($arItem["INPUT_CLASS"])): ?>class="<?= $arItem["INPUT_CLASS"] ?>"<? endif; ?>
-                                               name="<?= $arKey ?><? if (empty($arItem["SINGLE"])): ?>[]<? endif; ?>"
-                                               value="<?= $key; ?>"<? if ((!is_array($arItem["VALUE"]) && (string)$arItem["VALUE"] === (string)$key) || (is_array($arItem["VALUE"]) && in_array($key, $arItem["VALUE"]))): ?> checked<? endif; ?><?
-                                        if (!empty($arItem["DISABLED"])): ?> disabled <?endif;
-                                        ?>
-                                               <? if (count($arItem["PARAMS"])):
-                                               foreach ($arItem["PARAMS"] as $k => $v): ?>
-                                               <?= $k ?>="<?= htmlentities($v) ?>"
-                                        <?endforeach;
-                                        endif; ?><? if (count($arItem["LIST"]) === 1): ?>
-                                            id="FIELD_<?= $arKey; ?>"
-                                        <? endif; ?>
-                                               class="b-form__input_radio">
+                                        class="modal__chck <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>"
+                                        for="FIELD_<?= $arKey; ?>">
                                         <?= $val; ?>
                                     </label>
                                     <? if ($arItem["LIST_VIEW"] === "BLOCK"): ?>
@@ -531,7 +539,8 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                             <div class="column small-12">
                                 <div
                                     class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
+                                    <span
+                                        class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
                                         <sup
                                             class="b-form__required">*</sup><? endif; ?>
                                 </div>
@@ -666,7 +675,8 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                             <div class="column small-12">
                                 <div
                                     class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
+                                    <span
+                                        class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
                                         <sup
                                             class="b-form__required">*</sup><? endif; ?>
                                 </div>
@@ -693,7 +703,8 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                             <div class="column small-12">
                                 <div
                                     class="b-form__title <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
+                                    <span
+                                        class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
                                         <sup
                                             class="b-form__required">*</sup><? endif; ?>
                                 </div>
@@ -746,7 +757,8 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                             <div class="column small-12">
                                 <div
                                     class="b-form__title <? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
-                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
+                                    <span
+                                        class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span><? if ($arItem["REQUIRED"] && empty($arItem["TITLE"])): ?>
                                         <sup
                                             class="b-form__required">*</sup><? endif; ?>
                                 </div>
@@ -765,7 +777,8 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 <? endif; ?>
                             </div>
                             <div class="fileform">
-                                <div class="fileform__sel">загрузить <?= $arItem["BLOCK_TITLE"] ?></div>
+                                <label class="fileform__sel"
+                                       for="FIELD_<?= $arKey ?>">Загрузить <?= $arItem["BLOCK_TITLE"] ?></label>
                                 <input
                                     class="fileform__file <? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
                                     type="file"

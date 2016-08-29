@@ -31,6 +31,10 @@
     min-width: 215px;
 }
 
+.assets__num_right.assets__num_right_margin {
+    margin-left: 7px;
+}
+
 @media only screen and (max-width: 850px) {
     .assets__num_right {
         min-width: 0;
