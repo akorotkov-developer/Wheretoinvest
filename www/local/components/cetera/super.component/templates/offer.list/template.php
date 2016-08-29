@@ -153,7 +153,8 @@
                         <div class="b-offers__prof"><?= floatval($arItem["UF_PERCENT"]); ?><span>%</span></div>
                     </div>
                     <div class="column small-5 medium-2  text-right">
-                        <div class="b-offers__prof">36 <span>из 745</span></div>
+                        <div class="b-offers__prof"><?= $arItem["UF_SAFETY"] ?>
+                            <span>из <?= $arResult["USER_COUNT"] ?></span></div>
                     </div>
                     <div class="column hide-for-small-only medium-1 text-left  ">
                         <a href="#"
@@ -312,6 +313,7 @@
                                 </div>
                             <? endif; ?>
                             <? if (!empty($user["UF_SITE"])): ?>
+                                <? if (!preg_match("#^(http|//)#is", $user["UF_SITE"])) $user["UF_SITE"] = "//" . $user["UF_SITE"] ?>
                                 <div class="column medium-6 medium-offset-4 b-offers__go">
                                     <a href="<?= $user["UF_SITE"] ?>" class="b-offers__link" target="_blank">Перейти на
                                         сайт</a>
@@ -329,13 +331,17 @@
                 };
 
                 $(function () {
-                    //begin of b-offers__item show/hide
-                    $('.b-offers__arrows').unbind().click(function () {
-                        $(this).closest('.b-offers__item').toggleClass('active');
+                    $('.b-offers__item').unbind().click(function () {
+                        $(this).toggleClass('active');
                     });
-                    //end of b-offers__item show/hide
 
-                    $(".js-favorite-add").unbind().on("click", function () {
+                    $(".b-offers__link").unbind().on("click", function (event) {
+                        window.open(this.href, '_blank');
+                        event.preventDefault();
+                        return false;
+                    });
+
+                    $(".js-favorite-add").unbind().on("click", function (event) {
                         var id = $(this).data("id"),
                             _this = $(this);
                         $.ajax({
@@ -362,6 +368,7 @@
                             }
                         });
 
+                        event.preventDefault();
                         return false;
                     });
                 });

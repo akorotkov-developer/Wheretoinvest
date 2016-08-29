@@ -88,7 +88,8 @@ function getUserMethods()
                             "ID" => $arEnum["ID"],
                             "NAME" => $arEnum["VALUE"],
                             "ACTIVE" => true,
-                            "SORT" => intval($arEnum["SORT"])
+                            "SORT" => intval($arEnum["SORT"]),
+                            "CODE" => $arEnum["XML_ID"]
                         );
                     }
                 }
