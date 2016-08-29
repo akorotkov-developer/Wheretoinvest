@@ -109,14 +109,18 @@
                 <div class="b-offers__th">&nbsp;</div>
             </div>
         </div>
-        <div class="row b-offers__infl">
-            <div class="columns medium-2 medium-offset-4 small-4 small-text-center medium-text-left">
-                <div class="b-offers__type b-offers__type_infl">Инфляция</div>
+        <? $inflation = \Ceteralabs\UserVars::GetVar('USER_VAR_INFLATION')["VALUE"]; ?>
+
+        <? if (!empty($inflation)): ?>
+            <div class="row b-offers__infl">
+                <div class="columns medium-2 medium-offset-4 small-4 small-text-center medium-text-left">
+                    <div class="b-offers__type b-offers__type_infl">Инфляция</div>
+                </div>
+                <div class="columns medium-3 small-3 text-right end b-offers__percent b-offers__bility">
+                    <div class="b-offers__prof b-offers__prof_infl"><?= $inflation ?><span>%</span></div>
+                </div>
             </div>
-            <div class="columns medium-3 small-3 text-right end b-offers__percent b-offers__bility">
-                <div class="b-offers__prof b-offers__prof_infl">11.5<span>%</span></div>
-            </div>
-        </div>
+        <? endif; ?>
 
         <div class="b-offers__list">
             <? if (!empty($_REQUEST["ajax"])) {
@@ -152,7 +156,9 @@
                         <div class="b-offers__prof">36 <span>из 745</span></div>
                     </div>
                     <div class="column hide-for-small-only medium-1 text-left  ">
-                        <div class="b-offers__stars" data-id="<?= $arItem["ID"] ?>"></div>
+                        <a href="#"
+                           class="b-offers__stars js-favorite-add<? if ($offer["UF_FAVORITE"]): ?> b-offers__stars_active<? endif; ?>"
+                           data-id="<?= $offer["ID"] ?>"></a>
                     </div>
 
                     <div class="column small-12 b-offers__hidden">
@@ -297,10 +303,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="columns show-for-small-only b-offers__best">
-                                <div class="b-offers__liked">Избранное</div>
-                                <div class="b-offers__stars"></div>
-                            </div>
+                            <? if ($USER->IsAuthorized()): ?>
+                                <div class="columns show-for-small-only b-offers__best">
+                                    <div class="b-offers__liked">Избранное</div>
+                                    <a href="#"
+                                       class="b-offers__stars js-favorite-add<? if ($offer["UF_FAVORITE"]): ?> b-offers__stars_active<? endif; ?>"
+                                       data-id="<?= $offer["ID"] ?>"></a>
+                                </div>
+                            <? endif; ?>
                             <? if (!empty($user["UF_SITE"])): ?>
                                 <div class="column medium-6 medium-offset-4 b-offers__go">
                                     <a href="<?= $user["UF_SITE"] ?>" class="b-offers__link" target="_blank">Перейти на
@@ -324,6 +334,36 @@
                         $(this).closest('.b-offers__item').toggleClass('active');
                     });
                     //end of b-offers__item show/hide
+
+                    $(".js-favorite-add").unbind().on("click", function () {
+                        var id = $(this).data("id"),
+                            _this = $(this);
+                        $.ajax({
+                            url: "/local/ajax/add2favorite.php",
+                            data: {
+                                id: id,
+                                ajax: "Y",
+                                sessid: "<?=bitrix_sessid()?>"
+                            },
+                            method: "post",
+                            dataType: "json",
+                            success: function (response) {
+                                $(".js-favorite-add[data-id='" + id + "']").toggleClass("b-offers__stars_active");
+                                var search = window.location.search;
+                                if (search.match("favorite=")) {
+                                    if (!_this.hasClass("b-offers__stars_active")) {
+                                        _this.closest(".b-offers__item").detach();
+
+                                        if (!$(".b-offers__item").length) {
+                                            $(".b-offers").html('<h2><p><font class="errortext">Предложения отсутствуют.</font></p></h2>');
+                                        }
+                                    }
+                                }
+                            }
+                        });
+
+                        return false;
+                    });
                 });
             </script>
 
@@ -372,7 +412,7 @@
 <? else: ?>
     <div class="row">
         <div class="column small-12">
-            <h2><?= ShowError("По Вашему запросу ничего не найдено") ?></h2>
+            <h2><?= ShowError("Предложения отсутствуют.") ?></h2>
         </div>
     </div>
 <? endif; ?>

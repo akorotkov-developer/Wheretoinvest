@@ -13,3 +13,4 @@ require(__DIR__ . "/../include/vendor/autoload.php");
  * инициализация приложения
  */
 Wic\Application::init();
+\Bitrix\Main\Loader::includeModule('ceteralabs.uservars');

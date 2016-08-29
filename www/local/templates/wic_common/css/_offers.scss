@@ -171,6 +171,9 @@
     display: inline-block;
     margin-top: 10px;
 
+    &.b-offers__stars_active {
+      background: url("../images/star-active.png") no-repeat center center;
+    }
   }
 
   &__label {

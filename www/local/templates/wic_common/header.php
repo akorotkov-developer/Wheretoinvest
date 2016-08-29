@@ -100,7 +100,10 @@ CJSCore::Init(array("fx"));
             "MENU_CACHE_TYPE" => "Y",
             "MENU_CACHE_TIME" => "3600",
             "MENU_CACHE_USE_GROUPS" => "Y",
-            "MENU_CACHE_GET_VARS" => ""
+            "MENU_CACHE_GET_VARS" => Array(
+                "method",
+                "favorite"
+            )
         )
     ); ?>
 </header>

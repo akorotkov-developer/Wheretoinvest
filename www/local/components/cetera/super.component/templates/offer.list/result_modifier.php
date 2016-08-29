@@ -35,6 +35,18 @@ foreach ($arFields as $key => $arField) {
 
 $loc = $APPLICATION->get_cookie("CURRENT_LOC_ID");
 
+$hblock = new \Cetera\HBlock\SimpleHblockObject(10);
+$list = $hblock->getList(Array("filter" => Array("UF_USER" => $USER->GetID())));
+$arFavorite = Array();
+$arFavoriteItems = Array();
+
+while ($el = $list->fetch()) {
+    $arFavorite[$el["UF_OFFER"]] = $el["UF_FAVORITE"];
+
+    if (!empty($el["UF_FAVORITE"]))
+        $arFavoriteItems[$el["UF_OFFER"]] = $el["UF_OFFER"];
+}
+
 $hblock = new \Cetera\HBlock\SimpleHblockObject(3);
 $filter = Array();
 if (!empty($loc)) {
@@ -43,6 +55,12 @@ if (!empty($loc)) {
 
 if (!empty($_REQUEST["method"])) {
     $filter["UF_METHOD"] = intval($_REQUEST["method"]);
+}
+
+if (!empty($_REQUEST["favorite"])) {
+    if (count($arFavoriteItems))
+        $filter = Array("ID" => array_keys($arFavoriteItems));
+    else return false;
 }
 
 $query = Array();
@@ -55,6 +73,8 @@ $arResult["OFFER"] = Array();
 $users = Array();
 $offers = Array();
 while ($el = $list->fetch()) {
+    if (!empty($arFavorite[$el["ID"]]))
+        $el["UF_FAVORITE"] = true;
     $arResult["OFFER"][$el["ID"]] = $el;
     $users[$el["UF_USER_ID"]] = $el["UF_USER_ID"];
     $offers[$el["ID"]] = $el["ID"];
@@ -120,8 +140,15 @@ if (count($offers)) {
 
     $obCache = new CPHPCache();
     $cacheLifetime = 86400;
-    $cacheID = hash("md5", http_build_query($query, '', '&'));
-    $cachePath = '/offers/' . $cacheID;
+    $cacheString = "";
+    if ($USER->IsAuthorized())
+        $cacheString .= "userId=" . $USER->GetID();
+    $cacheString .= http_build_query($query, '', '&');
+    $cacheID = hash("md5", $cacheString);
+    $cachePath = '/offers/';
+    if ($USER->IsAuthorized())
+        $cachePath .= $USER->GetID() . "/";
+    $cachePath .= $cacheID;
 
     if ($obCache->InitCache($cacheLifetime, $cacheID, $cachePath)) {
         $vars = $obCache->GetVars();
