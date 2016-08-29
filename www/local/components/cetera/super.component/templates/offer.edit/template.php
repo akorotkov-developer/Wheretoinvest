@@ -146,12 +146,8 @@ if (defined("ERROR_404"))
                         <label for="ggs" class="region__label">Добавить срок</label>
 
                         <div class="region__from">от</div>
-                        <input type="text" class="region__inp region__inp_mini region__js-fir" value="">
-
-                        <div class="region__from">до</div>
-                        <input type="text" class="region__inp region__inp_mini region__inp_no-rad region__js-sec"
-                               value="">
-
+                        <input type="text" class="region__inp region__js-fir" value="">
+                        <div class="region__from"></div>
                         <div class="region__from">дней</div>
                         <span class="region__add region__js-col">+</span>
                     </div>

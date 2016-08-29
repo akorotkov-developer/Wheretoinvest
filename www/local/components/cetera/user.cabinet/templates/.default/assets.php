@@ -48,7 +48,7 @@ $userInfo = getContainer("User");
             </div>
         </div>
     </div>
-    <div class="columns req">
+    <div class="columns">
         <div class="row">
             <div class="req__name medium-4 small-5 columns assets__first-column">Активы:&nbsp;<span data-tooltip
                                                                                                     aria-haspopup="true"

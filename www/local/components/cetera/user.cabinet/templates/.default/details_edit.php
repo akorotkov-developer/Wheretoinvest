@@ -64,7 +64,7 @@ $arResult["FORM_FIELDS"] = Array(
     ),
     "UF_BANK_INFO" => Array(
         "TYPE" => "TEXT",
-        "TITLE" => "Банк-получатель",
+        "TITLE" => "Банк получателя",
         "VALUE" => $userInfo["UF_BANK_INFO"]
     ),
     "UF_BIK" => Array(

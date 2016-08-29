@@ -82,14 +82,14 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
 <div class="row">
     <div class="columns req">
         <div class="row">
-            <div class="req__name medium-4 small-5 columns">Логин:</div>
-            <div class="req__value medium-8 small-7 columns">
+            <div class="req__name medium-5 small-5 columns">Логин:</div>
+            <div class="req__value medium-7 small-7 columns">
                 <a href="mailto:<?= $USER->GetEmail() ?>" class="js-email-link req__link"><?= $USER->GetEmail() ?></a>
             </div>
         </div>
         <div class="row">
-            <div class="req__name medium-4 small-5 columns">&nbsp;</div>
-            <div class="req__value medium-8 small-7 columns">
+            <div class="req__name medium-5 small-5 columns">&nbsp;</div>
+            <div class="req__value medium-7 small-7 columns">
                 <a class="content__change content__change_new" href="#" data-reveal-id="email">Изменить</a>
             </div>
         </div>
@@ -97,41 +97,41 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
     <div class="columns req">
         <br>
         <div class="row">
-            <div class="req__name medium-4 small-5 columns">Пароль:</div>
-            <div class="req__value medium-8 small-7 columns">
+            <div class="req__name medium-5 small-5 columns">Пароль:</div>
+            <div class="req__value medium-7 small-7 columns">
                 ********
             </div>
         </div>
         <div class="row">
-            <div class="req__name medium-4 small-5 columns">&nbsp;</div>
-            <div class="req__value medium-8 small-7 columns">
+            <div class="req__name medium-5 small-5 columns">&nbsp;</div>
+            <div class="req__value medium-7 small-7 columns">
                 <a class="content__change content__change_new" href="#" data-reveal-id="password">Изменить</a>
             </div>
         </div>
     </div>
 </div>
-<br>
+
 <div class="row">
     <? if (!$userInfo->isPartner()): ?>
         <div class="columns req">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">ФИО:</div>
+                <div class="req__name medium-5 small-5 columns">ФИО:</div>
                 <div
-                    class="req__value medium-8 small-7 columns js-profile-name"><?= $userName; ?></div>
+                    class="req__value medium-7 small-7 columns js-profile-name"><?= $userName; ?></div>
             </div>
         </div>
         <div class="columns req">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">Пол:</div>
+                <div class="req__name medium-5 small-5 columns">Пол:</div>
                 <div
-                    class="req__value medium-8 small-7 columns js-profile-gender"><?= empty($userInfo["PERSONAL_GENDER"]) ? "<span class='req__name'>—</span>" : ($userInfo["PERSONAL_GENDER"] == "M" ? "Мужской" : "Женский") ?></div>
+                    class="req__value medium-7 small-7 columns js-profile-gender"><?= empty($userInfo["PERSONAL_GENDER"]) ? "<span class='req__name'>—</span>" : ($userInfo["PERSONAL_GENDER"] == "M" ? "Мужской" : "Женский") ?></div>
             </div>
         </div>
-        <div class="columns req">
+        <div class="columns">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">Год рождения:</div>
+                <div class="req__name medium-5 small-5 columns">Год рождения:</div>
                 <div
-                    class="req__value medium-8 small-7 columns js-profile-birthday"><?= empty($userInfo["UF_BIRTHDAY"]) ? "<span class='req__name'>—</span>" : $userInfo["UF_BIRTHDAY"] ?></div>
+                    class="req__value medium-7 small-7 columns js-profile-birthday"><?= empty($userInfo["UF_BIRTHDAY"]) ? "<span class='req__name'>—</span>" : $userInfo["UF_BIRTHDAY"] ?></div>
             </div>
         </div>
         <? $arResult["FORM_FIELDS"] = Array(
@@ -178,24 +178,24 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
     <? else: ?>
         <div class="columns req">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">Наименование организации:
+                <div class="req__name medium-5 small-5 columns">Наименование организации:
                 </div>
                 <div
-                    class="req__value medium-8 small-7 columns js-profile-work"><?= empty($userInfo["WORK_COMPANY"]) ? "<span class='req__name'>—</span>" : $userInfo["WORK_COMPANY"] ?></div>
+                    class="req__value medium-7 small-7 columns js-profile-work"><?= empty($userInfo["WORK_COMPANY"]) ? "<span class='req__name'>—</span>" : $userInfo["WORK_COMPANY"] ?></div>
             </div>
         </div>
         <div class="columns req">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">Контактное лицо:</div>
+                <div class="req__name medium-5 small-5 columns">Контактное лицо:</div>
                 <div
-                    class="req__value medium-8 small-7 columns js-profile-name"><?= $userName; ?></div>
+                    class="req__value medium-7 small-7 columns js-profile-name"><?= $userName; ?></div>
             </div>
         </div>
-        <div class="columns req">
+        <div class="columns">
             <div class="row">
-                <div class="req__name medium-4 small-5 columns">Контактный телефон:</div>
+                <div class="req__name medium-5 small-5 columns">Контактный телефон:</div>
                 <div
-                    class="req__value medium-8 small-7 columns js-profile-phone"><?= empty($userInfo["PERSONAL_PHONE"]) ? "<span class='req__name'>—</span>" : $userInfo["PERSONAL_PHONE"] ?></div>
+                    class="req__value medium-7 small-7 columns js-profile-phone"><?= empty($userInfo["PERSONAL_PHONE"]) ? "<span class='req__name'>—</span>" : $userInfo["PERSONAL_PHONE"] ?></div>
             </div>
         </div>
         <? $arResult["FORM_FIELDS"] = Array(
@@ -226,8 +226,8 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
     <? endif; ?>
     <div class="columns req">
         <div class="row">
-            <div class="req__name medium-4 small-5 columns">&nbsp;</div>
-            <div class="medium-8 small-7 columns req__value">
+            <div class="req__name medium-5 small-5 columns">&nbsp;</div>
+            <div class="medium-7 small-7 columns req__value">
                 <a href="#" class="content__change content__change_new" data-reveal-id="profile">Изменить</a>
             </div>
         </div>

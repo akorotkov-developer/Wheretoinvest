@@ -36,23 +36,31 @@ while ($el = $list->fetch()) {
 
 <? if (count($ratingList)): ?>
     <div class="row">
+        <? $i = 1; ?>
         <? foreach ($ratingList as $key => $item): ?>
-            <div class="columns req">
+            <div class="columns<? if ($i < count($ratingList)): ?> req<? endif; ?>">
                 <div class="row">
                     <div class="req__name medium-4 small-5 columns"><?= $item["UF_NAME"] ?>:</div>
                     <div
                         class="req__value medium-8 small-7 columns"><?= !empty($rating[$key]["UF_RATING"]) ? $rating[$key]["UF_RATING"] : "<span class='req__name'>—</span>"; ?></div>
                 </div>
             </div>
+            <? ++$i; ?>
         <? endforeach; ?>
     </div>
 <? else: ?>
     <? ShowNote("Рейтинги отсутствуют"); ?>
 <? endif; ?>
-
-    <a class="content__change" href="edit/">Изменить</a>
+    <div class="row">
+        <div class="columns small-5 medium-4 req__name">&nbsp;</div>
+        <div class="columns small-7 medium-8 req__value">
+            <a class="content__change" href="edit/">Изменить</a>
+        </div>
+    </div>
 
 <? if (!empty(reset($rating)["UF_UPDATED"])): ?>
-    <div class="columns content__date">
-        Обновлено: <?= CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime(reset($rating)["UF_UPDATED"])); ?></div>
+    <div class="row">
+        <div class="columns content__date">
+            Обновлено: <?= CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime(reset($rating)["UF_UPDATED"])); ?></div>
+    </div>
 <? endif; ?>

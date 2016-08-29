@@ -22,7 +22,7 @@ switch ($arResult["VARIABLES"]["type"]) {
 }
 
 $APPLICATION->SetTitle("Изменить предложение");
-$APPLICATION->AddChainItem("Предложения для " . $name . " лиц", preg_replace("#add/#is", "", $APPLICATION->GetCurPage()));
+$APPLICATION->AddChainItem("Предложения для " . $name . " лиц", preg_replace("#edit/.*?/#is", "", $APPLICATION->GetCurPage()));
 $APPLICATION->AddChainItem("Изменить предложение");
 
 if (defined("NO_LEGAL") && $type == "27"):?>
