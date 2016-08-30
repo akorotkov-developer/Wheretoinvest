@@ -9,51 +9,105 @@
             <? if (in_array($key, Array("summ", "currency", "time"))) continue; ?>
             <input type="hidden" name="<?= urldecode($key) ?>" value="<?= $val ?>">
         <? endforeach; ?>
-        <section class="b-sort row">
-            <div class="b-sort__arr"></div>
-            <div class="columns b-sort__all">на 1 год</div>
-            <div class="b-sort__main">
-                <div class="column medium-7">
-                    <span class="b-sort__label">Сумма:</span>
-                    <input type="text" class="b-sort__inp" value="<?= $_REQUEST["summ"] ?>" name="summ">
+
+        <div class="js-header">
+            <section class="b-sort row">
+                <div class="b-sort__arr"></div>
+                <div class="columns b-sort__all">на 1 год</div>
+                <div class="b-sort__main">
+                    <div class="column medium-7">
+                        <span class="b-sort__label">Сумма:</span>
+                        <input type="text" class="b-sort__inp" value="<?= $_REQUEST["summ"] ?>" name="summ">
+                    </div>
+                    <div class="column small-5 medium-2 b-sort__select">
+                        <span class="b-sort__label">Валюта:</span>
+                        <select name="currency">
+                            <? foreach ($arResult["FIELDS"]["UF_CURRENCY"] as $key => $name): ?>
+                                <option
+                                    value="<?= $key ?>"<? if ($_REQUEST["currency"] == $key): ?> selected<? endif; ?>><?= $name ?></option>
+                            <? endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="column small-7 medium-3">
+                        <span class="b-sort__label">Срок:</span>
+                        <?
+                        $timeList = Array(
+                            "31" => "1 месяц",
+                            "93" => "3 месяца",
+                            "182" => "6 месяцев",
+                            "365" => "1 год",
+                            ">365" => "1 год и более",
+                            "1095" => "3 года",
+                            ">1095" => "3 года и более",
+                            "3650" => "10 лет",
+                            ">3650" => "10 лет и более",
+                            "7300" => "20 лет",
+                            ">7300" => "20 лет и более",
+                        );
+                        ?>
+                        <select name="time">
+                            <option value="">Срок не выбран</option>
+                            <? foreach ($timeList as $key => $name): ?>
+                                <option
+                                    value="<?= $key ?>"<? if ($_REQUEST["time"] == $key): ?> selected<? endif; ?>><?= $name ?></option>
+                            <? endforeach; ?>
+                        </select>
+                    </div>
                 </div>
-                <div class="column small-5 medium-2 b-sort__select">
-                    <span class="b-sort__label">Валюта:</span>
-                    <select name="currency">
-                        <? foreach ($arResult["FIELDS"]["UF_CURRENCY"] as $key => $name): ?>
-                            <option
-                                value="<?= $key ?>"<? if ($_REQUEST["currency"] == $key): ?> selected<? endif; ?>><?= $name ?></option>
-                        <? endforeach; ?>
-                    </select>
+            </section>
+            <button type="submit" class="hide"></button>
+
+            <? if (count($arResult["ITEMS"])): ?>
+                <div class="row small-collapse medium-uncollapse">
+                    <div class="columns">
+                        <div class="b-offers__header small-only-text-center">
+                            <div class="row">
+                                <div class="column medium-4 small-4 ">
+                                    <div class="b-offers__th first">
+                                        <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[org]=" . ($_REQUEST["SORT"]["org"] == "A" ? "D" : "A"), Array("SORT")) ?>"
+                                           class="b-offers__title <? if (!empty($_REQUEST["SORT"]["org"])): ?><? if ($_REQUEST["SORT"]["org"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
+                                            Организация
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="column medium-2 hide-for-small-only">
+                                    <div class="b-offers__th">
+                                        <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[method]=" . ($_REQUEST["SORT"]["method"] == "A" ? "D" : "A"), Array("SORT")) ?>"
+                                           class="b-offers__title <? if (!empty($_REQUEST["SORT"]["method"])): ?><? if ($_REQUEST["SORT"]["method"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
+                                            Способ вложения
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <div
+                                    class="column medium-3 small-4 medium-text-right small-text-center b-offers__bility">
+                                    <div class="b-offers__th">
+                                        <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[percent]=" . (empty($_REQUEST["SORT"]["percent"]) || $_REQUEST["SORT"]["percent"] == "A" ? "D" : "A"), Array("SORT")) ?>"
+                                           class="b-offers__title  <? if (empty($_REQUEST["SORT"]) || !empty($_REQUEST["SORT"]["percent"])): ?><? if (empty($_REQUEST["SORT"]) || $_REQUEST["SORT"]["percent"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
+                                            Доходность
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <div class="column medium-2 small-4 medium-text-right small-text-center">
+                                    <div class="b-offers__th">
+                                        <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[safety]=" . ($_REQUEST["SORT"]["safety"] == "A" ? "D" : "A"), Array("SORT")) ?>"
+                                           class="b-offers__title <? if (!empty($_REQUEST["SORT"]["safety"])): ?><? if ($_REQUEST["SORT"]["safety"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
+                                            Надежность
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <div class="column medium-1 show-for-medium-up">
+                                    <div class="b-offers__th">&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="column small-7 medium-3">
-                    <span class="b-sort__label">Срок:</span>
-                    <?
-                    $timeList = Array(
-                        "31" => "1 месяц",
-                        "93" => "3 месяца",
-                        "182" => "6 месяцев",
-                        "365" => "1 год",
-                        ">365" => "1 год и более",
-                        "1095" => "3 года",
-                        ">1095" => "3 года и более",
-                        "3650" => "10 лет",
-                        ">3650" => "10 лет и более",
-                        "7300" => "20 лет",
-                        ">7300" => "20 лет и более",
-                    );
-                    ?>
-                    <select name="time">
-                        <option value="">Срок не выбран</option>
-                        <? foreach ($timeList as $key => $name): ?>
-                            <option
-                                value="<?= $key ?>"<? if ($_REQUEST["time"] == $key): ?> selected<? endif; ?>><?= $name ?></option>
-                        <? endforeach; ?>
-                    </select>
-                </div>
-            </div>
-        </section>
-        <button type="submit" class="hide"></button>
+            <? endif; ?>
+        </div>
+
         <script type="text/javascript">
             $(function () {
                 $(".x-filter select").on("change", function () {
@@ -68,49 +122,7 @@
     </form>
 <? if (count($arResult["ITEMS"])): ?>
     <section class="b-offers">
-        <div class="row  b-offers__header small-only-text-center">
-
-            <div class="column medium-4 small-4 ">
-                <div class="b-offers__th first">
-                    <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[org]=" . ($_REQUEST["SORT"]["org"] == "A" ? "D" : "A"), Array("SORT")) ?>"
-                       class="b-offers__title <? if (!empty($_REQUEST["SORT"]["org"])): ?><? if ($_REQUEST["SORT"]["org"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
-                        Организация
-                    </a>
-                </div>
-            </div>
-            <div class="column medium-2 hide-for-small-only">
-                <div class="b-offers__th">
-                    <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[method]=" . ($_REQUEST["SORT"]["method"] == "A" ? "D" : "A"), Array("SORT")) ?>"
-                       class="b-offers__title <? if (!empty($_REQUEST["SORT"]["method"])): ?><? if ($_REQUEST["SORT"]["method"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
-                        Способ вложения
-                    </a>
-
-                </div>
-            </div>
-            <div class="column medium-3 small-4 medium-text-right small-text-center b-offers__bility">
-                <div class="b-offers__th">
-                    <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[percent]=" . (empty($_REQUEST["SORT"]["percent"]) || $_REQUEST["SORT"]["percent"] == "A" ? "D" : "A"), Array("SORT")) ?>"
-                       class="b-offers__title  <? if (empty($_REQUEST["SORT"]) || !empty($_REQUEST["SORT"]["percent"])): ?><? if (empty($_REQUEST["SORT"]) || $_REQUEST["SORT"]["percent"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
-                        Доходность
-                    </a>
-
-                </div>
-            </div>
-            <div class="column medium-2 small-4 medium-text-right small-text-center">
-                <div class="b-offers__th">
-                    <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[safety]=" . ($_REQUEST["SORT"]["safety"] == "A" ? "D" : "A"), Array("SORT")) ?>"
-                       class="b-offers__title <? if (!empty($_REQUEST["SORT"]["safety"])): ?><? if ($_REQUEST["SORT"]["safety"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
-                        Надежность
-                    </a>
-
-                </div>
-            </div>
-            <div class="column medium-1 show-for-medium-up">
-                <div class="b-offers__th">&nbsp;</div>
-            </div>
-        </div>
         <? $inflation = \Ceteralabs\UserVars::GetVar('USER_VAR_INFLATION')["VALUE"]; ?>
-
         <? if (!empty($inflation)): ?>
             <div class="row b-offers__infl">
                 <div class="columns medium-2 medium-offset-4 small-4 small-text-center medium-text-left">

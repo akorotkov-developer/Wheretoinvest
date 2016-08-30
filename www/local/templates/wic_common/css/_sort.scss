@@ -1,7 +1,6 @@
 .b-sort {
-  padding-top: rem-calc(50);
+  padding-top: rem-calc(10);
   padding-bottom: 10px;
-  margin-bottom: rem-calc(20);
   position: relative;
   background: #fff;
   z-index: 10;
@@ -9,7 +8,6 @@
     position: fixed;
     padding-top: 10px;
     left: calc(50% - 490px);
-    margin-bottom: 0;
   }
   &__select {
     select {

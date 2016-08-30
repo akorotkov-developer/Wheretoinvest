@@ -10,15 +10,13 @@ $APPLICATION->SetTitle("Куда вложить деньги");
         "EDIT_TEMPLATE" => "standard.php"
     )
 ); ?>
-
-    <div id="main_offer">
-        <? $APPLICATION->IncludeComponent("bitrix:main.include", "", Array(
-                "AREA_FILE_SHOW" => "file",
-                "AREA_FILE_SUFFIX" => "",
-                "PATH" => "/include/main_offer.php",
-                "AREA_FILE_RECURSIVE" => "Y",
-                "EDIT_TEMPLATE" => "standard.php"
-            )
-        ); ?>
-    </div>
+    <br>
+<? $APPLICATION->IncludeComponent("bitrix:main.include", "", Array(
+        "AREA_FILE_SHOW" => "file",
+        "AREA_FILE_SUFFIX" => "",
+        "PATH" => "/include/main_offer.php",
+        "AREA_FILE_RECURSIVE" => "Y",
+        "EDIT_TEMPLATE" => "standard.php"
+    )
+); ?>
 <? require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>

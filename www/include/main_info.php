@@ -1,5 +1,8 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
-<? if (empty($APPLICATION->get_cookie("SIZE_CLOSE"))): ?>
+<?
+$size = $APPLICATION->get_cookie("SIZE_CLOSE");
+?>
+<? if (empty($size)): ?>
     <section class="row b-sizeinfo ">
         <div class="column medium-9">
             <div class="b-sizeinfo__title">

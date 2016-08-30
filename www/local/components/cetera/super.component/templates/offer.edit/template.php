@@ -147,6 +147,7 @@ if (defined("ERROR_404"))
 
                         <div class="region__from">от</div>
                         <input type="text" class="region__inp region__js-fir" value="">
+
                         <div class="region__from"></div>
                         <div class="region__from">дней</div>
                         <span class="region__add region__js-col">+</span>
@@ -225,39 +226,26 @@ if (defined("ERROR_404"))
 
             $('.region__js-col').click(function () {
                 var firD = $('.region__js-fir').val();
-                var secD = $('.region__js-sec').val();
                 if (firD) {
                     var canAdd = true;
 
                     $(".region__main .tabs-content .content").each(function () {
                         var idA = "#" + $(this).attr("id");
 
-                        if (secD) {
-                            if ($(".graph__th.graph__th_reg[data-id='" + firD + "-" + secD + "']", idA).length) {
-                                canAdd = false;
-                            }
-                        }
-                        else {
-                            if ($(".graph__th.graph__th_reg[data-id='" + firD + "']", idA).length) {
-                                canAdd = false;
-                            }
+                        if ($(".graph__th.graph__th_reg[data-id='" + firD + "']", idA).length) {
+                            canAdd = false;
                         }
 
-                        var numCol = $(idA + ' .graph__th').length;
+                        var numCol = $('.graph__th', idA).length;
                         if (numCol <= 7 && canAdd) {
-                            var numRow = $(idA + ' .graph__row').length;
-                            var dataId = '';
-                            if (secD) {
-                                dataId = firD + '-' + secD;
-                            } else {
-                                dataId = firD;
-                            }
+                            var numRow = $('.graph__row', idA).length;
+                            var dataId = firD;
                             var headText = '<div class="graph__th graph__th_reg" data-id="' + dataId + '"><a class="graph__cr"></a>от ' + firD + '<br>дней</div>';
 
-                            $(idA + " .graph__head").append(headText);
+                            $(".graph__head", idA).append(headText);
                             $('.graph__cr:not(.graph__cr_td)').unbind().on('click', deleteCol);
 
-                            $(idA + ' .graph__row').each(function () {
+                            $('.graph__row', idA).each(function () {
                                 var item = $(graphTd);
                                 var colID = $(this).data("id");
                                 item.find("input").attr("name", "UF_MATRIX[" + idA + "][" + colID + "][" + dataId + "]");
@@ -268,7 +256,6 @@ if (defined("ERROR_404"))
                     });
                 }
                 $('.region__js-fir').val("");
-                $('.region__js-sec').val("");
                 respoTd();
             });
 

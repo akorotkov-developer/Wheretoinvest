@@ -67,8 +67,8 @@ CJSCore::Init(array("fx"));
                 "sale.location",
                 array(
                     "COMPONENT_TEMPLATE" => "sale.location",
-                    "CACHE_TYPE" => "A",
-                    "CACHE_TIME" => "3600",
+                    "CACHE_TYPE" => "N",
+                    "CACHE_TIME" => "1",
                     "MODAL_ID" => "saleLocation",
                     "COL_CNT" => "3",
                     "EMPTY_NAME" => "Выберите регион"

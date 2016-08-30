@@ -8,6 +8,8 @@
   }
   &__infl {
     border-bottom: 1px solid #e6e6e6;
+    padding: 9px 0 3px;
+    
     * {
       color: #e53935;
     }
@@ -29,7 +31,6 @@
       width: 100%;
       left: calc(50% - 490px);
     }
-
   }
   &__th {
     font-size: rem-calc(12);
@@ -49,6 +50,7 @@
     color: #202020;
     &_sort {
       border-bottom: 1px dashed #000;
+      margin-right: 15px;
 
       &:after {
         content: '';

@@ -20,7 +20,9 @@ JsIncludes::includeFiles('common.foundation');
 JsIncludes::includeFiles('common.js');
 JsIncludes::includeFiles('common.common');
 JsIncludes::injectVariable('#WIC_TEMPLATE_PATH#', WIC_TEMPLATE_PATH);
-//JsIncludes::compressFiles();
+
+if (strpos($_SERVER["SERVER_NAME"], "beta") === false)
+    JsIncludes::compressFiles();
 echo JsIncludes::showIncludes();
 
 /**
