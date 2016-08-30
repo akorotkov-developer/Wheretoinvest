@@ -227,18 +227,17 @@ if (defined("ERROR_404"))
             $('.region__js-col').click(function () {
                 var firD = $('.region__js-fir').val();
                 if (firD) {
-                    var canAdd = true;
 
                     $(".region__main .tabs-content .content").each(function () {
                         var idA = "#" + $(this).attr("id");
+                        var canAdd = true;
 
-                        if ($(".graph__th.graph__th_reg[data-id='" + firD + "']", idA).length) {
+                        if ($(".graph__th[data-id='" + firD + "']", idA).length) {
                             canAdd = false;
                         }
 
                         var numCol = $('.graph__th', idA).length;
                         if (numCol <= 7 && canAdd) {
-                            var numRow = $('.graph__row', idA).length;
                             var dataId = firD;
                             var headText = '<div class="graph__th graph__th_reg" data-id="' + dataId + '"><a class="graph__cr"></a>от ' + firD + '<br>дней</div>';
 

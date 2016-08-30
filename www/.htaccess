@@ -16,6 +16,10 @@ ErrorDocument 500 /500.html
   Options +FollowSymLinks
   RewriteEngine On
 
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.(php|html)\ HTTP
+  RewriteRule ^index\.(php|html)$ http://wheretoinvest.ru/ [R=301,L]
+  RewriteCond %{HTTP_HOST} ^www.wheretoinvest.ru
+  RewriteRule (.*) http://wheretoinvest.ru/$1 [R=301,L]
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
