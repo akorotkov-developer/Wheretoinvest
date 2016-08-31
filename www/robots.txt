@@ -5,6 +5,7 @@ Disallow: /bitrix/
 Disallow: /*sort=
 Disallow: /*SORT=
 Disallow: /upload/
+Disallow: /local/
 
 User-agent: Yandex
 Crawl-delay: 1
@@ -13,7 +14,4 @@ Disallow: /bitrix/
 Disallow: /*sort=
 Disallow: /*SORT=
 Disallow: /upload/
-
-Host: example.com
-
-Sitemap: http://example.com/sitemap_index.xml
+Disallow: /local/
