@@ -42,7 +42,7 @@ class UserEx
             if (!empty($_REQUEST["FROM_PUBLIC"])) {
                 if (empty($_REQUEST["partner"])) {
                     $arFields["PERSONAL_GENDER"] = $_REQUEST["PERSONAL_GENDER"];
-                    if(!empty($_REQUEST["UF_BIRTHDAY"]) && !preg_match("#\d{4,4}#is", $_REQUEST["UF_BIRTHDAY"])){
+                    if (!empty($_REQUEST["UF_BIRTHDAY"]) && !preg_match("#\d{4,4}#is", $_REQUEST["UF_BIRTHDAY"])) {
                         $GLOBALS['APPLICATION']->ThrowException('Некорректно указан год рождения.');
                         return false;
                     }
@@ -77,8 +77,19 @@ class UserEx
             }
         }
     }
+
+    function OnAfterUserUpdate(&$arFields)
+    {
+        if ($arFields["RESULT"]) {
+            if (in_array(PARTNER_GROUP, CUser::GetUserGroup($arFields["ID"]))) {
+                $obCache = new CPHPCache();
+                $obCache->CleanDir("/offers/");
+            }
+        }
+    }
 }
 
 $eventManager->addEventHandler("main", "OnBeforeUserLogin", array("UserEx", "OnBeforeUserLogin"), false, 100);
 $eventManager->addEventHandler("main", "OnBeforeUserRegister", array("UserEx", "OnBeforeUserRegister"), false, 100);
 $eventManager->addEventHandler("main", "OnAfterUserRegister", array("UserEx", "OnAfterUserRegister"), false, 100);
+$eventManager->addEventHandler("main", "OnAfterUserUpdate", array("UserEx", "OnAfterUserUpdate"), false, 100);

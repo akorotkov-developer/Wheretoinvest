@@ -161,7 +161,8 @@
                     <div class="column medium-4  small-4 b-offers__firsttd">
                         <div class="b-offers__logo">
                             <? if (!empty($user["WORK_LOGO"])): ?>
-                                <img src="<?= \CFile::GetPath($user["WORK_LOGO"]); ?>">
+                                <? $file = CFile::ResizeImageGet($user["WORK_LOGO"], array('width' => 40, 'height' => 40), BX_RESIZE_IMAGE_PROPORTIONAL); ?>
+                                <img src="<?= $file["src"]; ?>">
                             <? endif; ?>
                         </div>
                         <div class="b-offers__name">
