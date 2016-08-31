@@ -121,15 +121,15 @@
         </script>
     </form>
 <? if (count($arResult["ITEMS"])): ?>
+    <? $inflation = floatval(\Ceteralabs\UserVars::GetVar('USER_VAR_INFLATION')["VALUE"]); ?>
     <section class="b-offers">
-        <? $inflation = \Ceteralabs\UserVars::GetVar('USER_VAR_INFLATION')["VALUE"]; ?>
-        <? if (!empty($inflation)): ?>
+        <? if (!empty($inflation) && !empty($_REQUEST["SORT"]) && empty($_REQUEST["SORT"]["percent"])): ?>
             <div class="row b-offers__infl">
                 <div class="columns medium-2 medium-offset-4 small-4 small-text-center medium-text-left">
                     <div class="b-offers__type b-offers__type_infl">Инфляция</div>
                 </div>
                 <div class="columns medium-3 small-3 text-right end b-offers__percent b-offers__bility">
-                    <div class="b-offers__prof b-offers__prof_infl"><?= $inflation ?><span>%</span></div>
+                    <div class="b-offers__prof b-offers__prof_infl"><?= $inflation ?> <span>%</span></div>
                 </div>
             </div>
         <? endif; ?>
@@ -138,11 +138,25 @@
             <? if (!empty($_REQUEST["ajax"])) {
                 $APPLICATION->RestartBuffer();
             } ?>
+            <? $showInflation = true; ?>
             <? foreach ($arResult["ITEMS"] as $arItem): ?>
                 <?
                 $user = $arItem["USER"];
                 $offer = $arItem["OFFER"];
                 ?>
+                <? if (!empty($inflation) && (empty($_REQUEST["SORT"]) || !empty($_REQUEST["SORT"]["percent"])) && $showInflation): ?>
+                    <? if (((empty($_REQUEST["SORT"]) || $_REQUEST["SORT"]["percent"] == "D") && $inflation > floatval($arItem["UF_PERCENT"])) || ($_REQUEST["SORT"]["percent"] == "A" && $inflation < floatval($arItem["UF_PERCENT"]))): ?>
+                        <div class="row b-offers__infl">
+                            <div class="columns medium-2 medium-offset-4 small-4 small-text-center medium-text-left">
+                                <div class="b-offers__type b-offers__type_infl">Инфляция</div>
+                            </div>
+                            <div class="columns medium-3 small-3 text-right end b-offers__percent b-offers__bility">
+                                <div class="b-offers__prof b-offers__prof_infl"><?= $inflation ?> <span>%</span></div>
+                            </div>
+                        </div>
+                        <? $showInflation = false; ?>
+                    <? endif; ?>
+                <? endif; ?>
                 <div class="b-offers__item row">
                     <div class="column medium-4  small-4 b-offers__firsttd">
                         <div class="b-offers__logo">
@@ -162,7 +176,7 @@
                         </div>
                     </div>
                     <div class="column small-3 medium-3  text-right b-offers__profit b-offers__bility">
-                        <div class="b-offers__prof"><?= floatval($arItem["UF_PERCENT"]); ?><span>%</span></div>
+                        <div class="b-offers__prof"><?= floatval($arItem["UF_PERCENT"]); ?> <span>%</span></div>
                     </div>
                     <div class="column small-5 medium-2  text-right">
                         <div class="b-offers__prof"><?= $arItem["UF_SAFETY"] ?>

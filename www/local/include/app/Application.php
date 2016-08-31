@@ -31,7 +31,8 @@ class Application
          */
         $bxModulesToLoad = array(
             "iblock",
-            "highloadblock"
+            "highloadblock",
+            "ceteralabs.uservars"
         );
         foreach ($bxModulesToLoad as $module)
             if (!Loader::includeModule($module))

@@ -9,7 +9,7 @@
   &__infl {
     border-bottom: 1px solid #e6e6e6;
     padding: 9px 0 3px;
-    
+
     * {
       color: #e53935;
     }
@@ -91,14 +91,8 @@
     border-bottom: rem-calc(1) solid #e6e6e6;
 
     &:hover {
-
-      .b-offers__stars {
-        background: url("../images/star-active.png") no-repeat center center;
-      }
-
       .b-offers__arrows {
         display: block;
-
       }
     }
     &.active {
@@ -173,7 +167,7 @@
     display: inline-block;
     margin-top: 10px;
 
-    &.b-offers__stars_active {
+    &.b-offers__stars_active, &:hover {
       background: url("../images/star-active.png") no-repeat center center;
     }
   }

@@ -80,35 +80,6 @@ while ($el = $list->fetch()) {
     $offers[$el["ID"]] = $el["ID"];
 }
 
-
-$ratingList = Array();
-$hblock = new \Cetera\HBlock\SimpleHblockObject(8);
-$list = $hblock->getList();
-while ($el = $list->fetch()) {
-    $ratingList[$el["ID"]] = $el;
-}
-
-$rating = Array();
-$ratingDetail = Array();
-$hblock = new \Cetera\HBlock\SimpleHblockObject(7);
-$list = $hblock->getList(Array("filter" => Array("UF_USER" => $users)));
-while ($el = $list->fetch()) {
-    if (!empty($el["UF_RATING"])) {
-        $rating[$el["UF_USER"]][] = trim($ratingList[$el["UF_AGENCY"]]["UF_NAME"] . " " . $el["UF_RATING"]);
-        if (empty($ratingDetail[$el["UF_USER"]]))
-            $ratingDetail[$el["UF_USER"]] = 0;
-
-        $i = 1;
-        foreach ($ratingList[$el["UF_AGENCY"]]["UF_SCALE"] as $key => $val) {
-            if ($val == $el["UF_RATING"]) {
-                $ratingDetail[$el["UF_USER"]] += $i;
-                break;
-            }
-            ++$i;
-        }
-    }
-}
-
 $obCache = new CPHPCache();
 $cacheLifetime = 86400;
 $cacheString = "";
@@ -126,53 +97,92 @@ if ($obCache->InitCache($cacheLifetime, $cacheID, $cachePath)) {
     $vars = $obCache->GetVars();
     $arResult["USERS"] = $vars["USERS"];
 } elseif ($obCache->StartDataCache()) {
-    $arResult["USER_SORT"] = Array();
-    if (count($users)) {
-        $rsUsers = \CUser::GetList(($by = "ID"), ($order = "ASC"), Array("ID" => implode("|", $users)), Array("SELECT" => Array("UF_*")));
-        while ($arUser = $rsUsers->GetNext()) {
-            $name = Array();
-            $name[] = $arUser["WORK_COMPANY"];
-            if (!empty($arUser["UF_OGRN"]))
-                $name[] = "ОГРН " . $arUser["UF_OGRN"];
-            if (!empty($arUser["UF_LICENSE"]))
-                $name[] = "Лицензия ЦБ № " . $arUser["UF_LICENSE"];
-            $arUser["FULL_WORK_COMPANY"] = implode(", ", $name);
 
-            $arResult["USERS"][$arUser["ID"]] = $arUser;
-            $arResult["USER_SORT"][$arUser["ID"]] = Array(
-                "ID" => $arUser["ID"],
-                "RATING" => intval($ratingDetail[$arUser["ID"]]) > 0 ? intval($ratingDetail[$arUser["ID"]]) : 1000,
-                "GOV" => !empty($arUser["UF_STATE_PARTICIP"]) ? 1 : 100,
-                "CAPITAL" => floatval(preg_replace("#[^\d\.]#is", "", preg_replace("#,#is", ".", $arUser["UF_CAPITAL"]))),
-                "CAPITAL_TO_ASSETS" => floatval(preg_replace("#,#is", ".", $arUser["UF_CAPITAL_ASSETS"])),
-                "ASSETS" => floatval(preg_replace("#[^\d\.]#is", "", preg_replace("#,#is", ".", $arUser["UF_ASSETS"]))),
-                "UPDATED" => strtotime($arUser["TIMESTAMP_X"]),
-            );
+    $ratingList = Array();
+    $hblock = new \Cetera\HBlock\SimpleHblockObject(8);
+    $list = $hblock->getList();
+    while ($el = $list->fetch()) {
+        $ratingList[$el["ID"]] = $el;
+    }
+
+    $rating = Array();
+    $ratingDetail = Array();
+    $hblock = new \Cetera\HBlock\SimpleHblockObject(7);
+    $list = $hblock->getList(Array("filter" => Array("UF_USER" => $users)));
+    while ($el = $list->fetch()) {
+        if (!empty($el["UF_RATING"])) {
+            $rating[$el["UF_USER"]][] = trim($ratingList[$el["UF_AGENCY"]]["UF_NAME"] . " " . $el["UF_RATING"]);
+            if (empty($ratingDetail[$el["UF_USER"]]))
+                $ratingDetail[$el["UF_USER"]] = 0;
+
+            $i = 1;
+            foreach ($ratingList[$el["UF_AGENCY"]]["UF_SCALE"] as $key => $val) {
+                if ($val == $el["UF_RATING"]) {
+                    if (empty($ratingDetail[$el["UF_USER"]]) || $i < $ratingDetail[$el["UF_USER"]]) {
+                        $ratingDetail[$el["UF_USER"]] = $i;
+                        break;
+                    }
+                }
+                ++$i;
+            }
         }
     }
 
-    $userMethods = getUserMethods();
+    $arResult["USER_SORT"] = Array();
+    $rsUsers = \CUser::GetList(($by = "ID"), ($order = "ASC"), Array("GROUPS_ID" => Array(PARTNER_GROUP)), Array("SELECT" => Array("UF_*")));
+    while ($arUser = $rsUsers->GetNext()) {
+        $name = Array();
+        $name[] = $arUser["WORK_COMPANY"];
+        if (!empty($arUser["UF_OGRN"]))
+            $name[] = "ОГРН " . $arUser["UF_OGRN"];
+        if (!empty($arUser["UF_LICENSE"]))
+            $name[] = "Лицензия ЦБ № " . $arUser["UF_LICENSE"];
+        $arUser["FULL_WORK_COMPANY"] = implode(", ", $name);
 
+        $arResult["USERS"][$arUser["ID"]] = $arUser;
+        $arResult["USER_SORT"][$arUser["ID"]] = Array(
+            "ID" => $arUser["ID"],
+            "RATING" => intval($ratingDetail[$arUser["ID"]]) > 0 ? intval($ratingDetail[$arUser["ID"]]) : 1000,
+            "GOV" => !empty($arUser["UF_STATE_PARTICIP"]) ? 1 : 100,
+            "CAPITAL" => floatval(preg_replace("#[^\d\.]#is", "", preg_replace("#,#is", ".", $arUser["UF_CAPITAL"]))),
+            "CAPITAL_TO_ASSETS" => floatval(preg_replace("#,#is", ".", $arUser["UF_CAPITAL_ASSETS"])),
+            "ASSETS" => floatval(preg_replace("#[^\d\.]#is", "", preg_replace("#,#is", ".", $arUser["UF_ASSETS"]))),
+            "UPDATED" => strtotime($arUser["TIMESTAMP_X"]),
+        );
+    }
+
+    $userMethods = getUserMethods();
+    $arr = Array();
     foreach ($userMethods as $key => $method) {
-        if ($method["ACTIVE"]) {
-            $arr = Array();
-            foreach ($arResult["USER_SORT"] as $userId => $fields) {
-                foreach ($fields as $fId => $fVal) {
-                    if ($fId == "ID") continue;
-                    $arr[$fId][$userId] = $fVal;
-                }
-            }
+        if (!$method["ACTIVE"])
+            continue;
+
+        foreach ($arResult["USER_SORT"] as $userId => $fields) {
+            $arr[$method["CODE"]][$userId] = $fields[$method["CODE"]];
+        }
+
+        $arr[] = SORT_NUMERIC;
+        switch ($method["CODE"]) {
+            case "GOV":
+            case "RATING":
+                $arr[] = SORT_ASC;
+                break;
+            default:
+                $arr[] = SORT_DESC;
         }
     }
 
     $arr[] = &$arResult["USER_SORT"];
     call_user_func_array("array_multisort", $arr);
 
+    $i = 1;
     foreach ($arResult["USER_SORT"] as $sort => $item) {
-        $arResult["USERS"][$item["ID"]]["UF_SAFETY"] = intval($sort) + 1;
+        $arResult["USERS"][$item["ID"]]["UF_SAFETY"] = $i;
+        ++$i;
     }
     $obCache->EndDataCache(Array("USERS" => $arResult["USERS"]));
 }
+
 
 $arResult["USER_COUNT"] = count($arResult["USERS"]);
 
