@@ -114,8 +114,11 @@
                     $(this).closest(".x-filter").submit();
                 });
 
+                var lastInput = $(".x-filter input").eq(0).val();
+
                 $(".x-filter input").on("blur", function () {
-                    $(this).closest(".x-filter").submit();
+                    if ($(this).val() !== lastInput)
+                        $(this).closest(".x-filter").submit();
                 });
             });
         </script>

@@ -59,7 +59,12 @@
                         id: id,
                         name: name
                     },
-                    method: "post"
+                    method: "post",
+                    success: function () {
+                        var url = "<?=$APPLICATION->GetCurPage()?>";
+                        if (url == "/")
+                            window.location.reload();
+                    }
                 });
 
                 $('.b-header__firstline-linkreg_js').text(name);

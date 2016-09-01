@@ -10,6 +10,11 @@
                             continue;
                         ?>
                         <? $class = !empty($arItem["PARAMS"]["class"]) ? $arItem["PARAMS"]["class"] : ""; ?>
+                        <?
+                        if ($APPLICATION->GetCurPage() == "/") {
+                            $arItem["LINK"] = $APPLICATION->GetCurPageParam(preg_replace("#^/[\?]?#is", "", $arItem["LINK"]), Array("method", "favorite"));
+                        }
+                        ?>
                         <? if ($arItem["SELECTED"]): ?>
                             <li class="b-header__menu-item">
                                 <a class="b-header__menu-link b-header__menu-link_active <?= $class ?>"
