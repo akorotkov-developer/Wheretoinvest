@@ -111,10 +111,11 @@
   &__logo {
     width: rem-calc(40);
     margin-right: rem-calc(5);
-    display: table-cell;
+    display: inline-block;
     text-align: center;
     vertical-align: middle;
     height: rem-calc(40);
+    line-height: rem-calc(32);
 
     img {
       max-width: 100%;
@@ -125,7 +126,7 @@
   &__name {
     font-size: rem-calc(14);
     color: #202020;
-    display: table-cell;
+    display: inline-block;
     padding-top: 11px;
     padding-left: 5px;
 
