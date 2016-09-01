@@ -134,3 +134,8 @@
     transition: all .5s;
   }
 }
+
+.b-form__autocomplete {
+  @include form-select;
+  cursor: default;
+}

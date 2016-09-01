@@ -48,8 +48,9 @@ CJSCore::Init(array("fx"));
     <script data-skip-moving="true" src="//yastatic.net/jquery/1.11.2/jquery.min.js"></script>
     <script data-skip-moving="true" src="<?= WIC_TEMPLATE_PATH ?>/js/vendor/modernizr.js"></script>
     <?php
-    $APPLICATION->SetAdditionalCSS(WIC_TEMPLATE_PATH . "/css/style.css");
     $APPLICATION->SetAdditionalCSS(WIC_TEMPLATE_PATH . "/js/vendor/sortable/jquery-ui.min.css");
+    $APPLICATION->SetAdditionalCSS(WIC_TEMPLATE_PATH . "/js/jqueryui/jquery-ui.min.css");
+    $APPLICATION->SetAdditionalCSS(WIC_TEMPLATE_PATH . "/css/style.css");
     $APPLICATION->ShowHead();
     ?>
     <?php require($_SERVER['DOCUMENT_ROOT'] . WIC_TEMPLATE_PATH . '/include_areas/javascript.php'); ?>

@@ -15,6 +15,7 @@ JsIncludes::registerFile('common.js.resize', '#WIC_TEMPLATE_PATH#/js/vendor/jque
 JsIncludes::registerFile('common.js.maskedinput', '#WIC_TEMPLATE_PATH#/js/vendor/jquery.maskedinput.js?v=1');
 JsIncludes::registerFile('common.js.sortable', '#WIC_TEMPLATE_PATH#/js/vendor/sortable/jquery-ui.min.js?v=1');
 JsIncludes::registerFile('common.js.sortabletouch', '#WIC_TEMPLATE_PATH#/js/vendor/sortable/jquery.ui.touch-punch.min.js?v=1');
+JsIncludes::registerFile('common.js.jqueryui', '#WIC_TEMPLATE_PATH#/js/jqueryui/jquery-ui.min.js?v=1');
 
 JsIncludes::includeFiles('common.foundation');
 JsIncludes::includeFiles('common.js');

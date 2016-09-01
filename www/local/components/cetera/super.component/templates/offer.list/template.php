@@ -32,21 +32,20 @@
                         <span class="b-sort__label">Срок:</span>
                         <?
                         $timeList = Array(
-                            "31" => "1 месяц",
                             "93" => "3 месяца",
                             "182" => "6 месяцев",
+                            "279" => "9 месяцев",
                             "365" => "1 год",
-                            ">365" => "1 год и более",
-                            "1095" => "3 года",
-                            ">1095" => "3 года и более",
-                            "3650" => "10 лет",
-                            ">3650" => "10 лет и более",
-                            "7300" => "20 лет",
-                            ">7300" => "20 лет и более",
+                            "730" => "2 года",
                         );
+
+                        if (!empty($_REQUEST["time"]) && !array_key_exists($_REQUEST["time"], $timeList))
+                            $timeList[$_REQUEST["time"]] = $_REQUEST["time"] . " дней";
+
+                        ksort($timeList);
                         ?>
                         <select name="time">
-                            <option value="">Срок не выбран</option>
+                            <option value="">Укажите количество дней</option>
                             <? foreach ($timeList as $key => $name): ?>
                                 <option
                                     value="<?= $key ?>"<? if ($_REQUEST["time"] == $key): ?> selected<? endif; ?>><?= $name ?></option>
@@ -114,12 +113,121 @@
                     $(this).closest(".x-filter").submit();
                 });
 
-                var lastInput = $(".x-filter input").eq(0).val();
+                var lastInput = $(".x-filter input[name='summ']").val();
 
-                $(".x-filter input").on("blur", function () {
+                $(".x-filter input[name='summ']").on("blur", function () {
                     if ($(this).val() !== lastInput)
                         $(this).closest(".x-filter").submit();
                 });
+
+                $.widget("custom.combobox", {
+                    _create: function () {
+                        this.wrapper = $("<span>")
+                            .addClass("custom-combobox")
+                            .insertAfter(this.element);
+
+                        this.element.hide();
+                        this._createAutocomplete();
+                    },
+
+                    _createAutocomplete: function () {
+                        var selected = this.element.children(":selected"),
+                            value = selected.val() ? selected.text() : "";
+
+                        this.input = $("<input>")
+                            .appendTo(this.wrapper)
+                            .val(value)
+                            .attr("title", "")
+                            .attr("placeholder", "Укажите количество дней")
+                            .addClass("b-form__autocomplete")
+                            .autocomplete({
+                                delay: 0,
+                                minLength: 0,
+                                source: $.proxy(this, "_source")
+                            })
+                            .tooltip({
+                                classes: {
+                                    "ui-tooltip": "ui-state-highlight"
+                                }
+                            });
+
+                        var _this = this;
+                        this._on(this.input, {
+                            autocompleteselect: function (event, ui) {
+                                ui.item.option.selected = true;
+                                this._trigger("select", event, {
+                                    item: ui.item.option
+                                });
+                                _this.element.trigger("change");
+                            },
+                            autocompletechange: "_removeIfInvalid"
+                        });
+
+                        var input = this.input,
+                            wasOpen = false;
+                        input.on("click", function () {
+                            wasOpen = input.autocomplete("widget").is(":visible");
+                            if (wasOpen) {
+                                return;
+                            }
+                            input.autocomplete("search", "");
+                        }).on("keyup", function (e) {
+                            var keycode = (e.keyCode ? e.keyCode : e.which);
+                            if (keycode == 13) {
+                                _this._removeIfInvalid();
+                                return false;
+                            }
+                            var val = $(this).val().replace(/[^\d]/g, "");
+                            console.log(val);
+                            $(this).val(val);
+                        });
+                    },
+
+                    _source: function (request, response) {
+                        var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+                        response(this.element.children("option").map(function () {
+                            var text = $(this).text();
+                            if (this.value && ( !request.term || matcher.test(text) ))
+                                return {
+                                    label: text,
+                                    value: text,
+                                    option: this
+                                };
+                        }));
+                    },
+
+                    _removeIfInvalid: function (event, ui) {
+                        // Search for a match (case-insensitive)
+                        var value = this.input.val(),
+                            valueLowerCase = value.toLowerCase(),
+                            valid = false,
+                            _this = this;
+
+                        this.element.val("");
+                        this.element.children("option").each(function () {
+                            if ($(this).text().toLowerCase() === valueLowerCase) {
+                                this.selected = valid = true;
+                                _this.element.val($(this).attr("value"));
+                            }
+                        });
+
+                        // Found a match, nothing to do
+                        if (!valid) {
+                            this.element.append('<option value="' + value + '" selected>' + value + ' дней</option>');
+                            this.element.val(value);
+                        }
+
+                        this.element.trigger("change");
+//                        this.element.closest("form").submit();
+                    },
+
+                    _destroy: function () {
+                        this.wrapper.remove();
+                        this.element.show();
+                    }
+                });
+
+                $("select[name='time']").combobox();
             });
         </script>
     </form>

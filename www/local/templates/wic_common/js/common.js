@@ -138,7 +138,7 @@
                     if (block.offset().top !== 0 && !block.hasClass("fixed")) {
                         blockPos = block.offset().top;
                     }
-                    
+
                     if (blockPos > 0 && y > blockPos) {
                         block.addClass("fixed").css({
                             "position": "fixed",
