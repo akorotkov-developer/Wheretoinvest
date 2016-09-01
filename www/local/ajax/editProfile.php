@@ -103,23 +103,47 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                 }
             }
 
-            if (!empty($_FILES["WORK_LOGO"]) && empty($_FILES["WORK_LOGO"]["error"])) {
-                $arIMAGE = $_FILES["WORK_LOGO"];
-                $arIMAGE["del"] = "Y";
-                $arIMAGE["MODULE_ID"] = "main";
-                if (!empty($arIMAGE["name"])) {
-                    $arFields["WORK_LOGO"] = $arIMAGE;
-                }
-            }
-
             if (!empty($_REQUEST["WORK_LOGO_DEL"])) {
                 $arIMAGE = Array();
                 $arIMAGE["del"] = "Y";
                 $arIMAGE["MODULE_ID"] = "main";
                 $arFields["WORK_LOGO"] = $arIMAGE;
+            } elseif (!empty($_FILES["WORK_LOGO"]) && empty($_FILES["WORK_LOGO"]["error"])) {
+                $arIMAGE = $_FILES["WORK_LOGO"];
+                $arIMAGE["del"] = "Y";
+                $arIMAGE["MODULE_ID"] = "main";
+
+                $types = array('image/gif', 'image/png', 'image/jpeg');
+                if (!in_array($arIMAGE["type"], $types)) {
+                    $arResult["ERROR"] = "Неверный тип файла";
+                } else {
+                    if ($arIMAGE['type'] == 'image/jpeg')
+                        $source = imagecreatefromjpeg($arIMAGE['tmp_name']);
+                    elseif ($arIMAGE['type'] == 'image/png')
+                        $source = imagecreatefrompng($arIMAGE['tmp_name']);
+                    elseif ($arIMAGE['type'] == 'image/gif')
+                        $source = imagecreatefromgif($arIMAGE['tmp_name']);
+
+                    if (!empty($source)) {
+                        $w_src = imagesx($source);
+                        $h_src = imagesy($source);
+
+                        if ($w_src < 100 || $h_src < 100) {
+                            $arResult["ERROR"] = "Минимальный размер файла 100px x 100px";
+                        }
+
+                        if ($w_src > 200 || $h_src > 200) {
+                            $arResult["ERROR"] = "Максимальный размер файла 200px x 200px";
+                        }
+                    }
+                }
+
+                if (!empty($arIMAGE["name"])) {
+                    $arFields["WORK_LOGO"] = $arIMAGE;
+                }
             }
 
-            if (empty($arResult["ERRORS"])) {
+            if (empty($arResult["ERRORS"]) && empty($arResult["ERROR"])) {
                 if (count($arFields)) {
                     $cUser = new \CUser();
                     if ($cUser->Update($USER->GetID(), $arFields)) {

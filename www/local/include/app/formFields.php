@@ -801,6 +801,11 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                     <?endforeach;
                                     endif; ?>/>
                             </div>
+                            <? if (!empty($arItem["BUTTON_DESCRIPTION"])): ?>
+                                <div class="b-form__title-desc">
+                                    <?= is_array($arItem["BUTTON_DESCRIPTION"]) ? implode("<br/>", $arItem["BUTTON_DESCRIPTION"]) : $arItem["BUTTON_DESCRIPTION"]; ?>
+                                </div>
+                            <? endif; ?>
                         </div>
                         <div class="column small-12">
                             <? if (!empty($arItem["ERROR"])): ?>

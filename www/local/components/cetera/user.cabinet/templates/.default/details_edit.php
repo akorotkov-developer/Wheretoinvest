@@ -31,7 +31,12 @@ $arResult["FORM_FIELDS"] = Array(
         "TYPE" => "IMAGE",
         "TITLE" => "Логотип",
         "VALUE" => $userInfo["WORK_LOGO"],
-        "ROW_CLASS" => "b-form__row_no-margin"
+        "ROW_CLASS" => "b-form__row_no-margin",
+        "BUTTON_DESCRIPTION" => Array(
+            "png, jpg, gif",
+            "не менее 100px х 100px ",
+            "не более 200px х 200px"
+        )
     ),
     "WORK_LOGO_DEL" => Array(
         "TYPE" => "CHECKBOX",
