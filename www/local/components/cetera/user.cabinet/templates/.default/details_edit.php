@@ -27,24 +27,32 @@ $arResult["FORM_FIELDS"] = Array(
         "TITLE" => "Сокращенное наименование на английском языке (согласно Уставу)",
         "VALUE" => $userInfo["UF_SHORT_WORK_EN"]
     ),
-    "WORK_LOGO" => Array(
-        "TYPE" => "IMAGE",
-        "TITLE" => "Логотип",
-        "VALUE" => $userInfo["WORK_LOGO"],
-        "ROW_CLASS" => "b-form__row_no-margin",
-        "BUTTON_DESCRIPTION" => Array(
-            "png, jpg, gif",
-            "не менее 100px х 100px ",
-            "не более 200px х 200px"
-        )
-    ),
-    "WORK_LOGO_DEL" => Array(
-        "TYPE" => "CHECKBOX",
-        "VALUE" => "",
+    Array(
+        "TYPE" => "TEXT_BLOCK",
         "LIST" => Array(
-            "1" => "Удалить логотип"
-        ),
-        "SINGLE" => "Y"
+            "WORK_LOGO" => Array(
+                "TYPE" => "IMAGE",
+                "TITLE" => "Логотип",
+                "VALUE" => $userInfo["WORK_LOGO"],
+                "COL_SIZE" => "6",
+                "BUTTON_DESCRIPTION" => Array(
+                    "png, jpg, gif",
+                    "не менее 100px х 100px ",
+                    "не более 200px х 200px"
+                )
+            ),
+            "WORK_LOGO_DEL" => Array(
+                "TITLE" => "&nbsp;",
+                "TYPE" => "CHECKBOX",
+                "VALUE" => "",
+                "LIST" => Array(
+                    "1" => "Удалить логотип"
+                ),
+                "COL_SIZE" => "6",
+                "SINGLE" => "Y",
+                "LABEL_CLASS" => "state__chck"
+            ),
+        )
     ),
     "UF_SITE" => Array(
         "TYPE" => "TEXT",

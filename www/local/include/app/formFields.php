@@ -154,7 +154,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
             case "TEXT":
                 ?>
                 <div
-                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    class="column small-12 medium-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
                     <div class="row">
                         <? if (!empty($arItem["BLOCK_TITLE"])): ?>
                             <div class="column small-12">
@@ -167,7 +167,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 </div>
                             </div>
                         <? endif; ?>
-                        <div class="column small-<?= $inputSize; ?> end">
+                        <div class="column small-12 medium-<?= $inputSize; ?> end">
                             <input
                                 class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
                                 type="text"
@@ -208,7 +208,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
             case "TEXTAREA":
             ?>
                 <div
-                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    class="column small-12 medium-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
                     <div class="row">
                         <? if (!empty($arItem["BLOCK_TITLE"])): ?>
                             <div class="column small-12">
@@ -221,7 +221,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 </div>
                             </div>
                         <? endif; ?>
-                        <div class="column small-<?= $inputSize; ?> end">
+                        <div class="column small-12 medium-<?= $inputSize; ?> end">
                                         <textarea
                                             class="b-form__textarea<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
                                             name="<?= $arKey ?>"
@@ -260,7 +260,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
             case "TEXT_BLOCK":
             ?>
                 <div
-                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    class="column small-12 medium-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
                     <div class="row">
                         <? if (!empty($arItem["BLOCK_TITLE"])): ?>
                             <div class="column small-12">
@@ -295,7 +295,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
             case "EMAIL":
             ?>
                 <div
-                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    class="column small-12 medium-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
                     <div class="row">
                         <? if (!empty($arItem["BLOCK_TITLE"])): ?>
                             <div class="column small-12">
@@ -308,7 +308,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 </div>
                             </div>
                         <? endif; ?>
-                        <div class="column small-<?= $inputSize; ?> end">
+                        <div class="column small-12 medium-<?= $inputSize; ?> end">
                             <input
                                 class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
                                 type="email"
@@ -349,7 +349,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
             case "PASSWORD":
             ?>
                 <div
-                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    class="column small-12 medium-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
                     <div class="row">
                         <? if (!empty($arItem["BLOCK_TITLE"])): ?>
                             <div class="column small-12">
@@ -362,7 +362,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 </div>
                             </div>
                         <? endif; ?>
-                        <div class="column small-<?= $inputSize; ?> end">
+                        <div class="column small-12 medium-<?= $inputSize; ?> end">
                             <div class="b-form__input-password-wrapper">
                                 <input
                                     class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
@@ -405,7 +405,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
             case "RADIO":
             ?>
                 <div
-                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    class="column small-12 medium-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
                     <div class="row">
                         <? if (!empty($arItem["BLOCK_TITLE"])): ?>
                             <div class="column small-12">
@@ -418,7 +418,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 </div>
                             </div>
                         <? endif; ?>
-                        <div class="column small-<?= $inputSize; ?> end">
+                        <div class="column small-12 medium-<?= $inputSize; ?> end">
                             <input type="hidden" name="<?= $arKey ?>" value="">
                             <? if (count($arItem["LIST"])): ?>
                                 <? foreach ($arItem["LIST"] as $key => $val): ?>
@@ -469,7 +469,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
             case "CHECKBOX":
             ?>
                 <div
-                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    class="column small-12 medium-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
                     <div class="row">
                         <? if (!empty($arItem["BLOCK_TITLE"])): ?>
                             <div class="column small-12">
@@ -482,7 +482,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 </div>
                             </div>
                         <? endif; ?>
-                        <div class="column small-<?= $inputSize; ?> end">
+                        <div class="column small-12 medium-<?= $inputSize; ?> end">
                             <? if (empty($arItem["NO_SKIP"])): ?><input type="hidden" name="<?= $arKey ?>"
                                                                         value=""><? endif; ?>
                             <? if (count($arItem["LIST"])): ?>
@@ -533,7 +533,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
             case "SELECT":
             ?>
                 <div
-                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    class="column small-12 medium-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
                     <div class="row">
                         <? if (!empty($arItem["BLOCK_TITLE"])): ?>
                             <div class="column small-12">
@@ -546,7 +546,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 </div>
                             </div>
                         <? endif; ?>
-                        <div class="column small-<?= $inputSize; ?> end">
+                        <div class="column small-12 medium-<?= $inputSize; ?> end">
                             <? if (empty($arItem["PLACEHOLDER"])) $arItem["PLACEHOLDER"] = "Выбрать из списка"; ?>
                             <? $first = true; ?>
                             <? if (!empty($arItem["MORE_BTN"])): ?>
@@ -669,7 +669,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
             case "STATIC":
             ?>
                 <div
-                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    class="column small-12 medium-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
                     <div class="row">
                         <? if (!empty($arItem["BLOCK_TITLE"])): ?>
                             <div class="column small-12">
@@ -697,7 +697,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
             case "DATE":
             ?>
                 <div
-                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    class="column small-12 medium-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
                     <div class="row">
                         <? if (!empty($arItem["BLOCK_TITLE"])): ?>
                             <div class="column small-12">
@@ -710,7 +710,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 </div>
                             </div>
                         <? endif; ?>
-                        <div class="column small-<?= $inputSize; ?> end">
+                        <div class="column small-12 medium-<?= $inputSize; ?> end">
                             <input
                                 class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
                                 type="date"
@@ -751,7 +751,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
             case "IMAGE":
             ?>
                 <div
-                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    class="column small-12 medium-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
                     <div class="row">
                         <? if (!empty($arItem["BLOCK_TITLE"])): ?>
                             <div class="column small-12">
@@ -764,7 +764,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 </div>
                             </div>
                         <? endif; ?>
-                        <div class="column small-<?= $inputSize; ?> end">
+                        <div class="column small-12 medium-<?= $inputSize; ?> end">
                             <div class="content__logo">
                                 <? if (!empty($arItem["VALUE"])): ?>
                                     <img src="<?= CFile::GetPath($arItem["VALUE"]) ?>"
@@ -800,12 +800,12 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                     <?= $k ?>="<?= htmlentities($v) ?>"
                                     <?endforeach;
                                     endif; ?>/>
+                                <? if (!empty($arItem["BUTTON_DESCRIPTION"])): ?>
+                                    <div class="b-form__title-desc">
+                                        <?= is_array($arItem["BUTTON_DESCRIPTION"]) ? implode("<br/>", $arItem["BUTTON_DESCRIPTION"]) : $arItem["BUTTON_DESCRIPTION"]; ?>
+                                    </div>
+                                <? endif; ?>
                             </div>
-                            <? if (!empty($arItem["BUTTON_DESCRIPTION"])): ?>
-                                <div class="b-form__title-desc">
-                                    <?= is_array($arItem["BUTTON_DESCRIPTION"]) ? implode("<br/>", $arItem["BUTTON_DESCRIPTION"]) : $arItem["BUTTON_DESCRIPTION"]; ?>
-                                </div>
-                            <? endif; ?>
                         </div>
                         <div class="column small-12">
                             <? if (!empty($arItem["ERROR"])): ?>
