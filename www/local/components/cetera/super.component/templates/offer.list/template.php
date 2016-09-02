@@ -291,7 +291,7 @@
                     <div class="column small-3 medium-2  text-right b-offers__profit b-offers__bility">
                         <div class="b-offers__prof">
                             <div class="has-tooltip" data-tooltip aria-haspopup="true"
-                                 title="<?= !empty($offer["UF_UPDATED"] && is_object($offer["UF_UPDATED"])) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", $offer["UF_UPDATED"]->getTimestamp()) : "" ?>">
+                                 title="<?= !empty($offer["UF_UPDATED"]) && is_object($offer["UF_UPDATED"]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", $offer["UF_UPDATED"]->getTimestamp()) : "" ?>">
                                 <?= floatval($arItem["UF_PERCENT"]); ?> <span>%</span>
                             </div>
                         </div>
