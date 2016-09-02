@@ -65,31 +65,31 @@
   margin-left: -4px;
 
   .nub {
-    border: none !important;
+    display: none;
   }
 
-  .nub:before {
+  &:before {
     width: 0;
     height: 0;
     border-style: solid;
     border-width: 0 6px 10px 6px;
     border-color: transparent transparent #dfdfdf transparent;
     position: absolute;
-    top: 0;
-    left: 1px;
+    top: -10px;
+    left: 6px;
     display: inline-block;
     content: '';
   }
 
-  .nub:after {
+  &:after {
     width: 0;
     height: 0;
     border-style: solid;
     border-width: 0 5px 8px 5px;
     border-color: transparent transparent #ffffff transparent;
     position: absolute;
-    top: 2px;
-    left: 2px;
+    top: -8px;
+    left: 7px;
     display: inline-block;
     content: '';
   }

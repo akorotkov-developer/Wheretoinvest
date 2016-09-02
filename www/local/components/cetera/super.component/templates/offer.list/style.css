@@ -1,0 +1,5 @@
+.has-tooltip {
+    display: inline-block;
+    cursor: help;
+    position: relative;
+}
