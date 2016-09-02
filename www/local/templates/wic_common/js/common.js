@@ -171,17 +171,17 @@
             //begin of sum menu show/hide
             function sortText() {
                 var sum = $('.b-sort__main .b-sort__inp').val() || 0;
-                var currency_val = $('.b-sort__main select').eq(0).val();
+                var currency_val = $('.b-sort__main select[name="currency"]').val();
                 var currency = "";
-                var time_val = $('.b-sort__main select').eq(1).val();
+                var time_val = $('.b-sort__main select[name="time"]').val();
                 var time = "";
 
-                $(".b-sort__main select").eq(0).find("option").each(function () {
+                $(".b-sort__main select[name='currency']").find("option").each(function () {
                     if ($(this).attr("value") == currency_val)
                         currency = $(this).text();
                 });
 
-                $(".b-sort__main select").eq(1).find("option").each(function () {
+                $(".b-sort__main select[name='time']").find("option").each(function () {
                     if ($(this).attr("value") == time_val)
                         time = $(this).text();
                 });
@@ -208,6 +208,16 @@
                 }
 
                 $('.b-sort__all').text(text);
+
+                var visible = $('.b-sort__all').hasClass("js-toggle") ? 0 : 1;
+                $.ajax({
+                    url: "/local/ajax/sortVisible.php",
+                    data: {
+                        setVisible: visible
+                    },
+                    method: "post"
+                });
+
                 scr();
             }
 

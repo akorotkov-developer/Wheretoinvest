@@ -1,61 +1,35 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
 <? if (count($arResult["METHODS"])): ?>
     <div class="row">
-        <div class="columns met js-method-list">
-            <? foreach ($arResult["METHODS"] as $arItem): ?>
-                <div class="met__rating<? if (!$arItem["ACTIVE"]): ?> met__rating_no<? endif; ?>">
-                    <span class="met_rating-sort"><?= $arItem["SORT"] ?></span>-й <?= $arItem["NAME"] ?></div>
-            <? endforeach; ?>
-        </div>
-    </div>
-    <div class="row">
         <div class="column small-12">
-            <a href="#" class="content__change" data-reveal-id="setMethods">Изменить</a>
-        </div>
-    </div>
+            <form action="" class="b-form x-save-form" enctype="multipart/form-data" method="post">
+                <input type="hidden" name="sessid" value="<?= bitrix_sessid(); ?>">
+                <input type="hidden" name="ajax" value="Y">
+                <input type="hidden" name="action" value="changeMethods">
 
-    <div id="setMethods" class="reveal-modal tiny modal" data-reveal aria-labelledby="modalTitle"
-         aria-hidden="true"
-         role="dialog">
-        <div class="row">
-            <div class="column small-12">
-                <h2 class="content__title">Моя методика определения надежности</h2>
-
-                <div class="content__header content__header_first">Выберите параметры для определения
-                    надежности и укажите приоритетность в порядке убывания методом перетаскивания.
-                </div>
-                <br>
-
-                <form action="" class="b-form x-save-form" enctype="multipart/form-data" method="post">
-                    <input type="hidden" name="sessid" value="<?= bitrix_sessid(); ?>">
-                    <input type="hidden" name="ajax" value="Y">
-                    <input type="hidden" name="action" value="changeMethods">
-
-                    <div class="b-main-block__body"></div>
-                    <ul class="sortable" id="sortable">
-                        <? foreach ($arResult["METHODS"] as $arItem): ?>
-                            <li class="content__wrp content__wrp_sortable<? if (!$arItem["ACTIVE"]): ?> ui-state-disabled<? endif; ?>">
-                                <input type="hidden" class="js-sortable-sort" name="method[<?= $arItem["ID"]; ?>][sort]"
-                                       value="<?= $arItem["SORT"]; ?>">
-                                <input type="checkbox" name="method[<?= $arItem["ID"]; ?>][active]"
-                                       id="active_<?= $arItem["ID"]; ?>"
-                                       class="content__checkbox js-sortable-active"<? if ($arItem["ACTIVE"]): ?> checked<? endif; ?>>
-                                <label for="active_<?= $arItem["ID"]; ?>" class="content__chck"><span
-                                        class="met_rating-sort"><?= $arItem["SORT"] ?></span>-й <span
-                                        class="js-sortable-name"><?= $arItem["NAME"] ?></span>
-                                </label>
-                            </li>
-                        <? endforeach; ?>
-                    </ul>
-                    <div class="row">
-                        <div class="columns">
-                            <button type="submit" class="content__submit">Сохранить</button>
-                        </div>
+                <div class="b-main-block__body"></div>
+                <ul class="sortable" id="sortable">
+                    <? foreach ($arResult["METHODS"] as $arItem): ?>
+                        <li class="content__wrp content__wrp_sortable<? if (!$arItem["ACTIVE"]): ?> ui-state-disabled<? endif; ?>">
+                            <input type="hidden" class="js-sortable-sort" name="method[<?= $arItem["ID"]; ?>][sort]"
+                                   value="<?= $arItem["SORT"]; ?>">
+                            <input type="checkbox" name="method[<?= $arItem["ID"]; ?>][active]"
+                                   id="active_<?= $arItem["ID"]; ?>"
+                                   class="state__checkbox js-sortable-active"<? if ($arItem["ACTIVE"]): ?> checked<? endif; ?>>
+                            <label for="active_<?= $arItem["ID"]; ?>" class="state__chck"><span
+                                    class="met_rating-sort"><?= $arItem["SORT"] ?></span>-й <span
+                                    class="js-sortable-name"><?= $arItem["NAME"] ?></span>
+                            </label>
+                        </li>
+                    <? endforeach; ?>
+                </ul>
+                <div class="row">
+                    <div class="columns">
+                        <button type="submit" class="content__submit">Сохранить</button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
-        <a class="close-reveal-modal modal__close" aria-label="Close">×</a>
     </div>
 
     <script type="text/javascript">

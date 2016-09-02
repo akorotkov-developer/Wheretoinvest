@@ -114,6 +114,7 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
 <div class="row">
     <? if (!$userInfo->isPartner()): ?>
         <div class="columns req">
+            <br>
             <div class="row">
                 <div class="req__name medium-5 small-5 columns">ФИО:</div>
                 <div
@@ -177,6 +178,7 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
         ); ?>
     <? else: ?>
         <div class="columns req">
+            <br>
             <div class="row">
                 <div class="req__name medium-5 small-5 columns">Наименование организации:
                 </div>

@@ -9,12 +9,29 @@
             <? if (in_array($key, Array("summ", "currency", "time"))) continue; ?>
             <input type="hidden" name="<?= urldecode($key) ?>" value="<?= $val ?>">
         <? endforeach; ?>
+        <?
+        $timeList = Array(
+            "93" => "3 месяца",
+            "182" => "6 месяцев",
+            "279" => "9 месяцев",
+            "365" => "1 год",
+            "730" => "2 года",
+        );
+
+        if (!empty($_REQUEST["time"]) && !array_key_exists($_REQUEST["time"], $timeList))
+            $timeList[$_REQUEST["time"]] = $_REQUEST["time"] . " дней";
+
+        ksort($timeList);
+
+        $sortVisible = $APPLICATION->get_cookie("SORT_VISIBLE");
+        ?>
 
         <div class="js-header">
             <section class="b-sort row">
-                <div class="b-sort__arr"></div>
-                <div class="columns b-sort__all">на 1 год</div>
-                <div class="b-sort__main">
+                <div class="b-sort__arr<? if (!empty($sortVisible)): ?> js-toggle<? endif; ?>"></div>
+                <div
+                    class="columns b-sort__all<? if (!empty($sortVisible)): ?> js-toggle<? endif; ?>"><?= !empty($_REQUEST["summ"]) ? $_REQUEST["summ"] : 0; ?> <?= empty($_REQUEST["currency"]) ? reset($arResult["FIELDS"]["UF_CURRENCY"]) : $arResult["FIELDS"]["UF_CURRENCY"][$_REQUEST["currency"]] ?> <?= !empty($_REQUEST["time"]) ? "на " . $timeList[$_REQUEST["time"]] : "" ?></div>
+                <div class="b-sort__main"<? if (!empty($sortVisible)): ?> style="display: none;"<? endif; ?>>
                     <div class="column medium-7">
                         <span class="b-sort__label">Сумма:</span>
                         <input type="text" class="b-sort__inp" value="<?= $_REQUEST["summ"] ?>" name="summ">
@@ -30,20 +47,6 @@
                     </div>
                     <div class="column small-7 medium-3">
                         <span class="b-sort__label">Срок:</span>
-                        <?
-                        $timeList = Array(
-                            "93" => "3 месяца",
-                            "182" => "6 месяцев",
-                            "279" => "9 месяцев",
-                            "365" => "1 год",
-                            "730" => "2 года",
-                        );
-
-                        if (!empty($_REQUEST["time"]) && !array_key_exists($_REQUEST["time"], $timeList))
-                            $timeList[$_REQUEST["time"]] = $_REQUEST["time"] . " дней";
-
-                        ksort($timeList);
-                        ?>
                         <select name="time">
                             <option value="">Укажите количество дней</option>
                             <? foreach ($timeList as $key => $name): ?>
@@ -69,7 +72,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="column medium-2 hide-for-small-only">
+                                <div class="column medium-3 hide-for-small-only">
                                     <div class="b-offers__th">
                                         <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[method]=" . ($_REQUEST["SORT"]["method"] == "A" ? "D" : "A"), Array("SORT")) ?>"
                                            class="b-offers__title <? if (!empty($_REQUEST["SORT"]["method"])): ?><? if ($_REQUEST["SORT"]["method"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
@@ -79,7 +82,7 @@
                                     </div>
                                 </div>
                                 <div
-                                    class="column medium-3 small-4 medium-text-right small-text-center b-offers__bility">
+                                    class="column medium-2 small-4 medium-text-right small-text-center b-offers__bility">
                                     <div class="b-offers__th">
                                         <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[percent]=" . (empty($_REQUEST["SORT"]["percent"]) || $_REQUEST["SORT"]["percent"] == "A" ? "D" : "A"), Array("SORT")) ?>"
                                            class="b-offers__title  <? if (empty($_REQUEST["SORT"]) || !empty($_REQUEST["SORT"]["percent"])): ?><? if (empty($_REQUEST["SORT"]) || $_REQUEST["SORT"]["percent"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
@@ -88,7 +91,7 @@
 
                                     </div>
                                 </div>
-                                <div class="column medium-2 small-4 medium-text-right small-text-center">
+                                <div class="column medium-2 small-4 medium-text-center small-text-center">
                                     <div class="b-offers__th">
                                         <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[safety]=" . ($_REQUEST["SORT"]["safety"] == "A" ? "D" : "A"), Array("SORT")) ?>"
                                            class="b-offers__title <? if (!empty($_REQUEST["SORT"]["safety"])): ?><? if ($_REQUEST["SORT"]["safety"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
@@ -120,126 +123,128 @@
                         $(this).closest(".x-filter").submit();
                 });
 
-                $.widget("custom.combobox", {
-                    _create: function () {
-                        this.wrapper = $("<span>")
-                            .addClass("custom-combobox")
-                            .insertAfter(this.element);
+                if ($.fn.widget) {
+                    $.widget("custom.combobox", {
+                        _create: function () {
+                            this.wrapper = $("<span>")
+                                .addClass("custom-combobox")
+                                .insertAfter(this.element);
 
-                        this.element.hide();
-                        this._createAutocomplete();
-                    },
+                            this.element.hide();
+                            this._createAutocomplete();
+                        },
 
-                    _createAutocomplete: function () {
-                        var selected = this.element.children(":selected"),
-                            value = selected.val() ? selected.text() : "";
+                        _createAutocomplete: function () {
+                            var selected = this.element.children(":selected"),
+                                value = selected.val() ? selected.text() : "";
 
-                        this.input = $("<input>")
-                            .appendTo(this.wrapper)
-                            .val(value)
-                            .attr("title", "")
-                            .attr("placeholder", "Укажите количество дней")
-                            .addClass("b-form__autocomplete")
-                            .autocomplete({
-                                delay: 0,
-                                minLength: 0,
-                                source: $.proxy(this, "_source")
-                            })
-                            .tooltip({
-                                classes: {
-                                    "ui-tooltip": "ui-state-highlight"
+                            this.input = $("<input>")
+                                .appendTo(this.wrapper)
+                                .val(value)
+                                .attr("title", "")
+                                .attr("placeholder", "Укажите количество дней")
+                                .addClass("b-form__autocomplete")
+                                .autocomplete({
+                                    delay: 0,
+                                    minLength: 0,
+                                    source: $.proxy(this, "_source")
+                                })
+                                .tooltip({
+                                    classes: {
+                                        "ui-tooltip": "ui-state-highlight"
+                                    }
+                                });
+
+                            var _this = this;
+                            this._on(this.input, {
+                                autocompleteselect: function (event, ui) {
+                                    ui.item.option.selected = true;
+                                    this._trigger("select", event, {
+                                        item: ui.item.option
+                                    });
+                                    _this.element.trigger("change");
+                                },
+                                autocompletechange: "_removeIfInvalid"
+                            });
+
+                            var input = this.input,
+                                wasOpen = false;
+                            input.on("click", function () {
+                                wasOpen = input.autocomplete("widget").is(":visible");
+                                if (wasOpen) {
+                                    return;
+                                }
+                                input.autocomplete("search", "");
+                            }).on("keyup", function (e) {
+                                var keycode = (e.keyCode ? e.keyCode : e.which);
+                                if (keycode == 13) {
+                                    _this._removeIfInvalid();
+                                    return false;
+                                }
+                                var val = $(this).val().replace(/[^\d]/g, "");
+                                console.log(val);
+                                $(this).val(val);
+                            });
+                        },
+
+                        _source: function (request, response) {
+                            var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+                            response(this.element.children("option").map(function () {
+                                var text = $(this).text();
+                                if (this.value && ( !request.term || matcher.test(text) ))
+                                    return {
+                                        label: text,
+                                        value: text,
+                                        option: this
+                                    };
+                            }));
+                        },
+
+                        _removeIfInvalid: function (event, ui) {
+                            // Search for a match (case-insensitive)
+                            var value = this.input.val(),
+                                valueLowerCase = value.toLowerCase(),
+                                valid = false,
+                                _this = this;
+
+                            this.element.val("");
+                            this.element.children("option").each(function () {
+                                if ($(this).text().toLowerCase() === valueLowerCase) {
+                                    this.selected = valid = true;
+                                    _this.element.val($(this).attr("value"));
                                 }
                             });
 
-                        var _this = this;
-                        this._on(this.input, {
-                            autocompleteselect: function (event, ui) {
-                                ui.item.option.selected = true;
-                                this._trigger("select", event, {
-                                    item: ui.item.option
-                                });
-                                _this.element.trigger("change");
-                            },
-                            autocompletechange: "_removeIfInvalid"
-                        });
-
-                        var input = this.input,
-                            wasOpen = false;
-                        input.on("click", function () {
-                            wasOpen = input.autocomplete("widget").is(":visible");
-                            if (wasOpen) {
-                                return;
+                            // Found a match, nothing to do
+                            if (!valid) {
+                                this.element.append('<option value="' + value + '" selected>' + value + ' дней</option>');
+                                this.element.val(value);
                             }
-                            input.autocomplete("search", "");
-                        }).on("keyup", function (e) {
-                            var keycode = (e.keyCode ? e.keyCode : e.which);
-                            if (keycode == 13) {
-                                _this._removeIfInvalid();
-                                return false;
-                            }
-                            var val = $(this).val().replace(/[^\d]/g, "");
-                            console.log(val);
-                            $(this).val(val);
-                        });
-                    },
 
-                    _source: function (request, response) {
-                        var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
-                        response(this.element.children("option").map(function () {
-                            var text = $(this).text();
-                            if (this.value && ( !request.term || matcher.test(text) ))
-                                return {
-                                    label: text,
-                                    value: text,
-                                    option: this
-                                };
-                        }));
-                    },
-
-                    _removeIfInvalid: function (event, ui) {
-                        // Search for a match (case-insensitive)
-                        var value = this.input.val(),
-                            valueLowerCase = value.toLowerCase(),
-                            valid = false,
-                            _this = this;
-
-                        this.element.val("");
-                        this.element.children("option").each(function () {
-                            if ($(this).text().toLowerCase() === valueLowerCase) {
-                                this.selected = valid = true;
-                                _this.element.val($(this).attr("value"));
-                            }
-                        });
-
-                        // Found a match, nothing to do
-                        if (!valid) {
-                            this.element.append('<option value="' + value + '" selected>' + value + ' дней</option>');
-                            this.element.val(value);
-                        }
-
-                        this.element.trigger("change");
+                            this.element.trigger("change");
 //                        this.element.closest("form").submit();
-                    },
+                        },
 
-                    _destroy: function () {
-                        this.wrapper.remove();
-                        this.element.show();
-                    }
-                });
-
-                $("select[name='time']").combobox();
+                        _destroy: function () {
+                            this.wrapper.remove();
+                            this.element.show();
+                        }
+                    });
+                    $("select[name='time']").combobox();
+                }
             });
         </script>
     </form>
 <? if (count($arResult["ITEMS"])): ?>
     <? $inflation = floatval(\Ceteralabs\UserVars::GetVar('USER_VAR_INFLATION')["VALUE"]); ?>
+    <? $inflationName = \Ceteralabs\UserVars::GetVar('USER_VAR_INFLATION')["DESCRIPTION"]; ?>
     <section class="b-offers">
         <? if (!empty($inflation) && !empty($_REQUEST["SORT"]) && empty($_REQUEST["SORT"]["percent"])): ?>
             <div class="row b-offers__infl">
-                <div class="columns medium-2 medium-offset-4 small-4 small-text-center medium-text-left">
-                    <div class="b-offers__type b-offers__type_infl">Инфляция</div>
+                <div class="columns medium-3 medium-offset-4 small-4 small-text-center medium-text-left">
+                    <div class="b-offers__type b-offers__type_infl"><?= $inflationName ?></div>
                 </div>
-                <div class="columns medium-3 small-3 text-right end b-offers__percent b-offers__bility">
+                <div class="columns medium-2 small-3 text-right end b-offers__percent b-offers__bility">
                     <div class="b-offers__prof b-offers__prof_infl"><?= $inflation ?> <span>%</span></div>
                 </div>
             </div>
@@ -258,10 +263,10 @@
                 <? if (!empty($inflation) && (empty($_REQUEST["SORT"]) || !empty($_REQUEST["SORT"]["percent"])) && $showInflation): ?>
                     <? if (((empty($_REQUEST["SORT"]) || $_REQUEST["SORT"]["percent"] == "D") && $inflation > floatval($arItem["UF_PERCENT"])) || ($_REQUEST["SORT"]["percent"] == "A" && $inflation < floatval($arItem["UF_PERCENT"]))): ?>
                         <div class="row b-offers__infl">
-                            <div class="columns medium-2 medium-offset-4 small-4 small-text-center medium-text-left">
-                                <div class="b-offers__type b-offers__type_infl">Инфляция</div>
+                            <div class="columns medium-3 medium-offset-4 small-4 small-text-center medium-text-left">
+                                <div class="b-offers__type b-offers__type_infl"><?= $inflationName ?></div>
                             </div>
-                            <div class="columns medium-3 small-3 text-right end b-offers__percent b-offers__bility">
+                            <div class="columns medium-2 small-3 text-right end b-offers__percent b-offers__bility">
                                 <div class="b-offers__prof b-offers__prof_infl"><?= $inflation ?> <span>%</span></div>
                             </div>
                         </div>
@@ -282,15 +287,15 @@
                         <div class="b-offers__arrows"></div>
                     </div>
 
-                    <div class="column medium-2 hide-for-small-only">
+                    <div class="column medium-3 hide-for-small-only">
                         <div class="b-offers__type">
                             <?= $arItem["UF_METHOD"]; ?>
                         </div>
                     </div>
-                    <div class="column small-3 medium-3  text-right b-offers__profit b-offers__bility">
+                    <div class="column small-3 medium-2  text-right b-offers__profit b-offers__bility">
                         <div class="b-offers__prof"><?= floatval($arItem["UF_PERCENT"]); ?> <span>%</span></div>
                     </div>
-                    <div class="column small-5 medium-2  text-right">
+                    <div class="column small-5 medium-2 text-center">
                         <div class="b-offers__prof"><?= $arItem["UF_SAFETY"] ?>
                             <span>из <?= $arResult["USER_COUNT"] ?></span></div>
                     </div>

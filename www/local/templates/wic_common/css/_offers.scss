@@ -1,10 +1,14 @@
 .b-offers {
   padding: 0 rem-calc(10);
   max-width: rem-calc(980);
-  margin: 0 auto;
-  margin-bottom: rem-calc(10);
+  margin: 0 auto rem-calc(10);
+
   &__bility {
-    padding-right: 50px;
+    padding-right: 24px;
+
+    .b-offers__title {
+      margin-right: rem-calc(15);
+    }
   }
   &__infl {
     border-bottom: 1px solid #e6e6e6;
