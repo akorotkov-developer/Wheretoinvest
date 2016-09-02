@@ -3,12 +3,19 @@
         "use strict";
         $(document).foundation();
 
+        $(document).on('open.fndtn.reveal', '[data-reveal]', function () {
+            $("body").css({"overflow-y": "scroll"});
+        });
+
         $(document).on('close.fndtn.reveal', '[data-reveal]', function () {
             var _this = this;
             $(this).find(".alert-box .close").trigger("click", function () {
                 $("[data-alert]").foundation("alert", "reflow");
             });
+            $("body").css({"overflow-y": "auto"});
         });
+
+
 
         function scrollToAlert() {
             var alert = $("[data-alert]:visible");
