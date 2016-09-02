@@ -48,25 +48,26 @@
   }
 
   &__title {
-
     font-family: "Open Sans", sans-serif;
     font-weight: 700;
     color: #202020;
-    &_sort {
+
+    &_sort, &_sort:hover {
       border-bottom: 1px dashed #000;
       margin-right: 15px;
+      pointer-events: none;
 
       &:after {
         content: '';
         display: inline-block;
         position: absolute;
-        background: url(../images/ari.png) no-repeat right center;
-        -webkit-background-size: 100%;
-        background-size: 100%;
-        margin-top: 5px;
-        margin-left: 3px;
-        width: 7px;
-        height: 9px;
+        margin-top: 8px;
+        margin-left: 4px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 6px 5px 0 5px;
+        border-color: #e53935 transparent transparent transparent;
       }
 
       &.b-offers__title_sort_desc {
@@ -76,7 +77,7 @@
       }
     }
 
-    &:hover {
+    &:hover, &:focus {
       border: none;
       color: #202020;
     }

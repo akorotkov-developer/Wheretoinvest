@@ -66,35 +66,31 @@
                             <div class="row">
                                 <div class="column medium-4 small-4 ">
                                     <div class="b-offers__th first">
-                                        <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[org]=" . ($_REQUEST["SORT"]["org"] == "A" ? "D" : "A"), Array("SORT")) ?>"
-                                           class="b-offers__title <? if (!empty($_REQUEST["SORT"]["org"])): ?><? if ($_REQUEST["SORT"]["org"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
+                                        <span class="b-offers__title">
                                             Организация
-                                        </a>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="column medium-3 hide-for-small-only">
                                     <div class="b-offers__th">
-                                        <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[method]=" . ($_REQUEST["SORT"]["method"] == "A" ? "D" : "A"), Array("SORT")) ?>"
-                                           class="b-offers__title <? if (!empty($_REQUEST["SORT"]["method"])): ?><? if ($_REQUEST["SORT"]["method"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
+                                        <span class="b-offers__title">
                                             Способ вложения
-                                        </a>
-
+                                        </span>
                                     </div>
                                 </div>
                                 <div
                                     class="column medium-2 small-4 medium-text-right small-text-center b-offers__bility">
                                     <div class="b-offers__th">
-                                        <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[percent]=" . (empty($_REQUEST["SORT"]["percent"]) || $_REQUEST["SORT"]["percent"] == "A" ? "D" : "A"), Array("SORT")) ?>"
-                                           class="b-offers__title  <? if (empty($_REQUEST["SORT"]) || !empty($_REQUEST["SORT"]["percent"])): ?><? if (empty($_REQUEST["SORT"]) || $_REQUEST["SORT"]["percent"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
+                                        <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[percent]=D", Array("SORT")) ?>"
+                                           class="b-offers__title<? if (empty($_REQUEST["SORT"]) || !empty($_REQUEST["SORT"]["percent"])): ?> b-offers__title_sort<? endif; ?>">
                                             Доходность
                                         </a>
-
                                     </div>
                                 </div>
                                 <div class="column medium-2 small-4 medium-text-center small-text-center">
                                     <div class="b-offers__th">
-                                        <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[safety]=" . ($_REQUEST["SORT"]["safety"] == "A" ? "D" : "A"), Array("SORT")) ?>"
-                                           class="b-offers__title <? if (!empty($_REQUEST["SORT"]["safety"])): ?><? if ($_REQUEST["SORT"]["safety"] == "D"): ?>b-offers__title_sort b-offers__title_sort_desc<? else: ?> b-offers__title_sort<? endif; ?><? endif; ?>">
+                                        <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[safety]=A", Array("SORT")) ?>"
+                                           class="b-offers__title<? if (!empty($_REQUEST["SORT"]["safety"])): ?> b-offers__title_sort<? endif; ?>">
                                             Надежность
                                         </a>
 
