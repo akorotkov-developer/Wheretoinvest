@@ -74,7 +74,7 @@
                                 <div class="column medium-3 hide-for-small-only">
                                     <div class="b-offers__th">
                                         <span class="b-offers__title">
-                                            Способ вложения
+                                            Наименование вложения
                                         </span>
                                     </div>
                                 </div>
@@ -285,7 +285,7 @@
 
                     <div class="column medium-3 hide-for-small-only">
                         <div class="b-offers__type">
-                            <?= $arItem["UF_METHOD"]; ?>
+                            <?= $offer["UF_NAME"] ?>
                         </div>
                     </div>
                     <div class="column small-3 medium-2  text-right b-offers__profit b-offers__bility">
@@ -309,12 +309,12 @@
                             <div class="column medium-11">
                                 <div class="row b-offers__more-item">
                                     <div class="column medium-3 small-6">
-                                        <div class="b-offers__label">Наименование</div>
+                                        <div class="b-offers__label">Способ вложения</div>
                                     </div>
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
                                             <div class="b-offers__rest">
-                                                <?= $offer["UF_NAME"] ?>
+                                                <?= $arItem["UF_METHOD"]; ?>
                                             </div>
                                         </div>
                                     </div>

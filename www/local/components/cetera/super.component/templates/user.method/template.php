@@ -2,6 +2,12 @@
 <? if (count($arResult["METHODS"])): ?>
     <div class="row">
         <div class="column small-12">
+            <div class="b-form__title-desc">
+                Выбирайте подходящие Вам показатели надежности путем проставления галочки.<br>
+                Изменяйте порядок применения выбранных показателей путем перетаскивания строк.
+            </div>
+            <br><br><br>
+
             <form action="" class="b-form x-save-form" enctype="multipart/form-data" method="post">
                 <input type="hidden" name="sessid" value="<?= bitrix_sessid(); ?>">
                 <input type="hidden" name="ajax" value="Y">
