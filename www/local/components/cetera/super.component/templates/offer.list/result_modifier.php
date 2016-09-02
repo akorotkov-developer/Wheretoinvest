@@ -111,6 +111,9 @@ if ($obCache->InitCache($cacheLifetime, $cacheID, $cachePath)) {
     $list = $hblock->getList(Array("filter" => Array("UF_USER" => $users)));
     while ($el = $list->fetch()) {
         if (!empty($el["UF_RATING"])) {
+            if (!empty($el["UF_UPDATED"]))
+                $arResult["RATING_UPDATED"][$el["UF_USER"]] = $el["UF_UPDATED"];
+
             $rating[$el["UF_USER"]][] = trim($ratingList[$el["UF_AGENCY"]]["UF_NAME"] . " " . $el["UF_RATING"]);
             if (empty($ratingDetail[$el["UF_USER"]]))
                 $ratingDetail[$el["UF_USER"]] = 0;
@@ -182,7 +185,6 @@ if ($obCache->InitCache($cacheLifetime, $cacheID, $cachePath)) {
     }
     $obCache->EndDataCache(Array("USERS" => $arResult["USERS"]));
 }
-
 
 $arResult["USER_COUNT"] = count($arResult["USERS"]);
 

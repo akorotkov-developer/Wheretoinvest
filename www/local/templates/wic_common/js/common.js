@@ -1,7 +1,18 @@
 (function ($) {
     $(function () {
         "use strict";
-        $(document).foundation();
+        $(document).foundation({
+            tooltip: {
+                tip_template: function (selector, content) {
+                    if (content == "")
+                        return "";
+                    else
+                        return '<span data-selector="' + selector + '" class="'
+                            + Foundation.libs.tooltip.settings.tooltip_class.substring(1)
+                            + '">' + content + '</span>';
+                }
+            }
+        });
 
         $(document).on('open.fndtn.reveal', '[data-reveal]', function () {
             $("body").css({"overflow-y": "scroll"});
@@ -14,7 +25,6 @@
             });
             $("body").css({"overflow-y": "auto"});
         });
-
 
 
         function scrollToAlert() {

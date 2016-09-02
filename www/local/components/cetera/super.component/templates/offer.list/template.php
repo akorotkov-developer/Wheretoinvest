@@ -319,7 +319,10 @@
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
                                             <div class="b-offers__rest">
-                                                <?= $arItem["UF_METHOD"]; ?>
+                                                <div class="has-tooltip" data-tooltip aria-haspopup="true"
+                                                     title="<?= !empty($offer["UF_UPDATED"]) && is_object($offer["UF_UPDATED"]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", $offer["UF_UPDATED"]->getTimestamp()) : "" ?>">
+                                                    <?= $arItem["UF_METHOD"]; ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -331,7 +334,10 @@
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
                                             <div class="b-offers__rest">
-                                                <?= !empty($user["RATING"]) ? $user["RATING"] : "-" ?>
+                                                <div class="has-tooltip" data-tooltip aria-haspopup="true"
+                                                     title="<?= !empty($arResult["RATING_UPDATED"][$user["ID"]]) && is_object($arResult["RATING_UPDATED"][$user["ID"]]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", $arResult["RATING_UPDATED"][$user["ID"]]->getTimestamp()) : "" ?>">
+                                                    <?= !empty($user["RATING"]) ? $user["RATING"] : "-" ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -345,7 +351,10 @@
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
                                             <div class="b-offers__rest">
-                                                <?= !empty($user["UF_STATE_PARTICIP"]) ? "Да" : "-" ?>
+                                                <div class="has-tooltip" data-tooltip aria-haspopup="true"
+                                                     title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"])) : "" ?>">
+                                                    <?= !empty($user["UF_STATE_PARTICIP"]) ? "Да" : "-" ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -360,7 +369,10 @@
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
                                             <div class="b-offers__img">
-                                                <?= !empty($user["UF_BANK_PARTICIP"]) ? '<img src="' . WIC_TEMPLATE_PATH . '/images/asb.jpg" alt="">' : '-' ?>
+                                                <div class="has-tooltip" data-tooltip aria-haspopup="true"
+                                                     title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"])) : "" ?>">
+                                                    <?= !empty($user["UF_BANK_PARTICIP"]) ? '<img src="' . WIC_TEMPLATE_PATH . '/images/asb.jpg" alt="">' : '-' ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -373,14 +385,17 @@
                                     </div>
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
-                                            <? if (!empty($user["UF_CAPITAL_ASSETS"])): ?>
-                                                <div class="b-offers__prof">
-                                                    <?= $user["UF_CAPITAL_ASSETS"]; ?>
-                                                    <span>%</span>
-                                                </div>
-                                            <? else: ?>
-                                                -
-                                            <? endif; ?>
+                                            <div class="has-tooltip" data-tooltip aria-haspopup="true"
+                                                 title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"])) : "" ?>">
+                                                <? if (!empty($user["UF_CAPITAL_ASSETS"])): ?>
+                                                    <div class="b-offers__prof">
+                                                        <?= $user["UF_CAPITAL_ASSETS"]; ?>
+                                                        <span>%</span>
+                                                    </div>
+                                                <? else: ?>
+                                                    -
+                                                <? endif; ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -391,14 +406,17 @@
                                     </div>
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
-                                            <? if (!empty($user["UF_CAPITAL"])): ?>
-                                                <div class="b-offers__prof">
-                                                    <?= $user["UF_CAPITAL"] ?>
-                                                    <span>тыс. рублей</span>
-                                                </div>
-                                            <? else: ?>
-                                                -
-                                            <? endif; ?>
+                                            <div class="has-tooltip" data-tooltip aria-haspopup="true"
+                                                 title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"])) : "" ?>">
+                                                <? if (!empty($user["UF_CAPITAL"])): ?>
+                                                    <div class="b-offers__prof">
+                                                        <?= $user["UF_CAPITAL"] ?>
+                                                        <span>тыс. рублей</span>
+                                                    </div>
+                                                <? else: ?>
+                                                    -
+                                                <? endif; ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -408,14 +426,17 @@
                                     </div>
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
-                                            <? if (!empty($user["UF_ASSETS"])): ?>
-                                                <div class="b-offers__prof">
-                                                    <?= $user["UF_ASSETS"] ?>
-                                                    <span>тыс. рублей</span>
-                                                </div>
-                                            <? else: ?>
-                                                -
-                                            <? endif; ?>
+                                            <div class="has-tooltip" data-tooltip aria-haspopup="true"
+                                                 title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"])) : "" ?>">
+                                                <? if (!empty($user["UF_ASSETS"])): ?>
+                                                    <div class="b-offers__prof">
+                                                        <?= $user["UF_ASSETS"] ?>
+                                                        <span>тыс. рублей</span>
+                                                    </div>
+                                                <? else: ?>
+                                                    -
+                                                <? endif; ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -428,41 +449,34 @@
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
                                             <div class="b-offers__rest">
-                                                <?= $user["FULL_WORK_COMPANY"] ?>
+                                                <div class="has-tooltip" data-tooltip aria-haspopup="true"
+                                                     title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"])) : "" ?>">
+                                                    <?= $user["FULL_WORK_COMPANY"] ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="row b-offers__more-item">
-                                    <div class="column medium-3 small-6">
-                                        <div class="b-offers__label">Обновлено</div>
-
-                                    </div>
-                                    <div class="column medium-9 small-6 b-offers__nopadding">
-                                        <div class="b-offers__res2">
-                                            <div class="b-offers__rest">
-                                                <?= CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"])); ?>
-                                            </div>
+                                <div class="row">
+                                    <? if ($USER->IsAuthorized()): ?>
+                                        <div class="columns show-for-small-only b-offers__best b-offers__nopadding">
+                                            <div class="b-offers__liked">Избранное</div>
+                                            <a href="#"
+                                               class="b-offers__stars js-favorite-add<? if ($offer["UF_FAVORITE"]): ?> b-offers__stars_active<? endif; ?>"
+                                               data-id="<?= $offer["ID"] ?>"></a>
                                         </div>
-                                    </div>
+                                    <? endif; ?>
+                                    <? if (!empty($user["UF_SITE"])): ?>
+                                        <? if (!preg_match("#^(http|//)#is", $user["UF_SITE"])) $user["UF_SITE"] = "//" . $user["UF_SITE"] ?>
+                                        <div
+                                            class="column medium-6 medium-offset-3 end b-offers__go b-offers__nopadding">
+                                            <a href="<?= $user["UF_SITE"] ?>" class="b-offers__link" target="_blank">Перейти
+                                                на
+                                                сайт</a>
+                                        </div>
+                                    <? endif; ?>
                                 </div>
                             </div>
-                            <? if ($USER->IsAuthorized()): ?>
-                                <div class="columns show-for-small-only b-offers__best">
-                                    <div class="b-offers__liked">Избранное</div>
-                                    <a href="#"
-                                       class="b-offers__stars js-favorite-add<? if ($offer["UF_FAVORITE"]): ?> b-offers__stars_active<? endif; ?>"
-                                       data-id="<?= $offer["ID"] ?>"></a>
-                                </div>
-                            <? endif; ?>
-                            <? if (!empty($user["UF_SITE"])): ?>
-                                <? if (!preg_match("#^(http|//)#is", $user["UF_SITE"])) $user["UF_SITE"] = "//" . $user["UF_SITE"] ?>
-                                <div class="column medium-6 medium-offset-4 b-offers__go">
-                                    <a href="<?= $user["UF_SITE"] ?>" class="b-offers__link" target="_blank">Перейти на
-                                        сайт</a>
-                                </div>
-                            <? endif; ?>
                         </div>
                     </div>
                 </div>
