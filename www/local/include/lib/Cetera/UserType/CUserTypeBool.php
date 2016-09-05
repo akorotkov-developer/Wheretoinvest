@@ -17,7 +17,7 @@ class CUserTypeBool extends \CUserTypeInteger
   {
     return array(
       "USER_TYPE_ID" => "bool",
-      "CLASS_NAME" => "CUserTypeBool",
+      "CLASS_NAME" => "Cetera\\UserType\\CUserTypeBool",
       "DESCRIPTION" => "Логическое",
       "BASE_TYPE" => "int",
     );

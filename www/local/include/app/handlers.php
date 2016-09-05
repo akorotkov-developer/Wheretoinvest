@@ -16,11 +16,16 @@ $eventManager->addEventHandler("main", "OnBeforeProlog", "clearShowAll", false, 
 
 /**
  * Пользовательское свойство типа "Логическое"
- *
  */
 $eventManager->addEventHandler("iblock", "OnIBlockPropertyBuildList", array("Cetera\\UserType\\CUserTypeBool", "GetIBlockPropertyDescription"), false, 100);
 // добавляем тип для главного модуля
-//$eventManager->AddEventHandler("main", "OnUserTypeBuildList", array("Cetera\\UserType\\CUserTypeBool", "GetUserTypeDescription"), false, 100);
+$eventManager->AddEventHandler("main", "OnUserTypeBuildList", array("Cetera\\UserType\\CUserTypeBool", "GetUserTypeDescription"), false, 100);
+
+/**
+ * Пользовательское свойство типа "Строка с описанием"
+ */
+$eventManager->AddEventHandler("main", "OnUserTypeBuildList", array("Cetera\\UserType\\CUserTypeStrDesc", "GetUserTypeDescription"), false, 100);
+
 class UserEx
 {
     public function OnBeforeUserRegister(&$arFields)

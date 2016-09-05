@@ -118,15 +118,14 @@ if ($obCache->InitCache($cacheLifetime, $cacheID, $cachePath)) {
             if (empty($ratingDetail[$el["UF_USER"]]))
                 $ratingDetail[$el["UF_USER"]] = 0;
 
-            $i = 1;
             foreach ($ratingList[$el["UF_AGENCY"]]["UF_SCALE"] as $key => $val) {
-                if ($val == $el["UF_RATING"]) {
+                if ($val["VALUE"] == $el["UF_RATING"]) {
+                    $i = intval($val["DESCRIPTION"]);
                     if (empty($ratingDetail[$el["UF_USER"]]) || $i < $ratingDetail[$el["UF_USER"]]) {
                         $ratingDetail[$el["UF_USER"]] = $i;
                         break;
                     }
                 }
-                ++$i;
             }
         }
     }

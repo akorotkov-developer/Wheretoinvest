@@ -62,7 +62,7 @@ while ($el = $list->fetch()) {
                         <option value="">Не выбрано</option>
                         <? foreach ($item["UF_SCALE"] as $scale): ?>
                             <option
-                                value="<?= $scale ?>"<? if ($scale == $rating[$key]["UF_RATING"]): ?> selected<? endif; ?>><?= $scale ?></option>
+                                value="<?= $scale["VALUE"] ?>"<? if ($scale["VALUE"] == $rating[$key]["UF_RATING"]): ?> selected<? endif; ?>><?= $scale["VALUE"] ?></option>
                         <? endforeach; ?>
                     </select>
                 </div>
