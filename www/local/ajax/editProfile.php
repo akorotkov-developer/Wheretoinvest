@@ -128,12 +128,8 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                         $w_src = imagesx($source);
                         $h_src = imagesy($source);
 
-                        if ($w_src < 100 || $h_src < 100) {
-                            $arResult["ERROR"] = "Минимальный размер файла 100px x 100px";
-                        }
-
-                        if ($w_src > 200 || $h_src > 200) {
-                            $arResult["ERROR"] = "Максимальный размер файла 200px x 200px";
+                        if ($w_src > 100 || $h_src > 100) {
+                            $arResult["ERROR"] = "Максимальная сторона логотипа 100px";
                         }
                     }
                 }

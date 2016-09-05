@@ -37,8 +37,7 @@ $arResult["FORM_FIELDS"] = Array(
                 "COL_SIZE" => "6",
                 "BUTTON_DESCRIPTION" => Array(
                     "png, jpg, gif",
-                    "не менее 100px х 100px ",
-                    "не более 200px х 200px"
+                    "сторона логотипа не более 100px ",
                 )
             ),
             "WORK_LOGO_DEL" => Array(
