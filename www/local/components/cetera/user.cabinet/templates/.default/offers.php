@@ -56,7 +56,7 @@ while ($el = $list->fetch()) {
                         <div class="invest__row">
                             <div class="invest__deposite"><?= $arItem["UF_NAME"] ?></div>
                             <div
-                                class="invest__place"><?= !empty($arItem["UF_UPDATED"]) ? CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($arItem["UF_UPDATED"])) : ""; ?></div>
+                                class="invest__place"><?= !empty($arItem["UF_UPDATED"]) ? strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($arItem["UF_UPDATED"]))) : ""; ?></div>
                         </div>
                     </a>
                 <? endforeach; ?>

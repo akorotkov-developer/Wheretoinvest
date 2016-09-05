@@ -39,7 +39,7 @@ $userInfo = getContainer("User");
 <? if (!empty($userInfo["TIMESTAMP_X"])): ?>
     <div class="row">
         <div class="columns content__date">
-            Обновлено: <?= CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($userInfo["TIMESTAMP_X"])); ?></div>
+            Обновлено: <?= strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($userInfo["TIMESTAMP_X"]))); ?></div>
     </div>
 <? endif; ?>
 

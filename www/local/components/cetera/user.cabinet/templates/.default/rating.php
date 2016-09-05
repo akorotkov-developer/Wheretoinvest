@@ -57,10 +57,10 @@ while ($el = $list->fetch()) {
             <a class="content__change" href="edit/">Изменить</a>
         </div>
     </div>
-
-<? if (!empty(reset($rating)["UF_UPDATED"])): ?>
+<?$time = reset($rating)["UF_UPDATED"];?>
+<? if (!empty($time)): ?>
     <div class="row">
         <div class="columns content__date">
-            Обновлено: <?= CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime(reset($rating)["UF_UPDATED"])); ?></div>
+            Обновлено: <?= strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($time))); ?></div>
     </div>
 <? endif; ?>

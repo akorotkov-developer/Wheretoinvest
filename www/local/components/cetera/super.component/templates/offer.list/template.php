@@ -292,7 +292,7 @@
                          data-equalizer-watch>
                         <div class="b-offers__prof">
                             <div class="has-tooltip" data-tooltip aria-haspopup="true"
-                                 title="<?= !empty($offer["UF_UPDATED"]) && is_object($offer["UF_UPDATED"]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", $offer["UF_UPDATED"]->getTimestamp()) : "" ?>">
+                                 title="<?= !empty($offer["UF_UPDATED"]) && is_object($offer["UF_UPDATED"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", $offer["UF_UPDATED"]->getTimestamp())) : "" ?>">
                                 <?= floatval($arItem["UF_PERCENT"]); ?> <span>%</span>
                             </div>
                         </div>
@@ -321,7 +321,7 @@
                                         <div class="b-offers__res2">
                                             <div class="b-offers__rest">
                                                 <div class="has-tooltip" data-tooltip aria-haspopup="true"
-                                                     title="<?= !empty($offer["UF_UPDATED"]) && is_object($offer["UF_UPDATED"]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", $offer["UF_UPDATED"]->getTimestamp()) : "" ?>">
+                                                     title="<?= !empty($offer["UF_UPDATED"]) && is_object($offer["UF_UPDATED"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", $offer["UF_UPDATED"]->getTimestamp())) : "" ?>">
                                                     <?= $arItem["UF_METHOD"]; ?>
                                                 </div>
                                             </div>
@@ -336,7 +336,7 @@
                                         <div class="b-offers__res2">
                                             <div class="b-offers__rest">
                                                 <div class="has-tooltip" data-tooltip aria-haspopup="true"
-                                                     title="<?= !empty($arResult["RATING_UPDATED"][$user["ID"]]) && is_object($arResult["RATING_UPDATED"][$user["ID"]]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", $arResult["RATING_UPDATED"][$user["ID"]]->getTimestamp()) : "" ?>">
+                                                     title="<?= !empty($arResult["RATING_UPDATED"][$user["ID"]]) && is_object($arResult["RATING_UPDATED"][$user["ID"]]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", $arResult["RATING_UPDATED"][$user["ID"]]->getTimestamp())) : "" ?>">
                                                     <?= !empty($user["RATING"]) ? $user["RATING"] : "-" ?>
                                                 </div>
                                             </div>
@@ -353,7 +353,7 @@
                                         <div class="b-offers__res2">
                                             <div class="b-offers__rest">
                                                 <div class="has-tooltip" data-tooltip aria-haspopup="true"
-                                                     title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"])) : "" ?>">
+                                                     title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
                                                     <?= !empty($user["UF_STATE_PARTICIP"]) ? "Да" : "-" ?>
                                                 </div>
                                             </div>
@@ -371,7 +371,7 @@
                                         <div class="b-offers__res2">
                                             <div class="b-offers__img">
                                                 <div class="has-tooltip" data-tooltip aria-haspopup="true"
-                                                     title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"])) : "" ?>">
+                                                     title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
                                                     <?= !empty($user["UF_BANK_PARTICIP"]) ? '<img src="' . WIC_TEMPLATE_PATH . '/images/asb.jpg" alt="">' : '-' ?>
                                                 </div>
                                             </div>
@@ -387,7 +387,7 @@
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
                                             <div class="has-tooltip" data-tooltip aria-haspopup="true"
-                                                 title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"])) : "" ?>">
+                                                 title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
                                                 <? if (!empty($user["UF_CAPITAL_ASSETS"])): ?>
                                                     <div class="b-offers__prof">
                                                         <?= $user["UF_CAPITAL_ASSETS"]; ?>
@@ -408,7 +408,7 @@
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
                                             <div class="has-tooltip" data-tooltip aria-haspopup="true"
-                                                 title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"])) : "" ?>">
+                                                 title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
                                                 <? if (!empty($user["UF_CAPITAL"])): ?>
                                                     <div class="b-offers__prof">
                                                         <?= $user["UF_CAPITAL"] ?>
@@ -428,7 +428,7 @@
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
                                             <div class="has-tooltip" data-tooltip aria-haspopup="true"
-                                                 title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"])) : "" ?>">
+                                                 title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
                                                 <? if (!empty($user["UF_ASSETS"])): ?>
                                                     <div class="b-offers__prof">
                                                         <?= $user["UF_ASSETS"] ?>
@@ -451,7 +451,7 @@
                                         <div class="b-offers__res2">
                                             <div class="b-offers__rest">
                                                 <div class="has-tooltip" data-tooltip aria-haspopup="true"
-                                                     title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"])) : "" ?>">
+                                                     title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
                                                     <?= $user["FULL_WORK_COMPANY"] ?>
                                                 </div>
                                             </div>
