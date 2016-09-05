@@ -269,8 +269,8 @@
                         <? $showInflation = false; ?>
                     <? endif; ?>
                 <? endif; ?>
-                <div class="b-offers__item row">
-                    <div class="column medium-4  small-4 b-offers__firsttd">
+                <div class="b-offers__item row" data-equalizer data-equalizer-mq="medium-up">
+                    <div class="column medium-4 small-4 b-offers__firsttd" data-equalizer-watch>
                         <div class="b-offers__logo">
                             <? if (!empty($user["WORK_LOGO"])): ?>
                                 <? $file = CFile::ResizeImageGet($user["WORK_LOGO"], array('width' => 30, 'height' => 30), BX_RESIZE_IMAGE_PROPORTIONAL); ?>
@@ -283,12 +283,13 @@
                         <div class="b-offers__arrows"></div>
                     </div>
 
-                    <div class="column medium-3 hide-for-small-only">
+                    <div class="column medium-3 hide-for-small-only" data-equalizer-watch>
                         <div class="b-offers__type">
                             <?= $offer["UF_NAME"] ?>
                         </div>
                     </div>
-                    <div class="column small-3 medium-2  text-right b-offers__profit b-offers__bility">
+                    <div class="column small-3 medium-2 text-right b-offers__profit b-offers__bility"
+                         data-equalizer-watch>
                         <div class="b-offers__prof">
                             <div class="has-tooltip" data-tooltip aria-haspopup="true"
                                  title="<?= !empty($offer["UF_UPDATED"]) && is_object($offer["UF_UPDATED"]) ? "Обновлено<br>" . CIBlockFormatProperties::DateFormat("d M Y в H:i", $offer["UF_UPDATED"]->getTimestamp()) : "" ?>">
@@ -296,11 +297,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="column small-5 medium-2 text-center">
+                    <div class="column small-5 medium-2 text-center" data-equalizer-watch>
                         <div class="b-offers__prof"><?= $arItem["UF_SAFETY"] ?>
                             <span>из <?= $arResult["USER_COUNT"] ?></span></div>
                     </div>
-                    <div class="column hide-for-small-only medium-1 text-left  ">
+                    <div class="column hide-for-small-only medium-1 text-left" data-equalizer-watch>
                         <a href="#"
                            class="b-offers__stars js-favorite-add<? if ($offer["UF_FAVORITE"]): ?> b-offers__stars_active<? endif; ?>"
                            data-id="<?= $offer["ID"] ?>"></a>
