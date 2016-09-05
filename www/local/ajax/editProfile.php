@@ -90,7 +90,7 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
 
                 switch ($key) {
                     case "UF_SITE":
-                        if (!empty($val) && !preg_match("@^(http\:\/\/|https\:\/\/)?([a-z0-9][a-z0-9\-]*\.)+[a-z0-9][a-z0-9\-]*$@i", $val)) {
+                        if (!empty($val) && !preg_match("@^http(s)?://[a-zа-я0-9-]+(.[a-zа-я0-9-]+)*(:[0-9]+)?(/.*)?$@i", $val)) {
                             $arResult["ERRORS"][$key] = "Неверная ссылка на сайт";
                             $arResult["ERROR"][] = "Неверная ссылка на сайт";
                         }
