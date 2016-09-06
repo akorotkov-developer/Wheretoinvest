@@ -16,6 +16,7 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                 "PERSONAL_GENDER",
                 "WORK_COMPANY",
                 "PERSONAL_PHONE",
+                "UF_EXTENSION_NUMBER",
             );
 
             $arFields = Array();
@@ -42,6 +43,10 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                             $arFields[$key] = $val;
                             $arResult["NEW"][$key] = "<span class='req__name'>—</span>";
                         }
+                        break;
+                    case "UF_EXTENSION_NUMBER":
+                        $arFields[$key] = $val;
+                        $arResult["NEW"][$key] = $arFields[$key];
                         break;
                     case "PERSONAL_GENDER":
                         $arFields[$key] = $val;

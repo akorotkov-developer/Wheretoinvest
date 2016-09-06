@@ -96,6 +96,7 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
     </div>
     <div class="columns req">
         <br>
+
         <div class="row">
             <div class="req__name medium-5 small-5 columns">Пароль:</div>
             <div class="req__value medium-7 small-7 columns">
@@ -115,6 +116,7 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
     <? if (!$userInfo->isPartner()): ?>
         <div class="columns req">
             <br>
+
             <div class="row">
                 <div class="req__name medium-5 small-5 columns">ФИО:</div>
                 <div
@@ -179,6 +181,7 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
     <? else: ?>
         <div class="columns req">
             <br>
+
             <div class="row">
                 <div class="req__name medium-5 small-5 columns">Наименование организации:
                 </div>
@@ -197,7 +200,7 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
             <div class="row">
                 <div class="req__name medium-5 small-5 columns">Контактный телефон:</div>
                 <div
-                    class="req__value medium-7 small-7 columns js-profile-phone"><?= empty($userInfo["PERSONAL_PHONE"]) ? "<span class='req__name'>—</span>" : $userInfo["PERSONAL_PHONE"] ?></div>
+                    class="req__value medium-7 small-7 columns js-profile-phone"><?= empty($userInfo["PERSONAL_PHONE"]) ? "<span class='req__name'>—</span>" : $userInfo["PERSONAL_PHONE"] . (!empty($userInfo["UF_EXTENSION_NUMBER"]) ? " доб. " . $userInfo["UF_EXTENSION_NUMBER"] : "") ?></div>
             </div>
         </div>
         <? $arResult["FORM_FIELDS"] = Array(
@@ -215,13 +218,24 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
                 "REQUIRED" => "Y",
                 "NO_LABEL" => "Y",
             ),
-            "PERSONAL_PHONE" => Array(
-                "BLOCK_TITLE" => "Контактный телефон",
-                "TYPE" => "TEXT",
-                "VALUE" => $userInfo["PERSONAL_PHONE"],
-                "REQUIRED" => "Y",
-                "NO_LABEL" => "Y",
-                "INPUT_CLASS" => "js-phone"
+            Array(
+                "TYPE" => "TEXT_BLOCK",
+                "TITLE" => "Контактный телефон",
+                "LIST" => Array(
+                    "PERSONAL_PHONE" => Array(
+                        "TYPE" => "TEXT",
+                        "VALUE" => $userInfo["PERSONAL_PHONE"],
+                        "REQUIRED" => "Y",
+                        "INPUT_CLASS" => "js-phone",
+                        "COL_SIZE" => "9"
+                    ),
+                    "UF_EXTENSION_NUMBER" => Array(
+                        "TYPE" => "TEXT",
+                        "VALUE" => $userInfo["UF_EXTENSION_NUMBER"],
+                        "COL_SIZE" => "3",
+                        "PLACEHOLDER" => "доб."
+                    ),
+                )
             ),
         );
         ?>
@@ -406,7 +420,10 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
                             $(".js-profile-work").text(response.NEW.WORK_COMPANY);
                         }
                         if (response.NEW.PERSONAL_PHONE !== undefined) {
-                            $(".js-profile-phone").text(response.NEW.PERSONAL_PHONE);
+                            var phone = response.NEW.PERSONAL_PHONE;
+                            if (response.NEW.UF_EXTENSION_NUMBER !== undefined && response.NEW.UF_EXTENSION_NUMBER !== "")
+                                phone += " доб. " + response.NEW.UF_EXTENSION_NUMBER;
+                            $(".js-profile-phone").text(phone);
                         }
 
                         if (_this.find('input[name="action"]').val() !== "changeProfile") {

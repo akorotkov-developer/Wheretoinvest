@@ -1,6 +1,20 @@
 <?php if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 IncludeTemplateLangFile(__FILE__);
 CJSCore::Init(array("fx"));
+
+if ($USER->IsAdmin() && !empty($_REQUEST["partner"])) {
+    $arGroups = CUser::GetUserGroup($USER->GetID());
+    cl($arGroups);
+    if ($_REQUEST["partner"] == "Y") {
+        if (!in_array(PARTNER_GROUP, $arGroups))
+            $arGroups[] = PARTNER_GROUP;
+    } else {
+        $key = array_search(PARTNER_GROUP, $arGroups);
+        unset($arGroups[$key]);
+    }
+    CUser::SetUserGroup($USER->GetID(), $arGroups);
+    LocalRedirect($APPLICATION->GetCurPageParam("", Array("partner")));
+}
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>
