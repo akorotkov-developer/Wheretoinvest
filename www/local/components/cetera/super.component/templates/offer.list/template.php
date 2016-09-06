@@ -34,7 +34,8 @@
                 <div class="b-sort__main"<? if (!empty($sortVisible)): ?> style="display: none;"<? endif; ?>>
                     <div class="column medium-7">
                         <span class="b-sort__label">Сумма:</span>
-                        <input type="text" class="b-sort__inp" value="<?= $_REQUEST["summ"] ?>" name="summ">
+                        <input type="text" class="b-sort__inp" value="<?= htmlspecialcharsbx($_REQUEST["summ"]) ?>"
+                               name="summ">
                     </div>
                     <div class="column small-5 medium-2 b-sort__select">
                         <span class="b-sort__label">Валюта:</span>
@@ -303,7 +304,7 @@
                     </div>
                     <div class="column hide-for-small-only medium-1 text-left" data-equalizer-watch>
                         <a href="#"
-                           class="b-offers__stars js-favorite-add<? if ($offer["UF_FAVORITE"]): ?> b-offers__stars_active<? endif; ?>"
+                           class="b-offers__stars js-favorite-add"
                            data-id="<?= $offer["ID"] ?>"></a>
                     </div>
 
@@ -460,7 +461,7 @@
                                         <div class="columns show-for-small-only b-offers__best b-offers__nopadding">
                                             <div class="b-offers__liked">Избранное</div>
                                             <a href="#"
-                                               class="b-offers__stars js-favorite-add<? if ($offer["UF_FAVORITE"]): ?> b-offers__stars_active<? endif; ?>"
+                                               class="b-offers__stars js-favorite-add"
                                                data-id="<?= $offer["ID"] ?>"></a>
                                         </div>
                                     <? endif; ?>
@@ -538,6 +539,29 @@
                         event.preventDefault();
                         return false;
                     });
+
+                    (function () {
+                        $.ajax({
+                            url: "/local/ajax/add2favorite.php",
+                            data: {
+                                ajax: "Y",
+                                sessid: "<?=bitrix_sessid()?>",
+                                action: "getList"
+                            },
+                            method: "post",
+                            dataType: "json",
+                            success: function (response) {
+                                if (response.LIST !== undefined) {
+                                    $.each(response.LIST, function (id, val) {
+                                        if (val == "1")
+                                            $(".js-favorite-add[data-id='" + id + "']").addClass("b-offers__stars_active");
+                                        else
+                                            $(".js-favorite-add[data-id='" + id + "']").removeClass("b-offers__stars_active");
+                                    });
+                                }
+                            }
+                        });
+                    })();
                 });
             </script>
 

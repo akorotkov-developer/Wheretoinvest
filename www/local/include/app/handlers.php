@@ -83,6 +83,43 @@ class UserEx
         }
     }
 
+    function OnAfterUserLogin($arFields)
+    {
+        if ($arFields['USER_ID'] > 0) {
+            global $APPLICATION;
+            $hash = $APPLICATION->get_cookie("USER_HASH");
+            if (!empty($hash)) {
+                $hblock = new \Cetera\HBlock\SimpleHblockObject(10);
+                $list = $hblock->getList(Array("filter" => Array("UF_USER_HASH" => $hash)));
+                while ($el = $list->fetch()) {
+                    $hblock->update($el["ID"], Array("UF_USER" => $arFields['USER_ID']));
+                }
+
+                //Удаляем дубли
+                $listID = Array();
+                $removeArray = Array();
+                $list = $hblock->getList(Array("filter" => Array("UF_USER" => $arFields['USER_ID']), "order" => Array("ID" => "DESC")));
+                while ($el = $list->fetch()) {
+                    if (!in_array($el["UF_OFFER"], $listID)) {
+                        $listID[$el["UF_OFFER"]] = $el["UF_OFFER"];
+                        if ($el["UF_USER_HASH"] !== $hash)
+                            $hblock->update($el["ID"], Array("UF_USER_HASH" => $hash));
+                    } else {
+                        $removeArray[$el["ID"]] = $el["ID"];
+                    }
+                }
+                foreach ($removeArray as $id) {
+                    $hblock->delete($id);
+                }
+
+                if (count($removeArray)) {
+                    $obCache = new CPHPCache();
+                    $obCache->CleanDir("/offers/" . $arFields['USER_ID'] . "/");
+                }
+            }
+        }
+    }
+
     function OnAfterUserUpdate(&$arFields)
     {
         if ($arFields["RESULT"]) {
@@ -94,6 +131,7 @@ class UserEx
     }
 }
 
+$eventManager->addEventHandler("main", "OnAfterUserLogin", array("UserEx", "OnAfterUserLogin"), false, 100);
 $eventManager->addEventHandler("main", "OnBeforeUserLogin", array("UserEx", "OnBeforeUserLogin"), false, 100);
 $eventManager->addEventHandler("main", "OnBeforeUserRegister", array("UserEx", "OnBeforeUserRegister"), false, 100);
 $eventManager->addEventHandler("main", "OnAfterUserRegister", array("UserEx", "OnAfterUserRegister"), false, 100);
