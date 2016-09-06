@@ -479,6 +479,17 @@
                     </div>
                 </div>
             <? endforeach; ?>
+            <? if (!empty($inflation) && (empty($_REQUEST["SORT"]) || !empty($_REQUEST["SORT"]["percent"])) && $showInflation): ?>
+                <div class="row b-offers__infl">
+                    <div class="columns medium-3 medium-offset-4 small-4 small-text-center medium-text-left">
+                        <div class="b-offers__type b-offers__type_infl"><?= $inflationName ?></div>
+                    </div>
+                    <div class="columns medium-2 small-3 text-right end b-offers__percent b-offers__bility">
+                        <div class="b-offers__prof b-offers__prof_infl"><?= $inflation ?> <span>%</span></div>
+                    </div>
+                </div>
+                <? $showInflation = false; ?>
+            <? endif; ?>
 
             <script>
                 window.paging = {
