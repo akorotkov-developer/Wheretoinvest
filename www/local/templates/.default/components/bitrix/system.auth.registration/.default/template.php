@@ -22,6 +22,7 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
 ?>
 
 <? if (!empty($_REQUEST["Register"]) && !empty($arParams["~AUTH_RESULT"])): ?>
+    <? cl($arResult); ?>
     <div class="row">
         <div class="column small-12 medium-6 large-5 small-centered">
             <div data-alert
@@ -44,16 +45,18 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
             Регистрация
         </div>
         <ul class="tabs reg" data-tab="" data-options="deep_linking:true;scroll_to_content:false;">
-            <li class="tab-title active"><a href="#person">пользователь</a></li>
-            <li class="tab-title"><a href="#partner">партнер</a></li>
+            <li class="tab-title<? if (!isset($_REQUEST["WORK_COMPANY"])): ?> active<? endif; ?>"><a href="#person">пользователь</a>
+            </li>
+            <li class="tab-title<? if (isset($_REQUEST["WORK_COMPANY"])): ?> active<? endif; ?>"><a href="#partner">партнер</a>
+            </li>
         </ul>
         <div class="tabs-content">
-            <div class="content active" id="person">
+            <div class="content<? if (!isset($_REQUEST["WORK_COMPANY"])): ?> active<? endif; ?>" id="person">
                 <?
                 $arResult["FORM_FIELDS_PERSON"] = Array(
                     "PERSONAL_GENDER" => Array(
                         "TYPE" => "RADIO",
-                        "VALUE" => $_REQUEST["PERSONAL_GENDER"],
+                        "VALUE" => $arParams["~AUTH_RESULT"]["TYPE"] !== "OK" ? $_REQUEST["PERSONAL_GENDER"]: "",
                         "BLOCK_TITLE" => "Пол",
                         "LIST" => Array(
                             "M" => "Мужской",
@@ -64,7 +67,7 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                     "UF_BIRTHDAY" => Array(
                         "BLOCK_TITLE" => "Год рождения",
                         "TYPE" => "TEXT",
-                        "VALUE" => $_REQUEST["UF_BIRTHDAY"],
+                        "VALUE" => $arParams["~AUTH_RESULT"]["TYPE"] !== "OK" ? $_REQUEST["UF_BIRTHDAY"]: "",
                         "REQUIRED" => "Y",
                         "PLACEHOLDER" => "гггг",
                         "PARAMS" => Array(
@@ -75,13 +78,13 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                     "NAME" => Array(
                         "BLOCK_TITLE" => "Ваше имя для сайта",
                         "TYPE" => "TEXT",
-                        "VALUE" => $_REQUEST["NAME"],
+                        "VALUE" => $arParams["~AUTH_RESULT"]["TYPE"] !== "OK" ? $_REQUEST["NAME"]: "",
                         "REQUIRED" => "Y",
                     ),
                     "USER_EMAIL" => Array(
                         "BLOCK_TITLE" => "Электронная почта",
                         "TYPE" => "EMAIL",
-                        "VALUE" => $arResult["USER_EMAIL"],
+                        "VALUE" => $arParams["~AUTH_RESULT"]["TYPE"] !== "OK" ? $arResult["USER_EMAIL"]: "",
                         "REQUIRED" => "Y",
                         "DESCRIPTION" => "Будет логином на сайт. Вы должны иметь к ней доступ, чтобы подтвердить регистрацию",
                         "PARAMS" => Array(
@@ -91,7 +94,7 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                     "USER_PASSWORD" => Array(
                         "BLOCK_TITLE" => "Придумайте пароль",
                         "TYPE" => "PASSWORD",
-                        "VALUE" => $arResult["USER_PASSWORD"],
+                        "VALUE" => $arParams["~AUTH_RESULT"]["TYPE"] !== "OK" ? $arResult["USER_PASSWORD"]: "",
                         "REQUIRED" => "Y",
                         "PARAMS" => Array(
                             "autocomplete" => "off"
@@ -121,32 +124,32 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                     </noindex>
                 </form>
             </div>
-            <div class="content" id="partner">
+            <div class="content<? if (!isset($_REQUEST["WORK_COMPANY"])): ?> active<? endif; ?>" id="partner">
                 <?
                 $arResult["FORM_FIELDS_PARTNER"] = Array(
                     "WORK_COMPANY" => Array(
                         "BLOCK_TITLE" => "Сокращенное наименование организации (согласно уставу)",
                         "TYPE" => "TEXT",
-                        "VALUE" => $_REQUEST["WORK_COMPANY"],
+                        "VALUE" => $arParams["~AUTH_RESULT"]["TYPE"] !== "OK" ? $_REQUEST["WORK_COMPANY"]: "",
                         "REQUIRED" => "Y",
                     ),
                     "NAME" => Array(
                         "BLOCK_TITLE" => "Контактное лицо",
                         "TYPE" => "TEXT",
-                        "VALUE" => $_REQUEST["NAME"],
+                        "VALUE" => $arParams["~AUTH_RESULT"]["TYPE"] !== "OK" ? $_REQUEST["NAME"]: "",
                         "REQUIRED" => "Y",
                     ),
                     "PERSONAL_PHONE" => Array(
                         "BLOCK_TITLE" => "Контактный телефон",
                         "TYPE" => "TEXT",
-                        "VALUE" => $_REQUEST["PERSONAL_PHONE"],
+                        "VALUE" => $arParams["~AUTH_RESULT"]["TYPE"] !== "OK" ? $_REQUEST["PERSONAL_PHONE"]: "",
                         "REQUIRED" => "Y",
                         "INPUT_CLASS" => "js-phone"
                     ),
                     "USER_EMAIL" => Array(
                         "BLOCK_TITLE" => "Электронная почта",
                         "TYPE" => "EMAIL",
-                        "VALUE" => $arResult["USER_EMAIL"],
+                        "VALUE" => $arParams["~AUTH_RESULT"]["TYPE"] !== "OK" ? $arResult["USER_EMAIL"]: "",
                         "REQUIRED" => "Y",
                         "DESCRIPTION" => "Будет логином на сайт. Вы должны иметь к ней доступ, чтобы подтвердить регистрацию",
                         "PARAMS" => Array(
@@ -156,7 +159,7 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                     "USER_PASSWORD" => Array(
                         "BLOCK_TITLE" => "Придумайте пароль",
                         "TYPE" => "PASSWORD",
-                        "VALUE" => $arResult["USER_PASSWORD"],
+                        "VALUE" => $arParams["~AUTH_RESULT"]["TYPE"] !== "OK" ? $arResult["USER_PASSWORD"]: "",
                         "REQUIRED" => "Y",
                         "PARAMS" => Array(
                             "autocomplete" => "off"
