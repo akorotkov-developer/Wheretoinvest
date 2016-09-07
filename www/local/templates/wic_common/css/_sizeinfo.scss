@@ -16,17 +16,21 @@
 
   }
   &__close {
-
-    width: rem-calc(16);
-    height: rem-calc(16);
+    /*width: rem-calc(16);
+    height: rem-calc(16);*/
+    font-size: rem-calc(12);
+    color: #9e9e9e;
+    font-weight: normal;
     cursor: pointer;
     display: inline-block;
+    top: rem-calc(-6);
+    position: relative;
   }
 }
 
-:not(.b-sizeinfo__title) > .b-sizeinfo__close {
+/*:not(.b-sizeinfo__title) > .b-sizeinfo__close {
   background: url("../images/x.png");
-}
+}*/
 
 @media #{$small-only} {
   .b-sizeinfo {

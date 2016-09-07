@@ -6,21 +6,19 @@ $size = $APPLICATION->get_cookie("SIZE_CLOSE");
     <section class="row b-sizeinfo ">
         <div class="column medium-9">
             <div class="b-sizeinfo__title">
-                Размер ставки или надежность?
+                Доходность или надежность?
                 <div class="b-sizeinfo__close js-sizeclose"></div>
             </div>
             <div class="b-sizeinfo__text">
-                Выбирайте наиболее приемлемое соотношение доходности и риска. Изучайте предложения, применяя сортировку
-                «по
-                доходности», «по надежности», либо по
-                обоим параметрам одновременно, сравнивайте с инфляцией.
+                Выбирайте приемлемое соотношение доходности и риска, применяя сортировку по доходности, либо по
+                надежности. Сравнивайте с инфляцией.
             </div>
         </div>
         <div class="column medium-2 b-sizeinfo__scales small-only-text-center">
             <img src="<?= WIC_TEMPLATE_PATH ?>/images/scales.png">
         </div>
         <div class="column medium-1 medium-text-right show-for-medium-up">
-            <div class="b-sizeinfo__close js-sizeclose"></div>
+            <div class="b-sizeinfo__close js-sizeclose">Закрыть</div>
         </div>
     </section>
     <script type="text/javascript">
