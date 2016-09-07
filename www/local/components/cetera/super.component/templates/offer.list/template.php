@@ -120,7 +120,7 @@
                         $(this).closest(".x-filter").submit();
                 });
 
-                if ($.fn.widget) {
+                if ($.widget) {
                     $.widget("custom.combobox", {
                         _create: function () {
                             this.wrapper = $("<span>")
