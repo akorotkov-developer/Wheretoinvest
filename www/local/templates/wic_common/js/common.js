@@ -11,6 +11,9 @@
                             + Foundation.libs.tooltip.settings.tooltip_class.substring(1)
                             + '">' + content + '</span>';
                 }
+            },
+            equalizer: {
+                equalize_on_stack: true
             }
         });
 
@@ -75,6 +78,7 @@
             $('.js-show-menu').on('click', function () {
                 $('.js-menu').toggle(500);
                 $('.b-header__place, .b-header__showMenu,.b-header__firstline').toggleClass('js-toggle');
+                $(document).foundation("equalizer", "reflow");
             });
 
             //begin of select my region

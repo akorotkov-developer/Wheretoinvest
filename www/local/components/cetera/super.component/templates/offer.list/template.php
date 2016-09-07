@@ -358,24 +358,28 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row b-offers__more-item">
-                                    <div class="column medium-3 small-6">
-                                        <div class="b-offers__label b-offers__label_bot">Участие в системе страхования
-                                            вкладов
-                                        </div>
 
-                                    </div>
-                                    <div class="column medium-9 small-6 b-offers__nopadding">
-                                        <div class="b-offers__res2">
-                                            <div class="b-offers__img">
-                                                <div class="has-tooltip" data-tooltip aria-haspopup="true"
-                                                     title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
-                                                    <?= !empty($user["UF_BANK_PARTICIP"]) ? '<img src="' . WIC_TEMPLATE_PATH . '/images/asb.jpg" alt="">' : '-' ?>
+                                <? if (intval($offer["UF_METHOD"]) === 3): ?>
+                                    <div class="row b-offers__more-item">
+                                        <div class="column medium-3 small-6">
+                                            <div class="b-offers__label b-offers__label_bot">Участие в системе
+                                                страхования
+                                                вкладов
+                                            </div>
+
+                                        </div>
+                                        <div class="column medium-9 small-6 b-offers__nopadding">
+                                            <div class="b-offers__res2">
+                                                <div class="b-offers__img">
+                                                    <div class="has-tooltip" data-tooltip aria-haspopup="true"
+                                                         title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
+                                                        <?= !empty($user["UF_BANK_PARTICIP"]) ? '<img src="' . WIC_TEMPLATE_PATH . '/images/asb.jpg" alt="">' : '-' ?>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                <? endif; ?>
 
                                 <div class="row b-offers__more-item">
                                     <div class="column medium-3 small-6">
