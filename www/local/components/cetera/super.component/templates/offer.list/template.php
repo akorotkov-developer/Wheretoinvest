@@ -299,8 +299,9 @@
                         </div>
                     </div>
                     <div class="column small-5 medium-2 text-center" data-equalizer-watch>
-                        <div class="b-offers__prof"><?= $arItem["UF_SAFETY"] ?>
-                            <span>из <?= $arResult["USER_COUNT"] ?></span></div>
+                        <div class="b-offers__prof has-tooltip" data-tooltip aria-haspopup="true"
+                             title="<?= $arItem["UF_SAFETY"] ?> место из <?= $arResult["USER_COUNT"] ?>"><?= $arItem["UF_SAFETY"] ?>
+                        </div>
                     </div>
                     <div class="column hide-for-small-only medium-1 text-left" data-equalizer-watch>
                         <a href="#"
