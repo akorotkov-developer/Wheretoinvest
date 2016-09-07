@@ -29,6 +29,11 @@ if (defined("ERROR_404"))
                 <input type="text" name="UF_NAME" value="<?= htmlentities($arResult["ITEM"]["UF_NAME"]) ?>" required/>
             </label>
         </div>
+        <div class="columns">
+            <label for="#" class="content__label">Ссылка на предложение
+                <input type="text" name="UF_NAME" value="<?= $arResult["ITEM"]["UF_SITE"] ?>"/>
+            </label>
+        </div>
     </div>
     <div class="row">
         <div class="columns region">

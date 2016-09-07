@@ -469,13 +469,13 @@
                                                data-id="<?= $offer["ID"] ?>"></a>
                                         </div>
                                     <? endif; ?>
-                                    <? if (!empty($user["UF_SITE"])): ?>
-                                        <? if (!preg_match("#^(http|//)#is", $user["UF_SITE"])) $user["UF_SITE"] = "//" . $user["UF_SITE"] ?>
+                                    <? if (!empty($offer["UF_SITE"])): ?>
+                                        <? if (!preg_match("#^(http|//)#is", $offer["UF_SITE"])) $offer["UF_SITE"] = "//" . $offer["UF_SITE"] ?>
                                         <div
                                             class="column medium-6 medium-offset-3 end b-offers__go b-offers__nopadding">
-                                            <a href="<?= $user["UF_SITE"] ?>" class="b-offers__link" target="_blank">Перейти
-                                                на
-                                                сайт</a>
+                                            <a href="<?= $offer["UF_SITE"] ?>" class="b-offers__link" target="_blank">
+                                                Перейти на сайт
+                                            </a>
                                         </div>
                                     <? endif; ?>
                                 </div>

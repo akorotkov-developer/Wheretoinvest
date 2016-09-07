@@ -81,15 +81,6 @@ $userInfo = getContainer("User");
     <div class="columns req">
         <br>
         <div class="row">
-            <div class="req__name medium-5 small-5 columns">Сайт:</div>
-            <div
-                class="req__value medium-7 small-7 columns"><?= !empty($userInfo["UF_SITE"]) ? '<a href="' . $userInfo["UF_SITE"] . '" class="req__link js-detail-uf_site" target="_blank">' . $userInfo["UF_SITE"] . '</a>' : "<span class='req__name'>—</span>"; ?>
-            </div>
-        </div>
-    </div>
-    <div class="columns req">
-        <br>
-        <div class="row">
             <div class="req__name medium-5 small-5 columns">Расчетный счет:</div>
             <div
                 class="req__value medium-7 small-7 columns js-detail-uf_account"><?= !empty($userInfo["UF_ACCOUNT"]) ? $userInfo["UF_ACCOUNT"] : "<span class='req__name'>—</span>"; ?></div>

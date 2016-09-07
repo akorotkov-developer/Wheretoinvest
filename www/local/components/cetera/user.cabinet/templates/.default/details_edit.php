@@ -53,11 +53,6 @@ $arResult["FORM_FIELDS"] = Array(
             ),
         )
     ),
-    "UF_SITE" => Array(
-        "TYPE" => "TEXT",
-        "TITLE" => "Сайт",
-        "VALUE" => $userInfo["UF_SITE"]
-    ),
     "UF_LICENSE" => Array(
         "TYPE" => "TEXT",
         "TITLE" => "Лицензия ЦБ РФ",

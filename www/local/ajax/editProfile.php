@@ -77,7 +77,6 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                 "UF_FULL_WORK_NAME",
                 "UF_SHORT_WORK_EN",
                 "WORK_LOGO",
-                "UF_SITE",
                 "UF_LICENSE",
                 "UF_OGRN",
                 "UF_INN",
@@ -94,13 +93,6 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                     continue;
 
                 switch ($key) {
-                    case "UF_SITE":
-                        if (!empty($val) && !preg_match("@^http(s)?://[a-zа-я0-9-]+(.[a-zа-я0-9-]+)*(:[0-9]+)?(/.*)?$@i", $val)) {
-                            $arResult["ERRORS"][$key] = "Неверная ссылка на сайт";
-                            $arResult["ERROR"][] = "Неверная ссылка на сайт";
-                        }
-                        $arFields[$key] = trim($val);
-                        break;
                     default:
                         $arFields[$key] = trim($val);
                         $arResult["NEW"][$key] = !empty($arFields[$key]) ? $arFields[$key] : "<span class='req__name'>—</span>";
