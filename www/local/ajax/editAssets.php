@@ -18,7 +18,10 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
             foreach ($_REQUEST as $key => $value) {
                 if (in_array($key, $avaliableFields)) {
                     $arFields[$key] = $value;
-                    $arResult["NEW"][$key] = $value;
+                    if ($key == "UF_CAPITAL_ASSETS")
+                        $arResult["NEW"][$key] = $value;
+                    else
+                        $arResult["NEW"][$key] = number_format(round(intval(preg_replace("#[^\d]#is", "", $value)) / 1000000, 1), 1, ",", " ");
                 }
             }
 

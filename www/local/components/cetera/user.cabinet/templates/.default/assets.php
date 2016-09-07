@@ -44,7 +44,7 @@ $userInfo = getContainer("User");
             </div>
             <div class="req__value medium-8 small-7 columns">
 <span
-    class="assets__red js-capital"><?= !empty($userInfo["UF_CAPITAL"]) ? "<span class='assets__num_right'>" . $userInfo["UF_CAPITAL"] . "</span><span class='assets__small'>тыс. рублей</span>" : "<span class='req__name'>—</span>" ?></span>
+    class="assets__red js-capital"><?= !empty($userInfo["UF_CAPITAL"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_CAPITAL"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей</span>" : "<span class='req__name'>—</span>" ?></span>
             </div>
         </div>
     </div>
@@ -59,7 +59,7 @@ $userInfo = getContainer("User");
             <div class="req__value medium-8 small-7 columns">
 <span class="js-assets-parent">
                     <span
-                        class="assets__red js-assets"><?= !empty($userInfo["UF_ASSETS"]) ? "<span class='assets__num_right'>" . $userInfo["UF_ASSETS"] . "</span><span class='assets__small'>тыс. рублей</span>" : "<span class='req__name'>—</span>" ?></span>
+                        class="assets__red js-assets"><?= !empty($userInfo["UF_ASSETS"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_ASSETS"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей</span>" : "<span class='req__name'>—</span>" ?></span>
             </span>
             </div>
         </div>
@@ -69,7 +69,8 @@ $userInfo = getContainer("User");
         <div class="row">
             <div class="columns small-5 medium-4 req__name">&nbsp;</div>
             <div class="columns small-7 medium-8 req__value">
-                <span class='assets__num_right assets__num_right_margin'><a href="#" class="content__change" data-reveal-id="assets">Изменить</a></span>
+                <span class='assets__num_right assets__num_right_margin'><a href="#" class="content__change"
+                                                                            data-reveal-id="assets">Изменить</a></span>
             </div>
         </div>
     </div>
@@ -241,13 +242,13 @@ $userInfo = getContainer("User");
                         $(document).foundation('alert', 'reflow');
 
                         if (response.NEW.UF_ASSETS !== undefined) {
-                            $(".js-assets").html("<span class='assets__num_right'>" + response.NEW.UF_ASSETS + "</span><span class='assets__small'>тыс. рублей</span>");
+                            $(".js-assets").html("<span class='assets__num_right'>" + response.NEW.UF_ASSETS + "</span><span class='assets__small'>млрд. рублей</span>");
                         }
                         if (response.NEW.UF_CAPITAL_ASSETS !== undefined) {
                             $(".js-capital-assets").html("<span class='assets__num_right'>" + response.NEW.UF_CAPITAL_ASSETS + "</span><span class='assets__small'>%</span>");
                         }
                         if (response.NEW.UF_CAPITAL !== undefined) {
-                            $(".js-capital").html("<span class='assets__num_right'>" + response.NEW.UF_CAPITAL + "</span><span class='assets__small'>тыс. рублей</span>");
+                            $(".js-capital").html("<span class='assets__num_right'>" + response.NEW.UF_CAPITAL + "</span><span class='assets__small'>млрд. рублей</span>");
                         }
                     }
 

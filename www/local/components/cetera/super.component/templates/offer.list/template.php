@@ -413,8 +413,8 @@
                                                  title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
                                                 <? if (!empty($user["UF_CAPITAL"])): ?>
                                                     <div class="b-offers__prof">
-                                                        <?= $user["UF_CAPITAL"] ?>
-                                                        <span>тыс. рублей</span>
+                                                        <?= number_format(round(intval(preg_replace("#[^\d]#is", "", $user["UF_CAPITAL"])) / 1000000, 1), 1, ",", " ") ?>
+                                                        <span>млрд. рублей</span>
                                                     </div>
                                                 <? else: ?>
                                                     -
@@ -433,8 +433,8 @@
                                                  title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
                                                 <? if (!empty($user["UF_ASSETS"])): ?>
                                                     <div class="b-offers__prof">
-                                                        <?= $user["UF_ASSETS"] ?>
-                                                        <span>тыс. рублей</span>
+                                                        <?= number_format(round(intval(preg_replace("#[^\d]#is", "", $user["UF_ASSETS"])) / 1000000, 1), 1, ",", " ") ?>
+                                                        <span>млрд. рублей</span>
                                                     </div>
                                                 <? else: ?>
                                                     -
