@@ -113,7 +113,7 @@ if (defined("ERROR_404"))
                                                     <? elseif ($start == $end): ?>
                                                         <?= $start . "<br>" . \Cetera\Tools\Utils::pluralForm($start, "день", "дня", "дней", "дней") ?>
                                                     <? else: ?>
-                                                        <?= $start . " - " . $end . "<br>" . \Cetera\Tools\Utils::pluralForm($end, "дня", "дней", "дней", "дней"); ?>
+                                                        <?= $start . " - " . $end . "<br>" . \Cetera\Tools\Utils::pluralForm($end, "день", "дня", "дней", "дней"); ?>
                                                     <? endif; ?>
                                                 </div>
                                             <? endforeach; ?>
@@ -277,7 +277,7 @@ if (defined("ERROR_404"))
                                 headText += firD + "<br>" + pluralForm(firD, "день", "дня", "дней", "дней");
                             }
                             else {
-                                headText += firD + " - " + secD + "<br>" + pluralForm(secD, "дня", "дней", "дней", "дней");
+                                headText += firD + " - " + secD + "<br>" + pluralForm(secD, "день", "дня", "дней", "дней");
                             }
                             headText += '</div>';
 
