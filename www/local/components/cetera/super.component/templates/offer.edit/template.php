@@ -104,8 +104,17 @@ if (defined("ERROR_404"))
                                         <div class="graph__head">
                                             <div class="graph__th graph__th_reg">&nbsp;</div>
                                             <? foreach ($arResult["MATRIX_COLS"][$key] as $col): ?>
+                                                <? list($start, $end) = explode(" - ", $col); ?>
                                                 <div class="graph__th graph__th_reg" data-id="<?= $col ?>"><a
-                                                        class="graph__cr"></a>от <?= explode(" - ", $col)[0] ?><br>дней
+                                                        class="graph__cr"></a>
+                                                    <? if (empty($end)): ?>
+                                                        от <?= $start . "<br>" . \Cetera\Tools\Utils::pluralForm($start, "дня", "дней", "дней", "дней") ?>
+                                                        <br>
+                                                    <? elseif ($start == $end): ?>
+                                                        <?= $start . "<br>" . \Cetera\Tools\Utils::pluralForm($start, "день", "дня", "дней", "дней") ?>
+                                                    <? else: ?>
+                                                        <?= $start . " - " . $end . "<br>" . \Cetera\Tools\Utils::pluralForm($end, "дня", "дней", "дней", "дней"); ?>
+                                                    <? endif; ?>
                                                 </div>
                                             <? endforeach; ?>
                                         </div>
@@ -146,9 +155,11 @@ if (defined("ERROR_404"))
                         <label for="ggs" class="region__label">Добавить срок</label>
 
                         <div class="region__from">от</div>
-                        <input type="text" class="region__inp region__js-fir" value="">
+                        <input type="text" class="region__inp region__inp_mini region__js-fir" value="">
 
-                        <div class="region__from"></div>
+                        <div class="region__from">до</div>
+                        <input type="text" class="region__inp region__inp_mini region__js-sec" value="">
+
                         <div class="region__from">дней</div>
                         <span class="region__add region__js-col">+</span>
                     </div>
@@ -224,22 +235,51 @@ if (defined("ERROR_404"))
 
             var graphTd = '<div class="graph__td graph__td_js"><input type="text" class="region__js-percent text-center"></div>';
 
+            function pluralForm(n, normative, singular, plural, zero, format) {
+                if (n == 0 && zero !== null)
+                    return zero;
+                var number = Math.abs(n) % 100;
+                var n1 = number % 10;
+                var form;
+                if (number > 10 && number < 20)
+                    form = plural;
+                else if (n1 > 1 && n1 < 5)
+                    form = singular;
+                else if (n1 == 1)
+                    form = normative;
+                else
+                    form = plural;
+                return form;
+            }
+
             $('.region__js-col').click(function () {
                 var firD = $('.region__js-fir').val();
+                var secD = $('.region__js-sec').val();
                 if (firD) {
-
                     $(".region__main .tabs-content .content").each(function () {
                         var idA = "#" + $(this).attr("id");
                         var canAdd = true;
+                        var dataId = firD;
+                        if (secD)
+                            dataId += "-" + secD;
 
-                        if ($(".graph__th[data-id='" + firD + "']", idA).length) {
+                        if ($(".graph__th[data-id='" + dataId + "']", idA).length) {
                             canAdd = false;
                         }
 
                         var numCol = $('.graph__th', idA).length;
                         if (numCol <= 7 && canAdd) {
-                            var dataId = firD;
-                            var headText = '<div class="graph__th graph__th_reg" data-id="' + dataId + '"><a class="graph__cr"></a>от ' + firD + '<br>дней</div>';
+                            var headText = '<div class="graph__th graph__th_reg" data-id="' + dataId + '"><a class="graph__cr"></a>';
+                            if (!secD) {
+                                headText += "от " + firD + "<br>" + pluralForm(firD, "дня", "дней", "дней", "дней");
+                            }
+                            else if (firD == secD) {
+                                headText += firD + "<br>" + pluralForm(firD, "день", "дня", "дней", "дней");
+                            }
+                            else {
+                                headText += firD + " - " + secD + "<br>" + pluralForm(secD, "дня", "дней", "дней", "дней");
+                            }
+                            headText += '</div>';
 
                             $(".graph__head", idA).append(headText);
                             $('.graph__cr:not(.graph__cr_td)').unbind().on('click', deleteCol);
@@ -255,6 +295,7 @@ if (defined("ERROR_404"))
                     });
                 }
                 $('.region__js-fir').val("");
+                $('.region__js-sec').val("");
                 respoTd();
             });
 
