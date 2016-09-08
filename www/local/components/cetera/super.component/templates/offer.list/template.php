@@ -300,7 +300,7 @@
                     </div>
                     <div class="column small-5 medium-2 text-center" data-equalizer-watch>
                         <div class="b-offers__prof has-tooltip" data-tooltip aria-haspopup="true"
-                             title="<?= $arItem["UF_SAFETY"] ?> место из <?= $arResult["USER_COUNT"] ?>"><?= $arItem["UF_SAFETY"] ?>
+                             title="<?= $arItem["UF_SAFETY"] ?> место из <?= $arResult["USER_COUNT"] ?>"><?= $arItem["UF_SAFETY"] ?> <span>место</span>
                         </div>
                     </div>
                     <div class="column hide-for-small-only medium-1 text-left" data-equalizer-watch>
