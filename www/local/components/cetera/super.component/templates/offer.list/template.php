@@ -11,8 +11,8 @@
         <? endforeach; ?>
         <?
         $timeList = Array(
-            "93" => "3 месяца",
-            "182" => "6 месяцев",
+            "93" => "3 мес.",
+            "182" => "6 мес.",
             "365" => "1 год",
             "548" => "1,5 года",
         );
@@ -22,7 +22,7 @@
 
         ksort($timeList);
 
-        $timeList["other"] = "Другое";
+        $timeList["other"] = "Указать в днях";
 
         $sortVisible = $APPLICATION->get_cookie("SORT_VISIBLE");
         ?>
@@ -231,7 +231,7 @@
                             var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
                             response(this.element.children("option").map(function () {
                                 var text = $(this).text();
-                                if (this.value && ( !request.term || matcher.test(text) ))
+                                if (this.value && ( !request.term || matcher.test(text) ) && !text.match(/(день|дня[^х]|дней)/ig))
                                     return {
                                         label: text,
                                         value: text,
@@ -263,6 +263,10 @@
 
                             if (value !== "")
                                 this.element.closest(".x-filter").submit();
+                            else {
+                                document.activeElement.blur();
+                                this.input.focus();
+                            }
                         },
 
                         _destroy: function () {
