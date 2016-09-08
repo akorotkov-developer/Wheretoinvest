@@ -13,28 +13,32 @@ if (defined("ERROR_404"))
 
     <div class="b-main-block__body"></div>
 
-    <div class="row">
-        <div class="columns">
-            <label for="#" class="content__label">Способ вложения
-                <select name="UF_METHOD" class="content__select" required>
-                    <? foreach ($arResult["FIELDS"]["UF_METHOD"] as $key => $val): ?>
-                        <option
-                            value="<?= $key ?>"<? if ($key == $arResult["ITEM"]["UF_METHOD"]): ?> selected<? endif; ?>><?= $val ?></option>
-                    <? endforeach; ?>
-                </select>
-            </label>
-        </div>
-        <div class="columns">
-            <label for="#" class="content__label">Наименование предложения
-                <input type="text" name="UF_NAME" value="<?= htmlentities($arResult["ITEM"]["UF_NAME"]) ?>" required/>
-            </label>
-        </div>
-        <div class="columns">
-            <label for="#" class="content__label">Ссылка на предложение
-                <input type="text" name="UF_NAME" value="<?= $arResult["ITEM"]["UF_SITE"] ?>"/>
-            </label>
-        </div>
-    </div>
+    <?
+    $arFields = Array(
+        "UF_METHOD" => Array(
+            "TYPE" => "SELECT",
+            "VALUE" => $arResult["ITEM"]["UF_METHOD"],
+            "LIST" => $arResult["FIELDS"]["UF_METHOD"],
+            "TITLE" => "Способ вложения",
+            "REQUIRED" => "Y",
+            "COL_SIZE" => "6"
+        ),
+        "UF_NAME" => Array(
+            "TYPE" => "TEXT",
+            "TITLE" => "Наименование предложения",
+            "VALUE" => htmlentities($arResult["ITEM"]["UF_NAME"]),
+            "REQUIRED" => "Y"
+        ),
+        "UF_SITE" => Array(
+            "TYPE" => "TEXT",
+            "TITLE" => "Ссылка на предложение",
+            "VALUE" => $arResult["ITEM"]["UF_SITE"],
+            "REQUIRED" => "Y"
+        )
+    );
+
+    echo getFormFields($arFields);
+    ?>
     <div class="row">
         <div class="columns region">
             <div class="region__main">

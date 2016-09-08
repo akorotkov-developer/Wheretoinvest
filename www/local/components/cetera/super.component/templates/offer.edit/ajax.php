@@ -51,7 +51,7 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
         if (empty($arFields["UF_TYPE"])) {
             $arResult["ERRORS"][] = "Не выбран тип лица. Обратитесь к администратору.";
         }
-        if (empty($arFields["UF_SITE"]) && !preg_match("@^http(s)?://[a-zа-я0-9-]+(.[a-zа-я0-9-]+)*(:[0-9]+)?(/.*)?$@i", $arFields["UF_SITE"])) {
+        if (!empty($arFields["UF_SITE"]) && !preg_match("@^http(s)?://[a-zа-я0-9-]+(.[a-zа-я0-9-]+)*(:[0-9]+)?(/.*)?$@i", $arFields["UF_SITE"])) {
             $arResult["ERRORS"][] = "Неверная ссылка на сайт.";
         }
 
