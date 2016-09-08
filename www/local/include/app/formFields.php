@@ -578,7 +578,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                             ?><?
                                         if (!empty($arItem["DISABLED"])): ?>disabled <?endif;
                                             ?><?
-                                        if (!empty($arItem["PLACEHOLDER"])): ?>data-placeholder="<?= $arItem["PLACEHOLDER"] ?>"
+                                        if (!empty($arItem["PLACEHOLDER"])): ?>placeholder="<?= $arItem["PLACEHOLDER"] ?>"
                                             <?endif;
                                             ?><?
                                             if (!empty($arItem["READONLY"])): ?>readonly <?endif;
@@ -588,7 +588,9 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                             <?= $k ?>="<?= htmlentities($v) ?>"
                                         <?endforeach;
                                         endif; ?>>
-                                            <option value="" data-desc=""></option>
+                                            <? if (empty($arItem["REQUIRED"])): ?>
+                                                <option value="" data-desc=""></option>
+                                            <? endif; ?>
                                             <? foreach ($arItem["LIST"] as $key => $val): ?>
                                                 <option
                                                     value="<?= $key ?>"
@@ -623,7 +625,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                     ?><?
                                 if (!empty($arItem["DISABLED"])): ?>disabled <?endif;
                                     ?><?
-                                if (!empty($arItem["PLACEHOLDER"])): ?>data-placeholder="<?= $arItem["PLACEHOLDER"] ?>"
+                                if (!empty($arItem["PLACEHOLDER"])): ?>placeholder="<?= $arItem["PLACEHOLDER"] ?>"
                                     <?endif;
                                     ?><?
                                     if (!empty($arItem["READONLY"])): ?>readonly <?endif;
@@ -633,7 +635,9 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                     <?= $k ?>="<?= htmlentities($v) ?>"
                                 <?endforeach;
                                 endif; ?>>
-                                    <option value="" data-desc=""></option>
+                                    <? if (empty($arItem["REQUIRED"])): ?>
+                                        <option value="" data-desc=""></option>
+                                    <? endif; ?>
                                     <? foreach ($arItem["LIST"] as $key => $val): ?>
                                         <option
                                             value="<?= $key ?>"

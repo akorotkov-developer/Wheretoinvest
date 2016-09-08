@@ -21,7 +21,8 @@ if (defined("ERROR_404"))
             "LIST" => $arResult["FIELDS"]["UF_METHOD"],
             "TITLE" => "Способ вложения",
             "REQUIRED" => "Y",
-            "COL_SIZE" => "6"
+            "COL_SIZE" => "6",
+            "PLACEHOLDER" => "Выберите один из вариантов"
         ),
         "UF_NAME" => Array(
             "TYPE" => "TEXT",
