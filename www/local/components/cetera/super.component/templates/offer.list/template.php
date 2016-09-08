@@ -50,7 +50,6 @@
                     <div class="column small-7 medium-3">
                         <span class="b-sort__label">Срок:</span>
                         <select name="time">
-                            <option value="">Укажите количество дней</option>
                             <? foreach ($timeList as $key => $name): ?>
                                 <option
                                     value="<?= $key ?>"<? if ($_REQUEST["time"] == $key): ?> selected<? endif; ?>><?= $name ?></option>
@@ -110,7 +109,7 @@
 
         <script type="text/javascript">
             $(function () {
-                $(".x-filter select").on("change", function () {
+                $(".x-filter select[name='currency']").on("change", function () {
                     $(this).closest(".x-filter").submit();
                 });
 
@@ -160,6 +159,7 @@
                         _create: function () {
                             this.wrapper = $("<span>")
                                 .addClass("custom-combobox")
+                                .css({"position": "relative"})
                                 .insertAfter(this.element);
 
                             this.element.hide();
@@ -174,7 +174,6 @@
                                 .appendTo(this.wrapper)
                                 .val(value)
                                 .attr("title", "")
-                                .attr("placeholder", "Укажите количество дней")
                                 .attr("readonly", true)
                                 .css({"background-color": "#fff"})
                                 .addClass("b-form__autocomplete")
@@ -198,7 +197,9 @@
                                     });
 
                                     if (_this.element.val() == "other") {
-                                        _this.input.val("").attr("readonly", false).focus();
+                                        _this.input.val("").attr("readonly", false);
+                                        document.activeElement.blur();
+                                        _this.input.focus();
                                         event.preventDefault();
                                     }
                                     else
@@ -260,7 +261,8 @@
                                 this.element.val(value);
                             }
 
-                            this.element.trigger("change");
+                            if (value !== "")
+                                this.element.closest(".x-filter").submit();
                         },
 
                         _destroy: function () {

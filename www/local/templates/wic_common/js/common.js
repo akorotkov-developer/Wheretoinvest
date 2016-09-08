@@ -3,6 +3,7 @@
         "use strict";
         $(document).foundation({
             tooltip: {
+                disable_for_touch: true,
                 tip_template: function (selector, content) {
                     if (content == "")
                         return "";
