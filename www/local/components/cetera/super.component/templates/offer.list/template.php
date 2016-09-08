@@ -15,13 +15,16 @@
             "182" => "6 месяцев",
             "279" => "9 месяцев",
             "365" => "1 год",
+            "548" => "1,5 года",
             "730" => "2 года",
         );
 
         if (!empty($_REQUEST["time"]) && !array_key_exists($_REQUEST["time"], $timeList))
-            $timeList[$_REQUEST["time"]] = $_REQUEST["time"] . " дней";
+            $timeList[$_REQUEST["time"]] = $_REQUEST["time"] . " " . \Cetera\Tools\Utils::pluralForm($_REQUEST["time"], "день", "дня", "дней", "дней");
 
         ksort($timeList);
+
+        $timeList["other"] = "Другое";
 
         $sortVisible = $APPLICATION->get_cookie("SORT_VISIBLE");
         ?>
@@ -140,6 +143,8 @@
                                 .val(value)
                                 .attr("title", "")
                                 .attr("placeholder", "Укажите количество дней")
+                                .attr("readonly", true)
+                                .css({"background-color": "#fff"})
                                 .addClass("b-form__autocomplete")
                                 .autocomplete({
                                     delay: 0,
@@ -159,7 +164,13 @@
                                     this._trigger("select", event, {
                                         item: ui.item.option
                                     });
-                                    _this.element.trigger("change");
+
+                                    if (_this.element.val() == "other") {
+                                        _this.input.val("").attr("readonly", false).focus();
+                                        event.preventDefault();
+                                    }
+                                    else
+                                        _this.element.trigger("change");
                                 },
                                 autocompletechange: "_removeIfInvalid"
                             });
@@ -179,7 +190,6 @@
                                     return false;
                                 }
                                 var val = $(this).val().replace(/[^\d]/g, "");
-                                console.log(val);
                                 $(this).val(val);
                             });
                         },
@@ -219,7 +229,6 @@
                             }
 
                             this.element.trigger("change");
-//                        this.element.closest("form").submit();
                         },
 
                         _destroy: function () {
@@ -300,7 +309,8 @@
                     </div>
                     <div class="column small-5 medium-2 text-center" data-equalizer-watch>
                         <div class="b-offers__prof has-tooltip" data-tooltip aria-haspopup="true"
-                             title="<?= $arItem["UF_SAFETY"] ?> место из <?= $arResult["USER_COUNT"] ?>"><?= $arItem["UF_SAFETY"] ?> <span>место</span>
+                             title="<?= $arItem["UF_SAFETY"] ?> место из <?= $arResult["USER_COUNT"] ?>"><?= $arItem["UF_SAFETY"] ?>
+                            <span>место</span>
                         </div>
                     </div>
                     <div class="column hide-for-small-only medium-1 text-left" data-equalizer-watch>
