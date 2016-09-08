@@ -119,6 +119,116 @@ function getUserMethods()
     return $arMethods;
 }
 
+function getUserSafety()
+{
+    global $USER;
+
+    $obCache = new CPHPCache();
+    $cacheLifetime = 86400;
+    $cacheString = "userList";
+    if ($USER->IsAuthorized())
+        $cacheString .= "&userId=" . $USER->GetID();
+    $cacheID = hash("md5", $cacheString);
+    $cachePath = '/offers/users/';
+    if ($USER->IsAuthorized())
+        $cachePath .= $USER->GetID() . "/";
+    $cachePath .= $cacheID;
+    $arResult["USERS"] = Array();
+
+    if ($obCache->InitCache($cacheLifetime, $cacheID, $cachePath)) {
+        $vars = $obCache->GetVars();
+        $arResult["USERS"] = $vars["USERS"];
+    } elseif ($obCache->StartDataCache()) {
+        $ratingList = Array();
+        $hblock = new \Cetera\HBlock\SimpleHblockObject(8);
+        $list = $hblock->getList();
+        while ($el = $list->fetch()) {
+            $ratingList[$el["ID"]] = $el;
+        }
+
+        $rating = Array();
+        $ratingDetail = Array();
+        $hblock = new \Cetera\HBlock\SimpleHblockObject(7);
+        $list = $hblock->getList();
+        while ($el = $list->fetch()) {
+            if (!empty($el["UF_RATING"])) {
+                if (!empty($el["UF_UPDATED"]))
+                    $arResult["RATING_UPDATED"][$el["UF_USER"]] = $el["UF_UPDATED"];
+
+                $rating[$el["UF_USER"]][] = trim($ratingList[$el["UF_AGENCY"]]["UF_NAME"] . " " . $el["UF_RATING"]);
+                if (empty($ratingDetail[$el["UF_USER"]]))
+                    $ratingDetail[$el["UF_USER"]] = 0;
+
+                foreach ($ratingList[$el["UF_AGENCY"]]["UF_SCALE"] as $key => $val) {
+                    if ($val["VALUE"] == $el["UF_RATING"]) {
+                        $i = intval($val["DESCRIPTION"]);
+                        if (empty($ratingDetail[$el["UF_USER"]]) || $i < $ratingDetail[$el["UF_USER"]]) {
+                            $ratingDetail[$el["UF_USER"]] = $i;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        $arResult["USER_SORT"] = Array();
+        $rsUsers = \CUser::GetList(($by = "ID"), ($order = "ASC"), Array("GROUPS_ID" => Array(PARTNER_GROUP)), Array("SELECT" => Array("UF_*")));
+        while ($arUser = $rsUsers->GetNext()) {
+            $name = Array();
+            $name[] = $arUser["WORK_COMPANY"];
+            if (!empty($arUser["UF_OGRN"]))
+                $name[] = "ОГРН " . $arUser["UF_OGRN"];
+            if (!empty($arUser["UF_LICENSE"]))
+                $name[] = "Лицензия ЦБ № " . $arUser["UF_LICENSE"];
+            $arUser["FULL_WORK_COMPANY"] = implode(", ", $name);
+
+            $arResult["USERS"][$arUser["ID"]] = $arUser;
+            $arResult["USER_SORT"][$arUser["ID"]] = Array(
+                "ID" => $arUser["ID"],
+                "RATING" => intval($ratingDetail[$arUser["ID"]]) > 0 ? intval($ratingDetail[$arUser["ID"]]) : 1000,
+                "GOV" => !empty($arUser["UF_STATE_PARTICIP"]) ? 1 : 100,
+                "CAPITAL" => floatval(preg_replace("#[^\d\.]#is", "", preg_replace("#,#is", ".", $arUser["UF_CAPITAL"]))),
+                "CAPITAL_TO_ASSETS" => floatval(preg_replace("#,#is", ".", $arUser["UF_CAPITAL_ASSETS"])),
+                "ASSETS" => floatval(preg_replace("#[^\d\.]#is", "", preg_replace("#,#is", ".", $arUser["UF_ASSETS"]))),
+                "UPDATED" => strtotime($arUser["TIMESTAMP_X"]),
+            );
+        }
+
+        $userMethods = getUserMethods();
+        $arr = Array();
+        foreach ($userMethods as $key => $method) {
+            if (!$method["ACTIVE"])
+                continue;
+
+            foreach ($arResult["USER_SORT"] as $userId => $fields) {
+                $arr[$method["CODE"]][$userId] = $fields[$method["CODE"]];
+            }
+
+            $arr[] = SORT_NUMERIC;
+            switch ($method["CODE"]) {
+                case "GOV":
+                case "RATING":
+                    $arr[] = SORT_ASC;
+                    break;
+                default:
+                    $arr[] = SORT_DESC;
+            }
+        }
+
+        $arr[] = &$arResult["USER_SORT"];
+        call_user_func_array("array_multisort", $arr);
+
+        $i = 1;
+        foreach ($arResult["USER_SORT"] as $sort => $item) {
+            $arResult["USERS"][$item["ID"]]["UF_SAFETY"] = $i;
+            ++$i;
+        }
+        $obCache->EndDataCache(Array("USERS" => $arResult["USERS"]));
+    }
+
+    return $arResult["USERS"];
+}
+
 function getContainer($varName)
 {
     return \Cetera\Tools\DIContainer::$DIC[$varName];

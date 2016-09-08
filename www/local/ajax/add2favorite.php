@@ -55,9 +55,6 @@ if (intval($_REQUEST["id"]) > 0 && check_bitrix_sessid() && $_REQUEST["ajax"] ==
         }
     }
 
-    $obCache = new CPHPCache();
-    $obCache->CleanDir("/offers/" . $USER->GetID() . "/");
-
     $arResult["SUCCESS"] = "Y";
     echo json_encode($arResult);
 } elseif (check_bitrix_sessid() && $_REQUEST["ajax"] == "Y" && $_REQUEST["action"] == "getList") {
