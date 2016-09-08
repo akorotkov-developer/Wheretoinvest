@@ -114,12 +114,46 @@
                     $(this).closest(".x-filter").submit();
                 });
 
-                var lastInput = $(".x-filter input[name='summ']").val();
+                var summInput = $(".x-filter input[name='summ']");
+                var lastInput = summInput.val();
 
-                $(".x-filter input[name='summ']").on("blur", function () {
-                    if ($(this).val() !== lastInput)
-                        $(this).closest(".x-filter").submit();
-                });
+                $(".x-filter input[name='summ']").wrapAll('<span class="js-summ-wrapper"></span>');
+                $(".x-filter input[name='summ']").css({"padding-right": "30px"});
+                var clearBtn = $("<a>")
+                    .appendTo($(".js-summ-wrapper"))
+                    .css({
+                        "display": lastInput !== "" ? "inline-block" : "none",
+                        "position": "absolute",
+                        "top": "50%",
+                        "right": "10px",
+                        "width": "16px",
+                        "height": "16px",
+                        "margin-top": "-8px",
+                        "background": "url(<?=WIC_TEMPLATE_PATH?>/images/cross.png) no-repeat center center"
+                    })
+                    .attr("href", "#")
+                    .on("click", function () {
+                        summInput.val("").focus();
+                        $(this).hide();
+                        return false;
+                    });
+                $(".js-summ-wrapper").css({"position": "relative"});
+
+                summInput
+                    .on("blur", function () {
+                        if ($(this).val() == "") {
+                            $(this).val(lastInput);
+                            clearBtn.show();
+                        }
+
+                        if ($(this).val() !== lastInput)
+                            $(this).closest(".x-filter").submit();
+                    })
+                    .on("keyup", function () {
+                        if ($(this).val() !== "") {
+                            clearBtn.show();
+                        }
+                    });
 
                 if ($.widget) {
                     $.widget("custom.combobox", {
