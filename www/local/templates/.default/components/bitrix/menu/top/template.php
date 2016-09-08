@@ -1,11 +1,13 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
 
 <? if (!empty($arResult)): ?>
+    <? $cnt = count($arResult); ?>
     <div class="b-header__menuWrap js-menu">
         <div class="row">
             <div class="column small-12">
                 <div class="row">
-                    <ul class="b-header__menu small-block-grid-2 medium-block-grid-4" data-equalizer="">
+                    <ul class="b-header__menu small-block-grid-2 medium-block-grid-<?= intval($cnt / 2) ?> large-block-grid-<?= $cnt ?>"
+                        data-equalizer="">
                         <? foreach ($arResult as $arItem): ?>
                             <? if ($arParams["MAX_LEVEL"] == 1 && $arItem["DEPTH_LEVEL"] > 1)
                                 continue;

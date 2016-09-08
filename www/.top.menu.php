@@ -22,7 +22,7 @@ $aMenuLinks = Array(
         ""
     ),
     Array(
-        "Сертификаты",
+        "Депозитные сертификаты",
         "/?method=32",
         Array(),
         Array(),
