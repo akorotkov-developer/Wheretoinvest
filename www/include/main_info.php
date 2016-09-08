@@ -10,8 +10,8 @@ $size = $APPLICATION->get_cookie("SIZE_CLOSE");
                 <div class="b-sizeinfo__close js-sizeclose"></div>
             </div>
             <div class="b-sizeinfo__text">
-                Выбирайте приемлемое соотношение доходности и риска, применяя сортировку по доходности, либо по
-                надежности. Сравнивайте с инфляцией.
+                Выбирайте приемлемое соотношение доходности и риска,<br>применяя сортировку по доходности, либо по
+                надежности.<br>Сравнивайте с инфляцией.
             </div>
         </div>
         <div class="column medium-2 b-sizeinfo__scales small-only-text-center">
