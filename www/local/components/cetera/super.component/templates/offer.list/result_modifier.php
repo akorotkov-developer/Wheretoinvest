@@ -99,6 +99,13 @@ foreach ($arResult["OFFER"] as $key => $arItem) {
 }
 
 $filter = Array();
+
+if (empty($_REQUEST["summ"]))
+    $_REQUEST["summ"] = "100 000";
+
+if (empty($_REQUEST["time"]))
+    $_REQUEST["time"] = "365";
+
 if (count($offers)) {
     $filter["UF_OFFER"] = $offers;
 
@@ -157,7 +164,6 @@ if (count($offers)) {
 
             $offer = $arResult["OFFER"][$el["UF_OFFER"]];
             $user = $offer["USER"];
-            $user["RATING"] = is_array($rating[$user["ID"]]) ? implode("<br>", $rating[$user["ID"]]) : "";
             unset($offer["USER"]);
 
             if (empty($arResult["ITEMS"][$el["UF_OFFER"]]) || $el["UF_PERCENT"] > $arResult["ITEMS"][$el["UF_OFFER"]]["UF_PERCENT"]) {

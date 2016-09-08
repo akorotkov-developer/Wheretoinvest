@@ -223,6 +223,12 @@ function getUserSafety()
             $arResult["USERS"][$item["ID"]]["UF_SAFETY"] = $i;
             ++$i;
         }
+
+        foreach ($arResult["USERS"] as $key => $arUser) {
+            $arResult["USERS"][$key]["RATING_UPDATED"] = $arResult["RATING_UPDATED"][$key];
+            $arResult["USERS"][$key]["RATING"] = is_array($rating[$key]) ? implode("<br>", $rating[$key]) : "";
+        }
+
         $obCache->EndDataCache(Array("USERS" => $arResult["USERS"]));
     }
 

@@ -13,10 +13,8 @@
         $timeList = Array(
             "93" => "3 месяца",
             "182" => "6 месяцев",
-            "279" => "9 месяцев",
             "365" => "1 год",
             "548" => "1,5 года",
-            "730" => "2 года",
         );
 
         if (!empty($_REQUEST["time"]) && !array_key_exists($_REQUEST["time"], $timeList))
@@ -345,7 +343,7 @@
                                         <div class="b-offers__res2">
                                             <div class="b-offers__rest">
                                                 <div class="has-tooltip" data-tooltip aria-haspopup="true"
-                                                     title="<?= !empty($arResult["RATING_UPDATED"][$user["ID"]]) && is_object($arResult["RATING_UPDATED"][$user["ID"]]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", $arResult["RATING_UPDATED"][$user["ID"]]->getTimestamp())) : "" ?>">
+                                                     title="<?= !empty($user["RATING_UPDATED"]) && is_object($user["RATING_UPDATED"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", $user["RATING_UPDATED"]->getTimestamp())) : "" ?>">
                                                     <?= !empty($user["RATING"]) ? $user["RATING"] : "-" ?>
                                                 </div>
                                             </div>
