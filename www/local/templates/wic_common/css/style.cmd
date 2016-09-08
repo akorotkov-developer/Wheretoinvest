@@ -1,1 +1,1 @@
-sass --watch --style compressed style.scss:style.css
+sass --watch --style compressed -E utf-8 style.scss:style.css

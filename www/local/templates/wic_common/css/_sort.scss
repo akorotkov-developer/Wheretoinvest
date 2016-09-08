@@ -31,18 +31,28 @@
       display: block;
     }
   }
+
   &__arr {
-    width: 16px;
-    height: 16px;
     display: inline-block;
     position: absolute;
-    right: 16px;
+    right: rem-calc(10);
     cursor: pointer;
     z-index: 10;
-    transform: rotate(180deg);
-    background: url(../images/sel.png) no-repeat center;
+    font-size: rem-calc(12);
+    color: #9e9e9e;
+    font-weight: normal;
+    top: rem-calc(-5);
+
+    &:before {
+      content: 'Свернуть';
+      display: inline-block;
+    }
+
     &.js-toggle {
-      transform: rotate(0deg);
+      &:before {
+        content: 'Развернуть';
+        display: inline-block;
+      }
     }
   }
 }
