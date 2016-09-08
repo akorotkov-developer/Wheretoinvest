@@ -544,7 +544,8 @@
                                         _this.closest(".b-offers__item").detach();
 
                                         if (!$(".b-offers__item").length) {
-                                            $(".b-offers").html('<h2><p><font class="errortext">Предложения отсутствуют.</font></p></h2>');
+                                            $(".b-offers__header").closest(".row").detach();
+                                            $(".b-offers").html('<h2 class="i-offers__no-items">Предложения отсутствуют</h2>');
                                         }
                                     }
                                 }
@@ -625,7 +626,7 @@
 <? else: ?>
     <div class="row">
         <div class="column small-12">
-            <h2><?= ShowError("Предложения отсутствуют.") ?></h2>
+            <h2 class="i-offers__no-items">Предложения отсутствуют</h2>
         </div>
     </div>
 <? endif; ?>

@@ -4,9 +4,8 @@
     position: relative;
 }
 
-/*
-.b-offers__stars {
-    position: absolute;
-    top:50%;
-    margin-top: -11px !important;
-}*/
+.i-offers__no-items {
+    font-size: 14px;
+    color: #9e9e9e;
+    margin: 40px 0;
+}
