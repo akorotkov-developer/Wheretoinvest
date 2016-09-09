@@ -51,6 +51,7 @@
     font-family: "Open Sans", sans-serif;
     font-weight: 700;
     color: #202020;
+    position: relative;
 
     &_sort, &_sort:hover {
       border-bottom: 1px dashed #000;
@@ -61,8 +62,9 @@
         content: '';
         display: inline-block;
         position: absolute;
-        margin-top: 8px;
-        margin-left: 4px;
+        top: 50%;
+        right: 4px;
+        margin-top: -2px;
         width: 0;
         height: 0;
         border-style: solid;
