@@ -353,7 +353,7 @@
     &__best {
       border-top: 1px solid #ebebeb;
       padding-top: 17px;
-      padding-bottom: 25px;
+      padding-bottom: 17px;
     }
     &__liked {
       color: #202020;
@@ -365,18 +365,20 @@
 
     }
     &__stars {
-      margin-top: 0px;
+      margin-top: 0;
+      top: 7px;
+      position: relative;
     }
     &__profit {
       padding-left: 6px;
       padding-right: 0;
+      text-align: center !important;
     }
     padding-left: 0;
     padding-right: 0;
 
     &__arrows {
-      right: 20px;
-      top: 28px;
+      display: none !important;
     }
 
     &__logo {

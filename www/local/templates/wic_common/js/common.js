@@ -229,7 +229,7 @@
                     text += " на " + time;
                 }
 
-                $('.b-sort__all').text(text);
+                $('.b-sort__all .b-sort__all_border').text(text);
 
                 var visible = $('.b-sort__all').hasClass("js-toggle") ? 0 : 1;
                 $.ajax({
@@ -245,15 +245,14 @@
 
             $('.b-sort__arr').click(function () {
                 $('.b-sort__main').slideToggle();
-                $('.b-sort__arr,.b-sort__all').toggleClass('js-toggle');
+                $('.b-sort__arr,.b-sort__all,.js-header').toggleClass('js-toggle');
 
                 sortText();
             });
 
             $(".b-sort__all").click(function () {
                 $('.b-sort__main').slideDown();
-                $(this).removeClass('js-toggle');
-                $('.b-sort__arr').removeClass('js-toggle');
+                $('.b-sort__arr,.b-sort__all,.js-header').toggleClass('js-toggle');
                 sortText();
             });
             //end of sum menu show/hide

@@ -30,6 +30,10 @@
     &.js-toggle {
       display: block;
     }
+
+    &_border {
+      border-bottom: 1px dashed #000;
+    }
   }
 
   &__arr {
@@ -50,11 +54,15 @@
 
     &.js-toggle {
       &:before {
-        content: 'Развернуть';
-        display: inline-block;
+        display: none;
       }
     }
   }
+}
+
+.js-toggle .b-sort {
+  padding-top: rem-calc(15);
+  padding-bottom: rem-calc(15);
 }
 
 @media (max-width: 1000px) {
@@ -77,15 +85,12 @@
 
 @media (max-width: 640px) {
   .b-sort {
-    margin-bottom: 13px;
-    padding-top: 19px;
+
     .b-sort__inp {
       margin-bottom: 9px;
     }
     &__label {
-
       display: block;
-
     }
   }
 }

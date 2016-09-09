@@ -10,7 +10,7 @@ $APPLICATION->SetTitle("Куда вложить деньги");
         "EDIT_TEMPLATE" => "standard.php"
     )
 ); ?>
-    <br>
+    <br class="show-for-medium">
 <? $APPLICATION->IncludeComponent("bitrix:main.include", "", Array(
         "AREA_FILE_SHOW" => "file",
         "AREA_FILE_SUFFIX" => "",

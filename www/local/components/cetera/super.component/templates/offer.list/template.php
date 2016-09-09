@@ -27,11 +27,13 @@
         $sortVisible = $APPLICATION->get_cookie("SORT_VISIBLE");
         ?>
 
-        <div class="js-header">
+        <div class="js-header<? if (!empty($sortVisible)): ?> js-toggle<? endif; ?>">
             <section class="b-sort row">
                 <div class="b-sort__arr<? if (!empty($sortVisible)): ?> js-toggle<? endif; ?>"></div>
                 <div
-                    class="columns b-sort__all<? if (!empty($sortVisible)): ?> js-toggle<? endif; ?>"><?= !empty($_REQUEST["summ"]) ? $_REQUEST["summ"] : 0; ?> <?= empty($_REQUEST["currency"]) ? reset($arResult["FIELDS"]["UF_CURRENCY"]) : $arResult["FIELDS"]["UF_CURRENCY"][$_REQUEST["currency"]] ?> <?= !empty($_REQUEST["time"]) ? "на " . $timeList[$_REQUEST["time"]] : "" ?></div>
+                    class="columns b-sort__all<? if (!empty($sortVisible)): ?> js-toggle<? endif; ?>"><span
+                        class="b-sort__all_border"><?= !empty($_REQUEST["summ"]) ? $_REQUEST["summ"] : 0; ?> <?= empty($_REQUEST["currency"]) ? reset($arResult["FIELDS"]["UF_CURRENCY"]) : $arResult["FIELDS"]["UF_CURRENCY"][$_REQUEST["currency"]] ?> <?= !empty($_REQUEST["time"]) ? "на " . $timeList[$_REQUEST["time"]] : "" ?></span>
+                </div>
                 <div class="b-sort__main"<? if (!empty($sortVisible)): ?> style="display: none;"<? endif; ?>>
                     <div class="column medium-7">
                         <span class="b-sort__label">Сумма:</span>
@@ -288,7 +290,7 @@
                 <div class="columns medium-3 medium-offset-4 small-4 small-text-center medium-text-left">
                     <div class="b-offers__type b-offers__type_infl"><?= $inflationName ?></div>
                 </div>
-                <div class="columns medium-2 small-3 text-right end b-offers__percent b-offers__bility">
+                <div class="columns medium-2 small-4 text-right end b-offers__percent b-offers__bility">
                     <div class="b-offers__prof b-offers__prof_infl"><?= $inflation ?> <span>%</span></div>
                 </div>
             </div>
@@ -336,7 +338,7 @@
                             <?= $offer["UF_NAME"] ?>
                         </div>
                     </div>
-                    <div class="column small-3 medium-2 text-right b-offers__profit b-offers__bility"
+                    <div class="column small-4 medium-2 text-right b-offers__profit b-offers__bility"
                          data-equalizer-watch>
                         <div class="b-offers__prof">
                             <div class="has-tooltip" data-tooltip aria-haspopup="true"
@@ -345,7 +347,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="column small-5 medium-2 text-center" data-equalizer-watch>
+                    <div class="column small-4 medium-2 text-center" data-equalizer-watch>
                         <div class="b-offers__prof has-tooltip" data-tooltip aria-haspopup="true"
                              title="<?= $arItem["UF_SAFETY"] ?> место из <?= $arResult["USER_COUNT"] ?>"><?= $arItem["UF_SAFETY"] ?>
                             <span>место</span>
