@@ -171,7 +171,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                             <input
                                 class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
                                 type="text"
-                                value="<?= htmlentities($arItem["VALUE"]) ?>"
+                                value="<?= addslashes($arItem["VALUE"]) ?>"
                                 name="<?= $arKey ?>"
                                 id="FIELD_<?= $arKey ?>" <?
                                 if (!empty($arItem["REQUIRED"])): ?>required <?endif;
