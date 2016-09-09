@@ -434,7 +434,12 @@
 
                                 <div class="row b-offers__more-item">
                                     <div class="column medium-3 small-6">
-                                        <div class="b-offers__label">Капитал / Активы</div>
+                                        <div class="b-offers__label">Капитал / Активы&nbsp;<span
+                                                data-tooltip
+                                                aria-haspopup="true"
+                                                class="has-tip assets__tooltip"
+                                                title="Для банков соответствует нормативу Н1.1 на последнюю отчетную дату.<br><br>Для
+            остальных организаций соответствует отношению величины собственного капитала к активам по балансу, в процентах"></span></div>
 
                                     </div>
                                     <div class="column medium-9 small-6 b-offers__nopadding">
@@ -455,7 +460,13 @@
                                 </div>
                                 <div class="row b-offers__more-item">
                                     <div class="column medium-3 small-6">
-                                        <div class="b-offers__label">Капитал</div>
+                                        <div class="b-offers__label">Капитал&nbsp;<span
+                                                data-tooltip
+                                                aria-haspopup="true"
+                                                class="has-tip assets__tooltip"
+                                                title="Для банков соответствует показателю «Базовый капитал» (строка 102 формы
+            0409123 «Расчёт собственных средств (капитала) («Базель III»)) на последнюю отчетную дату.<br><br>Для остальных организаций соответствует величине собственного капитала по балансу"></span>
+                                        </div>
 
                                     </div>
                                     <div class="column medium-9 small-6 b-offers__nopadding">
@@ -476,7 +487,11 @@
                                 </div>
                                 <div class="row b-offers__more-item">
                                     <div class="column medium-3 small-6">
-                                        <div class="b-offers__label">Активы</div>
+                                        <div class="b-offers__label">Активы&nbsp;<span data-tooltip
+                                                                                       aria-haspopup="true"
+                                                                                       class="has-tip assets__tooltip"
+                                                                                       title="Для банков соответствует отношению показателя «Собственный капитал» к
+            показателю «Капитал / Активы» на последнюю отчетную дату.<br><br>Для остальных организаций соответствует величине активов по балансу"></span></div>
                                     </div>
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">

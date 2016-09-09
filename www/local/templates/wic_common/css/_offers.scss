@@ -437,6 +437,10 @@
       padding-top: 6px;
       text-align: left;
       margin-bottom: 0;
+
+      .assets__tooltip {
+        display: none !important;
+      }
     }
 
     &__res {
