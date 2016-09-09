@@ -306,14 +306,12 @@
 @media (max-width: 790px) {
   .b-offers {
     &__prof {
-
       &_infl {
-
         padding-top: 30px;
       }
     }
-    &__type {
 
+    &__type {
       &_infl {
         padding-top: 36px;
         padding-bottom: 30px;
@@ -416,8 +414,8 @@
     &__prof {
       padding-top: 40px;
       &_infl {
-
         padding-top: 30px;
+        text-align: center !important;
       }
     }
     &__type {
