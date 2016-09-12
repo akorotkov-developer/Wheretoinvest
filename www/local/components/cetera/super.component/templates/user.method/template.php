@@ -2,7 +2,7 @@
 <? if (count($arResult["METHODS"])): ?>
     <div class="row">
         <div class="column small-12">
-            <div class="b-form__title-desc">
+            <div class="b-form__title-desc b-form__title-desc_method">
                 Выбирайте подходящие Вам показатели надежности путем проставления галочки.<br>
                 Изменяйте порядок применения выбранных показателей путем перетаскивания строк.
             </div>
