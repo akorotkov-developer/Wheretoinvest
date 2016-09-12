@@ -79,7 +79,7 @@ $aMenuLinks = Array(
     ),
     Array(
         "Выйти",
-        "?logout=Y",
+        "?logout=yes",
         Array(),
         Array("class" => "show-for-small-only"),
         '$USER->IsAuthorized()'

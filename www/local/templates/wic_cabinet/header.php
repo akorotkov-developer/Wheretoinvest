@@ -33,9 +33,10 @@ ob_end_clean();
         ); ?>
     </div>
     <? if (!empty($left_menu)): ?>
-        <div class="column small-12 medium-4 large-3 accord">
+        <div class="column small-12 medium-4 large-3 accord hide-for-small-only">
             <?= $left_menu ?>
         </div>
     <? endif; ?>
-    <div class="column small-12<? if (!empty($left_menu)): ?> medium-8 large-9<? endif; ?> content">
+    <div
+        class="column small-12<? if (!empty($left_menu)): ?> medium-8 large-9<? endif; ?> content">
         <h1 class="content__title"><? $APPLICATION->ShowTitle(); ?></h1>

@@ -201,11 +201,13 @@ if (count($offers)) {
 
     if (!empty($by) && !empty($order)) {
         $tempOrder = Array();
+        $tempPercent = Array();
         foreach ($arResult["ITEMS"] as $key => $arItem) {
             $tempOrder[$key] = $arItem[$by];
+            $tempPercent[$key] = $arItem["UF_PERCENT"];
         }
 
-        array_multisort($tempOrder, $order, $arResult["ITEMS"]);
+        array_multisort($tempOrder, $order, $tempPercent, SORT_DESC, $arResult["ITEMS"]);
     }
 
 
