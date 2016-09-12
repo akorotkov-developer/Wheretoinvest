@@ -3,9 +3,6 @@
   max-width: rem-calc(980);
   margin: 0 auto rem-calc(10);
 
-  &__bility {
-    padding-right: 24px;
-  }
   &__infl {
     border-bottom: 1px solid #e6e6e6;
     padding: 9px 0 3px;
@@ -332,12 +329,6 @@
     &__rest {
       padding-top: 6px;
     }
-    &__bility {
-      padding-right: 10px;
-    }
-    &__percent {
-      padding-right: 0;
-    }
     &__go {
       padding-left: 10px;
     }
@@ -367,11 +358,6 @@
       margin-top: 0;
       top: 7px;
       position: relative;
-    }
-    &__profit {
-      padding-left: 6px;
-      padding-right: 0;
-      text-align: center !important;
     }
     padding-left: 0;
     padding-right: 0;
@@ -418,7 +404,6 @@
       padding-top: 40px;
       &_infl {
         padding-top: 30px;
-        text-align: center !important;
       }
     }
     &__type {
