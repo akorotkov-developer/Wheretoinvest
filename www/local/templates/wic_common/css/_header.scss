@@ -93,6 +93,7 @@
       width: 100%;
       position: relative;
       vertical-align: middle;
+      min-height: rem-calc(67);
 
       &:hover, &:focus, &.b-header__menu-link_active {
         color: #3b3e43;

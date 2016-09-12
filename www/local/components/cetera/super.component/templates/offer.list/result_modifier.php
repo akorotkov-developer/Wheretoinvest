@@ -116,10 +116,20 @@ if (count($offers)) {
     }
 
     if (!empty($_REQUEST["time"])) {
+        $date = preg_replace("#[^\d]#is", "", $_REQUEST["time"]);
         if (strpos($_REQUEST["time"], ">") !== false) {
-            $filter[">=UF_DATE_START"] = preg_replace("#[^\d]#is", "", $_REQUEST["time"]);
+            $filter[">=UF_DATE_START"] = $date;
         } else {
-            $filter[">=UF_DATE_START"] = preg_replace("#[^\d]#is", "", $_REQUEST["time"]);
+            $filter["<=UF_DATE_START"] = $date;
+            $filter[] = Array(
+                "LOGIC" => "OR",
+                Array(
+                    ">=UF_DATE_END" => $date
+                ),
+                Array(
+                    "UF_DATE_END" => false
+                )
+            );
         }
     }
 
