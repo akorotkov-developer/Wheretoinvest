@@ -15,15 +15,8 @@ $aMenuLinks = Array(
         ""
     ),
     Array(
-        "Векселя",
-        "/?method=31",
-        Array(),
-        Array(),
-        ""
-    ),
-    Array(
-        "Депозитные сертификаты",
-        "/?method=32",
+        "Векселя сертификаты",
+        "/?method=31,32",
         Array(),
         Array(),
         ""

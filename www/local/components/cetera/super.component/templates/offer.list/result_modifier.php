@@ -66,7 +66,7 @@ if (!empty($loc)) {
 }
 
 if (!empty($_REQUEST["method"])) {
-    $filter["UF_METHOD"] = intval($_REQUEST["method"]);
+    $filter["UF_METHOD"] = explode(",", $_REQUEST["method"]);
 }
 
 if (!empty($_REQUEST["favorite"])) {
