@@ -84,8 +84,8 @@
                                 <div
                                     class="column medium-2 small-4 text-right b-offers__bility">
                                     <div class="b-offers__th">
-                                        <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[percent]=D", Array("SORT")) ?>"
-                                           class="b-offers__title<? if (empty($_REQUEST["SORT"]) || !empty($_REQUEST["SORT"]["percent"])): ?> b-offers__title_sort<? endif; ?>">
+                                        <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("", Array("SORT")) ?>"
+                                           class="b-offers__title<? if (empty($_REQUEST["SORT"])): ?> b-offers__title_sort<? endif; ?>">
                                             Доходность
                                         </a>
                                     </div>
@@ -285,8 +285,9 @@
     <? $inflation = floatval(\Ceteralabs\UserVars::GetVar('USER_VAR_INFLATION')["VALUE"]); ?>
     <? $inflationName = \Ceteralabs\UserVars::GetVar('USER_VAR_INFLATION')["DESCRIPTION"]; ?>
     <section class="b-offers">
-        <? if (!empty($inflation) && !empty($_REQUEST["SORT"]) && empty($_REQUEST["SORT"]["percent"])): ?>
-            <div class="row b-offers__infl">
+        <? $showInflation = empty($_REQUEST["ajax"]) ? true : false; ?>
+        <? if (!empty($inflation) && !empty($_REQUEST["SORT"]) && empty($_REQUEST["SORT"]["percent"]) && $showInflation): ?>
+            <div class="row b-offers__infl" data-percent="<?= floatval($inflation) ?>">
                 <div class="columns medium-3 medium-offset-4 small-4 small-text-center medium-text-left">
                     <div class="b-offers__type b-offers__type_infl"><?= $inflationName ?></div>
                 </div>
@@ -294,13 +295,13 @@
                     <div class="b-offers__prof b-offers__prof_infl"><?= $inflation ?> <span>%</span></div>
                 </div>
             </div>
+            <? $showInflation = false; ?>
         <? endif; ?>
 
         <div class="b-offers__list">
             <? if (!empty($_REQUEST["ajax"])) {
                 $APPLICATION->RestartBuffer();
             } ?>
-            <? $showInflation = true; ?>
             <? foreach ($arResult["ITEMS"] as $arItem): ?>
                 <?
                 $user = $arItem["USER"];
@@ -308,7 +309,7 @@
                 ?>
                 <? if (!empty($inflation) && (empty($_REQUEST["SORT"]) || !empty($_REQUEST["SORT"]["percent"])) && $showInflation): ?>
                     <? if (((empty($_REQUEST["SORT"]) || $_REQUEST["SORT"]["percent"] == "D") && $inflation > floatval($arItem["UF_PERCENT"])) || ($_REQUEST["SORT"]["percent"] == "A" && $inflation < floatval($arItem["UF_PERCENT"]))): ?>
-                        <div class="row b-offers__infl">
+                        <div class="row b-offers__infl" data-percent="<?= floatval($inflation) ?>">
                             <div class="columns medium-3 medium-offset-4 small-4 small-text-center medium-text-left">
                                 <div class="b-offers__type b-offers__type_infl"><?= $inflationName ?></div>
                             </div>
@@ -319,7 +320,8 @@
                         <? $showInflation = false; ?>
                     <? endif; ?>
                 <? endif; ?>
-                <div class="b-offers__item row" data-equalizer data-equalizer-mq="medium-up">
+                <div class="b-offers__item row" data-equalizer data-equalizer-mq="medium-up"
+                     data-percent="<?= floatval($arItem["UF_PERCENT"]) ?>">
                     <div class="column medium-4 small-4 b-offers__firsttd" data-equalizer-watch>
                         <div class="b-offers__logo">
                             <? if (!empty($user["WORK_LOGO"])): ?>
@@ -439,7 +441,9 @@
                                                 aria-haspopup="true"
                                                 class="has-tip assets__tooltip"
                                                 title="Для банков соответствует нормативу Н1.1 на последнюю отчетную дату.<br><br>Для
-            остальных организаций соответствует отношению величины собственного капитала к активам по балансу, в процентах"></span> Капитал / Активы</div>
+            остальных организаций соответствует отношению величины собственного капитала к активам по балансу, в процентах"></span>
+                                            Капитал / Активы
+                                        </div>
 
                                     </div>
                                     <div class="column medium-9 small-6 b-offers__nopadding">
@@ -466,7 +470,8 @@
                                                 class="has-tip assets__tooltip"
                                                 title="Для банков соответствует показателю «Базовый капитал» (строка 102 формы
             0409123 «Расчёт собственных средств (капитала) («Базель III»)) на последнюю отчетную дату.<br><br>Для остальных организаций соответствует величине собственного капитала по балансу"></span>
-                                             Капитал</div>
+                                            Капитал
+                                        </div>
 
                                     </div>
                                     <div class="column medium-9 small-6 b-offers__nopadding">
@@ -488,10 +493,12 @@
                                 <div class="row b-offers__more-item">
                                     <div class="column medium-3 small-6">
                                         <div class="b-offers__label b-offers__label_capital"><span data-tooltip
-                                                                           aria-haspopup="true"
-                                                                           class="has-tip assets__tooltip"
-                                                                           title="Для банков соответствует отношению показателя «Собственный капитал» к
-            показателю «Капитал / Активы» на последнюю отчетную дату.<br><br>Для остальных организаций соответствует величине активов по балансу"></span> Активы</div>
+                                                                                                   aria-haspopup="true"
+                                                                                                   class="has-tip assets__tooltip"
+                                                                                                   title="Для банков соответствует отношению показателя «Собственный капитал» к
+            показателю «Капитал / Активы» на последнюю отчетную дату.<br><br>Для остальных организаций соответствует величине активов по балансу"></span>
+                                            Активы
+                                        </div>
                                     </div>
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
@@ -551,7 +558,7 @@
                 </div>
             <? endforeach; ?>
             <? if (!empty($inflation) && (empty($_REQUEST["SORT"]) || !empty($_REQUEST["SORT"]["percent"])) && $showInflation): ?>
-                <div class="row b-offers__infl">
+                <div class="row b-offers__infl" data-percent="<?= floatval($inflation) ?>">
                     <div class="columns medium-3 medium-offset-4 small-4 small-text-center medium-text-left">
                         <div class="b-offers__type b-offers__type_infl"><?= $inflationName ?></div>
                     </div>
@@ -665,7 +672,18 @@
                             data: data,
                             method: "get",
                             success: function (response) {
-                                $(".b-offers__list").append(response)
+                                $(".b-offers__list").append(response);
+                                var inflation = $(".row.b-offers__infl"),
+                                    val = parseFloat(inflation.data("percent")),
+                                    emptySort = "<?=empty($_REQUEST["SORT"]) ? 1: 0;?>";
+
+                                if (emptySort == "1") {
+                                    $(".b-offers__list .b-offers__item").each(function () {
+                                        var itemVal = parseFloat($(this).data("percent"));
+                                        if (itemVal >= val)
+                                            inflation.insertAfter($(this));
+                                    });
+                                }
 
                                 if (window.paging.pageNum == window.paging.pageCount) {
                                     $(".js-show-more").detach();
