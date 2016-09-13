@@ -156,128 +156,93 @@
                         }
                     });
 
-                if ($.widget) {
-                    $.widget("custom.combobox", {
-                        _create: function () {
-                            this.wrapper = $("<span>")
-                                .addClass("custom-combobox")
-                                .css({"position": "relative"})
-                                .insertAfter(this.element);
+                function timeField() {
+                    var time = $("select[name='time']");
+                    time.wrapAll("<span class='x-time-wrapper'></span>");
+                    var wrapper = $(".x-time-wrapper");
+                    wrapper.css({
+                        "position": "relative",
+                        "display": "block"
+                    });
 
-                            this.element.hide();
-                            this._createAutocomplete();
-                        },
+                    var input = $("<input>")
+                        .attr("type", "text")
+                        .addClass("b-form__autocomplete")
+                        .css({
+                            "position": "absolute",
+                            "z-index": "10",
+                            "top": 0,
+                            "left": 0,
+                            "pointer-events": "none"
+                        });
 
-                        _createAutocomplete: function () {
-                            var selected = this.element.children(":selected"),
-                                value = selected.val() ? selected.text() : "";
+                    var val = "";
+                    $("option", time).each(function () {
+                        if ($(this).attr("value") == time.val())
+                            val = $(this).text();
 
-                            this.input = $("<input>")
-                                .appendTo(this.wrapper)
-                                .val(value)
-                                .attr("title", "")
-                                .attr("readonly", true)
-                                .css({"background-color": "#fff"})
-                                .addClass("b-form__autocomplete")
-                                .autocomplete({
-                                    delay: 0,
-                                    minLength: 0,
-                                    source: $.proxy(this, "_source")
-                                })
-                                .tooltip({
-                                    classes: {
-                                        "ui-tooltip": "ui-state-highlight"
-                                    }
-                                });
+                        if ($(this).text().match(/\d+ (дней|день|дня)/g))
+                            $(this).hide();
+                    });
 
-                            var _this = this;
-                            this._on(this.input, {
-                                autocompleteselect: function (event, ui) {
-                                    ui.item.option.selected = true;
-                                    this._trigger("select", event, {
-                                        item: ui.item.option
+                    input.val(val);
+                    wrapper.append(input);
+
+                    time.on("change", function () {
+                        var val = $(this).val();
+                        if (val == "other") {
+                            var lastVal = input.val();
+                            input
+                                .css({"pointer-events": "all"})
+                                .val("")
+                                .focus();
+
+                            function updateVal(_this) {
+                                var newVal = $(_this).val();
+                                if (newVal == "") {
+                                    $(_this).val(lastVal);
+                                }
+                                else {
+                                    var hasOption = false;
+                                    $("option", time).each(function () {
+                                        if ($(this).attr("value") == newVal)
+                                            hasOption = true;
                                     });
 
-                                    if (_this.element.val() == "other") {
-                                        _this.input.val("").attr("readonly", false);
-                                        document.activeElement.blur();
-                                        _this.input.focus();
-                                        event.preventDefault();
+                                    if (!hasOption) {
+                                        time.append('<option value="' + newVal + '">' + newVal + '</option>');
+                                        time.val(newVal);
                                     }
-                                    else
-                                        _this.element.trigger("change");
-                                },
-                                autocompletechange: "_removeIfInvalid"
-                            });
 
-                            var input = this.input,
-                                wasOpen = false;
-                            input.on("click", function () {
-                                wasOpen = input.autocomplete("widget").is(":visible");
-                                if (wasOpen) {
-                                    return;
+                                    time.closest("form").submit();
                                 }
-                                input.autocomplete("search", "");
-                            }).on("keyup", function (e) {
-                                var keycode = (e.keyCode ? e.keyCode : e.which);
-                                if (keycode == 13) {
-                                    _this._removeIfInvalid();
-                                    return false;
-                                }
-                                var val = $(this).val().replace(/[^\d]/g, "");
-                                $(this).val(val);
-                            });
-                        },
 
-                        _source: function (request, response) {
-                            var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
-                            response(this.element.children("option").map(function () {
-                                var text = $(this).text();
-                                if (this.value && ( !request.term || matcher.test(text) ) && !text.match(/(день|дня[^х]|дней)/ig))
-                                    return {
-                                        label: text,
-                                        value: text,
-                                        option: this
-                                    };
-                            }));
-                        },
-
-                        _removeIfInvalid: function (event, ui) {
-                            // Search for a match (case-insensitive)
-                            var value = this.input.val(),
-                                valueLowerCase = value.toLowerCase(),
-                                valid = false,
-                                _this = this;
-
-                            this.element.val("");
-                            this.element.children("option").each(function () {
-                                if ($(this).text().toLowerCase() === valueLowerCase) {
-                                    this.selected = valid = true;
-                                    _this.element.val($(this).attr("value"));
-                                }
-                            });
-
-                            // Found a match, nothing to do
-                            if (!valid) {
-                                this.element.append('<option value="' + value + '" selected>' + value + ' дней</option>');
-                                this.element.val(value);
+                                $(_this).css({"pointer-events": "none"});
                             }
 
-                            if (value !== "")
-                                this.element.closest(".x-filter").submit();
-                            else {
-                                document.activeElement.blur();
-                                this.input.focus();
-                            }
-                        },
+                            input.on("blur", function () {
+                                updateVal(this);
+                            });
 
-                        _destroy: function () {
-                            this.wrapper.remove();
-                            this.element.show();
+                            input.on("keyup", function (e) {
+                                if (e.keyCode == 13) {
+                                    updateVal(this);
+                                }
+                            });
                         }
-                    });
-                    $("select[name='time']").combobox();
+                        else {
+                            $("option", time).each(function () {
+                                if ($(this).attr("value") == time.val())
+                                    val = $(this).text();
+                            });
+
+                            input.val(val);
+                            $(this).closest("form").submit();
+                        }
+                    })
                 }
+
+                timeField();
             });
         </script>
     </form>
