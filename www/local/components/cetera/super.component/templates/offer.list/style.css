@@ -9,3 +9,8 @@
     color: #9e9e9e;
     margin: 40px 0;
 }
+
+.b-offers__rest.b-offers__rest_rating {
+    position: relative;
+    top: -10px;
+}

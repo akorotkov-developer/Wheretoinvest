@@ -155,7 +155,7 @@ function getUserSafety()
                 if (!empty($el["UF_UPDATED"]))
                     $arResult["RATING_UPDATED"][$el["UF_USER"]] = $el["UF_UPDATED"];
 
-                $rating[$el["UF_USER"]][] = trim($ratingList[$el["UF_AGENCY"]]["UF_NAME"] . " " . $el["UF_RATING"]);
+                $rating[$el["UF_USER"]][$ratingList[$el["UF_AGENCY"]]["UF_NAME"]] = $el["UF_RATING"];
                 if (empty($ratingDetail[$el["UF_USER"]]))
                     $ratingDetail[$el["UF_USER"]] = 0;
 
@@ -226,7 +226,7 @@ function getUserSafety()
 
         foreach ($arResult["USERS"] as $key => $arUser) {
             $arResult["USERS"][$key]["RATING_UPDATED"] = $arResult["RATING_UPDATED"][$key];
-            $arResult["USERS"][$key]["RATING"] = is_array($rating[$key]) ? implode("<br>", $rating[$key]) : "";
+            $arResult["USERS"][$key]["RATING"] = $rating[$key];
         }
 
         $obCache->EndDataCache(Array("USERS" => $arResult["USERS"]));

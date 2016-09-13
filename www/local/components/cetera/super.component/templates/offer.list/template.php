@@ -385,10 +385,18 @@
                                     </div>
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
-                                            <div class="b-offers__rest">
+                                            <div class="b-offers__rest b-offers__rest_rating">
                                                 <div class="has-tooltip" data-tooltip aria-haspopup="true"
                                                      title="<?= !empty($user["RATING_UPDATED"]) && is_object($user["RATING_UPDATED"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", $user["RATING_UPDATED"]->getTimestamp())) : "" ?>">
-                                                    <?= !empty($user["RATING"]) ? $user["RATING"] : "-" ?>
+                                                    <? if (!empty($user["RATING"])): ?>
+                                                        <? foreach ($user["RATING"] as $agency => $rating): ?>
+                                                            <?= $agency ?> <span
+                                                                class="b-offers__prof"><?= $rating ?></span>
+                                                            <br>
+                                                        <? endforeach; ?>
+                                                    <? else: ?>
+                                                        -
+                                                    <? endif; ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -423,7 +431,8 @@
                                         </div>
                                         <div class="column medium-9 small-6 b-offers__nopadding">
                                             <div class="b-offers__res2">
-                                                <div class="b-offers__img<?= !empty($user["UF_BANK_PARTICIP"]) ? " b-offers__prof": ""?>">
+                                                <div
+                                                    class="b-offers__img<?= !empty($user["UF_BANK_PARTICIP"]) ? " b-offers__prof" : "" ?>">
                                                     <div class="has-tooltip" data-tooltip aria-haspopup="true"
                                                          title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
                                                         <?= !empty($user["UF_BANK_PARTICIP"]) ? '<img src="' . WIC_TEMPLATE_PATH . '/images/asb.jpg" alt="">' : '-' ?>
