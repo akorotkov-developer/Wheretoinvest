@@ -60,6 +60,6 @@ label.state__chck:before {
     left: 15px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    background: url(images/info_icon.png) no-repeat center center;
+    background: #d0d0d0 url(images/info_icon.png) no-repeat center center;
     background-size: auto 70%;
 }
