@@ -1,20 +1,26 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
+global $APPLICATION;
 use Cetera\Tools\JsIncludes;
 
 JsIncludes::registerFile('common.common', '#WIC_TEMPLATE_PATH#/js/common.js?v=1');
 JsIncludes::registerFile('common.foundation', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.js?v=1');
-JsIncludes::registerFile('common.foundation.orbit', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.orbit.js?v=1');
-JsIncludes::registerFile('common.foundation.tab', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.tab.js?v=1');
-JsIncludes::registerFile('common.foundation.alert', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.alert.js?v=1');
 JsIncludes::registerFile('common.foundation.reveal', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.reveal.js?v=1');
 JsIncludes::registerFile('common.foundation.equalizer', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.equalizer.js?v=1');
-JsIncludes::registerFile('common.foundation.tooltip', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.tooltip.js?v=1');
+
+$detect = new Mobile_Detect;
+if (!$detect->isMobile())
+    JsIncludes::registerFile('common.foundation.tooltip', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.tooltip.js?v=1');
+
 //JsIncludes::registerFile('common.foundation.accordion', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.accordion.js?v=1');
-JsIncludes::registerFile('common.js.resize', '#WIC_TEMPLATE_PATH#/js/vendor/jquery.resize.js?v=1');
-JsIncludes::registerFile('common.js.maskedinput', '#WIC_TEMPLATE_PATH#/js/vendor/jquery.maskedinput.js?v=1');
-JsIncludes::registerFile('common.js.sortable', '#WIC_TEMPLATE_PATH#/js/vendor/sortable/jquery-ui.min.js?v=1');
-JsIncludes::registerFile('common.js.sortabletouch', '#WIC_TEMPLATE_PATH#/js/vendor/sortable/jquery.ui.touch-punch.min.js?v=1');
+//JsIncludes::registerFile('common.js.resize', '#WIC_TEMPLATE_PATH#/js/vendor/jquery.resize.js?v=1');
+//JsIncludes::registerFile('common.foundation.orbit', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.orbit.js?v=1');
+
+if ($APPLICATION->GetCurPage() !== "/") {
+    JsIncludes::registerFile('common.js.maskedinput', '#WIC_TEMPLATE_PATH#/js/vendor/jquery.maskedinput.js?v=1');
+    JsIncludes::registerFile('common.foundation.tab', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.tab.js?v=1');
+    JsIncludes::registerFile('common.foundation.alert', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.alert.js?v=1');
+}
 
 JsIncludes::includeFiles('common.foundation');
 JsIncludes::includeFiles('common.js');

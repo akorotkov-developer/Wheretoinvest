@@ -157,7 +157,8 @@
                     });
 
                 function timeField() {
-                    var time = $("select[name='time']");
+                    var time = $("select[name='time']"),
+                        lastSelectVal = time.val();
                     time.wrapAll("<span class='x-time-wrapper'></span>");
                     var wrapper = $(".x-time-wrapper");
                     wrapper.css({
@@ -191,6 +192,7 @@
                     time.on("change", function () {
                         var val = $(this).val();
                         if (val == "other") {
+                            $(this).val(lastSelectVal);
                             var lastVal = input.val();
                             input
                                 .css({"pointer-events": "all"})

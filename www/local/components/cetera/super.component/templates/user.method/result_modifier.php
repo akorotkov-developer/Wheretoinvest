@@ -11,6 +11,10 @@ if (!CModule::IncludeModule("highloadblock"))
 if (!$USER->IsAuthorized())
     return false;
 
+use Cetera\Tools\JsIncludes;
+JsIncludes::registerFile('common.js.sortable', '#WIC_TEMPLATE_PATH#/js/vendor/sortable/jquery-ui.min.js?v=1');
+JsIncludes::registerFile('common.js.sortabletouch', '#WIC_TEMPLATE_PATH#/js/vendor/sortable/jquery.ui.touch-punch.min.js?v=1');
+
 $arResult["METHODS"] = getContainer("userMethod");
 
 // saving template name to cache array
