@@ -7,7 +7,7 @@
         <? foreach ($list as $item): ?>
             <? list($key, $val) = explode("=", $item); ?>
             <? if (in_array($key, Array("summ", "currency", "time"))) continue; ?>
-            <input type="hidden" name="<?= urldecode($key) ?>" value="<?= $val ?>">
+            <input type="hidden" name="<?= urldecode($key) ?>" value="<?= urldecode($val) ?>">
         <? endforeach; ?>
         <?
         $timeList = Array(
