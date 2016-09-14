@@ -6,6 +6,7 @@
   &__infl {
     border-bottom: 1px solid #e6e6e6;
     padding: 9px 0 3px;
+    min-height: rem-calc(68);
 
     * {
       color: #e53935;
@@ -81,6 +82,7 @@
 
   &__item {
     position: relative;
+    min-height: rem-calc(68);
     &.active .b-offers__hidden {
       display: block;
 
@@ -149,6 +151,7 @@
 
     &_infl {
       padding-bottom: 17px;
+      padding-top: 14px;
     }
 
   }
@@ -156,6 +159,10 @@
     font-size: rem-calc(28);
     font-family: 'Conv_HelveticaNeueCyr-Thin', sans-serif;
     margin-bottom: rem-calc(8);
+
+    &.b-offers__prof_main {
+      padding-top: rem-calc(8);
+    }
 
     span {
       font-size: rem-calc(14);
@@ -399,15 +406,21 @@
     }
     &__prof {
       padding-top: 40px;
+
+      &.b-offers__prof_main {
+        padding-top: rem-calc(20);
+      }
+
       &_infl {
-        padding-top: 30px;
+        padding-top: 16px;
+        padding-bottom: 19px;
       }
     }
     &__type {
       padding: 0;
       &_infl {
-        padding-top: 31px;
-        padding-bottom: 35px;
+        padding-top: 16px;
+        padding-bottom: 26px;
       }
 
     }

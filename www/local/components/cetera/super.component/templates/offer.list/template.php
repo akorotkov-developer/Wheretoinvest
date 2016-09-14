@@ -214,8 +214,6 @@
                                             time.val(newVal);
                                         }
 
-                                        alert(newVal);
-
                                         time.closest("form").submit();
                                     }
                                     else {
@@ -279,7 +277,7 @@
                     <div class="b-offers__type b-offers__type_infl"><?= $inflationName ?></div>
                 </div>
                 <div class="columns medium-2 small-4 text-right end b-offers__percent b-offers__bility">
-                    <div class="b-offers__prof b-offers__prof_infl"><?= $inflation ?> <span>%</span></div>
+                    <div class="b-offers__prof b-offers__prof_infl b-offers__prof_main"><?= $inflation ?> <span>%</span></div>
                 </div>
             </div>
             <? $showInflation = false; ?>
@@ -301,7 +299,7 @@
                                 <div class="b-offers__type b-offers__type_infl"><?= $inflationName ?></div>
                             </div>
                             <div class="columns medium-2 small-4 text-right end b-offers__percent b-offers__bility">
-                                <div class="b-offers__prof b-offers__prof_infl"><?= $inflation ?> <span>%</span></div>
+                                <div class="b-offers__prof b-offers__prof_infl b-offers__prof_main"><?= $inflation ?> <span>%</span></div>
                             </div>
                         </div>
                         <? $showInflation = false; ?>
@@ -329,7 +327,7 @@
                     </div>
                     <div class="column small-4 medium-2 text-right b-offers__profit b-offers__bility"
                          data-equalizer-watch>
-                        <div class="b-offers__prof">
+                        <div class="b-offers__prof b-offers__prof_main">
                             <div class="has-tooltip" data-tooltip aria-haspopup="true"
                                  title="<?= !empty($offer["UF_UPDATED"]) && is_object($offer["UF_UPDATED"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", $offer["UF_UPDATED"]->getTimestamp())) : "" ?>">
                                 <?= floatval($arItem["UF_PERCENT"]); ?> <span>%</span>
@@ -337,7 +335,7 @@
                         </div>
                     </div>
                     <div class="column small-4 medium-2 text-center" data-equalizer-watch>
-                        <div class="b-offers__prof has-tooltip" data-tooltip aria-haspopup="true"
+                        <div class="b-offers__prof has-tooltip b-offers__prof_main" data-tooltip aria-haspopup="true"
                              title="<?= $arItem["UF_SAFETY"] ?> место из <?= $arResult["USER_COUNT"] ?>"><?= $arItem["UF_SAFETY"] ?>
                             <span>место</span>
                         </div>
@@ -559,7 +557,7 @@
                         <div class="b-offers__type b-offers__type_infl"><?= $inflationName ?></div>
                     </div>
                     <div class="columns medium-2 small-4 text-right end b-offers__percent b-offers__bility">
-                        <div class="b-offers__prof b-offers__prof_infl"><?= $inflation ?> <span>%</span></div>
+                        <div class="b-offers__prof b-offers__prof_infl b-offers__prof_main"><?= $inflation ?> <span>%</span></div>
                     </div>
                 </div>
                 <? $showInflation = false; ?>
