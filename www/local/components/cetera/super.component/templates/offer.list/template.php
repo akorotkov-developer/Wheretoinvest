@@ -157,6 +157,7 @@
                     });
 
                 function timeField() {
+
                     var time = $("select[name='time']"),
                         lastSelectVal = time.val();
                     time.wrapAll("<span class='x-time-wrapper'></span>");
@@ -194,10 +195,6 @@
                         if (val == "other") {
                             $(this).val(lastSelectVal);
                             var lastVal = input.val();
-                            input
-                                .css({"pointer-events": "all"})
-                                .val("")
-                                .focus();
 
                             function updateVal(_this) {
                                 var newVal = $(_this).val();
@@ -205,22 +202,38 @@
                                     $(_this).val(lastVal);
                                 }
                                 else {
-                                    var hasOption = false;
-                                    $("option", time).each(function () {
-                                        if ($(this).attr("value") == newVal)
-                                            hasOption = true;
-                                    });
+                                    if (!newVal.match(/[^\d]/g)) {
+                                        var hasOption = false;
+                                        $("option", time).each(function () {
+                                            if ($(this).attr("value") == newVal)
+                                                hasOption = true;
+                                        });
 
-                                    if (!hasOption) {
-                                        time.append('<option value="' + newVal + '">' + newVal + '</option>');
-                                        time.val(newVal);
+                                        if (!hasOption) {
+                                            time.append('<option value="' + newVal + '">' + newVal + '</option>');
+                                            time.val(newVal);
+                                        }
+
+                                        alert(newVal);
+
+                                        time.closest("form").submit();
                                     }
-
-                                    time.closest("form").submit();
+                                    else {
+                                        $(_this).val(lastVal);
+                                    }
                                 }
 
                                 $(_this).css({"pointer-events": "none"});
                             }
+
+                            input.on("touchstart", function () {
+                                function blured() {
+                                    input.unbind("blur");
+                                    updateVal(this);
+                                }
+
+                                input.on("blur", blured);
+                            });
 
                             input.on("blur", function () {
                                 updateVal(this);
@@ -231,6 +244,13 @@
                                     updateVal(this);
                                 }
                             });
+
+                            setTimeout(function () {
+                                input
+                                    .css({"pointer-events": "all"})
+                                    .val("")
+                                    .focus();
+                            }, 0);
                         }
                         else {
                             $("option", time).each(function () {

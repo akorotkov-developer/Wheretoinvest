@@ -7,6 +7,7 @@ JsIncludes::registerFile('common.common', '#WIC_TEMPLATE_PATH#/js/common.js?v=1'
 JsIncludes::registerFile('common.foundation', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.js?v=1');
 JsIncludes::registerFile('common.foundation.reveal', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.reveal.js?v=1');
 JsIncludes::registerFile('common.foundation.equalizer', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.equalizer.js?v=1');
+JsIncludes::registerFile('common.js.fastclick', '#WIC_TEMPLATE_PATH#/js/vendor/fastclick.js?v=1');
 
 $detect = new Mobile_Detect;
 if (!$detect->isMobile())

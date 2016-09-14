@@ -1,6 +1,7 @@
 (function ($) {
     $(function () {
         "use strict";
+        FastClick.attach(document.body);
         $(document).foundation({
             tooltip: {
                 disable_for_touch: true,
