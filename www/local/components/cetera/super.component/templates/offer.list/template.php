@@ -277,7 +277,8 @@
                     <div class="b-offers__type b-offers__type_infl"><?= $inflationName ?></div>
                 </div>
                 <div class="columns medium-2 small-4 text-right end b-offers__percent b-offers__bility">
-                    <div class="b-offers__prof b-offers__prof_infl b-offers__prof_main"><?= $inflation ?> <span>%</span></div>
+                    <div class="b-offers__prof b-offers__prof_infl b-offers__prof_main"><?= $inflation ?> <span>%</span>
+                    </div>
                 </div>
             </div>
             <? $showInflation = false; ?>
@@ -299,7 +300,8 @@
                                 <div class="b-offers__type b-offers__type_infl"><?= $inflationName ?></div>
                             </div>
                             <div class="columns medium-2 small-4 text-right end b-offers__percent b-offers__bility">
-                                <div class="b-offers__prof b-offers__prof_infl b-offers__prof_main"><?= $inflation ?> <span>%</span></div>
+                                <div class="b-offers__prof b-offers__prof_infl b-offers__prof_main"><?= $inflation ?>
+                                    <span>%</span></div>
                             </div>
                         </div>
                         <? $showInflation = false; ?>
@@ -374,11 +376,14 @@
                                                 <div class="has-tooltip" data-tooltip aria-haspopup="true"
                                                      title="<?= !empty($user["RATING_UPDATED"]) && is_object($user["RATING_UPDATED"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", $user["RATING_UPDATED"]->getTimestamp())) : "" ?>">
                                                     <? if (!empty($user["RATING"])): ?>
-                                                        <? foreach ($user["RATING"] as $agency => $rating): ?>
-                                                            <?= $agency ?> <span
-                                                                class="b-offers__prof"><?= $rating ?></span>
-                                                            <br>
-                                                        <? endforeach; ?>
+                                                        <span class="x-rating-list">
+                                                            <? foreach ($user["RATING"] as $agency => $rating): ?>
+                                                                <span class="x-rating-agency"><?= $agency ?></span>
+                                                                <span
+                                                                    class="b-offers__prof"><?= $rating ?></span>
+                                                                <br>
+                                                            <? endforeach; ?>
+                                                        </span>
                                                     <? else: ?>
                                                         -
                                                     <? endif; ?>
@@ -557,7 +562,8 @@
                         <div class="b-offers__type b-offers__type_infl"><?= $inflationName ?></div>
                     </div>
                     <div class="columns medium-2 small-4 text-right end b-offers__percent b-offers__bility">
-                        <div class="b-offers__prof b-offers__prof_infl b-offers__prof_main"><?= $inflation ?> <span>%</span></div>
+                        <div class="b-offers__prof b-offers__prof_infl b-offers__prof_main"><?= $inflation ?>
+                            <span>%</span></div>
                     </div>
                 </div>
                 <? $showInflation = false; ?>
@@ -572,6 +578,17 @@
                 $(function () {
                     $('.b-offers__item').unbind().click(function () {
                         $(this).toggleClass('active');
+                        $(".x-rating-list:not(.ratingChecked)", $(this)).each(function () {
+                            var maxWidth = 0;
+                            $(".x-rating-agency", $(this)).each(function () {
+                                if ($(this).outerWidth(true) > maxWidth)
+                                    maxWidth = $(this).outerWidth(true);
+                            });
+
+                            maxWidth += 5;
+                            $(".x-rating-agency", $(this)).css({"min-width": maxWidth});
+                            $(this).addClass("ratingChecked");
+                        });
                     });
 
                     $(".b-offers__link").unbind().on("click", function (event) {
@@ -579,6 +596,8 @@
                         event.preventDefault();
                         return false;
                     });
+
+                    $(".x-rating-agency").css({"display": "inline-block"});
 
                     $(".js-favorite-add").unbind().on("click", function (event) {
                         var id = $(this).data("id"),
