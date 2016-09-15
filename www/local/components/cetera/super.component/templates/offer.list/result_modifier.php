@@ -167,7 +167,7 @@ if (count($offers)) {
             $user = $offer["USER"];
             unset($offer["USER"]);
 
-            if (empty($arResult["ITEMS"][$el["UF_OFFER"]]) || $el["UF_DATE_START"] <= $arResult["ITEMS"][$el["UF_OFFER"]]["UF_DATE_START"]) {
+            if (empty($arResult["ITEMS"][$el["UF_OFFER"]]) || floatval($el["UF_PERCENT"]) > floatval($arResult["ITEMS"][$el["UF_OFFER"]]["UF_PERCENT"])) {
                 $el["UF_PERCENT"] = floatval($el["UF_PERCENT"]);
                 $el["UF_DATE_START"] = intval($el["UF_DATE_START"]);
                 $el["UF_DATE_END"] = intval($el["UF_DATE_END"]);

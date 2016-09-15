@@ -23,6 +23,11 @@ if ($APPLICATION->GetCurPage() !== "/") {
     JsIncludes::registerFile('common.foundation.alert', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.alert.js?v=1');
 }
 
+if ($APPLICATION->GetCurPage() == "/cabinet/method/") {
+    JsIncludes::registerFile('common.js.sortable', '#WIC_TEMPLATE_PATH#/js/vendor/sortable/jquery-ui.min.js?v=1');
+    JsIncludes::registerFile('common.js.sortabletouch', '#WIC_TEMPLATE_PATH#/js/vendor/sortable/jquery.ui.touch-punch.min.js?v=1');
+}
+
 JsIncludes::includeFiles('common.foundation');
 JsIncludes::includeFiles('common.js');
 JsIncludes::includeFiles('common.common');
