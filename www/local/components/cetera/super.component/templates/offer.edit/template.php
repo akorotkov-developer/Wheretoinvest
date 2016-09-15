@@ -278,7 +278,7 @@ if (defined("ERROR_404"))
                         }
 
                         var numCol = $('.graph__th', idA).length;
-                        if (numCol <= 7 && canAdd) {
+                        if (numCol <= 10 && canAdd) {
                             var headText = '<div class="graph__th graph__th_reg" data-id="' + dataId + '"><a class="graph__cr"></a>';
                             if (!secD) {
                                 headText += "от " + firD + "<br>" + pluralForm(firD, "дня", "дней", "дней", "дней");

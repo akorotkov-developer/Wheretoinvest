@@ -211,12 +211,21 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
                 "REQUIRED" => "Y",
                 "NO_LABEL" => "Y",
             ),
-            "FULL_NAME" => Array(
-                "BLOCK_TITLE" => "Контактное лицо",
+            "LAST_NAME" => Array(
+                "BLOCK_TITLE" => "Фамилия",
                 "TYPE" => "TEXT",
-                "VALUE" => trim(CUser::FormatName("#LAST_NAME# #NAME# #SECOND_NAME#", $userInfo, true)) == $userInfo["EMAIL"] ? "" : CUser::FormatName("#LAST_NAME# #NAME# #SECOND_NAME#", $userInfo, true),
+                "VALUE" => $userInfo["LAST_NAME"],
+            ),
+            "NAME" => Array(
+                "BLOCK_TITLE" => "Имя",
+                "TYPE" => "TEXT",
+                "VALUE" => $userInfo["NAME"],
                 "REQUIRED" => "Y",
-                "NO_LABEL" => "Y",
+            ),
+            "SECOND_NAME" => Array(
+                "BLOCK_TITLE" => "Отчество",
+                "TYPE" => "TEXT",
+                "VALUE" => $userInfo["SECOND_NAME"],
             ),
             Array(
                 "TYPE" => "TEXT_BLOCK",

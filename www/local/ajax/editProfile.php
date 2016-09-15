@@ -25,11 +25,11 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                     continue;
 
                 switch ($key) {
-                    case "FULL_NAME":
-                        list($arFields["LAST_NAME"], $arFields["NAME"], $arFields["SECOND_NAME"]) = explode(" ", $val);
-                        $arResult["NEW"]["LAST_NAME"] = $arFields["LAST_NAME"];
-                        $arResult["NEW"]["NAME"] = $arFields["NAME"];
-                        $arResult["NEW"]["SECOND_NAME"] = $arFields["SECOND_NAME"];
+                    case "LAST_NAME":
+                    case "NAME":
+                    case "SECOND_NAME":
+                        $arFields[$key] = trim($val);
+                        $arResult["NEW"][$key] = $arFields[$key];
                         break;
                     case "UF_BIRTHDAY":
                         if (!empty($val)) {
