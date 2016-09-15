@@ -4,17 +4,18 @@ $size = $APPLICATION->get_cookie("SIZE_CLOSE");
 ?>
 <? if (empty($size)): ?>
     <section class="row b-sizeinfo ">
-        <div class="column medium-9">
+        <div class="column medium-8">
             <div class="b-sizeinfo__title">
                 Доходность или надежность?
                 <div class="b-sizeinfo__close js-sizeclose"></div>
             </div>
             <div class="b-sizeinfo__text">
-                Выбирайте приемлемое соотношение доходности и риска,<br>применяя сортировку по доходности, либо по
-                надежности.<br>Сравнивайте с инфляцией.
+                Выбирайте приемлемое соотношение доходности и риска, <br class="show-for-large-up">применяя сортировку по
+                доходности, либо по
+                надежности. <br class="show-for-large-up">Сравнивайте с инфляцией.
             </div>
         </div>
-        <div class="column medium-2 b-sizeinfo__scales small-only-text-center">
+        <div class="column medium-3 b-sizeinfo__scales small-only-text-center">
             <img src="<?= WIC_TEMPLATE_PATH ?>/images/scales.png">
         </div>
         <div class="column medium-1 medium-text-right show-for-medium-up">
