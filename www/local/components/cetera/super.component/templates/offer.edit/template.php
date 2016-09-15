@@ -34,11 +34,11 @@ if (defined("ERROR_404"))
             "TYPE" => "TEXT",
             "TITLE" => "Ссылка на предложение",
             "VALUE" => $arResult["ITEM"]["UF_SITE"],
-            "REQUIRED" => "Y"
         )
     );
 
     echo getFormFields($arFields);
+
     ?>
     <div class="row">
         <div class="columns region">
@@ -110,41 +110,52 @@ if (defined("ERROR_404"))
                                 <div
                                     class="content<? if ($first): ?> active<? endif; ?> content_<?= $arResult["XML_FIELDS"]["UF_CURRENCY"][$key]; ?>"
                                     id="panel<?= $key ?>">
-                                    <div class="graph graph_reg">
-                                        <div class="graph__head">
-                                            <div class="graph__th graph__th_reg">&nbsp;</div>
-                                            <? foreach ($arResult["MATRIX_COLS"][$key] as $col): ?>
-                                                <? list($start, $end) = explode(" - ", $col); ?>
-                                                <div class="graph__th graph__th_reg" data-id="<?= $col ?>"><a
-                                                        class="graph__cr"></a>
-                                                    <? if (empty($end)): ?>
-                                                        от <?= $start . "<br>" . \Cetera\Tools\Utils::pluralForm($start, "дня", "дней", "дней", "дней") ?>
-                                                        <br>
-                                                    <? elseif ($start == $end): ?>
-                                                        <?= $start . "<br>" . \Cetera\Tools\Utils::pluralForm($start, "день", "дня", "дней", "дней") ?>
-                                                    <? else: ?>
-                                                        <?= $start . " - " . $end . "<br>" . \Cetera\Tools\Utils::pluralForm($end, "день", "дня", "дней", "дней"); ?>
-                                                    <? endif; ?>
-                                                </div>
-                                            <? endforeach; ?>
-                                        </div>
-                                        <div class="graph__body">
-                                            <? foreach ($arResult["MATRIX"][$key] as $row => $cols): ?>
-                                                <div class="graph__row" data-id="<?= $row ?>">
-                                                    <div class="graph__td graph__td_reg">от <?= $row ?>
-                                                        <a class="graph__cr graph__cr_td"></a>
+                                    <div class="graph__wrapper">
+                                        <div class="graph graph_reg">
+                                            <div class="graph__head">
+                                                <div class="graph__th graph__th_reg">&nbsp;</div>
+                                                <? foreach ($arResult["MATRIX_COLS"][$key] as $col): ?>
+                                                    <? list($start, $end) = explode(" - ", $col); ?>
+                                                    <div class="graph__th graph__th_reg" data-id="<?= $col ?>"><a
+                                                            class="graph__cr"></a>
+                                                        <? if (empty($end)): ?>
+                                                            от <?= $start . "<br>" . \Cetera\Tools\Utils::pluralForm($start, "дня", "дней", "дней", "дней") ?>
+                                                            <br>
+                                                        <? elseif ($start == $end): ?>
+                                                            <?= $start . "<br>" . \Cetera\Tools\Utils::pluralForm($start, "день", "дня", "дней", "дней") ?>
+                                                        <? else: ?>
+                                                            <?= $start . " - " . $end . "<br>" . \Cetera\Tools\Utils::pluralForm($end, "день", "дня", "дней", "дней"); ?>
+                                                        <? endif; ?>
                                                     </div>
-                                                    <? foreach ($cols as $col => $percent): ?>
-                                                        <div
-                                                            class="graph__td graph__td_js<? if (!empty($percent)): ?> i-show-text<? endif; ?>">
-                                                            <span class="js-percent-text"><?= $percent; ?>%</span>
-                                                            <input type="text" class="region__js-percent text-center"
-                                                                   name="UF_MATRIX[<?= $key ?>][<?= $row ?>][<?= $col ?>]"
-                                                                   value="<?= $percent; ?>">
+                                                <? endforeach; ?>
+                                            </div>
+                                            <div class="graph__body">
+                                                <? foreach ($arResult["MATRIX"][$key] as $row => $cols): ?>
+                                                    <div class="graph__row" data-id="<?= $row ?>">
+                                                        <? list($start, $end) = explode(" - ", $row); ?>
+                                                        <div class="graph__td graph__td_reg">
+                                                            <? if (empty($end)): ?>
+                                                                от <?= $start ?>
+                                                            <? elseif ($start == $end): ?>
+                                                                <?= $start ?>
+                                                            <? else: ?>
+                                                                от <?= $start . "<br>до " . $end; ?>
+                                                            <? endif; ?>
+                                                            <a class="graph__cr graph__cr_td"></a>
                                                         </div>
-                                                    <? endforeach; ?>
-                                                </div>
-                                            <? endforeach; ?>
+                                                        <? foreach ($cols as $col => $percent): ?>
+                                                            <div
+                                                                class="graph__td graph__td_js<? if (!empty($percent)): ?> i-show-text<? endif; ?>">
+                                                                <span class="js-percent-text"><?= $percent; ?>%</span>
+                                                                <input type="text"
+                                                                       class="region__js-percent text-center"
+                                                                       name="UF_MATRIX[<?= $key ?>][<?= $row ?>][<?= $col ?>]"
+                                                                       value="<?= $percent; ?>">
+                                                            </div>
+                                                        <? endforeach; ?>
+                                                    </div>
+                                                <? endforeach; ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -158,7 +169,10 @@ if (defined("ERROR_404"))
                         <label for="ggs" class="region__label">Добавить сумму</label>
 
                         <div class="region__from">от</div>
-                        <input type="text" class="region__inp region__js-sum" value="">
+                        <input type="text" class="region__inp region__inp_mini region__js-sum" value="">
+
+                        <div class="region__from">до</div>
+                        <input type="text" class="region__inp region__inp_mini region__js-sum_sec" value="">
                         <span class="region__add region__js-row">+</span>
                     </div>
                     <div class="columns medium-6 region__net">
@@ -270,15 +284,21 @@ if (defined("ERROR_404"))
                         var idA = "#" + $(this).attr("id");
                         var canAdd = true;
                         var dataId = firD;
-                        if (secD)
+                        if (secD) {
+                            if (parseFloat(secD.replace(/[^\d,.]/, "")) < parseFloat(firD.replace(/[^\d,.]/, ""))) {
+                                alert("Конечная дата не может быть больше начальной");
+                                $('.region__js-sec').val("");
+                                return false;
+                            }
                             dataId += "-" + secD;
+                        }
 
                         if ($(".graph__th[data-id='" + dataId + "']", idA).length) {
                             canAdd = false;
                         }
 
                         var numCol = $('.graph__th', idA).length;
-                        if (numCol <= 10 && canAdd) {
+                        if (/*numCol <= 15 && */canAdd) {
                             var headText = '<div class="graph__th graph__th_reg" data-id="' + dataId + '"><a class="graph__cr"></a>';
                             if (!secD) {
                                 headText += "от " + firD + "<br>" + pluralForm(firD, "дня", "дней", "дней", "дней");
@@ -311,20 +331,41 @@ if (defined("ERROR_404"))
 
             $('.region__js-row').click(function () {
                 var firD = $('.region__js-sum').val();
+                var secD = $('.region__js-sum_sec').val();
                 if (firD) {
                     var canAdd = true;
                     var idA = panelActive();
-                    if ($(".graph__row[data-id='" + firD + "']", idA).length) {
+                    var dataId = firD;
+                    if (secD) {
+                        if (parseFloat(secD.replace(/[^\d,.]/, "")) < parseFloat(firD.replace(/[^\d,.]/, ""))) {
+                            alert("Конечная сумма не может быть больше начальной");
+                            $('.region__js-sum_sec').val("");
+                            return false;
+                        }
+                        dataId += "-" + secD;
+                    }
+
+                    if ($(".graph__row[data-id='" + dataId + "']", idA).length) {
                         canAdd = false;
                     }
 
                     if (canAdd) {
                         var numCol = $(idA + ' .graph__th').length;
-                        var rowText = '<div class="graph__row" data-id="' + firD + '"><div class="graph__td graph__td_reg">от ' + firD + '<a class="graph__cr graph__cr_td"></a></div>';
+                        var rowText = '<div class="graph__row" data-id="' + dataId + '"><div class="graph__td graph__td_reg">';
+                        if (!secD) {
+                            rowText += "от " + firD;
+                        }
+                        else if (firD == secD) {
+                            rowText += firD;
+                        }
+                        else {
+                            rowText += "от " + firD + "<br>до " + secD;
+                        }
+                        rowText += '<a class="graph__cr graph__cr_td"></a></div>';
                         for (var i = 1; i < numCol; i++) {
                             var item = $(graphTd);
                             var colID = $(".graph__th.graph__th_reg").eq(i).data("id");
-                            item.find("input").attr("name", "UF_MATRIX[" + idA + "][" + firD + "][" + colID + "]");
+                            item.find("input").attr("name", "UF_MATRIX[" + idA + "][" + dataId + "][" + colID + "]");
                             rowText += $('<div>').append(item.clone()).html();
                         }
                         $(idA + " .graph__body").append(rowText);
@@ -333,6 +374,7 @@ if (defined("ERROR_404"))
                     }
                 }
                 $('.region__js-sum').val("");
+                $('.region__js-sum_sec').val("");
                 respoTd();
             });
 

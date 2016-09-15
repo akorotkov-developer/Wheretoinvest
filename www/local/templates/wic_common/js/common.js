@@ -133,6 +133,9 @@
             $('.region__js-sum').keyup(function (event) {
                 $(this).val(number_format($(this).val()));
             });
+            $('.region__js-sum_sec').keyup(function (event) {
+                $(this).val(number_format($(this).val()));
+            });
         })();
 
         (function () {

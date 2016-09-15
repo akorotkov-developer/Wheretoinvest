@@ -81,6 +81,8 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
             foreach ($matrix as $currency => $cols) {
                 $cur = preg_replace("#[^\d]#is", "", $currency);
                 foreach ($cols as $col => $rows) {
+                    list($summStart, $summEnd) = explode("-", $col);
+
                     foreach ($rows as $row => $percent) {
                         list($start, $end) = explode("-", $row);
 
@@ -89,7 +91,8 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
                             "UF_CURRENCY" => $cur,
                             "UF_DATE_START" => $start,
                             "UF_DATE_END" => $end,
-                            "UF_SUMM" => preg_replace("#[^\d]#is", "", $col),
+                            "UF_SUMM" => preg_replace("#[^\d]#is", "", $summStart),
+                            "UF_SUMM_END" => preg_replace("#[^\d]#is", "", $summEnd),
                             "UF_PERCENT" => floatval($percent)
                         );
 

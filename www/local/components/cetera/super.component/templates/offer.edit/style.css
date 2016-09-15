@@ -10,3 +10,11 @@
 .graph__td.i-show-text input {
     display: none;
 }
+
+.graph__wrapper {
+    overflow-x: auto;
+}
+
+.graph__td {
+    min-width: 80px;
+}

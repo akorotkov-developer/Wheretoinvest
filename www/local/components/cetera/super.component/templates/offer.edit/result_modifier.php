@@ -84,14 +84,21 @@ if (!empty($arParams["ID"])) {
 
 if (intval($arParams["ID"]) > 0) {
     $hblock = new \Cetera\HBlock\SimpleHblockObject(9);
-    $list = $hblock->getList(Array("filter" => Array("UF_OFFER" => intval($arParams["ID"])), "order" => Array("UF_SUMM" => "ASC", "UF_DATE_START" => "ASC")));
+    $list = $hblock->getList(Array("filter" => Array("UF_OFFER" => intval($arParams["ID"])), "order" => Array("UF_SUMM" => "ASC", "UF_SUMM_END" => "ASC", "UF_DATE_START" => "ASC", "UF_DATE_END" => "ASC")));
     while ($el = $list->fetch()) {
         $row = Array($el["UF_DATE_START"]);
         if (!empty($el["UF_DATE_END"]))
             $row[] = $el["UF_DATE_END"];
 
-        $row = implode(" - ", $row);
-        $arResult["MATRIX"][$el["UF_CURRENCY"]][number_format($el["UF_SUMM"], 0, ".", " ")][$row] = number_format($el["UF_PERCENT"], 2);
+        $row = (string)implode(" - ", $row);
+
+        $col = Array(number_format($el["UF_SUMM"], 0, ".", " "));
+        if (!empty($el["UF_SUMM_END"]))
+            $col[] = number_format($el["UF_SUMM_END"], 0, ".", " ");
+
+        $col = (string)implode(" - ", $col);
+
+        $arResult["MATRIX"][$el["UF_CURRENCY"]][$col][$row] = number_format($el["UF_PERCENT"], 2);
         $arResult["MATRIX_COLS"][$el["UF_CURRENCY"]][$row] = $row;
     }
 } else {
