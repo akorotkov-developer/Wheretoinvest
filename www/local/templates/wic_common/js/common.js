@@ -157,30 +157,26 @@
             function scr() {
                 var block = $('.js-header');
 
-                if (block.length) {
-                    var y = $(document).scrollTop();
-                    var blockHeight = block.outerHeight();
-                    if (block.offset().top !== 0 && !block.hasClass("fixed")) {
-                        blockPos = block.offset().top;
-                    }
+                setTimeout(function () {
+                    if (block.length) {
+                        var y = $(document).scrollTop();
+                        var blockHeight = block.outerHeight();
+                        if (block.offset().top !== 0 && !block.hasClass("fixed")) {
+                            blockPos = block.offset().top;
+                        }
 
-                    if (blockPos > 0 && y > blockPos) {
-                        block.addClass("fixed").css({
-                            "position": "fixed",
-                            "top": 0,
-                            "margin": "0 auto",
-                            "width": "100%",
-                            "background": "#FFFFFF",
-                            "z-index": 100
-                        });
+                        if (blockPos > 0 && y > blockPos) {
+                            block.addClass("fixed").css({
+                                "margin": "0 auto",
+                                "background": "#FFFFFF"
+                            });
+                        }
+                        else {
+                            block.removeClass("fixed");
+                        }
+                        block.parent().css("height", blockHeight);
                     }
-                    else {
-                        block.removeClass("fixed").css({
-                            "position": "relative"
-                        });
-                    }
-                    block.parent().css("height", blockHeight);
-                }
+                }, 450);
             }
 
             window.onresize = function () {
@@ -247,14 +243,16 @@
             }
 
             $('.b-sort__arr').click(function () {
-                $('.b-sort__main').slideToggle();
+                $(".x-filter").css("height", "auto");
+                $('.b-sort__main').slideToggle(400);
                 $('.b-sort__arr,.b-sort__all,.js-header').toggleClass('js-toggle');
 
                 sortText();
             });
 
             $(".b-sort__all").click(function () {
-                $('.b-sort__main').slideDown();
+                $(".x-filter").css("height", "auto");
+                $('.b-sort__main').slideDown(400);
                 $('.b-sort__arr,.b-sort__all,.js-header').toggleClass('js-toggle');
                 sortText();
             });
