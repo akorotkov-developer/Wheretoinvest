@@ -1,0 +1,48 @@
+.reviews-item {
+  padding: 13px 25px 20px;
+
+  &_author {
+    margin-bottom: 18px;
+
+    &-name {
+      font-size: 15px;
+      line-height: 0;
+      display: inline-block;
+      vertical-align: middle;
+      color: #2b2b2b;
+    }
+  }
+
+  &_rating {
+    margin-bottom: 10px;
+    height: 22px;
+
+    &-star {
+      display: block;
+      float: left;
+      width: 22px;
+      height: 22px;
+      margin-left: 5px;
+      background-image: url("../images/star.png");
+      background-repeat: no-repeat;
+
+      &-active {
+        background-image: url("../images/star-active.png");
+      }
+    }
+  }
+
+  &_name {
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  &_text {
+
+  }
+
+  &_date {
+    margin-top: 15px;
+    color: #999;
+  }
+}
