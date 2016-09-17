@@ -1,48 +1,138 @@
-.reviews-item {
-  padding: 13px 25px 20px;
+.reviews {
+  &-item {
+    padding: 13px 25px 20px;
 
-  &_author {
-    margin-bottom: 18px;
+    &_author {
+      margin-bottom: 18px;
 
-    &-name {
-      font-size: 15px;
-      line-height: 0;
-      display: inline-block;
-      vertical-align: middle;
-      color: #2b2b2b;
+      &-name {
+        font-size: 15px;
+        line-height: 0;
+        display: inline-block;
+        vertical-align: middle;
+        color: #2b2b2b;
+      }
+    }
+
+    &_rating {
+      margin-bottom: 10px;
+      height: 22px;
+
+      &-star {
+        display: block;
+        float: left;
+        width: 22px;
+        height: 22px;
+        margin-left: 5px;
+        background-image: url("../images/star.png");
+        background-repeat: no-repeat;
+
+        &-active {
+          background-image: url("../images/star-active.png");
+        }
+      }
+    }
+
+    &_name {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    &_text {
+
+    }
+
+    &_date {
+      margin-top: 15px;
+      color: #999;
     }
   }
 
-  &_rating {
-    margin-bottom: 10px;
-    height: 22px;
+  &-form {
+    border-bottom: 1px solid #e5e5e5;
+    padding: 20px 0 25px 0;
 
-    &-star {
-      display: block;
-      float: left;
-      width: 22px;
-      height: 22px;
-      margin-left: 5px;
-      background-image: url("../images/star.png");
-      background-repeat: no-repeat;
+    &_content {
+      width: 500px;
+      margin: auto;
+    }
 
-      &-active {
-        background-image: url("../images/star-active.png");
+    &_footer {
+      width: 500px;
+      margin: auto;
+
+      &-button {
+        text-align: center;
+
+        & input[type="submit"] {
+          font-size: 18px;
+          line-height: 38px;
+          border-radius: 5px;
+          padding: 5px 20px;
+          background-color: white;
+          border: 1px solid #ccc;
+
+          &:hover {
+            background: #ebebeb;
+          }
+        }
       }
     }
   }
+}
 
-  &_name {
-    font-weight: 700;
-    margin-bottom: 4px;
+#reviews-rating {
+  height: 30px;
+  margin: 10px;
+  position: relative;
+
+  & input[type="radio"] {
+    display: none;
+
+    &:checked ~ label {
+      background-image: url("../images/star-active.png");
+    }
   }
 
-  &_text {
+  & label {
+    display: block;
+    float: left;
+    width: 22px;
+    height: 22px;
+    margin-left: 5px;
+    background-image: url("../images/star.png");
+    background-repeat: no-repeat;
 
+    &:hover {
+      background-image: url("../images/star-active.png");
+    }
+    &:hover ~ label {
+      background-image: url("../images/star-active.png");
+    }
   }
 
-  &_date {
-    margin-top: 15px;
-    color: #999;
+  & #star-1 {
+    position: absolute;
+    left: 0px;
+  }
+
+  & #star-2 {
+    position: absolute;
+    left: 30px;
+  }
+
+  & #star-3 {
+    position: absolute;
+    left: 60px;
+  }
+
+  & #star-4 {
+    position: absolute;
+    left: 90px;
+  }
+
+  & #star-5 {
+    position: absolute;
+    left: 120px;
   }
 }
