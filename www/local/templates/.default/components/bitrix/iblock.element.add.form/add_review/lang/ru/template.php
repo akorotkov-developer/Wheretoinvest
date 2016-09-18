@@ -1,5 +1,5 @@
 <?
-$MESS["IBLOCK_FORM_SUBMIT"] = "Сохранить";
+$MESS["IBLOCK_FORM_SUBMIT"] = "Отправить";
 $MESS["IBLOCK_FORM_APPLY"] = "Применить";
 $MESS["IBLOCK_FORM_RESET"] = "Сбросить";
 $MESS["IBLOCK_FORM_CANCEL"] = "Отмена";

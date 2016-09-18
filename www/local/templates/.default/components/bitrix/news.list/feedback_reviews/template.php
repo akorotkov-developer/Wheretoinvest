@@ -19,8 +19,13 @@ $this->setFrameMode(true);
 	$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
 	?>
 	<div class="reviews-item" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
-		<div class="reviews-item_author">
-			<span class="reviews-item_author-name"><?echo $arItem["DISPLAY_PROPERTIES"]["REVIEW_AUTHOR_NAME"]["VALUE"]?></span>
+		<div class="reviews-item_header">
+			<span class="reviews-item_header-name"><?echo $arItem["DISPLAY_PROPERTIES"]["REVIEW_AUTHOR_NAME"]["VALUE"]?>,</span>
+			<span class="reviews-item_header-date">
+				<?echo date("d", strtotime($arItem['DATE_CREATE']))?>
+				<?=GetMessage(date( 'F', strtotime($arItem['DATE_CREATE'])))?>
+				<?echo date("Y", strtotime($arItem['DATE_CREATE']))?>
+			</span>
 		</div>
 		<div class="reviews-item_rating">
 			<?
@@ -35,9 +40,7 @@ $this->setFrameMode(true);
 				$stars++;
 			}?>
 		</div>
-		<div class="reviews-item_name"><?echo $arItem["NAME"]?></div>
 		<div class="reviews-item_text"><?echo $arItem["PREVIEW_TEXT"];?></div>
-		<div class="reviews-item_date"><?echo date("d.m.y", strtotime($arItem['DATE_CREATE']));?></div>
 	</div>
 <?endforeach;?>
 <?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>

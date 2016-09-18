@@ -21,32 +21,33 @@ if (strlen($arResult["MESSAGE"]) > 0):?>
 <?endif?>
 
 <?
-$fields = array("1","2","NAME","PREVIEW_TEXT");
+$fields = array("2","PREVIEW_TEXT","1");
 ?>
+
 <form name="iblock_add" action="<?=POST_FORM_ACTION_URI?>" method="post" enctype="multipart/form-data">
 	<?=bitrix_sessid_post()?>
 	<div class="reviews-form">
 		<?if (is_array($arResult["PROPERTY_LIST"]) && !empty($arResult["PROPERTY_LIST"])):?>
 		<div class="reviews-form_content">
+			<input type="hidden" name="PROPERTY[NAME][0]" size="25" value="<?echo(date("dmYHis"));?>"/>
 			<?foreach ($fields as $field):?>
 				<?if (isset($arResult["PROPERTY_LIST_FULL"][$field])) :?>
 					<div class="reviews-form_content-item">
 						<div class="reviews-form_content-item-name">
-							<?if (intval($field) > 0):?>
-								<?=$arResult["PROPERTY_LIST_FULL"][$field]["NAME"]?>
+							<?if($field === "PREVIEW_TEXT"):?>
+								<?echo("Комментарий")?>
 							<?else:?>
-								<?=!empty($arParams["CUSTOM_TITLE_".$field]) ? $arParams["CUSTOM_TITLE_".$field] : GetMessage("IBLOCK_FIELD_".$field)?>
-							<?endif?>
-
-							<?if(in_array($field, $arResult["PROPERTY_REQUIRED"])):?>
-								<span class="starrequired">*</span>
+								<?if (intval($field) > 0):?>
+									<?=$arResult["PROPERTY_LIST_FULL"][$field]["NAME"]?>
+								<?else:?>
+									<?=!empty($arParams["CUSTOM_TITLE_".$field]) ? $arParams["CUSTOM_TITLE_".$field] : GetMessage("IBLOCK_FIELD_".$field)?>
+								<?endif?>
 							<?endif?>
 						</div>
 						<div class="reviews-form_content-item-value">
 							<?
 							switch ($field):
 								case "1":
-								case "NAME":
 									?>
 									<input type="text" name="PROPERTY[<?=$field?>][0]" size="25" />
 									<?
@@ -86,7 +87,7 @@ $fields = array("1","2","NAME","PREVIEW_TEXT");
 				</div>
 				<div class="reviews-form_content-item">
 					<div class="reviews-form_content-item-name">
-						<?=GetMessage("IBLOCK_FORM_CAPTCHA_PROMPT")?><span class="starrequired">*</span>:
+						<?=GetMessage("IBLOCK_FORM_CAPTCHA_PROMPT")?>:
 					</div>
 					<div class="reviews-form_content-item-value">
 						<input type="text" name="captcha_word" maxlength="50" value="">

@@ -2,7 +2,7 @@
 $aMenuLinks = Array(
 	Array(
 		"Контакты", 
-		"/contacts/",
+		"/contacts/", 
 		Array(), 
 		Array(), 
 		"" 
@@ -15,8 +15,8 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"Оставить отзыв", 
-		"/about/feedback/", 
+		"Отзывы", 
+		"/feedback/",
 		Array(), 
 		Array(), 
 		"" 
