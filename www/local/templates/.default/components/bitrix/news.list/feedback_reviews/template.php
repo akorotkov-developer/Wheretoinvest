@@ -12,6 +12,7 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 ?>
+
 <div class="reviews">
 <?foreach($arResult["ITEMS"] as $arItem):?>
 	<?
@@ -20,7 +21,13 @@ $this->setFrameMode(true);
 	?>
 	<div class="reviews-item" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
 		<div class="reviews-item_header">
-			<span class="reviews-item_header-name"><?echo $arItem["DISPLAY_PROPERTIES"]["REVIEW_AUTHOR_NAME"]["VALUE"]?>,</span>
+			<span class="reviews-item_header-name">
+				<?if (isset($arItem["DISPLAY_PROPERTIES"]["REVIEW_AUTHOR_NAME"]["VALUE"]) && !empty($arItem["DISPLAY_PROPERTIES"]["REVIEW_AUTHOR_NAME"]["VALUE"])) :
+					echo ($arItem["DISPLAY_PROPERTIES"]["REVIEW_AUTHOR_NAME"]["VALUE"].",")?>
+				<?else:
+					echo ("Анонимно,")?>
+				<?endif;?>
+			</span>
 			<span class="reviews-item_header-date">
 				<?echo date("d", strtotime($arItem['DATE_CREATE']))?>
 				<?=GetMessage(date( 'F', strtotime($arItem['DATE_CREATE'])))?>
@@ -30,8 +37,8 @@ $this->setFrameMode(true);
 		</div>
 		<div class="reviews-item_rating">
 			<?
-			$stars = 0;
 			$rating = intval($arItem["DISPLAY_PROPERTIES"]["REVIEW_RATING"]["VALUE"]);
+			$stars = 0;
 			while ($stars < 5) {
 				if ($rating > $stars) {
 					echo('<span class="reviews-item_rating-star reviews-item_rating-star-active"></span>');
@@ -44,7 +51,55 @@ $this->setFrameMode(true);
 		<div class="reviews-item_text"><?echo $arItem["PREVIEW_TEXT"];?></div>
 	</div>
 <?endforeach;?>
+	<div class="reviews-stats">
+		<div class="reviews-stats_item">
+			<div class="reviews-stats_item-left">
+				<?
+				$stars = 0;
+				while ($stars < 5) {
+					if ($arResult["RATES_AVERAGE"] > $stars) {
+						if ($arResult["RATES_AVERAGE"] - $stars >= 0.75) {
+							echo('<span class="reviews-stats_item-left-star reviews-stats_item-left-star-full"></span>');
+						} elseif ($arResult["RATES_AVERAGE"] - $stars >= 0.25 && $arResult["RATES_AVERAGE"] - $stars < 0.75) {
+							echo('<span class="reviews-stats_item-left-star reviews-stats_item-left-star-half"></span>');
+						} else {
+							echo('<span class="reviews-stats_item-left-star"></span>');
+						}
+					} else {
+						echo('<span class="reviews-stats_item-left-star"></span>');
+					}
+					$stars++;
+				}?>
+			</div>
+			<div class="reviews-stats_item-right">
+				<span class="reviews-stats_item-right-text"><?=$arResult["RATES_COUNT"]?> Оценок</span>
+			</div>
+		</div>
+		<?foreach(array_reverse($arResult["RATES"], true) as $rate => $info) :?>
+			<div class="reviews-stats_item">
+				<div class="reviews-stats_item-left">
+					<?
+					$stars = 5;
+					while ($stars > 0) {
+						if (intval($rate) >= $stars) {
+							echo('<span class="reviews-stats_item-left-star reviews-stats_item-left-star-full"></span>');
+						} else {
+							echo('<span class="reviews-stats_item-left-star"></span>');
+						}
+						$stars--;
+					}?>
+				</div>
+				<div class="reviews-stats_item-right">
+					<div class="reviews-stats_item-right-line">
+						<div class="reviews-stats_item-right-line-active" style="width:<?=$info["PERCENT"]?>%"></div>
+					</div>
+				</div>
+			</div>
+		<?endforeach;?>
+	</div>
 <?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
 	<br /><?=$arResult["NAV_STRING"]?>
 <?endif;?>
 </div>
+
+

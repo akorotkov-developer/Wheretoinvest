@@ -20,10 +20,8 @@ $APPLICATION->SetTitle("Отзывы");
 				3 => "PREVIEW_TEXT",
 			),
 			"PROPERTY_CODES_REQUIRED" => array(
-				0 => "1",
-				1 => "2",
-				2 => "NAME",
-				3 => "PREVIEW_TEXT",
+				0 => "2",
+				1 => "NAME",
 			),
 			"GROUPS" => array(
 				0 => "2",
@@ -98,7 +96,7 @@ $APPLICATION->SetTitle("Отзывы");
 		"PAGER_TITLE" => "Отзывы",
 		"PAGER_SHOW_ALWAYS" => "Т",
 		"PAGER_TEMPLATE" => "",
-		"PAGER_DESC_NUMBERING" => "Y",
+		"PAGER_DESC_NUMBERING" => "N",
 		"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
 		"PAGER_SHOW_ALL" => "Y",
 		"PAGER_BASE_LINK_ENABLE" => "Y",

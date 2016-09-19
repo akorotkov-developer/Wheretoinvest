@@ -1,4 +1,7 @@
 .reviews {
+  padding-top: 220px;
+  position: relative;
+
   &-item {
     padding: 15px 0;
     border-bottom: 1px solid #ccc;
@@ -50,6 +53,7 @@
     border-bottom: 1px solid #e5e5e5;
     border-top: 1px solid #e5e5e5;
     padding: 20px 0 25px 0;
+    margin-bottom: 20px;
 
     &_content {
       width: 100%;
@@ -111,6 +115,67 @@
       background-color: #fc0;
       color: black;
       border-color: transparent;
+    }
+  }
+
+  &-stats {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+
+    &_item {
+      height: 22px;
+      margin-bottom: 15px;
+
+      &-left {
+        float: left;
+        overflow: hidden;
+        margin-right: 25px;
+
+        &-star {
+          display: block;
+          float: left;
+          width: 22px;
+          height: 22px;
+          margin-right: 5px;
+          background-image: url("../images/star.png");
+          background-repeat: no-repeat;
+
+          &-full {
+            background-image: url("../images/star-active.png");
+          }
+
+          &-half {
+            background-image: url("../images/star-half.png");
+          }
+        }
+      }
+
+      &-right {
+        float: left;
+        width: calc(100% - 160px);
+
+        &-text {
+          font-size: 20px;
+          color: #3b3e43;
+          line-height: 22px;
+        }
+
+        &-line {
+          width: 100%;
+          height: 6px;
+          background-color: #ebebeb;
+          margin-top: 8px;
+          border-radius: 10px;
+
+          &-active {
+            width: 0;
+            background-color: #fc0;
+            height: 100%;
+            border-radius: 10px;
+          }
+        }
+      }
     }
   }
 }
