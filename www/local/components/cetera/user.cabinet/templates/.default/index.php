@@ -260,7 +260,7 @@ $userName = $userName == $userInfo->GetEmail() ? "<span class='req__name'>—</s
 </div>
 <br>
 <div class="row">
-    <div class="columns">
+    <div class="columns small-offset-5 req__value small-7">
         <a href="#" class="sentence js-remove-acc">Удалить аккаунт</a></div>
 </div>
 

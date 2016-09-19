@@ -25,14 +25,24 @@
         $timeList["other"] = "Указать в днях";
 
         $sortVisible = $APPLICATION->get_cookie("SORT_VISIBLE");
+        global $TOTAL_METHOD;
         ?>
 
         <div class="js-header<? if (!empty($sortVisible)): ?> js-toggle<? endif; ?>">
             <section class="b-sort row">
                 <div class="b-sort__arr<? if (!empty($sortVisible)): ?> js-toggle<? endif; ?>"></div>
                 <div
-                    class="columns b-sort__all<? if (!empty($sortVisible)): ?> js-toggle<? endif; ?>"><span
-                        class="b-sort__all_border"><?= !empty($_REQUEST["summ"]) ? $_REQUEST["summ"] : 0; ?> <?= empty($_REQUEST["currency"]) ? reset($arResult["FIELDS"]["UF_CURRENCY"]) : $arResult["FIELDS"]["UF_CURRENCY"][$_REQUEST["currency"]] ?> <?= !empty($_REQUEST["time"]) ? "на " . $timeList[$_REQUEST["time"]] : "" ?></span>
+                    class="columns b-sort__all<? if (!empty($sortVisible)): ?> js-toggle<? endif; ?>">
+                    <? if (!empty($TOTAL_METHOD)): ?>
+                        <span>
+                            <span class="show-for-small-only">
+                                <span
+                                    class="b-sort__all_border js-show-menu js-show"><?= $TOTAL_METHOD ?></span>&nbsp;&nbsp;&nbsp;
+                            </span>
+                        </span>
+                    <? endif; ?>
+                    <span
+                        class="b-sort__all_border js-sort-all"><?= !empty($_REQUEST["summ"]) ? $_REQUEST["summ"] : 0; ?> <?= empty($_REQUEST["currency"]) ? reset($arResult["FIELDS"]["UF_CURRENCY"]) : $arResult["FIELDS"]["UF_CURRENCY"][$_REQUEST["currency"]] ?> <?= !empty($_REQUEST["time"]) ? "на " . $timeList[$_REQUEST["time"]] : "" ?></span>
                 </div>
                 <div class="b-sort__main"<? if (!empty($sortVisible)): ?> style="display: none;"<? endif; ?>>
                     <div class="column medium-7">
