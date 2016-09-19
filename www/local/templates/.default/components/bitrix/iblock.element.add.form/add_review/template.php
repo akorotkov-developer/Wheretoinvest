@@ -87,7 +87,7 @@ $fields = array("2","PREVIEW_TEXT","1");
 				</div>
 				<div class="reviews-form_content-item">
 					<div class="reviews-form_content-item-name">
-						<?=GetMessage("IBLOCK_FORM_CAPTCHA_PROMPT")?>:
+						<?=GetMessage("IBLOCK_FORM_CAPTCHA_PROMPT")?>
 					</div>
 					<div class="reviews-form_content-item-value">
 						<input type="text" name="captcha_word" maxlength="50" value="">

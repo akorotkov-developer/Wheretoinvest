@@ -25,6 +25,7 @@ $this->setFrameMode(true);
 				<?echo date("d", strtotime($arItem['DATE_CREATE']))?>
 				<?=GetMessage(date( 'F', strtotime($arItem['DATE_CREATE'])))?>
 				<?echo date("Y", strtotime($arItem['DATE_CREATE']))?>
+				<?echo("г.")?>
 			</span>
 		</div>
 		<div class="reviews-item_rating">
