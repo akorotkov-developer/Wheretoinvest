@@ -104,7 +104,7 @@ if (empty($_REQUEST["summ"]))
     $_REQUEST["summ"] = "100 000";
 
 if (empty($_REQUEST["time"]))
-    $_REQUEST["time"] = "365";
+    $_REQUEST["time"] = "369";
 
 if (count($offers)) {
     $filter["UF_OFFER"] = $offers;

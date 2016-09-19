@@ -169,10 +169,10 @@ if (defined("ERROR_404"))
                         <label for="ggs" class="region__label">Добавить сумму</label>
 
                         <div class="region__from">от</div>
-                        <input type="text" class="region__inp region__inp_mini region__js-sum" value="">
+                        <input type="text" class="region__inp region__inp_medium region__js-sum" value="">
 
                         <div class="region__from">до</div>
-                        <input type="text" class="region__inp region__inp_mini region__js-sum_sec" value="">
+                        <input type="text" class="region__inp region__inp_medium region__js-sum_sec" value="">
                         <span class="region__add region__js-row">+</span>
                     </div>
                     <div class="columns medium-6 region__net">
@@ -285,7 +285,7 @@ if (defined("ERROR_404"))
                         var canAdd = true;
                         var dataId = firD;
                         if (secD) {
-                            if (parseFloat(secD.replace(/[^\d,.]/, "")) < parseFloat(firD.replace(/[^\d,.]/, ""))) {
+                            if (parseFloat(secD.replace(/[^\d,.]/g, "")) < parseFloat(firD.replace(/[^\d,.]/g, ""))) {
                                 alert("Конечная дата не может быть больше начальной");
                                 $('.region__js-sec').val("");
                                 return false;
@@ -337,7 +337,7 @@ if (defined("ERROR_404"))
                     var idA = panelActive();
                     var dataId = firD;
                     if (secD) {
-                        if (parseFloat(secD.replace(/[^\d,.]/, "")) < parseFloat(firD.replace(/[^\d,.]/, ""))) {
+                        if (parseFloat(secD.replace(/[^\d,.]/g, "")) < parseFloat(firD.replace(/[^\d,.]/g, ""))) {
                             alert("Конечная сумма не может быть больше начальной");
                             $('.region__js-sum_sec').val("");
                             return false;
