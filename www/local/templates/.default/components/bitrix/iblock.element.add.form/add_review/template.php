@@ -29,7 +29,7 @@ $fields = array("2","PREVIEW_TEXT","1");
 	<div class="reviews-form">
 		<?if (is_array($arResult["PROPERTY_LIST"]) && !empty($arResult["PROPERTY_LIST"])):?>
 		<div class="reviews-form_content">
-			<input type="hidden" name="PROPERTY[NAME][0]" size="25" value="<?echo(date("dmYHis"));?>"/>
+			<input type="hidden" name="PROPERTY[NAME][0]" size="25" value="Новый отзыв"/>
 			<?foreach ($fields as $field):?>
 				<?if (isset($arResult["PROPERTY_LIST_FULL"][$field])) :?>
 					<div class="reviews-form_content-item">

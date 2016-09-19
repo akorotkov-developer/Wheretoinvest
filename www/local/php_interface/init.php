@@ -13,3 +13,22 @@ require(__DIR__ . "/../include/vendor/autoload.php");
  * инициализация приложения
  */
 Wic\Application::init();
+
+// при создании нового отзыва отсылать письмо
+AddEventHandler('iblock', 'OnAfterIBlockElementAdd', 'IBElementCreateAfterHandler');
+function IBElementCreateAfterHandler(&$arFields) {
+
+    // при создании нового отзыва отошлем админу письмо
+    if($arFields['IBLOCK_ID'] == 9) {
+        $EVENT_TYPE = 'ADD_REVIEW'; // тип почтового шаблона
+
+        $arMailFields['ID'] = $arFields['ID'];
+        $arMailFields['NAME'] = $arFields['NAME'];
+        $arMailFields['PREVIEW_TEXT'] = $arFields['PREVIEW_TEXT'];
+        $arMailFields['AUTHOR'] = !empty($arFields['PROPERTY_VALUES']["1"]) ? $arFields['PROPERTY_VALUES']["1"] : "Аноним";
+        $arMailFields['RATING'] = !empty($arFields['PROPERTY_VALUES']["2"]) ? $arFields['PROPERTY_VALUES']["2"] : "Без оценки";
+
+        CEvent::Send($EVENT_TYPE, "s1", $arMailFields);
+    }
+
+}
