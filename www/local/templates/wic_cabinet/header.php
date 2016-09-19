@@ -3,24 +3,6 @@ require($_SERVER['DOCUMENT_ROOT'] . WIC_TEMPLATE_PATH . '/header.php');
 IncludeTemplateLangFile(dirname(__FILE__)); ?>
 <div class="content-line">
 </div>
-<? ob_start(); ?>
-<? $APPLICATION->IncludeComponent("bitrix:menu", "left", Array(
-        "ROOT_MENU_TYPE" => "left",
-        "MAX_LEVEL" => "1",
-        "CHILD_MENU_TYPE" => "left",
-        "USE_EXT" => "Y",
-        "DELAY" => "N",
-        "ALLOW_MULTI_SELECT" => "N",
-        "MENU_CACHE_TYPE" => "Y",
-        "MENU_CACHE_TIME" => "3600",
-        "MENU_CACHE_USE_GROUPS" => "Y",
-        "MENU_CACHE_GET_VARS" => ""
-    )
-); ?>
-<?
-$left_menu = ob_get_contents();
-ob_end_clean();
-?>
 
 <div class="row">
     <div class="columns small-12">

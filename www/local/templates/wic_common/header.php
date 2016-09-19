@@ -16,6 +16,46 @@ if ($USER->IsAdmin() && !empty($_REQUEST["partner"])) {
     LocalRedirect($APPLICATION->GetCurPageParam("", Array("partner")));
 }
 ?>
+
+<? ob_start(); ?>
+<? $APPLICATION->IncludeComponent("bitrix:menu", "left", Array(
+        "ROOT_MENU_TYPE" => "left",
+        "MAX_LEVEL" => "1",
+        "CHILD_MENU_TYPE" => "left",
+        "USE_EXT" => "Y",
+        "DELAY" => "N",
+        "ALLOW_MULTI_SELECT" => "N",
+        "MENU_CACHE_TYPE" => "Y",
+        "MENU_CACHE_TIME" => "3600",
+        "MENU_CACHE_USE_GROUPS" => "Y",
+        "MENU_CACHE_GET_VARS" => ""
+    )
+); ?>
+<?
+$left_menu = ob_get_contents();
+ob_end_clean();
+?>
+<? ob_start(); ?>
+<? $APPLICATION->IncludeComponent("bitrix:menu", "top", Array(
+        "ROOT_MENU_TYPE" => "top",
+        "MAX_LEVEL" => "1",
+        "CHILD_MENU_TYPE" => "top",
+        "USE_EXT" => "Y",
+        "DELAY" => "N",
+        "ALLOW_MULTI_SELECT" => "N",
+        "MENU_CACHE_TYPE" => "N",
+        "MENU_CACHE_TIME" => "1",
+        "MENU_CACHE_USE_GROUPS" => "Y",
+        "MENU_CACHE_GET_VARS" => Array(
+            "method",
+            "favorite"
+        )
+    )
+); ?>
+<?
+$top_menu = ob_get_contents();
+ob_end_clean();
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>
 <html class="no-js ie lt-ie9 lt-ie8 lt-ie7" lang="ru"><![endif]-->
@@ -107,20 +147,16 @@ if ($USER->IsAdmin() && !empty($_REQUEST["partner"])) {
             <div class="b-header__showMenu">&nbsp;</div>
         </div>
     </div>
-    <? $APPLICATION->IncludeComponent("bitrix:menu", "top", Array(
-            "ROOT_MENU_TYPE" => "top",
-            "MAX_LEVEL" => "1",
-            "CHILD_MENU_TYPE" => "top",
-            "USE_EXT" => "Y",
-            "DELAY" => "N",
-            "ALLOW_MULTI_SELECT" => "N",
-            "MENU_CACHE_TYPE" => "N",
-            "MENU_CACHE_TIME" => "1",
-            "MENU_CACHE_USE_GROUPS" => "Y",
-            "MENU_CACHE_GET_VARS" => Array(
-                "method",
-                "favorite"
-            )
-        )
-    ); ?>
+    <div class="js-top-menu hide">
+        <div class="row">
+            <div class="column small-12">
+                <?= !empty($left_menu) ? $left_menu : "<div class='show-for-small-only'>" . $top_menu . "</div>" ?>
+            </div>
+        </div>
+    </div>
+    <div class="row hide-for-small-only">
+        <div class="column small-12">
+            <?= $top_menu ?>
+        </div>
+    </div>
 </header>

@@ -76,10 +76,16 @@
         //end of footer2bottom
 
         (function () {
-            $('.js-show-menu').on('click', function () {
-                $('.js-menu').toggle(500);
-                $('.b-header__place, .b-header__showMenu,.b-header__firstline').toggleClass('js-toggle');
-                $(document).foundation("equalizer", "reflow");
+            $('.js-show-menu').on('click', function (event) {
+                if($(this).hasClass("js-show")){
+                    $('.js-top-menu').slideDown(500);
+                }
+                else {
+                    $('.js-top-menu').slideToggle(500);
+                }
+                $("body").stop().animate({scrollTop: 0}, '500', 'swing', function () {
+                });
+                event.preventDefault();
             });
 
             //begin of select my region
@@ -228,7 +234,7 @@
                     text += " на " + time;
                 }
 
-                $('.b-sort__all .b-sort__all_border').text(text);
+                $('.b-sort__all .js-sort-all').text(text);
 
                 var visible = $('.b-sort__all').hasClass("js-toggle") ? 0 : 1;
                 $.ajax({
@@ -250,7 +256,7 @@
                 sortText();
             });
 
-            $(".b-sort__all").click(function () {
+            $(".js-sort-all").click(function () {
                 $(".x-filter").css("height", "auto");
                 $('.b-sort__main').slideDown(400);
                 $('.b-sort__arr,.b-sort__all,.js-header').toggleClass('js-toggle');

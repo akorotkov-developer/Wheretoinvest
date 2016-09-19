@@ -60,17 +60,16 @@
 }
 
 .content {
-  &.content_usd.active, &.content_usd.active .graph {
+  &.content_usd.active {
     background: rgba(0, 199, 22, 0.19);
 
   }
-  &.content_rur.active, &.content_rur.active .graph {
+  &.content_rur.active {
     background: #fef2d2;
 
   }
-  &.content_eur.active, &.content_eur.active .graph {
+  &.content_eur.active {
     background: rgba(0, 113, 251, 0.11);
-
   }
 
 }

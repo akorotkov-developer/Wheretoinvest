@@ -64,6 +64,12 @@
     }
   }
 
+  &__auth-link {
+    &_short {
+      display: none;
+    }
+  }
+
   &__menuWrap {
     margin-bottom: rem-calc(5);
 
@@ -128,7 +134,7 @@
 
   &__logo {
     max-height: 100%;
-	max-width: rem-calc(251);
+    max-width: rem-calc(251);
   }
 }
 
@@ -189,15 +195,36 @@
       &-link, &-slash, &-iconlogin {
         display: none;
       }
-      &-link:nth-of-type(1) {
-        background: url("../images/user1.png") no-repeat center center;
-        font-size: 0;
 
-        background-size: 26px;
+      &-link:nth-of-type(1) {
         display: block;
-        height: 100%;
+      }
+
+    }
+
+    &__auth-link {
+      display: none;
+      &_short {
+        display: inline-block;
+        width: 27px;
+        height: 27px;
+        text-align: center;
+        line-height: 27px;
+        border-radius: 50%;
+        color: #ffffff;
+        font-family: "helveticaneuecyr-heavy", sans-serif;
+        top: 8px;
+        position: relative;
+        letter-spacing: 1px;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a4aab8+0,858893+100 */
+        background: #a4aab8; /* Old browsers */
+        background: -moz-linear-gradient(top, #a4aab8 0%, #858893 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #a4aab8 0%, #858893 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #a4aab8 0%, #858893 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a4aab8', endColorstr='#858893', GradientType=0); /* IE6-9 */
       }
     }
+
     &__loginform {
       height: 50px;
       border-left: 1px solid #fff;
@@ -207,15 +234,16 @@
     &__menu {
       padding-top: 33px;
       &-item {
-        height: 125px;
+        height: 85px;
         padding-left: 5px;
         padding-right: 5px;
         border-radius: 3px;
         text-align: center;
+        padding-bottom: 10px;
       }
       &-link {
         font-size: rem-calc(13);
-        padding: 38px 3px;
+        padding: 10px 3px;
       }
     }
 
