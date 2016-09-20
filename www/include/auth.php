@@ -15,7 +15,7 @@ if ($USER->IsAuthorized()):?>
     ?>
     <a href="/cabinet/" class="b-header__firstline-link" title="Личный кабинет">
         <span class="b-header__auth-link"><?= trim($userName) ?></span><span
-            class="b-header__auth-link_short" title="<?=$userShortName?>"><?= trim($shortName) ?></span></a>
+            class="b-header__auth-link_short" title="<?= $userShortName ?>"><?= trim($shortName) ?></span></a>
     <span class="b-header__firstline-slash">|</span>
     <a href="?logout=yes" class="b-header__firstline-link">Выйти</a>
 <? else: ?>

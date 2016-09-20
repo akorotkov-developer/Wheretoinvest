@@ -56,6 +56,24 @@ ob_end_clean();
 $top_menu = ob_get_contents();
 ob_end_clean();
 ?>
+<? ob_start(); ?>
+<? $APPLICATION->IncludeComponent(
+    "cetera:super.component",
+    "sale.location",
+    array(
+        "COMPONENT_TEMPLATE" => "sale.location",
+        "CACHE_TYPE" => "N",
+        "CACHE_TIME" => "1",
+        "MODAL_ID" => "saleLocation",
+        "COL_CNT" => "3",
+        "EMPTY_NAME" => "Выберите регион"
+    ),
+    false
+); ?>
+<?
+$location = ob_get_contents();
+ob_end_clean();
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>
 <html class="no-js ie lt-ie9 lt-ie8 lt-ie7" lang="ru"><![endif]-->
@@ -118,22 +136,10 @@ ob_end_clean();
         <div class="small-8 small-offset-2 medium-offset-0 medium-5 column small-only-text-center b-header__logotype">
             <a href="/"><img src="<?= WIC_TEMPLATE_PATH ?>/images/logo.png" alt="" class="b-header__logo"></a>
         </div>
-        <div class="column b-header__place text-center">
-            <? $APPLICATION->IncludeComponent(
-                "cetera:super.component",
-                "sale.location",
-                array(
-                    "COMPONENT_TEMPLATE" => "sale.location",
-                    "CACHE_TYPE" => "N",
-                    "CACHE_TIME" => "1",
-                    "MODAL_ID" => "saleLocation",
-                    "COL_CNT" => "3",
-                    "EMPTY_NAME" => "Выберите регион"
-                ),
-                false
-            ); ?>
+        <div class="column b-header__place text-center hide-for-small-only">
+            <?= $location ?>
         </div>
-        <div class="column small-2 medium-4  medium-text-right small-text-center b-header__loginform">
+        <div class="column small-2 medium-4 medium-text-right small-text-center b-header__loginform">
             <? $APPLICATION->IncludeComponent("bitrix:main.include", "", Array(
                     "AREA_FILE_SHOW" => "file",
                     "AREA_FILE_SUFFIX" => "",
@@ -145,6 +151,15 @@ ob_end_clean();
         </div>
         <div class="column small-2 b-header__showMenu_bg show-for-small-only text-right js-show-menu">
             <div class="b-header__showMenu">&nbsp;</div>
+        </div>
+        <? if (getContainer("User")->isPartner()): ?>
+            <div class="column small-12 medium-text-right small-text-center">
+                <span class="b-header__cash"><?= number_format(floatval(getContainer("User")["UF_CASH"]), 0, ",", " ") ?> <span
+                        class="b-header__cash_span">рублей</span></span>
+            </div>
+        <? endif; ?>
+        <div class="column small-12 show-for-small-only text-center b-header__place">
+            <?= $location; ?>
         </div>
     </div>
     <div class="js-top-menu hide">

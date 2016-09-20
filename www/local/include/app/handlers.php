@@ -129,6 +129,20 @@ class UserEx
             }
         }
     }
+
+    function OnBeforeUserUpdate(&$arFields)
+    {
+        if (!empty($arFields["UF_ADD_CASH"])) {
+            $rsUser = CUser::GetByID($arFields["ID"]);
+            $arUser = $rsUser->Fetch();
+
+            $cash = floatval($arUser["UF_CASH"]);
+            $cash += floatval($arFields["UF_ADD_CASH"]);
+            $arFields["UF_CASH"] = $cash;
+
+            $arFields["UF_ADD_CASH"] = "";
+        }
+    }
 }
 
 $eventManager->addEventHandler("main", "OnAfterUserLogin", array("UserEx", "OnAfterUserLogin"), false, 100);
@@ -136,3 +150,4 @@ $eventManager->addEventHandler("main", "OnBeforeUserLogin", array("UserEx", "OnB
 $eventManager->addEventHandler("main", "OnBeforeUserRegister", array("UserEx", "OnBeforeUserRegister"), false, 100);
 $eventManager->addEventHandler("main", "OnAfterUserRegister", array("UserEx", "OnAfterUserRegister"), false, 100);
 $eventManager->addEventHandler("main", "OnAfterUserUpdate", array("UserEx", "OnAfterUserUpdate"), false, 100);
+$eventManager->addEventHandler("main", "OnBeforeUserUpdate", array("UserEx", "OnBeforeUserUpdate"), false, 100);
