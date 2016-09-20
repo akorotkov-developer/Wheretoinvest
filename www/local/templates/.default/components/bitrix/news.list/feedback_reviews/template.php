@@ -14,43 +14,6 @@ $this->setFrameMode(true);
 ?>
 
 <div class="reviews">
-<?foreach($arResult["ITEMS"] as $arItem):?>
-	<?
-	$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
-	$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
-	?>
-	<div class="reviews-item" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
-		<div class="reviews-item_header">
-			<span class="reviews-item_header-name">
-				<?if (isset($arItem["DISPLAY_PROPERTIES"]["REVIEW_AUTHOR_NAME"]["VALUE"]) && !empty($arItem["DISPLAY_PROPERTIES"]["REVIEW_AUTHOR_NAME"]["VALUE"])) :
-					echo ($arItem["DISPLAY_PROPERTIES"]["REVIEW_AUTHOR_NAME"]["VALUE"].",")?>
-				<?else:
-					echo ("Анонимно,")?>
-				<?endif;?>
-			</span>
-			<span class="reviews-item_header-date">
-				<?echo date("d", strtotime($arItem['DATE_CREATE']))?>
-				<?=GetMessage(date( 'F', strtotime($arItem['DATE_CREATE'])))?>
-				<?echo date("Y", strtotime($arItem['DATE_CREATE']))?>
-				<?echo("г.")?>
-			</span>
-		</div>
-		<div class="reviews-item_rating">
-			<?
-			$rating = intval($arItem["DISPLAY_PROPERTIES"]["REVIEW_RATING"]["VALUE"]);
-			$stars = 0;
-			while ($stars < 5) {
-				if ($rating > $stars) {
-					echo('<span class="reviews-item_rating-star reviews-item_rating-star-active"></span>');
-				} else {
-					echo('<span class="reviews-item_rating-star"></span>');
-				}
-				$stars++;
-			}?>
-		</div>
-		<div class="reviews-item_text"><?echo $arItem["PREVIEW_TEXT"];?></div>
-	</div>
-<?endforeach;?>
 	<div class="reviews-stats">
 		<div class="reviews-stats_item">
 			<div class="reviews-stats_item-left">
@@ -72,7 +35,7 @@ $this->setFrameMode(true);
 				}?>
 			</div>
 			<div class="reviews-stats_item-right">
-				<span class="reviews-stats_item-right-text"><?=$arResult["RATES_COUNT"]?> Оценок</span>
+				<span class="reviews-stats_item-right-text">Всего отзывов <?=$arResult["RATES_COUNT"]?></span>
 			</div>
 		</div>
 		<?foreach(array_reverse($arResult["RATES"], true) as $rate => $info) :?>
@@ -82,9 +45,9 @@ $this->setFrameMode(true);
 					$stars = 5;
 					while ($stars > 0) {
 						if (intval($rate) >= $stars) {
-							echo('<span class="reviews-stats_item-left-star reviews-stats_item-left-star-full"></span>');
+							echo('<span class="reviews-stats_item-left-star reviews-stats_item-left-star-black"></span>');
 						} else {
-							echo('<span class="reviews-stats_item-left-star"></span>');
+							echo('<span class="reviews-stats_item-left-star reviews-stats_item-left-star-hide"></span>');
 						}
 						$stars--;
 					}?>
@@ -97,9 +60,48 @@ $this->setFrameMode(true);
 			</div>
 		<?endforeach;?>
 	</div>
-<?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
-	<br /><?=$arResult["NAV_STRING"]?>
-<?endif;?>
+
+	<?foreach($arResult["ITEMS"] as $arItem):?>
+		<?
+		$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
+		$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
+		?>
+		<div class="reviews-item" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
+			<div class="reviews-item_header">
+				<span class="reviews-item_header-name">
+					<?if (isset($arItem["DISPLAY_PROPERTIES"]["REVIEW_AUTHOR_NAME"]["VALUE"]) && !empty($arItem["DISPLAY_PROPERTIES"]["REVIEW_AUTHOR_NAME"]["VALUE"])) :
+						echo ($arItem["DISPLAY_PROPERTIES"]["REVIEW_AUTHOR_NAME"]["VALUE"].",")?>
+					<?else:
+						echo ("Анонимно,")?>
+					<?endif;?>
+				</span>
+				<span class="reviews-item_header-date">
+					<?echo date("d", strtotime($arItem['DATE_CREATE']))?>
+					<?=GetMessage(date( 'F', strtotime($arItem['DATE_CREATE'])))?>
+					<?echo date("Y", strtotime($arItem['DATE_CREATE']))?>
+					<?echo("г.")?>
+				</span>
+			</div>
+			<div class="reviews-item_rating">
+				<?
+				$rating = intval($arItem["DISPLAY_PROPERTIES"]["REVIEW_RATING"]["VALUE"]);
+				$stars = 0;
+				while ($stars < 5) {
+					if ($rating > $stars) {
+						echo('<span class="reviews-item_rating-star reviews-item_rating-star-active"></span>');
+					} else {
+						echo('<span class="reviews-item_rating-star"></span>');
+					}
+					$stars++;
+				}?>
+			</div>
+			<div class="reviews-item_text"><?echo $arItem["PREVIEW_TEXT"];?></div>
+		</div>
+	<?endforeach;?>
+
+	<?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
+		<br /><?=$arResult["NAV_STRING"]?>
+	<?endif;?>
 </div>
 
 

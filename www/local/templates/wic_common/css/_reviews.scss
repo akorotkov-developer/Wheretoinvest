@@ -1,9 +1,8 @@
 .reviews {
-  padding-top: 220px;
-  position: relative;
+  padding-right: 330px;
 
   &-item {
-    padding: 15px 0;
+    padding: 20px 0;
     border-bottom: 1px solid #ccc;
 
     &_header {
@@ -110,6 +109,8 @@
     padding: 10px 25px;
     color: black;
     transition: .4s all;
+    width: 320px;
+    text-align: center;
 
     &:hover {
       background-color: #fc0;
@@ -120,24 +121,24 @@
 
   &-stats {
     position: absolute;
-    top: 0px;
-    width: 100%;
+    right: 10px;
+    width: 320px;
 
     &_item {
       height: 22px;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
 
       &-left {
         float: left;
         overflow: hidden;
-        margin-right: 25px;
+        margin-right: 10px;
 
         &-star {
           display: block;
           float: left;
           width: 22px;
           height: 22px;
-          margin-right: 5px;
+          margin-right: 3px;
           background-image: url("../images/star.png");
           background-repeat: no-repeat;
 
@@ -148,12 +149,20 @@
           &-half {
             background-image: url("../images/star-half.png");
           }
+
+          &-black {
+            background-image: url("../images/star-black.png");
+          }
+
+          &-hide {
+            opacity: 0;
+          }
         }
       }
 
       &-right {
         float: left;
-        width: calc(100% - 160px);
+        width: calc(100% - 135px);
 
         &-text {
           font-size: 20px;
@@ -170,7 +179,7 @@
 
           &-active {
             width: 0;
-            background-color: #fc0;
+            background-color: #3b3e43;
             height: 100%;
             border-radius: 10px;
           }
@@ -233,5 +242,21 @@
   & #star-5 {
     position: absolute;
     left: 120px;
+  }
+}
+
+@media (max-width: 640px) {
+  .reviews {
+    padding: 0;
+
+    &-stats {
+      position: relative;
+      width: 100%;
+      right: 0px;
+    }
+
+    &-add {
+      width: auto;
+    }
   }
 }
