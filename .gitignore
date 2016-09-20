@@ -1,6 +1,6 @@
 # common, PHPStorm
 .DS_Store
-.idea/*
+**/.idea
 Thumbs.db
 
 *.sql
