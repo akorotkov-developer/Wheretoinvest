@@ -206,22 +206,30 @@
       display: none;
       &_short {
         display: inline-block;
-        width: 27px;
-        height: 27px;
+        width: 26px;
+        height: 26px;
         text-align: center;
-        line-height: 27px;
-        border-radius: 50%;
-        color: #ffffff;
-        font-family: "helveticaneuecyr-heavy", sans-serif;
+        //border-radius: 50%;
         top: 8px;
         position: relative;
+
+        /*
+        color: #ffffff;
+        line-height: 27px;
         letter-spacing: 1px;
-        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a4aab8+0,858893+100 */
-        background: #a4aab8; /* Old browsers */
-        background: -moz-linear-gradient(top, #a4aab8 0%, #858893 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, #a4aab8 0%, #858893 100%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom, #a4aab8 0%, #858893 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a4aab8', endColorstr='#858893', GradientType=0); /* IE6-9 */
+        font-family: "helveticaneuecyr-heavy", sans-serif;
+        background: #a4aab8;
+        background: -moz-linear-gradient(top, #a4aab8 0%, #858893 100%);
+        background: -webkit-linear-gradient(top, #a4aab8 0%, #858893 100%);
+        background: linear-gradient(to bottom, #a4aab8 0%, #858893 100%); 
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a4aab8', endColorstr='#858893', GradientType=0);
+        */
+
+        //border: 1px solid #000;
+        background: url(../images/rectangle.png) no-repeat center center;
+        background-size: cover;
+        line-height: 26px;
+        color: #000;
       }
     }
 
