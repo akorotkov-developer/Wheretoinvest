@@ -1,6 +1,14 @@
 .reviews {
   padding-right: 330px;
 
+  &-notification {
+
+    &-text {
+      font-size: 1.75rem;
+      font-family: 'Conv_HelveticaNeueCyr-Thin', sans-serif;
+    }
+  }
+
   &-item {
     padding: 20px 0;
     border-bottom: 1px solid #ccc;
@@ -179,7 +187,7 @@
 
           &-active {
             width: 0;
-            background-color: #3b3e43;
+            background-color: #999999;
             height: 100%;
             border-radius: 10px;
           }

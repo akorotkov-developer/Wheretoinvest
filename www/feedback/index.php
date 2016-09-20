@@ -58,6 +58,13 @@ $APPLICATION->SetTitle("Отзывы");
 	);?>
 </div>
 
+<?if (isset($_GET["strIMessage"]) && !empty($_GET["strIMessage"])) :?>
+	<div class="reviews-notification">
+			<span class="reviews-notification-text">Спасибо, что делаете нас лучше!<br />
+			Ваш отзыв скоро будет опубликован.</span>
+	</div>
+<?endif;?>
+
 <?$APPLICATION->IncludeComponent("bitrix:news.list","feedback_reviews",Array(
 		"DISPLAY_DATE" => "Y",
 		"DISPLAY_NAME" => "Y",
