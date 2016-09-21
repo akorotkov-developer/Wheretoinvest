@@ -134,11 +134,25 @@ class UserEx
     {
         if (!empty($arFields["UF_ADD_CASH"])) {
             $rsUser = CUser::GetByID($arFields["ID"]);
-            $arUser = $rsUser->Fetch();
 
-            $cash = floatval($arUser["UF_CASH"]);
-            $cash += floatval($arFields["UF_ADD_CASH"]);
-            $arFields["UF_CASH"] = $cash;
+            if ($arUser = $rsUser->Fetch()) {
+                $cash = floatval($arUser["UF_CASH"]);
+                $cash += floatval($arFields["UF_ADD_CASH"]);
+                $arFields["UF_CASH"] = $cash;
+
+                global $USER;
+                $hblock = new \Cetera\HBlock\SimpleHblockObject(11);
+                $arSave = Array(
+                    "UF_USER" => $USER->GetID(),
+                    "UF_PARTNER" => $arUser["ID"],
+                    "UF_SUMM" => floatval($arFields["UF_ADD_CASH"]),
+                    "UF_BALANCE" => $cash,
+                    "UF_DATE" => date("d.m.Y H:i:s")
+                );
+
+                $hblock->add($arSave);
+                unset($hblock);
+            }
 
             $arFields["UF_ADD_CASH"] = "";
         }
