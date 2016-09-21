@@ -154,8 +154,10 @@ ob_end_clean();
         </div>
         <? if (getContainer("User")->isPartner()): ?>
             <div class="column small-12 medium-text-right small-text-center">
-                <span class="b-header__cash"><?= number_format(floatval(getContainer("User")["UF_CASH"]), 0, ",", " ") ?> <span
-                        class="b-header__cash_span">рублей</span></span>
+                <span
+                    class="b-header__cash<? if (floatval(getContainer("User")["UF_CASH"]) > 0): ?> b-header__cash_positive<? endif; ?>"><?= number_format(floatval(getContainer("User")["UF_CASH"]), 0, ",", " ") ?>
+                    <span
+                        class="b-header__cash_span">&#8381;</span></span>
             </div>
         <? endif; ?>
         <div class="column small-12 show-for-small-only text-center b-header__place">
