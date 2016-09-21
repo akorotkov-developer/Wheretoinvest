@@ -28,6 +28,8 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
             "UF_TYPE",
             "UF_REGIONS",
             "UF_SITE",
+            "UF_ACTIVE_START",
+            "UF_ACTIVE_END",
         );
 
         $arFields = Array();
@@ -57,6 +59,14 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
 
         if (empty($arResult["ERRORS"]) && count($arFields)) {
             $arFields["UF_UPDATED"] = date("d.m.Y H:i:s");
+
+            if (!empty($arFields["UF_ACTIVE_START"])) {
+                $arFields["UF_ACTIVE_START"] = date("d.m.Y", strtotime($arFields["UF_ACTIVE_START"]));
+            }
+            if (!empty($arFields["UF_ACTIVE_END"])) {
+                $arFields["UF_ACTIVE_END"] = date("d.m.Y", strtotime($arFields["UF_ACTIVE_END"]));
+            }
+
             $arFields["UF_USER_ID"] = $USER->GetID();
             $hblock = new \Cetera\HBlock\SimpleHblockObject(3);
             if (intval($_REQUEST["ID"]) > 0) {
@@ -72,6 +82,21 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
                     $arResult["ID"] = $res->getId();
                 }
             }
+
+            /*if (empty($arResult["ERRORS"])) {
+                if (!empty($arFields["UF_ACTIVE_START"])) {
+                    $startDate = new DateTime(strtotime($arFields["UF_ACTIVE_START"]));
+                    $today = new DateTime();
+                    $today->setTime(0, 0, 0);
+
+                    if ($startDate == $today) {
+                        $price = floatval(\Ceteralabs\UserVars::GetVar('PUBLICATION_COST')["VALUE"]);
+                        $cash = floatval(getContainer("User")["UF_CASH"]);
+                        $cUser = new \CUser();
+                        $cUser->Update($USER->GetID(), Array("UF_CASH" => ($cash - $price)));
+                    }
+                }
+            }*/
         }
 
         if (!empty($arResult["ID"])) {

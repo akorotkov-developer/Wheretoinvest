@@ -190,7 +190,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 <?endforeach;
                                 endif; ?>/>
                         </div>
-                        <div class="column small-12">
+                        <div class="column small-12 b-form__error-block">
                             <? if (!empty($arItem["ERROR"])): ?>
                                 <div
                                     class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
@@ -242,7 +242,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                             <?endforeach;
                                             endif; ?>><?= $arItem["VALUE"] ?></textarea>
                         </div>
-                        <div class="column small-12">
+                        <div class="column small-12 b-form__error-block">
                             <? if (!empty($arItem["ERROR"])): ?>
                                 <div
                                     class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
@@ -277,7 +277,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                             <? if (!empty($arItem["DISABLED"])) $arSubItem["DISABLED"] = "Y"; ?>
                             <?= getFormFields(Array($arSubKey => $arSubItem), $col, $row_class, $form_name, true, ++$itemDepth); ?>
                         <? endforeach; ?>
-                        <div class="column small-12">
+                        <div class="column small-12 b-form__error-block">
                             <? if (!empty($arItem["ERROR"])): ?>
                                 <div
                                     class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
@@ -331,7 +331,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 <?endforeach;
                                 endif; ?>/>
                         </div>
-                        <div class="column small-12">
+                        <div class="column small-12 b-form__error-block">
                             <? if (!empty($arItem["ERROR"])): ?>
                                 <div
                                     class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
@@ -387,7 +387,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                     endif; ?>/>
                             </div>
                         </div>
-                        <div class="column small-12">
+                        <div class="column small-12 b-form__error-block">
                             <? if (!empty($arItem["ERROR"])): ?>
                                 <div
                                     class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
@@ -451,7 +451,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 <? endforeach; ?>
                             <? endif; ?>
                         </div>
-                        <div class="column small-12">
+                        <div class="column small-12 b-form__error-block">
                             <? if (!empty($arItem["ERROR"])): ?>
                                 <div
                                     class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
@@ -515,7 +515,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 <? endforeach; ?>
                             <? endif; ?>
                         </div>
-                        <div class="column small-12">
+                        <div class="column small-12 b-form__error-block">
                             <? if (!empty($arItem["ERROR"])): ?>
                                 <div
                                     class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
@@ -648,7 +648,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 </select>
                             <? endif; ?>
                         </div>
-                        <div class="column small-12">
+                        <div class="column small-12 b-form__error-block">
                             <? if (!empty($arItem["ERROR"])): ?>
                                 <div
                                     class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
@@ -737,7 +737,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 <?endforeach;
                                 endif; ?>/>
                         </div>
-                        <div class="column small-12">
+                        <div class="column small-12 b-form__error-block">
                             <? if (!empty($arItem["ERROR"])): ?>
                                 <div
                                     class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>

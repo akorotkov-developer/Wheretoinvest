@@ -164,31 +164,84 @@ if (defined("ERROR_404"))
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="columns medium-6 region__net region__snood">
-                        <label for="ggs" class="region__label">Добавить сумму</label>
+                <div class="b-form__row">
+                    <div class="row">
+                        <div class="columns medium-6 region__net region__snood">
+                            <label for="ggs" class="region__label">Добавить сумму</label>
 
-                        <div class="region__from">от</div>
-                        <input type="text" class="region__inp region__inp_medium region__js-sum" value="">
+                            <div class="region__from">от</div>
+                            <input type="text" class="region__inp region__inp_medium region__js-sum" value="">
 
-                        <div class="region__from">до</div>
-                        <input type="text" class="region__inp region__inp_medium region__js-sum_sec" value="">
-                        <span class="region__add region__js-row">+</span>
-                    </div>
-                    <div class="columns medium-6 region__net">
-                        <label for="ggs" class="region__label">Добавить срок</label>
+                            <div class="region__from">до</div>
+                            <input type="text" class="region__inp region__inp_medium region__js-sum_sec" value="">
+                            <span class="region__add region__js-row">+</span>
+                        </div>
+                        <div class="columns medium-6 region__net">
+                            <label for="ggs" class="region__label">Добавить срок</label>
 
-                        <div class="region__from">от</div>
-                        <input type="text" class="region__inp region__inp_mini region__js-fir" value="">
+                            <div class="region__from">от</div>
+                            <input type="text" class="region__inp region__inp_mini region__js-fir" value="">
 
-                        <div class="region__from">до</div>
-                        <input type="text" class="region__inp region__inp_mini region__js-sec" value="">
+                            <div class="region__from">до</div>
+                            <input type="text" class="region__inp region__inp_mini region__js-sec" value="">
 
-                        <div class="region__from">дней</div>
-                        <span class="region__add region__js-col">+</span>
+                            <div class="region__from">дней</div>
+                            <span class="region__add region__js-col">+</span>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column small-12">
+            <?
+            $publicationCost = floatval(\Ceteralabs\UserVars::GetVar('PUBLICATION_COST')["VALUE"]);
+            $canActivate = floatval(getContainer("User")["UF_CASH"]) < $publicationCost ? false : true;
+            $desc = "";
+
+            if ($publicationCost > 0) {
+                $desc = "Стоимость активации предложения - " . $publicationCost . " руб/сутки";
+                if (!$canActivate) {
+                    $desc .= "<br>У Вас недостаточно средств на счете для активации данного предложения.";
+                }
+            } else {
+                $canActivate = true;
+            }
+
+            $arFieldsDate = Array(
+                Array(
+                    "TYPE" => "TEXT_BLOCK",
+                    "TITLE" => "Срок действия предложения",
+                    "DESCRIPTION" => $desc,
+                    "LIST" => Array(
+                        "UF_ACTIVE_START" => Array(
+                            "TYPE" => "DATE",
+                            "NO_LABEL" => "Y",
+                            "VALUE" => !empty($arResult["ITEM"]["UF_ACTIVE_START"]) ? date("Y-m-d", strtotime($arResult["ITEM"]["UF_ACTIVE_START"])) : "",
+                            "COL_SIZE" => 3,
+                            "DISABLED" => $canActivate ? "" : "Y"
+                        ),
+                        Array(
+                            "TYPE" => "STATIC",
+                            "TEXT" => "<div style='padding: 10px 0; color: #9e9e9e;'>&#8212;</div>",
+                            "COL_SIZE" => 1,
+                            "COL_CLASS" => "text-center"
+                        ),
+                        "UF_ACTIVE_END" => Array(
+                            "TYPE" => "DATE",
+                            "NO_LABEL" => "Y",
+                            "VALUE" => !empty($arResult["ITEM"]["UF_ACTIVE_END"]) ? date("Y-m-d", strtotime($arResult["ITEM"]["UF_ACTIVE_END"])) : "",
+                            "COL_SIZE" => 3,
+                            "DISABLED" => $canActivate ? "" : "Y"
+                        )
+                    )
+                )
+            );
+
+            echo getFormFields($arFieldsDate);
+            ?>
+            <br>
         </div>
     </div>
     <div class="row">
@@ -459,12 +512,128 @@ if (defined("ERROR_404"))
                 }
             });
 
+            var lastStart = $("#FIELD_UF_ACTIVE_START").val(),
+                lastEnd = $("#FIELD_UF_ACTIVE_END").val(),
+                canSend = true;
+
+            function changeDate(item, isStart) {
+                var startField = $("#FIELD_UF_ACTIVE_START"),
+                    endField = $("#FIELD_UF_ACTIVE_END"),
+                    start = startField.val() !== "" ? new Date(startField.val()) : "",
+                    end = endField.val() !== "" ? new Date(endField.val()) : "",
+                    current = item.val() !== "" ? new Date(item.val()) : "",
+                    today = new Date(),
+                    price = parseFloat("<?=$publicationCost?>"),
+                    cash = parseFloat("<?=floatval(getContainer("User")["UF_CASH"]);?>"),
+                    formError = startField.closest(".b-form__row").find(".b-form__error-block").last(),
+                    hasAlert = false;
+
+                if(current !== ""){
+                    current.setHours(0);
+                    current.setMinutes(0);
+                    current.setSeconds(0);
+                    current.setMilliseconds(0);
+                }
+                if(start !== ""){
+                    start.setHours(0);
+                    start.setMinutes(0);
+                    start.setSeconds(0);
+                    start.setMilliseconds(0);
+                }
+                if(end !== ""){
+                    end.setHours(0);
+                    end.setMinutes(0);
+                    end.setSeconds(0);
+                    end.setMilliseconds(0);
+                }
+
+                today.setHours(0);
+                today.setMinutes(0);
+                today.setSeconds(0);
+                today.setMilliseconds(0);
+
+                if (current !== "" && current <= today) {
+                    if (!hasAlert)
+                        alert("Укажите будущую дату.");
+                    if (isStart) {
+                        startField.val(lastStart);
+                    }
+                    else {
+                        endField.val(lastEnd);
+                    }
+                    $(".js-price-info").html("");
+
+                    changeDate(item, isStart);
+                    return false;
+                }
+
+                if (end !== "" && start !== "" && end < start) {
+                    if (!hasAlert)
+                        alert("Дата окончания должна быть не раньше даты начала.");
+                    if (isStart)
+                        startField.val(lastStart);
+                    else
+                        endField.val(lastEnd);
+
+                    $(".js-price-info").html("");
+
+                    changeDate(item, isStart);
+                    return false;
+                }
+
+                lastStart = startField.val();
+                lastEnd = endField.val();
+
+                if (start !== "" && end !== "" && price > 0) {
+                    var millisecondsPerDay = 1000 * 60 * 60 * 24;
+                    var millisBetween = end.getTime() - start.getTime();
+                    var days = millisBetween / millisecondsPerDay + 1;
+                    if (!formError.find(".js-price-info").length) {
+                        formError.append('<div class="js-price-info">Сумма списания: ' + (days * price) + ' руб.</div>');
+                    }
+                    else {
+                        formError.find(".js-price-info").html('Сумма списания: ' + (days * price) + ' руб.');
+                    }
+
+                    if (days * price > cash) {
+                        $(".js-price-info").prepend("У Вас недостаточно средств на счете для активации данного предложения.<br>");
+                        $(".js-price-info").css({"color": "#e53935"});
+                        canSend = false;
+                    }
+                    else {
+                        $(".js-price-info").css({"color": "#43AC6A"});
+                        canSend = true;
+                    }
+                }
+            }
+
+            $("#FIELD_UF_ACTIVE_START").on("change", function () {
+                changeDate($(this), true);
+            });
+
+            $("#FIELD_UF_ACTIVE_END").on("change", function () {
+                changeDate($(this), false);
+            });
+
             $(".x-save-form").on("submit", function () {
                 var url = "<?=$templateFolder?>/ajax.php",
                     _this = $(this),
                     data = _this.serialize();
 
                 _this.find(".b-main-block__body").html("");
+
+                if ($("#FIELD_UF_ACTIVE_START").val() !== "" && $("#FIELD_UF_ACTIVE_END").val() == "") {
+                    alert("Не указана дата окончания действия предложения");
+                    return false;
+                }
+                if ($("#FIELD_UF_ACTIVE_START").val() == "" && $("#FIELD_UF_ACTIVE_END").val() !== "") {
+                    alert("Не указана дата начала действия предложения");
+                    return false;
+                }
+                if (!canSend) {
+                    alert("У Вас недостаточно средств на счете для активации данного предложения.");
+                    return false;
+                }
 
                 $.ajax({
                     url: url,
