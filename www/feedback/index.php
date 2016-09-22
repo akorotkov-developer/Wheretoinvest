@@ -59,10 +59,18 @@ $APPLICATION->SetTitle("Отзывы");
 </div>
 
 <?if (isset($_GET["strIMessage"]) && !empty($_GET["strIMessage"])) :?>
-	<div class="reviews-notification">
-			<span class="reviews-notification-text">Спасибо, что делаете нас лучше!<br />
-			Ваш отзыв скоро будет опубликован.</span>
+	<div id="reviews-modal">
+		<div id="reviews-modal_notification">
+			<span id="reviews-modal_notification-text">
+				Спасибо, что делаете нас лучше!<br />
+				Ваш отзыв скоро будет опубликован.
+			</span>
+		</div>
+		<div id="reviews-modal_close">
+			<a id="reviews-modal_close-button" href="/feedback/">OK</a>
+		</div>
 	</div>
+	<div id="reviews-overlay"></div>
 <?endif;?>
 
 <?$APPLICATION->IncludeComponent("bitrix:news.list","feedback_reviews",Array(
