@@ -283,7 +283,9 @@
     }
 
     &__logo {
-      max-width: 170px;
+      max-width: 207px;
+      position: relative;
+      top: -7px;
     }
   }
 }
