@@ -138,12 +138,13 @@
   }
 
   &__cash {
-    margin-bottom: 0.5rem;
-    padding-right: 61px;
     font-weight: bold;
-    display: inline-block;
+    display: block;
+    position: absolute;
     color: #e53935;
-    
+    right: 70px;
+    top: -12px;
+
     &.b-header__cash_positive {
       color: #43AC6A;
     }
@@ -275,7 +276,10 @@
 
     &__cash {
       margin: rem-calc(10 0 0);
-      padding-right: 0;
+      position: relative;
+      right: auto;
+      top: auto;
+      display: inline-block;
     }
 
     &__logo {
