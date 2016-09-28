@@ -700,6 +700,8 @@
                                     });
                                 }
 
+                                $(document).foundation("tooltip", "reflow");
+
                                 if (window.paging.pageNum == window.paging.pageCount) {
                                     $(".js-show-more").detach();
                                 }
