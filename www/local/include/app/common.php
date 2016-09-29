@@ -113,6 +113,10 @@ function getUserMethods()
         ksort($sort);
         $arMethods = $sort;
 
+        if (!$USER->IsAuthorized()) {
+            $arMethods = array_slice($arMethods, 0, 3);
+        }
+
         $obCache->EndDataCache($arMethods);
     }
 

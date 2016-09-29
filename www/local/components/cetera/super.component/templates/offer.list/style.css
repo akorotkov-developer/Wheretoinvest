@@ -14,3 +14,12 @@
     position: relative;
     top: -10px;
 }
+
+a.b-offers__title {
+    cursor: pointer !important;
+    pointer-events: all !important;
+}
+
+.b-offers__title.b-offers__title_sort {
+    border-bottom: 1px dashed #000 !important;
+}

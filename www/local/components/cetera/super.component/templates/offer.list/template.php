@@ -87,18 +87,31 @@
                                     class="column medium-2 small-4 text-right b-offers__bility">
                                     <div class="b-offers__th">
                                         <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("", Array("SORT")) ?>"
-                                           class="b-offers__title<? if (empty($_REQUEST["SORT"])): ?> b-offers__title_sort<? endif; ?>">
+                                           class="b-offers__title<? if (empty($_REQUEST["SORT"])): ?> b-offers__title_sort<? endif; ?> has-tooltip"
+                                           data-tooltip aria-haspopup="true"
+                                           title="с учетом капитализации процентов,<br> % годовых">
                                             Доходность
                                         </a>
                                     </div>
                                 </div>
                                 <div class="column medium-2 small-4 medium-text-center small-text-center">
                                     <div class="b-offers__th">
+                                        <? $arResult["METHODS"] = getContainer("userMethod"); ?>
+                                        <? $i = 1; ?>
+                                        <? $methodList = Array(); ?>
+                                        <? foreach ($arResult["METHODS"] as $arItem): ?>
+                                            <? if ($arItem["ACTIVE"]): ?>
+                                                <? $methodList[$i] = $i . ". " . $arItem["NAME"] ?>
+                                                <? $i++; ?>
+                                            <? endif; ?>
+                                        <? endforeach; ?>
                                         <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[safety]=A", Array("SORT")) ?>"
-                                           class="b-offers__title<? if (!empty($_REQUEST["SORT"]["safety"])): ?> b-offers__title_sort<? endif; ?>">
+                                           class="b-offers__title<? if (!empty($_REQUEST["SORT"]["safety"])): ?> b-offers__title_sort<? endif; ?> has-tooltip"
+                                           data-tooltip aria-haspopup="true"
+                                           title="<?= implode("<br>", $methodList) ?>"
+                                        >
                                             Надежность
                                         </a>
-
                                     </div>
                                 </div>
                                 <div class="column medium-1 show-for-medium-up">
