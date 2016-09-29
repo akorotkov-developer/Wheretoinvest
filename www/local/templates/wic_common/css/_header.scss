@@ -141,12 +141,16 @@
     font-weight: bold;
     display: block;
     position: absolute;
-    color: #e53935;
+    color: #ffffff;
     right: 70px;
     top: -12px;
+    background: #e53935;
+    border-radius: rem-calc(3);
+    line-height: rem-calc(14);
+    padding: rem-calc(0 2);
 
     &.b-header__cash_positive {
-      color: #43AC6A;
+      background: #43AC6A;
     }
   }
 }

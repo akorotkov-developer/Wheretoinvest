@@ -8,7 +8,7 @@ $aMenuLinks = Array(
         ""
     ),
     Array(
-        "Банковские вклады",
+        "Банковские<br> вклады",
         "/?method=3",
         Array(),
         Array(),
