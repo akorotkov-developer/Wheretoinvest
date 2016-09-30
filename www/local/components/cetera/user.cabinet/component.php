@@ -29,6 +29,7 @@ $arDefaultUrlTemplates404 = array(
     "offers" => "offers/#type#/",
     "offers_edit" => "offers/#type#/edit/#ID#/",
     "offers_add" => "offers/#type#/add/",
+    "subscribe" => "subscribe/",
 );
 
 $arDefaultVariableAliases404 = array();
@@ -67,6 +68,7 @@ if ($arParams["SEF_MODE"] == "Y") {
     switch ($componentPage) {
         case "method":
         case "region":
+        case "subscribe":
             if (getContainer('User')->isPartner()) {
                 $b404 = true;
             }
@@ -151,6 +153,9 @@ if ($arParams["SEF_MODE"] == "Y") {
             break;
         case "offers_add":
             $componentPage = "assets";
+            break;
+        case "subscribe":
+            $componentPage = "subscribe";
             break;
         default:
             $componentPage = "index";

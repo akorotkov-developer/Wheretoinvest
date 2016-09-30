@@ -22,6 +22,13 @@ $aMenuLinks = Array(
         "!getContainer('User')->isPartner()"
     ),
     Array(
+        "Моя подписка",
+        "/cabinet/subscribe/",
+        Array(),
+        Array(),
+        "!getContainer('User')->isPartner()"
+    ),
+    Array(
         "Реквизиты организации",
         "/cabinet/details/",
         Array(),
