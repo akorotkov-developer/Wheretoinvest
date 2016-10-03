@@ -75,6 +75,13 @@ if (!empty($_REQUEST["favorite"])) {
     else return false;
 }
 
+$showToday = \Ceteralabs\UserVars::GetVar('PAID_ACCESS')["VALUE"];
+
+if ($showToday !== "N") {
+    $filter["<=UF_ACTIVE_START"] = date("d.m.Y");
+    $filter[">=UF_ACTIVE_END"] = date("d.m.Y");
+}
+
 $query = Array();
 if (!empty($filter))
     $query["filter"] = $filter;

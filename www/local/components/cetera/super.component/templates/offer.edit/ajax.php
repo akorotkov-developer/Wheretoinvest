@@ -30,6 +30,7 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
             "UF_SITE",
             "UF_ACTIVE_START",
             "UF_ACTIVE_END",
+            "UF_ACTIVE_COST",
         );
 
         $arFields = Array();
@@ -74,9 +75,9 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
                         $startDateVal = new DateTime($startDate);
                         $endDateVal = new DateTime($endDate);
 
-                        $arFields["UF_ACTIVE_START"] = $el["UF_ACTIVE_START"];
-                        $arFields["UF_ACTIVE_END"] = $el["UF_ACTIVE_END"];
-                        $arFields["UF_ACTIVE_COST"] = $el["UF_ACTIVE_COST"];
+                        $arFields["UF_ACTIVE_START"] = is_array($el["UF_ACTIVE_START"]) ? $el["UF_ACTIVE_START"] : Array();
+                        $arFields["UF_ACTIVE_END"] = is_array($el["UF_ACTIVE_END"]) ? $el["UF_ACTIVE_END"] : Array();
+                        $arFields["UF_ACTIVE_COST"] = is_array($el["UF_ACTIVE_COST"]) ? $el["UF_ACTIVE_COST"] : Array();
 
                         foreach ($arFields["UF_ACTIVE_START"] as $key => $val) {
                             $startVal = $val;

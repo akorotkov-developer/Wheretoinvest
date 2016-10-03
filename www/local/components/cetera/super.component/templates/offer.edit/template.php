@@ -586,7 +586,7 @@ if (defined("ERROR_404"))
                 today.setSeconds(0);
                 today.setMilliseconds(0);
 
-                if (current !== "" && current <= today) {
+                if (current !== "" && current < today) {
                     if (!hasAlert)
                         alert("Укажите будущую дату.");
                     if (isStart) {
