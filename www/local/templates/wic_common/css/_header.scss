@@ -138,7 +138,6 @@
   }
 
   &__cash {
-    font-weight: bold;
     display: block;
     position: absolute;
     color: #ffffff;
@@ -147,7 +146,7 @@
     background: #e53935;
     border-radius: rem-calc(3);
     line-height: rem-calc(14);
-    padding: rem-calc(0 2);
+    padding: rem-calc(1 5);
 
     &.b-header__cash_positive {
       background: #43AC6A;
