@@ -92,6 +92,26 @@ $arResult["OFFER"] = Array();
 $users = Array();
 $offers = Array();
 while ($el = $list->fetch()) {
+    $today = new \DateTime();
+    $today->setTime(0, 0, 0);
+
+    foreach ($el["UF_ACTIVE_START"] as $key => $val) {
+        if (!empty($val) && !empty($el["UF_ACTIVE_END"][$key])) {
+            $start = new \DateTime($val->format("d.m.Y"));
+            $end = new \DateTime($el["UF_ACTIVE_END"][$key]->format("d.m.Y"));
+
+            $start->setTime(0, 0, 0);
+            $end->setTime(0, 0, 0);
+
+            if ($start <= $today && $end >= $today) {
+                $interval = $start->diff($end);
+                $interval = intval($interval->format("%R%a"));
+                $el["UF_ACTIVE_DIFF"] = "с " . $start->format("d.m.Y") . " по " . $end->format("d.m.Y") . ", " . $interval . " " . \Cetera\Tools\Utils::pluralForm($interval, "сутки", "суток", "суток", "суток");
+                break;
+            }
+        }
+    }
+
     $arResult["OFFER"][$el["ID"]] = $el;
     $users[$el["UF_USER_ID"]] = $el["UF_USER_ID"];
     $offers[$el["ID"]] = $el["ID"];

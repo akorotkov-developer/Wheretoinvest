@@ -59,7 +59,7 @@ function cl($text, $return = false)
     }
 }
 
-function getMess($message, $type = "info", $showClose = true)
+function getMess($message, $type = "info", $showClose = true, $scrollTo = true)
 {
     $empty = true;
     if (is_array($message)) {
@@ -79,7 +79,8 @@ function getMess($message, $type = "info", $showClose = true)
         return "";*/
 
     ob_start(); ?>
-    <div data-alert class="alert-box <?= $type ?> radius">
+    <div data-alert <? if (!$scrollTo): ?>data-alert-scroll <?endif;
+    ?>class="alert-box <?= $type ?> radius">
         <div data-alert-text><?= is_array($message) ? implode("<br>", $message) : $message; ?></div>
         <? if ($showClose): ?>
             <a href="#" class="close">&times;</a>

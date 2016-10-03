@@ -534,7 +534,6 @@
                                 <div class="row b-offers__more-item">
                                     <div class="column medium-3 small-6">
                                         <div class="b-offers__label">Организация</div>
-
                                     </div>
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
@@ -547,6 +546,22 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <? if (!empty($offer["UF_ACTIVE_DIFF"])): ?>
+                                    <div class="row b-offers__more-item">
+                                        <div class="column medium-3 small-6">
+                                            <div class="b-offers__label">Срок действия (срок публикации)</div>
+                                        </div>
+                                        <div class="column medium-9 small-6 b-offers__nopadding">
+                                            <div class="b-offers__res2">
+                                                <div class="b-offers__rest">
+                                                    <?= $offer["UF_ACTIVE_DIFF"] ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <? endif; ?>
+
                                 <div class="row">
                                     <? if ($USER->IsAuthorized()): ?>
                                         <div class="columns show-for-small-only b-offers__best b-offers__nopadding">

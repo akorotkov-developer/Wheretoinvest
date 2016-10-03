@@ -32,7 +32,7 @@
 
 
         function scrollToAlert() {
-            var alert = $("[data-alert]:visible");
+            var alert = $("[data-alert]:not([data-alert-scroll]):visible");
             if (alert.length) {
                 $('html, body').animate({
                     scrollTop: alert.eq(0).offset().top - 80
@@ -77,7 +77,7 @@
 
         (function () {
             $('.js-show-menu').on('click', function (event) {
-                if($(this).hasClass("js-show")){
+                if ($(this).hasClass("js-show")) {
                     $('.js-top-menu').slideDown(500);
                 }
                 else {

@@ -267,7 +267,7 @@ if (defined("ERROR_404"))
             <? endif; ?>
 
             <? if (!$hasActivate && !$canActivate): ?>
-                <?= getMess("У Вас недостаточно средств на счете для активации данного предложения.", "alert", false); ?>
+                <?= getMess("У Вас недостаточно средств на счете для активации данного предложения.<br>Стоимость публикации - " . $publicationCost . " руб. в сутки", "alert", false, false); ?>
             <? endif; ?>
 
             <div class="js-alert hide">
@@ -465,37 +465,37 @@ if (defined("ERROR_404"))
 
             function respoTd() {
                 /*var beginNum = 4;
-                var endNum = 8;
-                if (window.innerWidth < 640) {
-                    $('.graph__row').each(function () {
-                        for (var i = 0; i < beginNum; i++) {
-                            $(this).find('.graph__td').eq(i).show()
-                        }
-                        for (var i = beginNum; i < endNum; i++) {
-                            $(this).find('.graph__td').eq(i).hide()
-                        }
-                    });
-                    $('.graph__head').each(function () {
-                        for (var i = 0; i < beginNum; i++) {
-                            $(this).find('.graph__th').eq(i).show()
-                        }
-                        for (var i = beginNum; i < endNum; i++) {
-                            $(this).find('.graph__th').eq(i).hide()
-                        }
-                    });
-                }
-                else {
-                    $('.graph__row').each(function () {
-                        for (var i = beginNum; i < endNum; i++) {
-                            $(this).find('.graph__td').eq(i).show()
-                        }
-                    });
-                    $('.graph__head').each(function () {
-                        for (var i = beginNum; i < endNum; i++) {
-                            $(this).find('.graph__th').eq(i).show()
-                        }
-                    });
-                }*/
+                 var endNum = 8;
+                 if (window.innerWidth < 640) {
+                 $('.graph__row').each(function () {
+                 for (var i = 0; i < beginNum; i++) {
+                 $(this).find('.graph__td').eq(i).show()
+                 }
+                 for (var i = beginNum; i < endNum; i++) {
+                 $(this).find('.graph__td').eq(i).hide()
+                 }
+                 });
+                 $('.graph__head').each(function () {
+                 for (var i = 0; i < beginNum; i++) {
+                 $(this).find('.graph__th').eq(i).show()
+                 }
+                 for (var i = beginNum; i < endNum; i++) {
+                 $(this).find('.graph__th').eq(i).hide()
+                 }
+                 });
+                 }
+                 else {
+                 $('.graph__row').each(function () {
+                 for (var i = beginNum; i < endNum; i++) {
+                 $(this).find('.graph__td').eq(i).show()
+                 }
+                 });
+                 $('.graph__head').each(function () {
+                 for (var i = beginNum; i < endNum; i++) {
+                 $(this).find('.graph__th').eq(i).show()
+                 }
+                 });
+                 }*/
             }
 
             window.onresize = function () {
