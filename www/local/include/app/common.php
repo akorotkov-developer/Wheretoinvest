@@ -59,6 +59,38 @@ function cl($text, $return = false)
     }
 }
 
+function getMess($message, $type = "info", $showClose = true)
+{
+    $empty = true;
+    if (is_array($message)) {
+        foreach ($message as &$mess) {
+            $mess = trim($mess);
+            if (!empty($mess)) {
+                $empty = false;
+            }
+        }
+    } else {
+        $message = trim($message);
+        if (!empty($message))
+            $empty = false;
+    }
+
+    /*if ($empty)
+        return "";*/
+
+    ob_start(); ?>
+    <div data-alert class="alert-box <?= $type ?> radius">
+        <div data-alert-text><?= is_array($message) ? implode("<br>", $message) : $message; ?></div>
+        <? if ($showClose): ?>
+            <a href="#" class="close">&times;</a>
+        <? endif; ?>
+    </div>
+    <? $return = ob_get_contents();
+    ob_end_clean();
+
+    return $return;
+}
+
 function getUserMethods()
 {
     global $USER;

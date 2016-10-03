@@ -31,3 +31,51 @@
 .graph__td {
     min-width: 80px;
 }
+
+.i-date-table {
+    display: table;
+    min-width: 100%;
+}
+
+.i-date-table__head {
+    display: table-header-group;
+}
+
+.i-date-table__body {
+    display: table-row-group;
+}
+
+.i-date-table__row {
+    display: table-row;
+}
+
+.i-date-table__col {
+    display: table-cell;
+}
+
+.i-date-table__head .i-date-table__col {
+    padding: 20px 15px;
+    background: #ebebeb;
+    color: #202020;
+    font-size: 14px;
+    font-weight: 700;
+    max-width: 190px;
+    min-width: 95px;
+}
+
+.i-date-table__body .i-date-table__col {
+    padding: 16px 15px;
+    color: #000;
+    border-bottom: 1px solid #e6e6e6;
+    max-width: 190px;
+    min-width: 95px;
+}
+
+.i-date-table__body input {
+    margin: 0 !important;
+}
+
+.i-date-table_wrapper {
+    overflow: auto;
+    width: 100%;
+}

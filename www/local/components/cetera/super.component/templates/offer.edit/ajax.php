@@ -60,43 +60,90 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
         if (empty($arResult["ERRORS"]) && count($arFields)) {
             $arFields["UF_UPDATED"] = date("d.m.Y H:i:s");
 
-            if (!empty($arFields["UF_ACTIVE_START"])) {
-                $arFields["UF_ACTIVE_START"] = date("d.m.Y", strtotime($arFields["UF_ACTIVE_START"]));
-            }
-            if (!empty($arFields["UF_ACTIVE_END"])) {
-                $arFields["UF_ACTIVE_END"] = date("d.m.Y", strtotime($arFields["UF_ACTIVE_END"]));
-            }
-
-            $arFields["UF_USER_ID"] = $USER->GetID();
             $hblock = new \Cetera\HBlock\SimpleHblockObject(3);
+            $arFields["UF_USER_ID"] = $USER->GetID();
+            $price = floatval(\Ceteralabs\UserVars::GetVar('PUBLICATION_COST')["VALUE"]);
+
             if (intval($_REQUEST["ID"]) > 0) {
                 $list = $hblock->getList(Array("filter" => Array("ID" => intval($_REQUEST["ID"]))));
                 if ($el = $list->fetch()) {
-                    $hblock->update($el["ID"], $arFields);
-                    $arResult["ID"] = $el["ID"];
+                    if (!empty($arFields["UF_ACTIVE_START"]) && !empty($arFields["UF_ACTIVE_END"])) {
+                        $startDate = date("d.m.Y", strtotime($arFields["UF_ACTIVE_START"]));
+                        $endDate = date("d.m.Y", strtotime($arFields["UF_ACTIVE_END"]));
+
+                        $startDateVal = new DateTime($startDate);
+                        $endDateVal = new DateTime($endDate);
+
+                        $arFields["UF_ACTIVE_START"] = $el["UF_ACTIVE_START"];
+                        $arFields["UF_ACTIVE_END"] = $el["UF_ACTIVE_END"];
+                        $arFields["UF_ACTIVE_COST"] = $el["UF_ACTIVE_COST"];
+
+                        foreach ($arFields["UF_ACTIVE_START"] as $key => $val) {
+                            $startVal = $val;
+                            $endVal = $arFields["UF_ACTIVE_END"][$key];
+
+                            if (!empty($startVal) && !empty($endVal)) {
+                                $startVal = new DateTime($startVal);
+                                $endVal = new DateTime($endVal);
+
+                                if (($startVal <= $startDateVal && $endVal >= $startDateVal) || ($startDateVal <= $startVal && $endDateVal >= $startVal)) {
+                                    $arResult["ERRORS"][] = "Имеются пересечения по срокам активации.";
+                                    break;
+                                }
+                            }
+                        }
+
+                        $arFields["UF_ACTIVE_START"][] = $startDate;
+                        $arFields["UF_ACTIVE_END"][] = $endDate;
+                        $arFields["UF_ACTIVE_COST"][] = $price;
+                    }
+
+                    if (empty($arResult["ERRORS"])) {
+                        $hblock->update($el["ID"], $arFields);
+                        $arResult["ID"] = $el["ID"];
+                    }
                 } else {
                     $arResult["ERRORS"][] = "Ошибка сохранения. Предложение не найдено.";
                 }
             } else {
+                if (!empty($arFields["UF_ACTIVE_START"]) && !empty($arFields["UF_ACTIVE_END"])) {
+                    $startDate = date("d.m.Y", strtotime($arFields["UF_ACTIVE_START"]));
+                    $endDate = date("d.m.Y", strtotime($arFields["UF_ACTIVE_END"]));
+                    $price = floatval(\Ceteralabs\UserVars::GetVar('PUBLICATION_COST')["VALUE"]);
+
+                    $arFields["UF_ACTIVE_START"] = Array();
+                    $arFields["UF_ACTIVE_END"] = Array();
+                    $arFields["UF_ACTIVE_COST"] = Array();
+
+                    $arFields["UF_ACTIVE_START"][] = $startDate;
+                    $arFields["UF_ACTIVE_END"][] = $endDate;
+                    $arFields["UF_ACTIVE_COST"][] = $price;
+                }
+
                 if ($res = $hblock->add($arFields)) {
                     $arResult["ID"] = $res->getId();
                 }
             }
 
-            /*if (empty($arResult["ERRORS"])) {
-                if (!empty($arFields["UF_ACTIVE_START"])) {
-                    $startDate = new DateTime(strtotime($arFields["UF_ACTIVE_START"]));
-                    $today = new DateTime();
-                    $today->setTime(0, 0, 0);
+            if (empty($arResult["ERRORS"])) {
+                if (!empty($_REQUEST["UF_ACTIVE_START"]) && !empty($_REQUEST["UF_ACTIVE_END"])) {
+                    $startDate = new DateTime($_REQUEST["UF_ACTIVE_START"]);
+                    $endDate = new DateTime($_REQUEST["UF_ACTIVE_END"]);
 
-                    if ($startDate == $today) {
-                        $price = floatval(\Ceteralabs\UserVars::GetVar('PUBLICATION_COST')["VALUE"]);
-                        $cash = floatval(getContainer("User")["UF_CASH"]);
+                    $interval = $startDate->diff($endDate);
+                    $interval = intval($interval->format("%R%a"));
+
+                    $summ = $interval * $price;
+                    $cash = floatval(getContainer("User")["UF_CASH"]);
+
+                    if ($cash >= $summ) {
                         $cUser = new \CUser();
-                        $cUser->Update($USER->GetID(), Array("UF_CASH" => ($cash - $price)));
+                        $cUser->Update($USER->GetID(), Array("UF_CASH" => ($cash - $summ)));
+                    } else {
+                        $arResult["ERRORS"][] = "У Вас недостаточно средств на счете для активации данного предложения.";
                     }
                 }
-            }*/
+            }
         }
 
         if (!empty($arResult["ID"])) {

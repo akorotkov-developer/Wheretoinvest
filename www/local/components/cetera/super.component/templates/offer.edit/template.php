@@ -198,49 +198,81 @@ if (defined("ERROR_404"))
             <?
             $publicationCost = floatval(\Ceteralabs\UserVars::GetVar('PUBLICATION_COST')["VALUE"]);
             $canActivate = floatval(getContainer("User")["UF_CASH"]) < $publicationCost ? false : true;
-            $desc = "";
 
-            if ($publicationCost > 0) {
-                $desc = "Стоимость активации предложения - " . $publicationCost . " руб/сутки";
-                if (!$canActivate) {
-                    $desc .= "<br>У Вас недостаточно средств на счете для активации данного предложения.";
-                }
-            } else {
+            if ($publicationCost <= 0) {
                 $canActivate = true;
             }
 
-            $arFieldsDate = Array(
-                Array(
-                    "TYPE" => "TEXT_BLOCK",
-                    "TITLE" => "Срок действия предложения",
-                    "DESCRIPTION" => $desc,
-                    "LIST" => Array(
-                        "UF_ACTIVE_START" => Array(
-                            "TYPE" => "DATE",
-                            "NO_LABEL" => "Y",
-                            "VALUE" => !empty($arResult["ITEM"]["UF_ACTIVE_START"]) ? date("Y-m-d", strtotime($arResult["ITEM"]["UF_ACTIVE_START"])) : "",
-                            "COL_SIZE" => 3,
-                            "DISABLED" => $canActivate ? "" : "Y"
-                        ),
-                        Array(
-                            "TYPE" => "STATIC",
-                            "TEXT" => "<div style='padding: 10px 0; color: #9e9e9e;'>&#8212;</div>",
-                            "COL_SIZE" => 1,
-                            "COL_CLASS" => "text-center"
-                        ),
-                        "UF_ACTIVE_END" => Array(
-                            "TYPE" => "DATE",
-                            "NO_LABEL" => "Y",
-                            "VALUE" => !empty($arResult["ITEM"]["UF_ACTIVE_END"]) ? date("Y-m-d", strtotime($arResult["ITEM"]["UF_ACTIVE_END"])) : "",
-                            "COL_SIZE" => 3,
-                            "DISABLED" => $canActivate ? "" : "Y"
-                        )
-                    )
-                )
-            );
-
-            echo getFormFields($arFieldsDate);
+            $hasActivate = count($arResult["ITEM"]["UF_ACTIVE_START"]) > 0 ? true : false;
             ?>
+            <label class="region__label">Срок публикации на главной странице сайта </label>
+            <? if ($hasActivate || $canActivate): ?>
+                <div class="i-date-table_wrapper">
+                    <div class="i-date-table">
+                        <div class="i-date-table__head">
+                            <div class="i-date-table__row">
+                                <div class="i-date-table__col">Дата начала</div>
+                                <div class="i-date-table__col">Дата окончания</div>
+                                <div class="i-date-table__col">Срок</div>
+                                <div class="i-date-table__col">Тариф, рублей в сутки</div>
+                                <div class="i-date-table__col">Итого</div>
+                            </div>
+                        </div>
+                        <div class="i-date-table__body">
+                            <? foreach ($arResult["ITEM"]["UF_ACTIVE_START"] as $key => $val): ?>
+                                <?
+                                $start = $val;
+                                $end = $arResult["ITEM"]["UF_ACTIVE_END"][$key];
+
+                                if (empty($start) || empty($end))
+                                    continue;
+
+                                $start = new \DateTime($start);
+                                $end = new \DateTime($end);
+                                $interval = $start->diff($end);
+                                $interval = intval($interval->format("%R%a"));
+
+                                $publicationCostItem = floatval($arResult["ITEM"]["UF_ACTIVE_COST"][$key]);
+                                ?>
+                                <div class="i-date-table__row">
+                                    <div
+                                        class="i-date-table__col"><?= $start->format("d.m.Y") ?></div>
+                                    <div
+                                        class="i-date-table__col"><?= $end->format("d.m.Y") ?></div>
+                                    <div
+                                        class="i-date-table__col"><?= $interval . " " . \Cetera\Tools\Utils::pluralForm($interval, "сутки", "суток", "суток", "суток") ?></div>
+                                    <div class="i-date-table__col"><?= $publicationCostItem ?> руб.</div>
+                                    <div class="i-date-table__col"><?= $publicationCostItem * $interval ?> руб.</div>
+                                </div>
+                            <? endforeach; ?>
+                            <? if ($canActivate): ?>
+                                <div class="i-date-table__row">
+                                    <div class="i-date-table__col">
+                                        <input type="date" name="UF_ACTIVE_START" value="" class="js-active-start">
+                                    </div>
+                                    <div class="i-date-table__col">
+                                        <input type="date" name="UF_ACTIVE_END" value="" class="js-active-end">
+                                    </div>
+                                    <div class="i-date-table__col js-active-diff"></div>
+                                    <div class="i-date-table__col">
+                                        <?= $publicationCost ?> руб.
+                                    </div>
+                                    <div class="i-date-table__col js-active-summ"></div>
+                                </div>
+                            <? endif; ?>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            <? endif; ?>
+
+            <? if (!$hasActivate && !$canActivate): ?>
+                <?= getMess("У Вас недостаточно средств на счете для активации данного предложения.", "alert", false); ?>
+            <? endif; ?>
+
+            <div class="js-alert hide">
+                <?= getMess("", "alert", false); ?>
+            </div>
             <br>
         </div>
     </div>
@@ -432,7 +464,7 @@ if (defined("ERROR_404"))
             });
 
             function respoTd() {
-                var beginNum = 4;
+                /*var beginNum = 4;
                 var endNum = 8;
                 if (window.innerWidth < 640) {
                     $('.graph__row').each(function () {
@@ -463,7 +495,7 @@ if (defined("ERROR_404"))
                             $(this).find('.graph__th').eq(i).show()
                         }
                     });
-                }
+                }*/
             }
 
             window.onresize = function () {
@@ -512,35 +544,37 @@ if (defined("ERROR_404"))
                 }
             });
 
-            var lastStart = $("#FIELD_UF_ACTIVE_START").val(),
-                lastEnd = $("#FIELD_UF_ACTIVE_END").val(),
+            var startField = $("input[name='UF_ACTIVE_START']"),
+                endField = $("input[name='UF_ACTIVE_END']"),
+                lastStart = startField.val(),
+                lastEnd = endField.val(),
                 canSend = true;
 
             function changeDate(item, isStart) {
-                var startField = $("#FIELD_UF_ACTIVE_START"),
-                    endField = $("#FIELD_UF_ACTIVE_END"),
-                    start = startField.val() !== "" ? new Date(startField.val()) : "",
+                var start = startField.val() !== "" ? new Date(startField.val()) : "",
                     end = endField.val() !== "" ? new Date(endField.val()) : "",
                     current = item.val() !== "" ? new Date(item.val()) : "",
                     today = new Date(),
                     price = parseFloat("<?=$publicationCost?>"),
                     cash = parseFloat("<?=floatval(getContainer("User")["UF_CASH"]);?>"),
-                    formError = startField.closest(".b-form__row").find(".b-form__error-block").last(),
+                    formError = $(".js-alert"),
+                    diffCol = $(".js-active-diff"),
+                    summCol = $(".js-active-summ"),
                     hasAlert = false;
 
-                if(current !== ""){
+                if (current !== "") {
                     current.setHours(0);
                     current.setMinutes(0);
                     current.setSeconds(0);
                     current.setMilliseconds(0);
                 }
-                if(start !== ""){
+                if (start !== "") {
                     start.setHours(0);
                     start.setMinutes(0);
                     start.setSeconds(0);
                     start.setMilliseconds(0);
                 }
-                if(end !== ""){
+                if (end !== "") {
                     end.setHours(0);
                     end.setMinutes(0);
                     end.setSeconds(0);
@@ -561,13 +595,14 @@ if (defined("ERROR_404"))
                     else {
                         endField.val(lastEnd);
                     }
-                    $(".js-price-info").html("");
+                    diffCol.html("");
+                    summCol.html("");
 
                     changeDate(item, isStart);
                     return false;
                 }
 
-                if (end !== "" && start !== "" && end < start) {
+                if (end !== "" && start !== "" && end <= start) {
                     if (!hasAlert)
                         alert("Дата окончания должна быть не раньше даты начала.");
                     if (isStart)
@@ -575,7 +610,8 @@ if (defined("ERROR_404"))
                     else
                         endField.val(lastEnd);
 
-                    $(".js-price-info").html("");
+                    diffCol.html("");
+                    summCol.html("");
 
                     changeDate(item, isStart);
                     return false;
@@ -587,31 +623,28 @@ if (defined("ERROR_404"))
                 if (start !== "" && end !== "" && price > 0) {
                     var millisecondsPerDay = 1000 * 60 * 60 * 24;
                     var millisBetween = end.getTime() - start.getTime();
-                    var days = millisBetween / millisecondsPerDay + 1;
-                    if (!formError.find(".js-price-info").length) {
-                        formError.append('<div class="js-price-info">Сумма списания: ' + (days * price) + ' руб.</div>');
-                    }
-                    else {
-                        formError.find(".js-price-info").html('Сумма списания: ' + (days * price) + ' руб.');
-                    }
+                    var days = millisBetween / millisecondsPerDay;
+
+                    diffCol.html(days + (days == 1 ? " сутки" : " суток"));
+                    summCol.html(days * price + " руб.");
 
                     if (days * price > cash) {
-                        $(".js-price-info").prepend("У Вас недостаточно средств на счете для активации данного предложения.<br>");
-                        $(".js-price-info").css({"color": "#e53935"});
+                        formError.find("[data-alert-text]").html("У Вас недостаточно средств на счете для активации данного предложения.<br>Доступно для списания " + cash + " руб.");
+                        formError.removeClass("hide");
                         canSend = false;
                     }
                     else {
-                        $(".js-price-info").css({"color": "#43AC6A"});
+                        formError.addClass("hide");
                         canSend = true;
                     }
                 }
             }
 
-            $("#FIELD_UF_ACTIVE_START").on("change", function () {
+            startField.on("change", function () {
                 changeDate($(this), true);
             });
 
-            $("#FIELD_UF_ACTIVE_END").on("change", function () {
+            endField.on("change", function () {
                 changeDate($(this), false);
             });
 
@@ -622,11 +655,11 @@ if (defined("ERROR_404"))
 
                 _this.find(".b-main-block__body").html("");
 
-                if ($("#FIELD_UF_ACTIVE_START").val() !== "" && $("#FIELD_UF_ACTIVE_END").val() == "") {
+                if (startField.val() !== "" && endField.val() == "") {
                     alert("Не указана дата окончания действия предложения");
                     return false;
                 }
-                if ($("#FIELD_UF_ACTIVE_START").val() == "" && $("#FIELD_UF_ACTIVE_END").val() !== "") {
+                if (startField == "" && endField.val() !== "") {
                     alert("Не указана дата начала действия предложения");
                     return false;
                 }
@@ -643,7 +676,8 @@ if (defined("ERROR_404"))
                     success: function (response) {
                         if (response.ERRORS !== undefined) {
                             _this.find(".b-main-block__body").prepend('<div data-alert class="alert-box alert radius">' + response.ERRORS + '<a href="#" class="close">&times;</a></div>');
-                            $(document).foundation('alert', 'reflow');
+                            $(document).foundation('alert', 'reflow')
+                            $("html, body").stop().animate({scrollTop: $(".b-main-block__body").offset().top - 20}, '500', 'swing');
                         }
                         else if (response.SUCCESS !== undefined && response.ID !== undefined) {
                             var redirect = "<?=$redirectUrl?>";
@@ -654,6 +688,7 @@ if (defined("ERROR_404"))
                                 _this.find(".b-main-block__body").prepend('<div data-alert class="alert-box success radius">' + response.SUCCESS + '<a href="#" class="close">&times;</a></div>');
                                 $(document).foundation('alert', 'reflow');
                                 _this.find("[name='ID']").val(response.ID);
+                                $("html, body").stop().animate({scrollTop: $(".b-main-block__body").offset().top - 20}, '500', 'swing');
                             }
                         }
                     }
