@@ -698,6 +698,84 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                 </div>
             <?
             break;
+            case "DATETIME":
+            ob_start();
+            $APPLICATION->IncludeComponent(
+                'cetera:main.calendar',
+                '',
+                array(
+                    'FORM_NAME' => $form_name,
+                    'INPUT_NAME' => $arKey,
+                    'INPUT_VALUE' => !empty($arItem["VALUE"]) ? $arItem["VALUE"] : "",
+                    'SHOW_TIME' => !empty($arItem["SHOW_TIME"]) ? $arItem["SHOW_TIME"] : "N",
+                    "HIDE_TIMEBAR" => ($arItem["SHOW_TIME"] == "Y") ? "N" : "Y",
+                    "END_TIME" => $arItem["END_TIME"],
+                    "ONLY_PAST" => $arItem["ONLY_PAST"],
+                    "ONLY_FUTURE" => $arItem["ONLY_FUTURE"],
+                    "REQUIRED" => $arItem["REQUIRED"]
+                ),
+                null,
+                array('HIDE_ICONS' => 'Y')
+            );
+            $calendar = ob_get_contents();
+            ob_end_clean();
+            ?>
+                <div
+                    class="column small-<?= $rcol ?><? if (empty($arItem["IN_TEXT_BLOCK"])): ?> end<? endif; ?><? if (!empty($arItem["COL_CLASS"])): ?> <?= $arItem["COL_CLASS"] ?><? endif; ?>">
+                    <div class="row">
+                        <? if (!empty($arItem["BLOCK_TITLE"])): ?>
+                            <div class="column small-12">
+                                <div
+                                    class="b-form__title b-form__title_margin-bottom b-form__title_no-help<? if (!empty($arItem["LABEL_CLASS"])): ?> <?= $arItem["LABEL_CLASS"] ?><? endif; ?>">
+                                    <span class="b-form__title-text"><?= $arItem["BLOCK_TITLE"] ?></span>
+                                </div>
+                            </div>
+                        <? endif; ?>
+                        <div class="column small-<?= $inputSize; ?> end">
+                            <div class="b-form__input_calendar-wrapper">
+                                <input
+                                    class="b-form__input<? if (!empty($arItem["SHOW_TIME"])): ?> b-form__input_datetime<?
+                                    else:?> b-form__input_date<? endif; ?><? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
+                                    type="text"
+                                    readonly
+                                    value="<?= $arItem["VALUE"] ?>"
+                                    name="<?= $arKey ?>"
+                                    id="FIELD_<?= $arKey ?>" <?
+                                    if (!empty($arItem["REQUIRED"])): ?>required <?endif;
+                                    ?><?
+                                if (!empty($arItem["DISABLED"])): ?>disabled <?endif;
+                                    ?><?
+                                if (!empty($arItem["PLACEHOLDER"])): ?>placeholder="<?= $arItem["PLACEHOLDER"] ?>"
+                                    <?endif;
+                                    ?><?
+                                    if (!empty($arItem["READONLY"])): ?>readonly <?endif;
+                                    ?>
+                                    <? if (count($arItem["PARAMS"])):
+                                    foreach ($arItem["PARAMS"] as $k => $v): ?>
+                                    <?= $k ?>="<?= addslashes($v) ?>"
+                                    <?endforeach;
+                                    endif; ?>
+                                    onclick="$(this).parent().find('.b-form__input_calendar-link').click();"
+                                />
+                                <?= $calendar; ?>
+                                <!--<a href="#" class="b-form__input_calendar-link"></a>-->
+                            </div>
+                        </div>
+                        <div class="column small-12 b-form__error-block">
+                            <? if (!empty($arItem["ERROR"])): ?>
+                                <div
+                                    class="b-form__error"><?= is_array($arItem["ERROR"]) ? implode("<br>", $arItem["ERROR"]) : $arItem["ERROR"]; ?></div>
+                            <? endif; ?>
+                            <? if (!empty($arItem["DESCRIPTION"])): ?>
+                                <div class="b-form__title-desc">
+                                    <?= is_array($arItem["DESCRIPTION"]) ? implode("<br/>", $arItem["DESCRIPTION"]) : $arItem["DESCRIPTION"]; ?>
+                                </div>
+                            <? endif; ?>
+                        </div>
+                    </div>
+                </div>
+            <?
+            break;
             case "DATE":
             ?>
                 <div

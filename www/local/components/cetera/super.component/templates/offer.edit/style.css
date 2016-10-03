@@ -57,10 +57,11 @@
     padding: 20px 15px;
     background: #ebebeb;
     color: #202020;
-    font-size: 14px;
-    font-weight: 700;
     max-width: 190px;
     min-width: 95px;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
 }
 
 .i-date-table__body .i-date-table__col {
@@ -69,6 +70,7 @@
     border-bottom: 1px solid #e6e6e6;
     max-width: 190px;
     min-width: 95px;
+    vertical-align: middle;
 }
 
 .i-date-table__body input {
@@ -78,4 +80,8 @@
 .i-date-table_wrapper {
     overflow: auto;
     width: 100%;
+}
+
+.i-date-table__body .i-date-table__col .b-form__row {
+    margin: 0 !important;
 }

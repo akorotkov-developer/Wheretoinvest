@@ -205,6 +205,7 @@ if (defined("ERROR_404"))
 
             $hasActivate = count($arResult["ITEM"]["UF_ACTIVE_START"]) > 0 ? true : false;
             ?>
+            <br>
             <label class="region__label">Срок публикации на главной странице сайта </label>
             <? if ($hasActivate || $canActivate): ?>
                 <div class="i-date-table_wrapper">
@@ -246,12 +247,34 @@ if (defined("ERROR_404"))
                                 </div>
                             <? endforeach; ?>
                             <? if ($canActivate): ?>
+                                <?
+                                $arFields["DATE_START"] = Array(
+                                    "UF_ACTIVE_START" => Array(
+                                        "TYPE" => "DATETIME",
+                                        "VALUE" => "",
+                                        "INPUT_CLASS" => "js-active-start",
+                                        "PLACEHOLDER" => "дд.мм.гггг",
+                                        "ONLY_FUTURE" => "Y"
+                                    )
+                                );
+                                $arFields["DATE_END"] = Array(
+                                    "UF_ACTIVE_END" => Array(
+                                        "TYPE" => "DATETIME",
+                                        "VALUE" => "",
+                                        "INPUT_CLASS" => "js-active-end",
+                                        "PLACEHOLDER" => "дд.мм.гггг",
+                                        "ONLY_FUTURE" => "Y"
+                                    )
+                                );
+
+
+                                ?>
                                 <div class="i-date-table__row">
                                     <div class="i-date-table__col">
-                                        <input type="date" name="UF_ACTIVE_START" value="" class="js-active-start">
+                                        <?= getFormFields($arFields["DATE_START"], 12, "b-form__row_no-margin"); ?>
                                     </div>
                                     <div class="i-date-table__col">
-                                        <input type="date" name="UF_ACTIVE_END" value="" class="js-active-end">
+                                        <?= getFormFields($arFields["DATE_END"], 12, "b-form__row_no-margin"); ?>
                                     </div>
                                     <div class="i-date-table__col js-active-diff"></div>
                                     <div class="i-date-table__col">
@@ -293,6 +316,15 @@ if (defined("ERROR_404"))
         })();
 
         (function () {
+            $(".x-save-form input").on("keypress", function (event) {
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                if (keycode == '13') {
+                    $(this).blur();
+                    event.preventDefault();
+                    return false;
+                }
+            });
+
             function deleteCol() {
                 var num = $(this).parent().index();
 
@@ -551,9 +583,10 @@ if (defined("ERROR_404"))
                 canSend = true;
 
             function changeDate(item, isStart) {
-                var start = startField.val() !== "" ? new Date(startField.val()) : "",
-                    end = endField.val() !== "" ? new Date(endField.val()) : "",
-                    current = item.val() !== "" ? new Date(item.val()) : "",
+                var pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
+                var start = startField.val() !== "" ? new Date(startField.val().replace(pattern, '$3-$2-$1')) : "",
+                    end = endField.val() !== "" ? new Date(endField.val().replace(pattern, '$3-$2-$1')) : "",
+                    current = item.val() !== "" ? new Date(item.val().replace(pattern, '$3-$2-$1')) : "",
                     today = new Date(),
                     price = parseFloat("<?=$publicationCost?>"),
                     cash = parseFloat("<?=floatval(getContainer("User")["UF_CASH"]);?>"),
@@ -697,5 +730,6 @@ if (defined("ERROR_404"))
                 return false;
             });
         })();
-    });
+    })
+    ;
 </script>
