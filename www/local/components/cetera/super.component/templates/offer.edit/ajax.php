@@ -87,7 +87,7 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
                                 $startVal = new DateTime($startVal);
                                 $endVal = new DateTime($endVal);
 
-                                if (($startVal <= $startDateVal && $endVal >= $startDateVal) || ($startDateVal <= $startVal && $endDateVal >= $startVal)) {
+                                if (($startVal <= $startDateVal && $endVal > $startDateVal) || ($startDateVal <= $startVal && $endDateVal > $startVal)) {
                                     $arResult["ERRORS"][] = "Имеются пересечения по срокам активации.";
                                     break;
                                 }

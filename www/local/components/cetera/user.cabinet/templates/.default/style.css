@@ -45,3 +45,16 @@
     font-size: 14px;
     color: #9e9e9e;
 }
+
+.i-public-status {
+    display: inline-block;
+    color: #ffffff;
+    background: #a1a1a1;
+    border-radius: 0.1875rem;
+    line-height: 0.875rem;
+    padding: 0.0625rem 0.3125rem;
+}
+
+.i-public-status.i-public-status_active {
+    background: #43AC6A;
+}

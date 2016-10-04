@@ -32,6 +32,23 @@ if (defined("NO_LEGAL") && $type == "27"):?>
 $hblock = new Cetera\HBlock\SimpleHblockObject(3);
 $list = $hblock->getList(Array("filter" => Array("UF_USER_ID" => intval($USER->GetID()), "UF_TYPE" => $type)));
 while ($el = $list->fetch()) {
+    $today = new \DateTime();
+    $today->setTime(0, 0, 0);
+
+    foreach ($el["UF_ACTIVE_START"] as $key => $val) {
+        if (!empty($val) && !empty($el["UF_ACTIVE_END"][$key])) {
+            $start = new \DateTime($val->format("d.m.Y"));
+            $end = new \DateTime($el["UF_ACTIVE_END"][$key]->format("d.m.Y"));
+
+            $start->setTime(0, 0, 0);
+            $end->setTime(0, 0, 0);
+
+            if ($start <= $today && $end > $today) {
+                $el["UF_ACTIVE_DIFF"] = $start->format("d.m.Y") . " - " . $end->format("d.m.Y");
+                break;
+            }
+        }
+    }
     $arResult["ITEMS"][] = $el;
 }
 ?>
@@ -44,24 +61,35 @@ while ($el = $list->fetch()) {
 <? endif; ?>
 
 <div class="row">
-    <div class="columns invest">
-        <? if (count($arResult["ITEMS"])): ?>
-            <div class="invest__head">
-                <div class="invest__title">Наименование предложения</div>
-                <div class="invest__region">Дата обновления</div>
+    <div class="columns">
+        <div class="invest__wrapper">
+            <div class="invest">
+                <? if (count($arResult["ITEMS"])): ?>
+                    <div class="invest__head">
+                        <div class="invest__title">Наименование предложения</div>
+                        <div class="invest__region">Срок публикации</div>
+                        <div class="invest__region invest_small-hide">Статус публикации</div>
+                        <div class="invest__region"></div>
+                    </div>
+                    <div class="invest__body">
+                        <? foreach ($arResult["ITEMS"] as $arItem): ?>
+                            <a class="invest__row" href="edit/<?= $arItem["ID"] ?>/">
+                                <div class="invest__deposite"><?= $arItem["UF_NAME"] ?></div>
+                                <div class="invest__place"><?= $arItem["UF_ACTIVE_DIFF"] ?></div>
+                                <div class="invest__place invest_small-hide">
+                                    <? if (!empty($arItem["UF_ACTIVE_DIFF"])): ?>
+                                        <span class="i-public-status i-public-status_active">опубликовано</span>
+                                    <? else: ?>
+                                        <span class="i-public-status">завершено</span>
+                                    <? endif; ?>
+                                </div>
+                                <div class="invest__place"></div>
+                            </a>
+                        <? endforeach; ?>
+                    </div>
+                <? endif; ?>
             </div>
-            <div class="invest__body">
-                <? foreach ($arResult["ITEMS"] as $arItem): ?>
-                    <a href="edit/<?= $arItem["ID"] ?>/">
-                        <div class="invest__row">
-                            <div class="invest__deposite"><?= $arItem["UF_NAME"] ?></div>
-                            <div
-                                class="invest__place"><?= !empty($arItem["UF_UPDATED"]) ? strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($arItem["UF_UPDATED"]))) : ""; ?></div>
-                        </div>
-                    </a>
-                <? endforeach; ?>
-            </div>
-        <? endif; ?>
+        </div>
         <a href="add/" class="sentence">Создать предложение</a>
     </div>
 </div>
