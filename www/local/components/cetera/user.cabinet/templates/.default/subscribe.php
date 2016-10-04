@@ -9,8 +9,8 @@ global $USER;
 /** @global CMain $APPLICATION */
 global $APPLICATION;
 
-$APPLICATION->SetTitle("Редактирование подписки");
-$APPLICATION->AddChainItem("Редактирование подписки" );
+$APPLICATION->SetTitle("Моя подписка");
+$APPLICATION->AddChainItem("Моя подписка" );
 ?>
 <? $APPLICATION->IncludeComponent(
     "bitrix:subscribe.edit",
@@ -20,7 +20,7 @@ $APPLICATION->AddChainItem("Редактирование подписки" );
         "ALLOW_ANONYMOUS" => "Y",	// Разрешить анонимную подписку
         "SHOW_AUTH_LINKS" => "Y",	// Показывать ссылки на авторизацию при анонимной подписке
         "CACHE_TIME" => "36000000",	// Время кеширования (сек.)
-        "SET_TITLE" => "Y",	// Устанавливать заголовок страницы
+        "SET_TITLE" => "N",	// Устанавливать заголовок страницы
     ),
     false
 ); ?>

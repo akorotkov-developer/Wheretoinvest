@@ -96,14 +96,14 @@
   }
 
   &__required {
-    color: #f30f3a;
+    color: #e53935;
     font-size: 110%;
     top: -0.05em;
   }
 
   &__error {
     font-size: rem-calc(12);
-    color: #ff4c27;
+    color: #e53935;
     line-height: rem-calc(16);
     padding-top: rem-calc(1);
     margin-bottom: rem-calc(-11);
