@@ -62,9 +62,9 @@ while ($el = $list->fetch()) {
 
 <div class="row">
     <div class="columns">
-        <div class="invest__wrapper">
-            <div class="invest">
-                <? if (count($arResult["ITEMS"])): ?>
+        <? if (count($arResult["ITEMS"])): ?>
+            <div class="invest__wrapper">
+                <div class="invest">
                     <div class="invest__head">
                         <div class="invest__title">Наименование предложения</div>
                         <div class="invest__region">Срок публикации</div>
@@ -87,9 +87,9 @@ while ($el = $list->fetch()) {
                             </a>
                         <? endforeach; ?>
                     </div>
-                <? endif; ?>
+                </div>
             </div>
-        </div>
+        <? endif; ?>
         <a href="add/" class="sentence">Создать предложение</a>
     </div>
 </div>
