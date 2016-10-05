@@ -53,7 +53,7 @@ $MESS ['subscr_title_status_note1'] = "Ваша подписка не подтв
 $MESS ['subscr_title_status_note2'] = "Ваша подписка подтверждена и активна.";
 $MESS ['subscr_status_note3'] = "Если вы хотите отписаться от рассылок, нажмите на кнопку <span style='color: #e53935'>Отписаться</span>.";
 $MESS ['subscr_status_note4'] = "Ваша подписка подтверждена, но не активна.";
-$MESS ['subscr_status_note5'] = "Если вы хотите возобновить рассылки, нажмите на кнопку <span style='color: #e53935'>Активизировать</span>.";
+$MESS ['subscr_status_note5'] = "Если вы хотите возобновить рассылки, нажмите на кнопку <span style='color: #e53935'>Активировать</span>.";
 $MESS ['subscr_unsubscr'] = "Отписаться";
 $MESS ['subscr_activate'] = "Активировать";
 $MESS ['subscr_auth_sect_title'] = "Авторизация";

@@ -63,6 +63,23 @@
                             <div class="subscribe__small-gray"><? echo GetMessage("subscr_status_note4") ?></div>
                             <div class="subscribe__small-gray"><? echo GetMessage("subscr_status_note5") ?></div>
                         <? endif; ?>
+
+                        <? if ($arResult["SUBSCRIPTION"]["CONFIRMED"] == "Y"): ?>
+                            <br>
+                            <div class="row">
+                                <div class="column small-12 medium-12 large-12">
+                                    <? if ($arResult["SUBSCRIPTION"]["ACTIVE"] == "Y"): ?>
+                                        <button type="submit" name="unsubscribe"
+                                                class="content__submit"><? echo GetMessage("subscr_unsubscr") ?></button>
+                                        <input type="hidden" name="action" value="unsubscribe"/>
+                                    <? else: ?>
+                                        <button type="submit" name="activate"
+                                                class="content__submit"><? echo GetMessage("subscr_activate") ?></button>
+                                        <input type="hidden" name="action" value="activate"/>
+                                    <? endif; ?>
+                                </div>
+                            </div>
+                        <? endif; ?>
                     </div>
                 </div>
                 <input type="hidden" name="ID" value="<? echo $arResult["SUBSCRIPTION"]["ID"]; ?>"/>
@@ -70,20 +87,4 @@
             </div>
         </div>
     </div>
-
-    <? if ($arResult["SUBSCRIPTION"]["CONFIRMED"] == "Y"): ?>
-        <div class="row">
-            <div class="column small-12 medium-12 large-12">
-                <? if ($arResult["SUBSCRIPTION"]["ACTIVE"] == "Y"): ?>
-                    <button type="submit" name="unsubscribe"
-                            class="content__submit"><? echo GetMessage("subscr_unsubscr") ?></button>
-                    <input type="hidden" name="action" value="unsubscribe"/>
-                <? else: ?>
-                    <button type="submit" name="activate"
-                            class="content__submit"><? echo GetMessage("subscr_activate") ?></button>
-                    <input type="hidden" name="action" value="activate"/>
-                <? endif; ?>
-            </div>
-        </div>
-    <? endif; ?>
 </form>

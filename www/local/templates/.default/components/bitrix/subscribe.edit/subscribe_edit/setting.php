@@ -40,7 +40,7 @@
                             <div class="column small-12 medium-12 end">
                                 <span data-tooltip aria-haspopup="true"
                                       class="has-tip subscribe__hint subscribe__hint-mt"
-                                      title="<? echo GetMessage("subscr_settings_note1") ?><br><? echo GetMessage("subscr_settings_note2") ?>"></span>
+                                      title="<? echo GetMessage("subscr_settings_note1") ?>"></span>
                             </div>
                         </div>
                     </div>

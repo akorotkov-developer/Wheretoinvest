@@ -6,7 +6,8 @@
 }
 
 .subscribe__no-padding {
-    padding: 10px 0;
+    padding: 25px 0 10px;
+    margin-bottom: 50px;
 }
 
 .subscribe__small {
@@ -18,9 +19,9 @@
 }
 
 .subscribe__border-b {
-    border-bottom: 1px solid #ccc;
+    /*border-bottom: 1px solid #ccc;*/
     line-height: 20px;
-    padding-bottom: 12px;
+    padding-bottom: 5px;
     padding-top: 12px;
     display: inline-block;
     width: 100%;
