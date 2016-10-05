@@ -132,36 +132,41 @@ ob_end_clean();
 <body>
 <?php $APPLICATION->ShowPanel(); ?>
 <header class="b_header">
-    <div class="b-header__firstline row">
-        <div class="small-8 small-offset-2 medium-offset-0 medium-5 column small-only-text-center b-header__logotype">
-            <a href="/"><img src="<?= WIC_TEMPLATE_PATH ?>/images/logo.png" alt="" class="b-header__logo"></a>
-        </div>
-        <div class="column b-header__place text-center hide-for-small-only">
-            <?= $location ?>
-        </div>
-        <div class="column small-2 medium-4 medium-text-right small-text-center b-header__loginform">
-            <? $APPLICATION->IncludeComponent("bitrix:main.include", "", Array(
-                    "AREA_FILE_SHOW" => "file",
-                    "AREA_FILE_SUFFIX" => "",
-                    "PATH" => "/include/auth.php",
-                    "AREA_FILE_RECURSIVE" => "Y",
-                    "EDIT_TEMPLATE" => "standard.php"
-                )
-            ); ?>
-        </div>
-        <div class="column small-2 b-header__showMenu_bg show-for-small-only text-right js-show-menu">
-            <div class="b-header__showMenu">&nbsp;</div>
-        </div>
-        <? if (getContainer("User")->isPartner()): ?>
-            <div class="column small-12 medium-text-right small-text-center">
+    <div>
+        <div class="js-header-main">
+            <div class="b-header__firstline row">
+                <div
+                    class="small-8 small-offset-2 medium-offset-0 medium-5 column small-only-text-center b-header__logotype">
+                    <a href="/"><img src="<?= WIC_TEMPLATE_PATH ?>/images/logo.png" alt="" class="b-header__logo"></a>
+                </div>
+                <div class="column b-header__place text-center hide-for-small-only">
+                    <?= $location ?>
+                </div>
+                <div class="column small-2 medium-4 medium-text-right small-text-center b-header__loginform">
+                    <? $APPLICATION->IncludeComponent("bitrix:main.include", "", Array(
+                            "AREA_FILE_SHOW" => "file",
+                            "AREA_FILE_SUFFIX" => "",
+                            "PATH" => "/include/auth.php",
+                            "AREA_FILE_RECURSIVE" => "Y",
+                            "EDIT_TEMPLATE" => "standard.php"
+                        )
+                    ); ?>
+                </div>
+                <div class="column small-2 b-header__showMenu_bg show-for-small-only text-right js-show-menu">
+                    <div class="b-header__showMenu">&nbsp;</div>
+                </div>
+                <? if (getContainer("User")->isPartner()): ?>
+                    <div class="column small-12 medium-text-right small-text-center">
                 <span
                     class="b-header__cash<? if (floatval(getContainer("User")["UF_CASH"]) > 0): ?> b-header__cash_positive<? endif; ?>"><?= number_format(floatval(getContainer("User")["UF_CASH"]), 2, ".", " ") ?>
                     <span
                         class="b-header__cash_span">р</span></span>
+                    </div>
+                <? endif; ?>
+                <div class="column small-12 show-for-small-only text-center b-header__place">
+                    <?= $location; ?>
+                </div>
             </div>
-        <? endif; ?>
-        <div class="column small-12 show-for-small-only text-center b-header__place">
-            <?= $location; ?>
         </div>
     </div>
     <div class="js-top-menu hide">

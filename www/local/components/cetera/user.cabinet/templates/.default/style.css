@@ -58,3 +58,7 @@
 .i-public-status.i-public-status_active {
     background: #43AC6A;
 }
+
+.i-public-status.i-public-status_future {
+    background: #FFCC00;
+}

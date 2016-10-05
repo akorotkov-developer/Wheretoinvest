@@ -87,7 +87,7 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
                                 $startVal = new DateTime($startVal);
                                 $endVal = new DateTime($endVal);
 
-                                if (($startVal <= $startDateVal && $endVal > $startDateVal) || ($startDateVal <= $startVal && $endDateVal > $startVal)) {
+                                if (($startVal <= $startDateVal && $endVal >= $startDateVal) || ($startDateVal <= $startVal && $endDateVal >= $startVal)) {
                                     $arResult["ERRORS"][] = "Имеются пересечения по срокам активации.";
                                     break;
                                 }
@@ -132,7 +132,7 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
                     $endDate = new DateTime($_REQUEST["UF_ACTIVE_END"]);
 
                     $interval = $startDate->diff($endDate);
-                    $interval = intval($interval->format("%R%a"));
+                    $interval = intval($interval->format("%R%a")) + 1;
 
                     $summ = $interval * $price;
                     $cash = floatval(getContainer("User")["UF_CASH"]);

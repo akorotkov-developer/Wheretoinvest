@@ -206,7 +206,7 @@ if (defined("ERROR_404"))
             $hasActivate = count($arResult["ITEM"]["UF_ACTIVE_START"]) > 0 ? true : false;
             ?>
             <br>
-            <label class="region__label">Срок публикации на главной странице сайта </label>
+            <label class="region__label">Период публикации на главной странице сайта</label>
             <? if ($hasActivate || $canActivate): ?>
                 <div class="i-date-table_wrapper">
                     <div class="i-date-table">
@@ -215,7 +215,7 @@ if (defined("ERROR_404"))
                                 <div class="i-date-table__col">Дата начала</div>
                                 <div class="i-date-table__col">Дата окончания</div>
                                 <div class="i-date-table__col">Срок</div>
-                                <div class="i-date-table__col">Тариф, рублей в сутки</div>
+                                <div class="i-date-table__col i-date-table__col_tariff">Тариф,<br> рублей в сутки</div>
                                 <div class="i-date-table__col">Итого</div>
                             </div>
                         </div>
@@ -231,7 +231,7 @@ if (defined("ERROR_404"))
                                 $start = new \DateTime($start);
                                 $end = new \DateTime($end);
                                 $interval = $start->diff($end);
-                                $interval = intval($interval->format("%R%a"));
+                                $interval = intval($interval->format("%R%a")) + 1;
 
                                 $publicationCostItem = floatval($arResult["ITEM"]["UF_ACTIVE_COST"][$key]);
                                 ?>
@@ -635,7 +635,7 @@ if (defined("ERROR_404"))
                     return false;
                 }
 
-                if (end !== "" && start !== "" && end <= start) {
+                if (end !== "" && start !== "" && end < start) {
                     if (!hasAlert)
                         alert("Дата окончания должна быть не раньше даты начала.");
                     if (isStart)
@@ -656,7 +656,7 @@ if (defined("ERROR_404"))
                 if (start !== "" && end !== "" && price > 0) {
                     var millisecondsPerDay = 1000 * 60 * 60 * 24;
                     var millisBetween = end.getTime() - start.getTime();
-                    var days = millisBetween / millisecondsPerDay;
+                    var days = (millisBetween / millisecondsPerDay) + 1;
 
                     diffCol.html(days + (days == 1 ? " сутки" : " суток"));
                     summCol.html(days * price + " руб.");

@@ -79,7 +79,7 @@ $showToday = \Ceteralabs\UserVars::GetVar('PAID_ACCESS')["VALUE"];
 
 if ($showToday !== "N") {
     $filter["<=UF_ACTIVE_START"] = date("d.m.Y");
-    $filter[">UF_ACTIVE_END"] = date("d.m.Y");
+    $filter[">=UF_ACTIVE_END"] = date("d.m.Y");
 }
 
 $query = Array();
@@ -103,7 +103,7 @@ while ($el = $list->fetch()) {
             $start->setTime(0, 0, 0);
             $end->setTime(0, 0, 0);
 
-            if ($start <= $today && $end > $today) {
+            if ($start <= $today && $end >= $today) {
                 $interval = $start->diff($end);
                 $interval = intval($interval->format("%R%a"));
                 $el["UF_ACTIVE_DIFF"] = "с " . $start->format("d.m.Y") . " по " . $end->format("d.m.Y") . ", " . $interval . " " . \Cetera\Tools\Utils::pluralForm($interval, "сутки", "суток", "суток", "суток");

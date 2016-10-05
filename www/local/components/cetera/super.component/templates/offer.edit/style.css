@@ -57,11 +57,13 @@
     padding: 20px 15px;
     background: #ebebeb;
     color: #202020;
-    max-width: 190px;
+    max-width: 170px;
     min-width: 95px;
-    font-size: 12px;
     font-weight: 400;
-    text-transform: uppercase;
+}
+
+.i-date-table__head .i-date-table__col.i-date-table__col_tariff {
+    width: 150px;
 }
 
 .i-date-table__body .i-date-table__col {
