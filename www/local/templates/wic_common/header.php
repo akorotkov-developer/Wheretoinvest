@@ -89,8 +89,8 @@ ob_end_clean();
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title><?php $APPLICATION->ShowTitle() ?></title>
-    <link rel="icon" href="/uploads/favicon-96.png" type="image/x-icon">
-    <link rel="shortcut icon" href="/uploads/favicon-96.png" type="image/x-icon">
+    <link rel="icon" href="/uploads/icon-96.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/uploads/icon-96.png" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="72x72" href="/uploads/ios-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="76x76" href="/uploads/ios-icon-76x76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="/uploads/ios-icon-120x120.png">
