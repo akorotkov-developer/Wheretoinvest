@@ -1,6 +1,13 @@
 <?
 $aMenuLinks = Array(
 	Array(
+		"Размещение информации", 
+		"/add_info/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
 		"Контакты", 
 		"/contacts/", 
 		Array(), 
@@ -9,14 +16,14 @@ $aMenuLinks = Array(
 	),
 	Array(
 		"Вакансии", 
-		"/hr/",
+		"/hr/", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Отзывы", 
-		"/feedback/",
+		"/feedback/", 
 		Array(), 
 		Array(), 
 		"" 
