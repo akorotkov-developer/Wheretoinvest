@@ -276,3 +276,18 @@ function getContainer($varName)
 {
     return \Cetera\Tools\DIContainer::$DIC[$varName];
 }
+
+function ConvertBytes($number)
+{
+    $len = strlen($number);
+    if ($len < 4) {
+        return sprintf("%d б", $number);
+    }
+    if ($len >= 4 && $len <= 6) {
+        return sprintf("%0.2f Кб", $number / 1024);
+    }
+    if ($len >= 7 && $len <= 9) {
+        return sprintf("%0.2f Мб", $number / 1024 / 1024);
+    }
+    return sprintf("%0.2f Гб", $number / 1024 / 1024 / 1024);
+}
