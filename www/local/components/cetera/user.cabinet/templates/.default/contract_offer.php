@@ -12,18 +12,6 @@ $APPLICATION->SetTitle("Договор-оферта");
 $APPLICATION->AddChainItem("Договор-оферта");
 ?>
 
-<? $APPLICATION->IncludeComponent("bitrix:main.file.input", "drag_n_drop",
-    array(
-        "INPUT_NAME" => "TEST_NAME_INPUT",
-        "MULTIPLE" => "N",
-        "MODULE_ID" => "main",
-        "MAX_FILE_SIZE" => "",
-        "ALLOW_UPLOAD" => "F",
-        "ALLOW_UPLOAD_EXT" => "doc,docx,pdf,xls,xlsx,ppt,pptx"
-    ),
-    false
-); ?>
-
 <?
 $hblock = new \Cetera\HBlock\SimpleHblockObject(12);
 $list = $hblock->getList(Array("filter" => Array("UF_USER" => $USER->GetID())));
@@ -51,8 +39,6 @@ while ($el = $list->fetch()) {
     }
 }
 ?>
-<br>
-<br>
 <div id="fileList">
     <? if (count($fileList)): ?>
         <? foreach ($fileList as $file): ?>
@@ -106,3 +92,15 @@ while ($el = $list->fetch()) {
         });
     });
 </script>
+
+<? $APPLICATION->IncludeComponent("bitrix:main.file.input", "drag_n_drop",
+    array(
+        "INPUT_NAME" => "TEST_NAME_INPUT",
+        "MULTIPLE" => "N",
+        "MODULE_ID" => "main",
+        "MAX_FILE_SIZE" => "",
+        "ALLOW_UPLOAD" => "F",
+        "ALLOW_UPLOAD_EXT" => "doc,docx,pdf,xls,xlsx,ppt,pptx"
+    ),
+    false
+); ?>

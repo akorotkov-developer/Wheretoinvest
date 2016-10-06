@@ -33,7 +33,7 @@ HTML;
 if ($arParams["ALLOW_UPLOAD"] != "N")
 {
 ?>
-<a href="javascript:void(0);" id="file-selectdialogswitcher-<?=$uid?>" class="file-selectdialog-switcher" <?
+<a href="javascript:void(0);" id="file-selectdialogswitcher-<?=$uid?>" class="file-selectdialog-switcher content__submit" <?
 	?>onclick="BX.onCustomEvent(this.parentNode, 'BFileDLoadFormController');return false;"><span><?
 		?><?=($arParams["ALLOW_UPLOAD"] == "I" ? GetMessage("BFDND_UPLOAD_IMAGES") : GetMessage("BFDND_UPLOAD_FILES"))?></span></a>
 <div id="file-selectdialog-<?=$uid?>" class="file-selectdialog" style="display:none;">

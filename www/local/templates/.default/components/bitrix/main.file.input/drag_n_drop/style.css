@@ -363,3 +363,7 @@ html* .file-placeholder .files-list {
     vertical-align: top;
 }
 
+.file-selectdialog-switcher:hover {
+	color: #FFFFFF;
+	background-color: #c81e1a;
+}
