@@ -2,9 +2,12 @@
 <? if (count($arResult["METHODS"])): ?>
     <div class="row">
         <div class="column small-12">
-            <div class="b-form__title-desc b-form__title-desc_method">
-                Выбирайте подходящие Вам показатели надежности. <br>
-                Изменяйте порядок применения показателей путем перетаскивания строк.
+            <div class="aui-message info">
+                <span class="aui-icon icon-info"></span>
+                <p>
+                    Выбирайте подходящие Вам показатели надежности.<br>
+                    Изменяйте порядок применения показателей путем перетаскивания строк.
+                </p>
             </div>
             <br><br><br>
 

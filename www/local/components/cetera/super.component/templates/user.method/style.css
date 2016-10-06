@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .content__wrp.content__wrp_sortable {
     display: block;
     padding: 0;
@@ -62,4 +64,104 @@ label.state__chck:before {
     border-radius: 6px;
     background: #d0d0d0 url(images/info_icon.png) no-repeat center center;
     background-size: auto 70%;
+}
+
+.aui-message, .aui-message:first-child {
+    margin-bottom: 10px;
+}
+
+.aui-message.aui-message {
+    padding: 20px 40px 20px 60px;
+}
+
+.aui-message.hint, .aui-message-hint, .aui-message.info, .aui-message-info {
+    background: #fff;
+    border-color: #FFCC00;
+}
+
+.aui-message:first-child, .aui-message:first-child {
+    margin-top: 0;
+}
+
+.aui-message {
+    border-radius: 3px;
+    border-width: 1px;
+    line-height: 20px;
+    padding-bottom: 20px;
+    padding-left: 60px;
+    padding-right: 40px;
+    padding-top: 20px;
+}
+
+.aui-message {
+    background: #fff;
+    border: 1px solid #FFCC00;
+    border-radius: 3px;
+    color: #333;
+    margin: 20px 0 0 0;
+    overflow-wrap: break-word;
+    position: relative;
+    word-wrap: break-word;
+}
+
+.aui-message.hint:before, .aui-message-hint:before, .aui-message.info:before, .aui-message-info:before {
+    background-color: #FFCC00;
+}
+
+.aui-message:before {
+    background-color: #FFCC00;
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 40px;
+}
+
+.aui-message .aui-icon-success, .aui-message .aui-icon-warning, .aui-message .aui-icon-info, .aui-message .aui-icon-error, .aui-message .aui-icon-hint, .aui-message .aui-icon-generic, .aui-message .icon-generic, .aui-message .icon-error, .aui-message .icon-hint, .aui-message .icon-info, .aui-message .icon-success, .aui-message .icon-warning {
+    display: none;
+}
+
+.aui-icon {
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    border: none;
+    display: inline-block;
+    height: 16px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    text-indent: -999em;
+    vertical-align: text-bottom;
+    width: 16px;
+}
+
+.aui-message > .aui-icon:first-child + * {
+    margin-top: 0;
+}
+
+.aui-message.hint:after, .aui-message-hint:after, .aui-message.info:after, .aui-message-info:after {
+    content: "\f16f";
+    color: #fff;
+}
+
+.aui-message:after {
+    color: #fff;
+    content: "\f16f";
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
+    left: 12px;
+    line-height: 1;
+    margin-top: -8px;
+    position: absolute;
+    speak: none;
+    top: 50%;
+    font-family: "Atlassian Icons";
+}
+
+.aui-message p {
+    margin: 10px 0 0 0;
+    font-size: 14px;
 }
