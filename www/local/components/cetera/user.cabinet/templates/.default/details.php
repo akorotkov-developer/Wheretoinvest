@@ -2,8 +2,8 @@
     die();
 }
 
-$APPLICATION->SetTitle("Реквизиты организации");
-$APPLICATION->AddChainItem("Реквизиты организации");
+$APPLICATION->SetTitle("Реквизиты");
+$APPLICATION->AddChainItem("Реквизиты");
 
 $userInfo = getContainer("User");
 ?>

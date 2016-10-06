@@ -29,7 +29,7 @@ $aMenuLinks = Array(
         "!getContainer('User')->isPartner()"
     ),
     Array(
-        "Реквизиты организации",
+        "Реквизиты",
         "/cabinet/details/",
         Array(),
         Array(),

@@ -2,10 +2,10 @@
     die();
 }
 
-$APPLICATION->SetTitle("Редактировать реквизиты организации");
+$APPLICATION->SetTitle("Редактировать реквизиты");
 $prevPage = preg_replace("#/edit/.*?$#is", "/", $APPLICATION->GetCurPage());
-$APPLICATION->AddChainItem("Реквизиты организации", $prevPage);
-$APPLICATION->AddChainItem("Редактировать реквизиты организации");
+$APPLICATION->AddChainItem("Реквизиты", $prevPage);
+$APPLICATION->AddChainItem("Редактировать реквизиты");
 
 $userInfo = getContainer("User");
 

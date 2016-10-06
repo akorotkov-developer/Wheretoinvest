@@ -98,7 +98,9 @@
                                     <div class="b-offers__th">
                                         <? $arResult["METHODS"] = getContainer("userMethod"); ?>
                                         <? $i = 1; ?>
-                                        <? $methodList = Array(); ?>
+                                        <? $methodList = Array(
+                                            "Определяется на основании показателей: <br>",
+                                        ); ?>
                                         <? foreach ($arResult["METHODS"] as $arItem): ?>
                                             <? if ($arItem["ACTIVE"]): ?>
                                                 <? $methodList[$i] = $i . ". " . $arItem["NAME"] ?>
