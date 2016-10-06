@@ -75,8 +75,8 @@ while ($el = $list->fetch()) {
                 <div class="invest">
                     <div class="invest__head">
                         <div class="invest__title">Наименование предложения</div>
-                        <div class="invest__region">Период публикации</div>
-                        <div class="invest__region invest_small-hide">Статус публикации</div>
+                        <div class="invest__region">Период <br>публикации</div>
+                        <div class="invest__region invest_small-hide">Статус <br>публикации</div>
                         <div class="invest__region"></div>
                     </div>
                     <div class="invest__body">

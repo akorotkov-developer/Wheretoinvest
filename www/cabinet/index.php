@@ -31,14 +31,14 @@ require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php"); ?>
         $(function () {
             var blockPos = 0;
 
-            function scr() {
+            function scrMain() {
                 var block = $('.js-header-main');
 
                 setTimeout(function () {
                     if (block.length) {
                         var y = $(document).scrollTop();
                         var blockHeight = block.outerHeight();
-                        if (block.offset().top !== 0 && !block.hasClass("fixed")) {
+                        if (parseInt(block.offset().top) !== 0 && !block.hasClass("fixed")) {
                             blockPos = block.offset().top;
                         }
 
@@ -60,12 +60,14 @@ require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php"); ?>
                 }, 10);
             }
 
+            scrMain();
+
             window.onresize = function () {
-                scr();
+                scrMain();
             };
 
             $(document).scroll(function () {
-                scr();
+                scrMain();
             });
         });
     </script>
