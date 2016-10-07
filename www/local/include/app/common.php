@@ -208,9 +208,25 @@ function getUserSafety()
             }
         }
 
+        $hblock = new \Cetera\HBlock\SimpleHblockObject(3);
+        $showToday = \Ceteralabs\UserVars::GetVar('PAID_ACCESS')["VALUE"];
+        $filterToday = Array();
+        if ($showToday !== "N") {
+            $filterToday["<=UF_ACTIVE_START"] = date("d.m.Y");
+            $filterToday[">=UF_ACTIVE_END"] = date("d.m.Y");
+        }
+        $list = $hblock->getList(Array("filter" => $filterToday));
+        $userTodayList = Array();
+        while ($el = $list->fetch()) {
+            $userTodayList[$el["UF_USER_ID"]] = $el["UF_USER_ID"];
+        }
+
         $arResult["USER_SORT"] = Array();
-        $rsUsers = \CUser::GetList(($by = "ID"), ($order = "ASC"), Array("GROUPS_ID" => Array(PARTNER_GROUP)), Array("SELECT" => Array("UF_*")));
+        $rsUsers = \CUser::GetList(($by = "ID"), ($order = "ASC"), Array("GROUPS_ID" => Array(PARTNER_GROUP), "ID" => implode("|", $userTodayList)), Array("SELECT" => Array("UF_*")));
         while ($arUser = $rsUsers->GetNext()) {
+            if ($showToday !== "N" && !in_array($arUser["ID"], $userTodayList)) {
+                continue;
+            }
             $name = Array();
             $name[] = $arUser["WORK_COMPANY"];
             if (!empty($arUser["UF_OGRN"]))

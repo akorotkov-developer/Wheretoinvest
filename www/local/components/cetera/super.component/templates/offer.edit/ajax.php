@@ -207,6 +207,9 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
         if (empty($arResult["ERRORS"])) {
             $arResult["SUCCESS"] = "Данные успешно сохранены.";
             $_SESSION["SUCCESS"] = $arResult["SUCCESS"];
+
+            $obCache = new CPHPCache();
+            $obCache->CleanDir("/offers/");
             unset($arResult["ERRORS"]);
         }
 

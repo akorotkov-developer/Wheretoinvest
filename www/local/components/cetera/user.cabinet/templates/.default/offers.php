@@ -46,13 +46,13 @@ while ($el = $list->fetch()) {
 
             if ($start <= $today && $end >= $today) {
                 $el["UF_ACTIVE_DIFF"] = $start->format("d.m.Y") . " - " . $end->format("d.m.Y");
-                $arResult["FUTURE"] = false;
+                $el["FUTURE"] = false;
                 break;
             } elseif ($start > $today) {
-                $arResult["FUTURE"] = true;
+                $el["FUTURE"] = true;
                 $el["UF_ACTIVE_DIFF"] = $start->format("d.m.Y") . " - " . $end->format("d.m.Y");
             } else {
-                $arResult["PAST"] = true;
+                $el["PAST"] = true;
                 $el["UF_ACTIVE_DIFF"] = $start->format("d.m.Y") . " - " . $end->format("d.m.Y");
             }
         }
@@ -85,11 +85,11 @@ while ($el = $list->fetch()) {
                                 <div class="invest__deposite"><?= $arItem["UF_NAME"] ?></div>
                                 <div class="invest__place"><?= $arItem["UF_ACTIVE_DIFF"] ?></div>
                                 <div class="invest__place invest_small-hide">
-                                    <? if (!empty($arItem["UF_ACTIVE_DIFF"]) && !$arResult["FUTURE"]): ?>
+                                    <? if (!empty($arItem["UF_ACTIVE_DIFF"]) && !$arItem["FUTURE"]): ?>
                                         <span class="i-public-status i-public-status_active">опубликована</span>
-                                    <? elseif ($arResult["FUTURE"]): ?>
+                                    <? elseif ($arItem["FUTURE"]): ?>
                                         <span class="i-public-status i-public-status_future">ожидается</span>
-                                    <? elseif ($arResult["PAST"]): ?>
+                                    <? elseif ($arItem["PAST"]): ?>
                                         <span class="i-public-status">завершена</span>
                                     <? endif; ?>
                                 </div>

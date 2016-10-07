@@ -13,6 +13,9 @@ if ($USER->IsAdmin() && !empty($_REQUEST["partner"])) {
         unset($arGroups[$key]);
     }
     CUser::SetUserGroup($USER->GetID(), $arGroups);
+    $obCache = new CPHPCache();
+    $obCache->CleanDir("/offers/");
+    $obCache->CleanDir("/s1/bitrix/menu/");
     LocalRedirect($APPLICATION->GetCurPageParam("", Array("partner")));
 }
 ?>
