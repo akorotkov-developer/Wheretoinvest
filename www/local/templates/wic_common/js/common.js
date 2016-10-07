@@ -159,6 +159,7 @@
 
         (function () {
             var blockPos = 0;
+            var scrollTime = 0;
 
             function scr() {
                 var block = $('.js-header');
@@ -182,7 +183,8 @@
                         }
                         block.parent().css("height", blockHeight);
                     }
-                }, 450);
+                    scrollTime = 0
+                }, scrollTime);
             }
 
             window.onresize = function () {
@@ -197,6 +199,7 @@
 
             //begin of sum menu show/hide
             function sortText() {
+                scrollTime = 450;
                 var sum = $('.b-sort__main .b-sort__inp').val() || 0;
                 var currency_val = $('.b-sort__main select[name="currency"]').val();
                 var currency = "";
