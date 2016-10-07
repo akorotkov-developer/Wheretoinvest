@@ -47,7 +47,7 @@ while ($el = $list->fetch()) {
                     <img src="<?= $file["LINK"] ?>" alt="<?= $file["ORIGINAL_NAME"] ?>" class="i-file__img">
                 </div>
                 <div class="column small-10 medium-11 large-11">
-                    <a href="<?= $file["SRC"] ?>" download="" class="i-file__link"><?= $file["ORIGINAL_NAME"] ?></a>
+                    <a href="<?= $file["SRC"] ?>" target="_blank" class="i-file__link"><?= $file["ORIGINAL_NAME"] ?></a>
 
                     <div class="i-file__desc">
                         (<?= ConvertBytes($file["FILE_SIZE"]); ?>

@@ -95,7 +95,7 @@
                                 var temp = '<div class="row i-file-item">' +
                                     '<div class="column small-2 medium-1 large-1"><img src="' + response.FILE.LINK + '" alt="' + response.FILE.ORIGINAL_NAME + '" class="i-file__img"></div>' +
                                     '<div class="column small-10 medium-11 large-11">' +
-                                    '<a href="' + response.FILE.SRC + '" download="" class="i-file__link">' + response.FILE.ORIGINAL_NAME + '</a>' +
+                                    '<a href="' + response.FILE.SRC + '" target="_blank" class="i-file__link">' + response.FILE.ORIGINAL_NAME + '</a>' +
                                     '<div class="i-file__desc">(' + response.FILE.FILE_SIZE + ', ' + response.FILE.DATE + ')' +
                                     '<br><a href="#" data-id="' + response.FILE.ID + '" class="js-remove-file">Удалить</a></div>' +
                                     '</div>' +
