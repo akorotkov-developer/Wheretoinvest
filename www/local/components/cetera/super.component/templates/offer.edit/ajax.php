@@ -38,8 +38,8 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
             if (!in_array($key, $avaliableFields))
                 continue;
 
-            $arFields[$key] = $value;
-            $arResult["NEW"][$key] = $value;
+            $arFields[$key] = is_array($value) ? $value : trim($value);
+            $arResult["NEW"][$key] = is_array($value) ? $value : trim($value);
         }
 
         if (empty($arFields["UF_NAME"])) {
@@ -98,6 +98,11 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
                         $arFields["UF_ACTIVE_END"][] = $endDate;
                         $arFields["UF_ACTIVE_COST"][] = $price;
                     }
+                    else {
+                        unset($arFields["UF_ACTIVE_START"]);
+                        unset($arFields["UF_ACTIVE_END"]);
+                        unset($arFields["UF_ACTIVE_COST"]);
+                    }
 
                     if (empty($arResult["ERRORS"])) {
                         $hblock->update($el["ID"], $arFields);
@@ -119,6 +124,11 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
                     $arFields["UF_ACTIVE_START"][] = $startDate;
                     $arFields["UF_ACTIVE_END"][] = $endDate;
                     $arFields["UF_ACTIVE_COST"][] = $price;
+                }
+                else {
+                    unset($arFields["UF_ACTIVE_START"]);
+                    unset($arFields["UF_ACTIVE_END"]);
+                    unset($arFields["UF_ACTIVE_COST"]);
                 }
 
                 if ($res = $hblock->add($arFields)) {

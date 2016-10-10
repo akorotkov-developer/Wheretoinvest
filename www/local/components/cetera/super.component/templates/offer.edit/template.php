@@ -242,8 +242,13 @@ if (defined("ERROR_404"))
                                         class="i-date-table__col"><?= $end->format("d.m.Y") ?></div>
                                     <div
                                         class="i-date-table__col"><?= $interval . " " . \Cetera\Tools\Utils::pluralForm($interval, "сутки", "суток", "суток", "суток") ?></div>
-                                    <div class="i-date-table__col"><?= $publicationCostItem ?> руб.</div>
-                                    <div class="i-date-table__col"><?= $publicationCostItem * $interval ?> руб.</div>
+                                    <div
+                                        class="i-date-table__col"><?= number_format($publicationCostItem, 0, ".", " ") ?>
+                                        руб.
+                                    </div>
+                                    <div class="i-date-table__col"
+                                         style="white-space: nowrap;"><?= number_format($publicationCostItem * $interval, 0, ".", " ") ?> руб.
+                                    </div>
                                 </div>
                             <? endforeach; ?>
                             <? if ($canActivate): ?>
@@ -270,17 +275,17 @@ if (defined("ERROR_404"))
 
                                 ?>
                                 <div class="i-date-table__row">
-                                    <div class="i-date-table__col">
+                                    <div class="i-date-table__col" style="min-width: 145px;">
                                         <?= getFormFields($arFields["DATE_START"], 12, "b-form__row_no-margin"); ?>
                                     </div>
-                                    <div class="i-date-table__col">
+                                    <div class="i-date-table__col" style="min-width: 145px;">
                                         <?= getFormFields($arFields["DATE_END"], 12, "b-form__row_no-margin"); ?>
                                     </div>
                                     <div class="i-date-table__col js-active-diff"></div>
                                     <div class="i-date-table__col">
-                                        <?= $publicationCost ?> руб.
+                                        <?= number_format($publicationCost, 0, ".", " ") ?> руб.
                                     </div>
-                                    <div class="i-date-table__col js-active-summ"></div>
+                                    <div class="i-date-table__col js-active-summ" style="white-space: nowrap;"></div>
                                 </div>
                             <? endif; ?>
                         </div>
@@ -582,6 +587,36 @@ if (defined("ERROR_404"))
                 lastEnd = endField.val(),
                 canSend = true;
 
+            function number_format(number, decimals, dec_point, thousands_sep) {
+                var i, j, kw, kd, km;
+
+                // input sanitation & defaults
+                if (isNaN(decimals = Math.abs(decimals))) {
+                    decimals = 2;
+                }
+                if (dec_point == undefined) {
+                    dec_point = ",";
+                }
+                if (thousands_sep == undefined) {
+                    thousands_sep = ".";
+                }
+
+                i = parseInt(number = (+number || 0).toFixed(decimals)) + "";
+
+                if ((j = i.length) > 3) {
+                    j = j % 3;
+                } else {
+                    j = 0;
+                }
+
+                km = (j ? i.substr(0, j) + thousands_sep : "");
+                kw = i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands_sep);
+                //kd = (decimals ? dec_point + Math.abs(number - i).toFixed(decimals).slice(2) : "");
+                kd = (decimals ? dec_point + Math.abs(number - i).toFixed(decimals).replace(/-/, 0).slice(2) : "");
+
+                return km + kw + kd;
+            }
+
             function changeDate(item, isStart) {
                 var pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
                 var start = startField.val() !== "" ? new Date(startField.val().replace(pattern, '$3-$2-$1')) : "",
@@ -659,7 +694,7 @@ if (defined("ERROR_404"))
                     var days = (millisBetween / millisecondsPerDay) + 1;
 
                     diffCol.html(days + (days == 1 ? " сутки" : " суток"));
-                    summCol.html(days * price + " руб.");
+                    summCol.html(number_format(days * price, 0, ".", " ") + " руб.");
 
                     if (days * price > cash) {
                         formError.find("[data-alert-text]").html("У Вас недостаточно средств на счете для активации данного предложения.<br>Доступно для списания " + cash + " руб.");

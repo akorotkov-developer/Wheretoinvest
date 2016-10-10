@@ -57,7 +57,7 @@
     padding: 20px 15px;
     background: #ebebeb;
     color: #202020;
-    max-width: 170px;
+    max-width: 150px;
     min-width: 95px;
     font-weight: 400;
 }
@@ -70,7 +70,7 @@
     padding: 16px 15px;
     color: #000;
     border-bottom: 1px solid #e6e6e6;
-    max-width: 190px;
+    max-width: 150px;
     min-width: 95px;
     vertical-align: middle;
 }
