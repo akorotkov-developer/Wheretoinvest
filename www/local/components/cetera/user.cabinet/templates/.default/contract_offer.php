@@ -14,7 +14,7 @@ $APPLICATION->AddChainItem("Договор-оферта");
 
 <?
 $hblock = new \Cetera\HBlock\SimpleHblockObject(12);
-$list = $hblock->getList(Array("filter" => Array("UF_USER" => $USER->GetID())));
+$list = $hblock->getList();
 $fileList = Array();
 while ($el = $list->fetch()) {
     if (!empty($el["UF_FILE"])) {
@@ -53,13 +53,14 @@ while ($el = $list->fetch()) {
                         (<?= ConvertBytes($file["FILE_SIZE"]); ?>
                         , <?= strtolower(CIBlockFormatProperties::DateFormat("d M Y", $file["DATE"]->getTimestamp())) ?>
                         ) <br>
-                        <a href="#" data-id="<?= $file["ID"] ?>" class="js-remove-file">Удалить</a>
+                        <?/*?><a href="#" data-id="<?= $file["ID"] ?>" class="js-remove-file">Удалить</a><?*/?>
                     </div>
                 </div>
             </div>
         <? endforeach ?>
     <? endif; ?>
 </div>
+<?/*?>
 <script type="text/javascript">
     $(function () {
         $(".js-remove-file").unbind().on("click", function () {
@@ -104,3 +105,4 @@ while ($el = $list->fetch()) {
     ),
     false
 ); ?>
+<?*/?>
