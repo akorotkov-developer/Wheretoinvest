@@ -71,11 +71,9 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
 
             if (empty($newPass)) {
                 $arResult["ERRORS"]["NEW_PASSWORD"] = "Поле обязательно к заполнению";
-            } else {
+            } elseif (!$USER->IsAdmin()) {
                 if (strlen($newPass) < 6) {
                     $arResult["ERRORS"]["NEW_PASSWORD"] = "Пароль должен содержать не менее 6 символов";
-                } elseif (preg_match("#[^a-zA-Z0-9]#is", $newPass)) {
-                    $arResult["ERRORS"]["NEW_PASSWORD"] = "Пароль содержит недопустимые символы. <br/>  Для ввода доступны [a-zA-Z0-9].";
                 } elseif (!preg_match("#[a-z]#s", $newPass) || !preg_match("#[A-Z]#s", $newPass) || !preg_match("#[0-9]#s", $newPass)) {
                     $arResult["ERRORS"]["NEW_PASSWORD"] = "Сложность пароля: Слабый";
                 }
