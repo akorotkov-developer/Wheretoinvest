@@ -20,7 +20,10 @@ $userInfo = getContainer("User");
             <div class="req__name medium-5 small-5 columns">Логотип:</div>
             <div class="req__value medium-7 small-7 columns js-detail-work_logo">
                 <? if (!empty($userInfo["WORK_LOGO"])): ?>
-                    <img src="<?= CFile::GetPath($userInfo["WORK_LOGO"]); ?>" alt="<?= $userInfo["WORK_COMPANY"] ?>">
+                    <?
+                    $file = \CFile::ResizeImageGet($userInfo["WORK_LOGO"], Array("width" => 30, "height" => 30), BX_RESIZE_IMAGE_PROPORTIONAL);
+                    ?>
+                    <img src="<?= $file["src"]; ?>" alt="<?= $userInfo["WORK_COMPANY"] ?>">
                 <? else: ?>
                     <span class='req__name'>—</span>
                 <? endif; ?>
@@ -29,6 +32,7 @@ $userInfo = getContainer("User");
     </div>
     <div class="columns req">
         <br>
+
         <div class="row">
             <div class="req__name medium-5 small-5 columns">Сокращенное наименование (согласно Уставу):</div>
             <div
@@ -37,7 +41,9 @@ $userInfo = getContainer("User");
     </div>
     <div class="columns req">
         <div class="row">
-            <div class="req__name medium-5 small-5 columns">Сокращенное наименование на английском языке (согласно Уставу):</div>
+            <div class="req__name medium-5 small-5 columns">Сокращенное наименование на английском языке (согласно
+                Уставу):
+            </div>
             <div
                 class="req__value medium-7 small-7 columns js-detail-uf_short_work_en"><?= !empty($userInfo["UF_SHORT_WORK_EN"]) ? $userInfo["UF_SHORT_WORK_EN"] : "<span class='req__name'>—</span>"; ?></div>
         </div>
@@ -51,6 +57,7 @@ $userInfo = getContainer("User");
     </div>
     <div class="columns req">
         <br>
+
         <div class="row">
             <div class="req__name medium-5 small-5 columns">ОГРН:</div>
             <div
@@ -80,6 +87,7 @@ $userInfo = getContainer("User");
     </div>
     <div class="columns req">
         <br>
+
         <div class="row">
             <div class="req__name medium-5 small-5 columns">Расчетный счет:</div>
             <div
