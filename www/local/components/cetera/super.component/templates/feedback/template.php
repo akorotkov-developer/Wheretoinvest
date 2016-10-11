@@ -1,7 +1,7 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
 <a href="#" class="js-open-mistake i-mistake__btn b-form__btn"><span class="i-mistake__btn-help_wrapper"><span
             class="i-mistake__btn-help has-tip hide-for-small-only" data-tooltip="" aria-haspopup="true"
-            title="Нашли ошибку? Выделите ее мышью и нажмите на эту кнопку!">?</span></span>Сообщить об
+            title="Нашли ошибку? Выделите ее мышью и нажмите на эту кнопку!">?</span></span>Сообщить <span class="i-mistake__btn_margin">об</span>
     ошибке</a>
 
 <div id="mistake" class="reveal-modal tiny modal" data-reveal aria-labelledby="modalTitle"
