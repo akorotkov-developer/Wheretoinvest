@@ -3,9 +3,9 @@
     <?
 
     foreach ($arResult["MESSAGE"] as $itemID => $itemValue)
-        echo getMess(implode("<br>", $arResult["MESSAGE"]), "success");
+        echo getMess(preg_replace("#активизирована#is", "активирована", implode("<br>", $arResult["MESSAGE"])), "success");
     foreach ($arResult["ERROR"] as $itemID => $itemValue)
-        echo getMess(implode("<br>", $arResult["ERROR"]), "alert");
+        echo getMess(preg_replace("#активизирована#is", "активирована", implode("<br>", $arResult["ERROR"])), "alert");
 
     //whether to show the forms
     if ($arResult["ID"] == 0 && empty($_REQUEST["action"]) || CSubscription::IsAuthorized($arResult["ID"])) {

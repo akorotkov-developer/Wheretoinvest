@@ -19,7 +19,10 @@ if (method_exists($this, 'setFrameMode')) {
 </div>
 
 <form action="<?= POST_FORM_ACTION_URI ?>" method="post" id="asd_subscribe_form" class="b-footer__form">
-    <div class="b-footer__smalltext">Подписаться на рассылку</div>
+    <div class="b-footer__smalltext">
+        Подписаться на рассылку <br>
+        самых выгодных предложений!
+    </div>
     <?= bitrix_sessid_post() ?>
     <input type="hidden" name="asd_subscribe" value="Y"/>
     <input type="hidden" name="charset" value="<?= SITE_CHARSET ?>"/>
