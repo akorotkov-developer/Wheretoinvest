@@ -3,6 +3,8 @@
 /** @var array $arParams */
 /** @var array $arResult */
 
+global $USER;
+
 // component text here
 $arResult["FORM_FIELDS"] = Array(
     "MISTAKE" => Array(
@@ -20,7 +22,8 @@ $arResult["FORM_FIELDS"] = Array(
     "EMAIL" => Array(
         "TYPE" => "EMAIL",
         "TITLE" => "Email для связи",
-        "REQUIRED" => "Y"
+        "REQUIRED" => "Y",
+        "VALUE" => is_object($USER) && $USER->IsAuthorized() ? $USER->GetEmail() : ""
     )
 );
 
