@@ -1,37 +1,38 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
-<a href="#" class="js-open-mistake i-mistake__btn b-form__btn"><span class="i-mistake__btn-help_wrapper"><span
-            class="i-mistake__btn-help has-tip hide-for-small-only" data-tooltip="" aria-haspopup="true"
-            title="Нашли ошибку? Выделите ее мышью и нажмите на эту кнопку!">?</span></span>Сообщить <span class="i-mistake__btn_margin">об</span>
-    ошибке</a>
+<div class="hide-for-small-only">
+    <a href="#" class="js-open-mistake i-mistake__btn b-form__btn">Сообщить об
+        ошибке<span class="i-mistake__btn-help_wrapper"><span
+                class="i-mistake__btn-help has-tip" data-tooltip="" aria-haspopup="true"
+                title="Нашли ошибку? Выделите ее мышью и нажмите на эту кнопку!">?</span></span></a>
 
-<div id="mistake" class="reveal-modal tiny modal" data-reveal aria-labelledby="modalTitle"
-     aria-hidden="true"
-     role="dialog">
-    <div class="row">
-        <div class="column small-12">
-            <form action="<?= $templateFolder ?>/ajax.php" class="b-form x-save-form" enctype="multipart/form-data"
-                  method="post">
-                <input type="hidden" name="sessid" value="<?= bitrix_sessid(); ?>">
-                <input type="hidden" name="ajax" value="Y">
+    <div id="mistake" class="reveal-modal tiny modal" data-reveal aria-labelledby="modalTitle"
+         aria-hidden="true"
+         role="dialog">
+        <div class="row">
+            <div class="column small-12">
+                <form action="<?= $templateFolder ?>/ajax.php" class="b-form x-save-form" enctype="multipart/form-data"
+                      method="post">
+                    <input type="hidden" name="sessid" value="<?= bitrix_sessid(); ?>">
+                    <input type="hidden" name="ajax" value="Y">
 
-                <h2 class="content__title">Сообщение об ошибке</h2>
+                    <h2 class="content__title">Сообщение об ошибке</h2>
 
-                <div class="b-main-block__body"></div>
+                    <div class="b-main-block__body"></div>
 
-                <?= getFormFields($arResult["FORM_FIELDS"], 12, "b-form__ro-small-margin"); ?>
-                <br>
+                    <?= getFormFields($arResult["FORM_FIELDS"], 12, "b-form__ro-small-margin"); ?>
+                    <br>
 
-                <div class="row">
-                    <div class="column small-12 medium-5 small-centered">
-                        <button class="b-form__btn" type="submit">Сообщить об ошибке</button>
+                    <div class="row">
+                        <div class="column small-12 medium-5 small-centered">
+                            <button class="b-form__btn" type="submit">Сообщить об ошибке</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
+        <a class="close-reveal-modal modal__close" aria-label="Close">×</a>
     </div>
-    <a class="close-reveal-modal modal__close" aria-label="Close">×</a>
 </div>
-
 <script type="text/javascript">
     $(function () {
         function sl() {

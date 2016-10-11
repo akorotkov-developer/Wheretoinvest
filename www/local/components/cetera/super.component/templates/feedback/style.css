@@ -1,14 +1,11 @@
 .i-mistake__btn {
     position: fixed;
     top: 50%;
-    margin-top: -150px;
-    width: 36px;
-    text-align: center;
-    border-radius: 0 3px 3px 0;
-    padding: 10px;
+    margin-top: -20px;
+    transform: rotate(-90deg);
+    width: 210px;
     z-index: 100;
-    word-wrap: break-word;
-    line-height: 17px;
+    left: -85px;
 }
 
 .i-mistake__btn-help {
@@ -18,15 +15,14 @@
     height: 18px;
     text-align: center;
     line-height: 14px;
+    transform: rotate(90deg);
     cursor: help;
     display: inline-block;
-    margin-bottom: 5px;
+    margin-left: 7px;
     font-size: 12px;
     font-weight: bold;
     text-indent: 1px;
     color: #ffffff;
-    left: -2px;
-    position: relative;
 }
 
 .i-mistake__btn-help_wrapper {
@@ -35,11 +31,4 @@
 
 .i-form__textarea_large {
     height: 200px;
-}
-
-.i-mistake__btn_margin {
-    display: inline-block;
-    margin: 5px 0;
-    word-wrap: break-word;
-    width: 100%;
 }
