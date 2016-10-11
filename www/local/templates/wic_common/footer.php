@@ -83,5 +83,9 @@
     )
 ); ?>
 
+<?
+$APPLICATION->IncludeComponent("cetera:super.component", "feedback", Array());
+?>
+
 </body>
 </html>

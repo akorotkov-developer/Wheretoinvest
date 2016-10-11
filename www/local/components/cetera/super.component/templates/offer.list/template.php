@@ -593,7 +593,12 @@
                 };
 
                 $(function () {
-                    $('.b-offers__item').unbind().click(function () {
+                    $('.b-offers__item').unbind().on("click", function (e) {
+                        var clickItem = $(e.target);
+                        if (clickItem.closest(".b-offers__hidden").length) {
+                            return false;
+                        }
+
                         $(this).toggleClass('active');
                         $(".x-rating-list:not(.ratingChecked)", $(this)).each(function () {
                             var maxWidth = 0;

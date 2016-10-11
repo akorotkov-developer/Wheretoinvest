@@ -194,6 +194,7 @@
   &__hidden {
     padding-top: rem-calc(45);
     display: none;
+    cursor: default;
 
     .b-offers__name {
       padding: 0;

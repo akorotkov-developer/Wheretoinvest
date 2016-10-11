@@ -86,6 +86,7 @@
     display: block;
     outline: none;
     resize: none;
+    min-height: rem-calc(100);
     margin-bottom: 0 !important;
   }
 
@@ -131,7 +132,12 @@
     text-align: center;
     font-weight: 400;
     cursor: pointer;
-    transition: all .5s;
+    transition: background .5s;
+
+    &:hover, &:focus {
+      color: #ffffff;
+      background: #c81e1a;
+    }
   }
 }
 
