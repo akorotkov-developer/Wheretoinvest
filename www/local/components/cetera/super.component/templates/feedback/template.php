@@ -1,5 +1,5 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
-<div class="hide-for-small-only">
+<div class="hide-for-small-only hide-for-touch">
     <a href="#" class="js-open-mistake i-mistake__btn b-form__btn">Сообщить об
         ошибке<span class="i-mistake__btn-help_wrapper"><span
                 class="i-mistake__btn-help has-tip" data-tooltip="" aria-haspopup="true"
