@@ -4,7 +4,7 @@
     <? $cnt = count($arResult); ?>
     <? global $TOTAL_METHOD; ?>
     <div class="row">
-        <ul class="b-header__menu small-block-grid-2 medium-block-grid-<?= intval($cnt / 2) ?> large-block-grid-<?= $cnt ?>"
+        <ul class="b-header__menu small-block-grid-2 medium-block-grid-<?= $cnt ?> large-block-grid-<?= $cnt ?>"
             data-equalizer="">
             <? foreach ($arResult as $arItem): ?>
                 <? if ($arParams["MAX_LEVEL"] == 1 && $arItem["DEPTH_LEVEL"] > 1)
