@@ -36,13 +36,6 @@ $aMenuLinks = Array(
         "getContainer('User')->isPartner()"
     ),
     Array(
-        "Договор-оферта",
-        "/cabinet/contract_offer/",
-        Array(),
-        Array(),
-        "getContainer('User')->isPartner()"
-    ),
-    Array(
         "Доходность",
         "",
         Array(),

@@ -8,6 +8,8 @@ global $USER;
 /** @global CMain $APPLICATION */
 global $APPLICATION;
 
+LocalRedirect("/cabinet/");
+
 $APPLICATION->SetTitle("Договор-оферта");
 $APPLICATION->AddChainItem("Договор-оферта");
 ?>
@@ -53,14 +55,14 @@ while ($el = $list->fetch()) {
                         (<?= ConvertBytes($file["FILE_SIZE"]); ?>
                         , <?= strtolower(CIBlockFormatProperties::DateFormat("d M Y", $file["DATE"]->getTimestamp())) ?>
                         ) <br>
-                        <?/*?><a href="#" data-id="<?= $file["ID"] ?>" class="js-remove-file">Удалить</a><?*/?>
+                        <? /*?><a href="#" data-id="<?= $file["ID"] ?>" class="js-remove-file">Удалить</a><?*/ ?>
                     </div>
                 </div>
             </div>
         <? endforeach ?>
     <? endif; ?>
 </div>
-<?/*?>
+<? /*?>
 <script type="text/javascript">
     $(function () {
         $(".js-remove-file").unbind().on("click", function () {
@@ -105,4 +107,4 @@ while ($el = $list->fetch()) {
     ),
     false
 ); ?>
-<?*/?>
+<?*/ ?>
