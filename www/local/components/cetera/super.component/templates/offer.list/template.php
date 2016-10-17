@@ -25,6 +25,10 @@
         $timeList["other"] = "Указать в днях";
 
         $sortVisible = $APPLICATION->get_cookie("SORT_VISIBLE");
+        if ($sortVisible === "Y")
+            $sortVisible = "";
+        else
+            $sortVisible = "N";
         global $TOTAL_METHOD;
         ?>
 
