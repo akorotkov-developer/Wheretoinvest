@@ -24,5 +24,13 @@ if ($USER->IsAuthorized()):?>
             class="b-header__auth-link_short">?</span>
     </a>
     <span class="b-header__firstline-slash">|</span>
-    <a href="/cabinet/auth/?register=yes" class="b-header__firstline-link">Регистрация</a>
+    <a href="/cabinet/auth/?register=yes" class="b-header__firstline-link">Регистрация&nbsp;<span
+            data-tooltip
+            aria-haspopup="true"
+            class="has-tip assets__tooltip"
+            title="Зарегистрированным пользователям доступны дополнительные возможности:<br><br>
+* cобственная методика определения надежности организации<br>
+* отсутствие рекламы<br>
+* управление e-mail подпиской<br>
+* и другие"></span></a>
 <? endif; ?>
