@@ -24,8 +24,7 @@ $userInfo = getContainer("User");
                     data-tooltip
                     aria-haspopup="true"
                     class="has-tip assets__tooltip"
-                    title="Для банков соответствует нормативу Н1.1 на последнюю отчетную дату.<br><br>Для
-            остальных организаций соответствует отношению величины собственного капитала к активам по балансу, в процентах"></span>
+                    title="Для банков соответствует нормативу Н1.1 на последнюю отчетную дату.<br><br>Для остальных организаций соответствует отношению суммы собственных средств (капитала) к сумме активов по балансу, в процентах."></span>
             </div>
             <div class="req__value medium-8 small-7 columns">
                 <span
@@ -40,7 +39,7 @@ $userInfo = getContainer("User");
                     aria-haspopup="true"
                     class="has-tip assets__tooltip"
                     title="Для банков соответствует показателю «Базовый капитал» (строка 102 формы
-            0409123 «Расчёт собственных средств (капитала) («Базель III»)) на последнюю отчетную дату.<br><br>Для остальных организаций соответствует величине собственного капитала по балансу"></span>
+            0409123 «Расчёт собственных средств (капитала) («Базель III»)) на последнюю отчетную дату.<br><br>Для остальных организаций соответствует сумме собственных средств (капитала) на последнюю отчетную дату."></span>
             </div>
             <div class="req__value medium-8 small-7 columns">
 <span
@@ -53,8 +52,7 @@ $userInfo = getContainer("User");
             <div class="req__name medium-4 small-5 columns assets__first-column">Активы:&nbsp;<span data-tooltip
                                                                                                     aria-haspopup="true"
                                                                                                     class="has-tip assets__tooltip"
-                                                                                                    title="Для банков соответствует отношению показателя «Собственный капитал» к
-            показателю «Капитал / Активы» на последнюю отчетную дату.<br><br>Для остальных организаций соответствует величине активов по балансу"></span>
+                                                                                                    title="Для банков соответствует сумме активов, взвешенных по уровню риска.<br><br>Для остальных организаций соответствует сумме активов по балансу."></span>
             </div>
             <div class="req__value medium-8 small-7 columns">
 <span class="js-assets-parent">
@@ -100,7 +98,7 @@ $userInfo = getContainer("User");
                         <div class="assets__head">
                             <div class="assets__title">Капитал / Активы</div>
                         <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip"
-                              title="Для банков соответствует нормативу Н1.1 на последнюю отчетную дату.<br><br>Для остальных организаций соответствует отношению величины собственного капитала к активам по балансу, в процентах"></span>
+                              title="Для банков соответствует нормативу Н1.1 на последнюю отчетную дату.<br><br>Для остальных организаций соответствует отношению суммы собственных средств (капитала) к сумме активов по балансу, в процентах."></span>
 
                             <div class="level">
                                 <input type="text" name="UF_CAPITAL_ASSETS" class="level__inp js-number-only"
@@ -113,7 +111,7 @@ $userInfo = getContainer("User");
                         <div class="assets__head">
                             <div class="assets__title">Собственный капитал</div>
                     <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip" title="Для банков соответствует показателю «Базовый капитал» (строка 102 формы
-                    0409123 «Расчёт собственных средств (капитала) («Базель III»)) на последнюю отчетную дату.<br><br>Для остальных организаций соответствует величине собственного капитала по балансу"></span>
+            0409123 «Расчёт собственных средств (капитала) («Базель III»)) на последнюю отчетную дату.<br><br>Для остальных организаций соответствует сумме собственных средств (капитала) на последнюю отчетную дату."></span>
 
                             <div class="level">
                                 <input type="text" class="level__inp level__inp_big js-assets-mask" name="UF_CAPITAL"
@@ -125,8 +123,7 @@ $userInfo = getContainer("User");
                     <div class="assets columns">
                         <div class="assets__head">
                             <div class="assets__title">Активы</div>
-                    <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip" title="Для банков соответствует отношению показателя «Собственный капитал» к
-                    показателю «Капитал / Активы» на последнюю отчетную дату.<br><br>Для остальных организаций соответствует величине активов по балансу"></span>
+                    <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip" title="Для банков соответствует сумме активов, взвешенных по уровню риска.<br><br>Для остальных организаций соответствует сумме активов по балансу."></span>
 
                             <div class="level">
                                 <input type="text" class="level__inp level__inp_big js-assets-mask" name="UF_ASSETS"
