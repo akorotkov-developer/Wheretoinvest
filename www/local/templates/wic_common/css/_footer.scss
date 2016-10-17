@@ -42,9 +42,8 @@
   }
   &__smalltext {
     color: #d2d2d2;
-    font-size: rem-calc(14);
+    font-size: rem-calc(15);
     margin-bottom: rem-calc(10);
-
   }
 
   &__postfix {
@@ -77,11 +76,13 @@
   .b-footer {
     padding-bottom: 32px;
     &__copyr {
-      margin-top: 98px;
-
+      margin-top: 30px;
     }
     &__icon {
       margin-right: 14px;
+    }
+    &__menu {
+      margin-top: 30px;
     }
 
     &__icons {
