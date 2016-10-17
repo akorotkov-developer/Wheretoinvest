@@ -16,7 +16,7 @@ $arResult["FORM_FIELDS"] = Array(
     ),
     "COMMENT" => Array(
         "TYPE" => "TEXTAREA",
-        "TITLE" => "Опишите суть проблемы",
+        "TITLE" => "Опишите проблему",
         "REQUIRED" => "Y"
     ),
     "EMAIL" => Array(
