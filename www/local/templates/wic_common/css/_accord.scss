@@ -4,7 +4,7 @@
     border-radius: 8px;
     list-style-type: none;
     margin: 0;
-    background: #f6f6f6;
+    background: #ebebeb;
     overflow: hidden;
   }
   &__li {
@@ -15,7 +15,6 @@
     position: relative;
 
     &_security, &_profit {
-      background: #f6f6f6;
       padding: 15px 23px 15px 50px;
 
       &:before {
@@ -49,13 +48,14 @@
     font-size: 14px;
     font-weight: 400;
     display: block;
-    padding: 14px 50px 14px 23px;
+    padding: 15px 23px 15px 50px;
     &_no-bord {
       border-top: 0;
     }
     &_active {
       pointer-events: none;
       background-color: white;
+      padding-right: 40px;
 
       &:before {
         content: '';
@@ -89,7 +89,7 @@
 
     &__link {
       padding-right: 10px;
-      padding-left: 10px;
+      padding-left: 35px;
 
       &_active {
         padding-right: 35px;
