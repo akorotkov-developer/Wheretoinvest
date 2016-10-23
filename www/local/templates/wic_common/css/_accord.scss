@@ -12,7 +12,6 @@
     font-size: 14px;
     font-weight: 700;
     position: relative;
-    border-top: 1px solid #ebebeb;
     border-bottom: 1px solid #ebebeb;
 
     &_security, &_profit {
@@ -39,6 +38,8 @@
       }
     }
     &:first-child {
+      border-top: 1px solid #ebebeb;
+
       .accord__link {
         border-top: 0;
       }
