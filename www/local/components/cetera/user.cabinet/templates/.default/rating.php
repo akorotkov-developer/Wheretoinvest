@@ -40,7 +40,7 @@ while ($el = $list->fetch()) {
         <? foreach ($ratingList as $key => $item): ?>
             <div class="columns<? if ($i < count($ratingList)): ?> req<? endif; ?>">
                 <div class="row">
-                    <div class="req__name medium-4 small-5 columns"><?= $item["UF_NAME"] ?>:</div>
+                    <div class="req__name medium-4 small-5 columns"><?= $item["UF_NAME"] ?></div>
                     <div
                         class="req__value medium-8 small-7 columns"><?= !empty($rating[$key]["UF_RATING"]) ? $rating[$key]["UF_RATING"] : "<span class='req__name'>—</span>"; ?></div>
                 </div>
