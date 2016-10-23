@@ -98,7 +98,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="column medium-2 small-4 medium-text-center small-text-center">
+                                <div class="column medium-2 small-4 text-right">
                                     <div class="b-offers__th">
                                         <? $arResult["METHODS"] = getContainer("userMethod"); ?>
                                         <? $i = 1; ?>
@@ -357,7 +357,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="column small-4 medium-2 text-center" data-equalizer-watch>
+                    <div class="column small-4 medium-2 text-right" data-equalizer-watch>
                         <div class="b-offers__prof has-tooltip b-offers__prof_main" data-tooltip aria-haspopup="true"
                              title="<?= $arItem["UF_SAFETY"] ?> место из <?= $arResult["USER_COUNT"] ?>"><?= $arItem["UF_SAFETY"] ?>
                             <span>место</span>
