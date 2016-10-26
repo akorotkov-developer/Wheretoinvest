@@ -49,6 +49,7 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
             $obCache = new CPHPCache();
             $obCache->CleanDir("/user_methods/user_method_" . $USER->GetID());
             $obCache->CleanDir("/offers/users/" . $USER->GetID());
+            $obCache->CleanDir("/offers/" . $USER->GetID());
 
             break;
         default:
