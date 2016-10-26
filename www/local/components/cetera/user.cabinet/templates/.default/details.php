@@ -34,19 +34,19 @@ $userInfo = getContainer("User");
         <br>
 
         <div class="row">
-            <div class="req__name medium-5 small-5 columns">Сокращенное наименование (согласно Уставу)</div>
+            <div class="req__name medium-5 small-5 columns">Сокращенное наименование </br>(согласно Уставу)</div>
             <div class="req__value medium-7 small-7 columns js-detail-work_company"><?= !empty($userInfo["WORK_COMPANY"]) ? $userInfo["WORK_COMPANY"] : "<span class='req__name'>—</span>"; ?></div>
         </div>
     </div>
     <div class="columns req">
         <div class="row">
-            <div class="req__name medium-5 small-5 columns">Сокращенное наименование на английском языке (согласно Уставу)</div>
+            <div class="req__name medium-5 small-5 columns">Сокращенное наименование </br>на английском языке </br>(согласно Уставу)</div>
             <div class="req__value medium-7 small-7 columns js-detail-uf_short_work_en"><?= !empty($userInfo["UF_SHORT_WORK_EN"]) ? $userInfo["UF_SHORT_WORK_EN"] : "<span class='req__name'>—</span>"; ?></div>
         </div>
     </div>
     <div class="columns req">
         <div class="row">
-            <div class="req__name medium-5 small-5 columns">Наименование (для отображения на главной странице)</div>
+            <div class="req__name medium-5 small-5 columns">Наименование </br>(для отображения на главной странице)</div>
             <div class="req__value medium-7 small-7 columns js-detail-uf_full_work_name"><?= !empty($userInfo["UF_FULL_WORK_NAME"]) ? $userInfo["UF_FULL_WORK_NAME"] : "<span class='req__name'>—</span>"; ?></div>
         </div>
     </div>
