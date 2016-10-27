@@ -85,11 +85,11 @@ while ($el = $list->fetch()) {
                                 <div class="invest__place invest_small-hide">
                                     <? if (!empty($arItem["UF_ACTIVE_DIFF"])): ?>
                                         <? if ($arItem["CURRENT"]): ?>
-                                            <span class="i-public-status i-public-status_active">опубликована</span>
+                                            <span class="i-public-status i-public-status_active">опубликовано</span>
                                         <? elseif ($arItem["FUTURE"]): ?>
                                             <span class="i-public-status i-public-status_future">ожидается</span>
                                         <? elseif ($arItem["PAST"]): ?>
-                                            <span class="i-public-status">завершена</span>
+                                            <span class="i-public-status">завершено</span>
                                         <? endif; ?>
                                     <? endif; ?>
                                 </div>

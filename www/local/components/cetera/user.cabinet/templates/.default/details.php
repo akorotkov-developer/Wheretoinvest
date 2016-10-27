@@ -46,7 +46,7 @@ $userInfo = getContainer("User");
     </div>
     <div class="columns req">
         <div class="row">
-            <div class="req__name medium-5 small-5 columns">Наименование </br>(для отображения на главной странице)</div>
+            <div class="req__name medium-5 small-5 columns">Наименование для отображения </br>на главной странице</div>
             <div class="req__value medium-7 small-7 columns js-detail-uf_full_work_name"><?= !empty($userInfo["UF_FULL_WORK_NAME"]) ? $userInfo["UF_FULL_WORK_NAME"] : "<span class='req__name'>—</span>"; ?></div>
         </div>
     </div>

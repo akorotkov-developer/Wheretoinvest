@@ -20,7 +20,7 @@ $userInfo = getContainer("User");
 
     <div class="columns req">
         <div class="row">
-            <div class="req__name medium-4 small-5 columns assets__first-column">Капитал / Активы:&nbsp;<span
+            <div class="req__name medium-4 small-5 columns assets__first-column">Капитал / Активы&nbsp;<span
                     data-tooltip
                     aria-haspopup="true"
                     class="has-tip assets__tooltip"
@@ -34,7 +34,7 @@ $userInfo = getContainer("User");
     </div>
     <div class="columns req">
         <div class="row">
-            <div class="req__name medium-4 small-5 columns assets__first-column">Собственный капитал:&nbsp;<span
+            <div class="req__name medium-4 small-5 columns assets__first-column">Собственный капитал&nbsp;<span
                     data-tooltip
                     aria-haspopup="true"
                     class="has-tip assets__tooltip"
@@ -49,7 +49,7 @@ $userInfo = getContainer("User");
     </div>
     <div class="columns">
         <div class="row">
-            <div class="req__name medium-4 small-5 columns assets__first-column">Активы:&nbsp;<span data-tooltip
+            <div class="req__name medium-4 small-5 columns assets__first-column">Активы&nbsp;<span data-tooltip
                                                                                                     aria-haspopup="true"
                                                                                                     class="has-tip assets__tooltip"
                                                                                                     title="Для банков соответствует сумме активов, взвешенных по уровню риска.<br><br>Для остальных организаций соответствует сумме активов по балансу."></span>
