@@ -63,6 +63,27 @@
   border: 1px solid #dfdfdf;
   border-radius: 3px;
   margin-left: -4px;
+  max-width: rem-calc(380);
+
+  * {
+    font-size: rem-calc(14);
+  }
+
+  ul, ol {
+    margin-bottom: 0;
+  }
+
+  &.left-show {
+    &:before {
+      right: 6px;
+      left: auto;
+    }
+
+    &:after {
+      right: 7px;
+      left: auto;
+    }
+  }
 
   .nub {
     display: none;
