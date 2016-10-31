@@ -42,7 +42,7 @@
 <script type="text/javascript">
     $(function () {
         (function () {
-            $('#<?=$arParams["MODAL_ID"]?> label').on("click", function () {
+            $('#<?=$arParams["MODAL_ID"]?> label').unbind().on("click", function () {
                 $('#<?=$arParams["MODAL_ID"]?> label').each(function () {
                     $(this).prev('input')
                         .prop("disabled", false)
@@ -61,9 +61,7 @@
                     },
                     method: "post",
                     success: function () {
-                        var url = "<?=$APPLICATION->GetCurPage()?>";
-                        if (url == "/")
-                            window.location.href = window.location.href;
+                        window.location.href = window.location.href;
                     }
                 });
 
