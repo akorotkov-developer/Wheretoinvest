@@ -63,7 +63,7 @@
                     success: function () {
                         var url = "<?=$APPLICATION->GetCurPage()?>";
                         if (url == "/")
-                            window.location.reload();
+                            window.location.href = window.location.href;
                     }
                 });
 
