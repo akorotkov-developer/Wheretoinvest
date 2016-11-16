@@ -45,7 +45,7 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
             Регистрация
         </div>
         <ul class="tabs reg" data-tab="" data-options="deep_linking:true;scroll_to_content:false;">
-            <li class="tab-title<? if (!isset($_REQUEST["WORK_COMPANY"])): ?> active<? endif; ?>"><a href="#person">пользователь</a>
+            <li class="tab-title<? if (!isset($_REQUEST["WORK_COMPANY"])): ?> active<? endif; ?>"><a href="#person">клиент</a>
             </li>
             <li class="tab-title<? if (isset($_REQUEST["WORK_COMPANY"])): ?> active<? endif; ?>"><a href="#partner">партнер</a>
             </li>

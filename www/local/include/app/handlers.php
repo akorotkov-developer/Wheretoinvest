@@ -39,7 +39,7 @@ class UserEx
                 $filter = Array("EMAIL" => $arFields["LOGIN"]);
                 $rsUsers = \CUser::GetList(($by = "ID"), ($order = "asc"), $filter);
                 if ($user = $rsUsers->GetNext()) {
-                    $GLOBALS['APPLICATION']->ThrowException('Пользователь с таким e-mail (' . $arFields["EMAIL"] . ') уже существует.');
+                    $GLOBALS['APPLICATION']->ThrowException('Клиент с таким e-mail (' . $arFields["EMAIL"] . ') уже существует.');
                     return false;
                 }
             }
