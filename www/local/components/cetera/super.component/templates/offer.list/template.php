@@ -468,7 +468,7 @@
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
                                             <div class="has-tooltip" data-tooltip aria-haspopup="true"
-                                                 title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
+                                                 title="<?= !empty($user["UF_CAPITAL_A_DATE"]) ? "По состоянию на<br>" . strtolower(CIBlockFormatProperties::DateFormat("d.m.Y", strtotime($user["UF_CAPITAL_A_DATE"]))) : "" ?>">
                                                 <? if (!empty($user["UF_CAPITAL_ASSETS"])): ?>
                                                     <div class="b-offers__prof">
                                                         <?= $user["UF_CAPITAL_ASSETS"]; ?>
@@ -496,7 +496,7 @@
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
                                             <div class="has-tooltip" data-tooltip aria-haspopup="true"
-                                                 title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
+                                                 title="<?= !empty($user["UF_CAPITAL_DATE"]) ? "По состоянию на<br>" . strtolower(CIBlockFormatProperties::DateFormat("d.m.Y", strtotime($user["UF_CAPITAL_DATE"]))) : "" ?>">
                                                 <? if (!empty($user["UF_CAPITAL"])): ?>
                                                     <div class="b-offers__prof">
                                                         <?= number_format(round(intval(preg_replace("#[^\d]#is", "", $user["UF_CAPITAL"])) / 1000000, 1), 1, ",", " ") ?>
@@ -521,7 +521,7 @@
                                     <div class="column medium-9 small-6 b-offers__nopadding">
                                         <div class="b-offers__res2">
                                             <div class="has-tooltip" data-tooltip aria-haspopup="true"
-                                                 title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
+                                                 title="<?= !empty($user["UF_ASSETS_DATE"]) ? "По состоянию на<br>" . strtolower(CIBlockFormatProperties::DateFormat("d.m.Y", strtotime($user["UF_ASSETS_DATE"]))) : "" ?>">
                                                 <? if (!empty($user["UF_ASSETS"])): ?>
                                                     <div class="b-offers__prof">
                                                         <?= number_format(round(intval(preg_replace("#[^\d]#is", "", $user["UF_ASSETS"])) / 1000000, 1), 1, ",", " ") ?>
@@ -712,7 +712,7 @@
                                 $(".b-offers__list").append(response);
                                 var inflation = $(".row.b-offers__infl"),
                                     val = parseFloat(inflation.data("percent")),
-                                    emptySort = "<?=empty($_REQUEST["SORT"]) ? 1: 0;?>";
+                                    emptySort = "<?=empty($_REQUEST["SORT"]) ? 1 : 0;?>";
 
                                 if (emptySort == "1") {
                                     $(".b-offers__list .b-offers__item").each(function () {

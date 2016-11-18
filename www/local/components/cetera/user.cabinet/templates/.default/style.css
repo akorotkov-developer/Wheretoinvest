@@ -28,7 +28,7 @@
     display: inline-block;
     margin-right: 5px;
     text-align: right;
-    min-width: 215px;
+    min-width: 170px;
 }
 
 .assets__num_right.assets__num_right_margin {
@@ -61,4 +61,10 @@
 
 .i-public-status.i-public-status_future {
     background: #FFCC00;
+}
+
+.level__inp_date {
+    width: 100% !important;
+    font-size: 16px !important;
+    max-width: 207px !important;
 }

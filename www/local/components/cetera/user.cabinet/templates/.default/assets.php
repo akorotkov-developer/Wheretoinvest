@@ -28,7 +28,7 @@ $userInfo = getContainer("User");
             </div>
             <div class="req__value medium-8 small-7 columns">
                 <span
-                    class="assets__black js-capital-assets"><?= !empty($userInfo["UF_CAPITAL_ASSETS"]) ? "<span class='assets__num_right'>" . $userInfo["UF_CAPITAL_ASSETS"] . "</span><span class='assets__small'>%</span>" : "<span class='req__name'>—</span>" ?></span>
+                    class="assets__black js-capital-assets"><?= !empty($userInfo["UF_CAPITAL_ASSETS"]) ? "<span class='assets__num_right'>" . $userInfo["UF_CAPITAL_ASSETS"] . "</span><span class='assets__small'>%" . (!empty($userInfo["UF_CAPITAL_A_DATE"]) ? " по состоянию на " . date("d.m.Y", strtotime($userInfo["UF_CAPITAL_A_DATE"])) : "") . "</span>" : "<span class='req__name'>—</span>" ?></span>
             </div>
         </div>
     </div>
@@ -43,21 +43,21 @@ $userInfo = getContainer("User");
             </div>
             <div class="req__value medium-8 small-7 columns">
 <span
-    class="assets__red js-capital"><?= !empty($userInfo["UF_CAPITAL"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_CAPITAL"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей</span>" : "<span class='req__name'>—</span>" ?></span>
+    class="assets__red js-capital"><?= !empty($userInfo["UF_CAPITAL"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_CAPITAL"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей" . (!empty($userInfo["UF_CAPITAL_DATE"]) ? " по состоянию на " . date("d.m.Y", strtotime($userInfo["UF_CAPITAL_DATE"])) : "") . "</span>" : "<span class='req__name'>—</span>" ?></span>
             </div>
         </div>
     </div>
     <div class="columns">
         <div class="row">
             <div class="req__name medium-4 small-5 columns assets__first-column">Активы&nbsp;<span data-tooltip
-                                                                                                    aria-haspopup="true"
-                                                                                                    class="has-tip assets__tooltip"
-                                                                                                    title="Для банков соответствует сумме активов, взвешенных по уровню риска.<br><br>Для остальных организаций соответствует сумме активов по балансу."></span>
+                                                                                                   aria-haspopup="true"
+                                                                                                   class="has-tip assets__tooltip"
+                                                                                                   title="Для банков соответствует сумме активов, взвешенных по уровню риска.<br><br>Для остальных организаций соответствует сумме активов по балансу."></span>
             </div>
             <div class="req__value medium-8 small-7 columns">
 <span class="js-assets-parent">
                     <span
-                        class="assets__red js-assets"><?= !empty($userInfo["UF_ASSETS"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_ASSETS"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей</span>" : "<span class='req__name'>—</span>" ?></span>
+                        class="assets__red js-assets"><?= !empty($userInfo["UF_ASSETS"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_ASSETS"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей" . (!empty($userInfo["UF_ASSETS_DATE"]) ? " по состоянию на " . date("d.m.Y", strtotime($userInfo["UF_ASSETS_DATE"])) : "") . "</span>" : "<span class='req__name'>—</span>" ?></span>
             </span>
             </div>
         </div>
@@ -67,16 +67,12 @@ $userInfo = getContainer("User");
         <div class="row">
             <div class="columns small-5 medium-4 req__name">&nbsp;</div>
             <div class="columns small-7 medium-8 req__value">
+                <br>
                 <span class='assets__num_right assets__num_right_margin'><a href="#" class="content__change"
                                                                             data-reveal-id="assets">Изменить</a></span>
             </div>
         </div>
     </div>
-
-    <? if (!empty($userInfo["TIMESTAMP_X"])): ?>
-        <div class="columns content__date">
-            Обновлено: <?= strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($userInfo["TIMESTAMP_X"]))); ?></div>
-    <? endif; ?>
 </div>
 
 <div id="assets" class="reveal-modal tiny modal" data-reveal aria-labelledby="modalTitle"
@@ -94,7 +90,7 @@ $userInfo = getContainer("User");
                 <div class="b-main-block__body"></div>
 
                 <div class="row">
-                    <div class="assets columns">
+                    <div class="assets columns small-12 medium-12 large-8">
                         <div class="assets__head">
                             <div class="assets__title">Капитал / Активы</div>
                         <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip"
@@ -107,7 +103,27 @@ $userInfo = getContainer("User");
                             </div>
                         </div>
                     </div>
-                    <div class="assets columns">
+                    <div class="assets columns small-12 medium-12 large-4">
+                        <div class="assets__head">
+                            <div class="assets__title">по состоянию на</div>
+                            <div class="level">
+                                <?
+                                $capitalDate = Array(
+                                    "UF_CAPITAL_A_DATE" => Array(
+                                        "TYPE" => "DATETIME",
+                                        "NO_LABEL" => "Y",
+                                        "VALUE" => !empty($userInfo["UF_CAPITAL_A_DATE"]) ? date("d.m.Y", strtotime($userInfo["UF_CAPITAL_A_DATE"])) : "",
+                                        "REQUIRED" => "Y"
+                                    )
+                                );
+                                echo getFormFields($capitalDate, 12, "b-form__row_no-margin");
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="assets columns small-12 medium-12 large-8">
                         <div class="assets__head">
                             <div class="assets__title">Собственный капитал</div>
                     <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip" title="Для банков соответствует показателю «Базовый капитал» (строка 102 формы
@@ -120,10 +136,31 @@ $userInfo = getContainer("User");
                             </div>
                         </div>
                     </div>
-                    <div class="assets columns">
+                    <div class="assets columns small-12 medium-12 large-4">
+                        <div class="assets__head">
+                            <div class="assets__title">по состоянию на</div>
+                            <div class="level">
+                                <?
+                                $capitalDate = Array(
+                                    "UF_CAPITAL_DATE" => Array(
+                                        "TYPE" => "DATETIME",
+                                        "NO_LABEL" => "Y",
+                                        "VALUE" => !empty($userInfo["UF_CAPITAL_DATE"]) ? date("d.m.Y", strtotime($userInfo["UF_CAPITAL_DATE"])) : "",
+                                        "REQUIRED" => "Y"
+                                    )
+                                );
+                                echo getFormFields($capitalDate, 12, "b-form__row_no-margin");
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="assets columns small-12 medium-12 large-8">
                         <div class="assets__head">
                             <div class="assets__title">Активы</div>
-                    <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip" title="Для банков соответствует сумме активов, взвешенных по уровню риска.<br><br>Для остальных организаций соответствует сумме активов по балансу."></span>
+                            <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip"
+                                  title="Для банков соответствует сумме активов, взвешенных по уровню риска.<br><br>Для остальных организаций соответствует сумме активов по балансу."></span>
 
                             <div class="level">
                                 <input type="text" class="level__inp level__inp_big js-assets-mask" name="UF_ASSETS"
@@ -132,17 +169,36 @@ $userInfo = getContainer("User");
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="column small-12 medium-5 small-centered">
-                        <button class="b-form__btn" type="submit">Сохранить</button>
+                    <div class="assets columns small-12 medium-12 large-4">
+                        <div class="assets__head">
+                            <div class="assets__title">по состоянию на</div>
+                            <div class="level">
+                                <?
+                                $capitalDate = Array(
+                                    "UF_ASSETS_DATE" => Array(
+                                        "TYPE" => "DATETIME",
+                                        "NO_LABEL" => "Y",
+                                        "VALUE" => !empty($userInfo["UF_ASSETS_DATE"]) ? date("d.m.Y", strtotime($userInfo["UF_ASSETS_DATE"])) : "",
+                                        "REQUIRED" => "Y"
+                                    )
+                                );
+                                echo getFormFields($capitalDate, 12, "b-form__row_no-margin");
+                                ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </form>
         </div>
+
+        <div class="row">
+            <div class="column small-12 medium-5 small-centered">
+                <button class="b-form__btn" type="submit">Сохранить</button>
+            </div>
+        </div>
+        </form>
     </div>
-    <a class="close-reveal-modal modal__close" aria-label="Close">×</a>
+</div>
+<a class="close-reveal-modal modal__close" aria-label="Close">×</a>
 </div>
 
 <script type="text/javascript">
@@ -179,9 +235,9 @@ $userInfo = getContainer("User");
 
         $(".js-assets-mask").on("keyup", function (event) {
             if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 ||
-                    // Разрешаем: Ctrl+A
+                // Разрешаем: Ctrl+A
                 (event.keyCode == 65 && event.ctrlKey === true) ||
-                    // Разрешаем: home, end, влево, вправо
+                // Разрешаем: home, end, влево, вправо
                 (event.keyCode >= 35 && event.keyCode <= 39)) {
                 return;
             }
@@ -197,9 +253,9 @@ $userInfo = getContainer("User");
 
         $(".js-number-only").on("keyup", function (event) {
             if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 ||
-                    // Разрешаем: Ctrl+A
+                // Разрешаем: Ctrl+A
                 (event.keyCode == 65 && event.ctrlKey === true) ||
-                    // Разрешаем: home, end, влево, вправо
+                // Разрешаем: home, end, влево, вправо
                 (event.keyCode >= 35 && event.keyCode <= 39)) {
                 return;
             }
@@ -239,13 +295,13 @@ $userInfo = getContainer("User");
                         $(document).foundation('alert', 'reflow');
 
                         if (response.NEW.UF_ASSETS !== undefined) {
-                            $(".js-assets").html("<span class='assets__num_right'>" + response.NEW.UF_ASSETS + "</span><span class='assets__small'>млрд. рублей</span>");
+                            $(".js-assets").html("<span class='assets__num_right'>" + response.NEW.UF_ASSETS + "</span><span class='assets__small'>млрд. рублей по состоянию на " + response.NEW.UF_ASSETS_DATE + "</span>");
                         }
                         if (response.NEW.UF_CAPITAL_ASSETS !== undefined) {
-                            $(".js-capital-assets").html("<span class='assets__num_right'>" + response.NEW.UF_CAPITAL_ASSETS + "</span><span class='assets__small'>%</span>");
+                            $(".js-capital-assets").html("<span class='assets__num_right'>" + response.NEW.UF_CAPITAL_ASSETS + "</span><span class='assets__small'>% по состоянию на " + response.NEW.UF_CAPITAL_A_DATE + "</span>");
                         }
                         if (response.NEW.UF_CAPITAL !== undefined) {
-                            $(".js-capital").html("<span class='assets__num_right'>" + response.NEW.UF_CAPITAL + "</span><span class='assets__small'>млрд. рублей</span>");
+                            $(".js-capital").html("<span class='assets__num_right'>" + response.NEW.UF_CAPITAL + "</span><span class='assets__small'>млрд. рублей по состоянию на " + response.NEW.UF_CAPITAL_DATE + "</span>");
                         }
                     }
 

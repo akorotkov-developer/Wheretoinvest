@@ -11,6 +11,9 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                 "UF_CAPITAL_ASSETS",
                 "UF_CAPITAL",
                 "UF_ASSETS",
+                "UF_CAPITAL_A_DATE",
+                "UF_CAPITAL_DATE",
+                "UF_ASSETS_DATE",
             );
 
             $arFields = Array();
@@ -18,10 +21,17 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
             foreach ($_REQUEST as $key => $value) {
                 if (in_array($key, $avaliableFields)) {
                     $arFields[$key] = $value;
-                    if ($key == "UF_CAPITAL_ASSETS")
-                        $arResult["NEW"][$key] = $value;
-                    else
-                        $arResult["NEW"][$key] = number_format(round(intval(preg_replace("#[^\d]#is", "", $value)) / 1000000, 1), 1, ",", " ");
+                    switch ($key) {
+                        case "UF_CAPITAL_ASSETS":
+                        case "UF_CAPITAL_A_DATE":
+                        case "UF_CAPITAL_DATE":
+                        case "UF_ASSETS_DATE":
+                            $arResult["NEW"][$key] = $value;
+                            break;
+                        default:
+                            $arResult["NEW"][$key] = number_format(round(intval(preg_replace("#[^\d]#is", "", $value)) / 1000000, 1), 1, ",", " ");
+                            break;
+                    }
                 }
             }
 
