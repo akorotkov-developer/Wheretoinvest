@@ -14,10 +14,18 @@
     font-size: 28px !important;
     font-family: 'Conv_HelveticaNeueCyr-Thin', sans-serif;
     color: #202020 !important;
+    display: block;
+    width: 100%;
 }
 
 .assets__small {
     font-size: 14px !important;
+}
+
+.assets__date {
+    display: block;
+    float: right;
+    margin-top: 11px;
 }
 
 .assets__first-column {

@@ -28,7 +28,7 @@ $userInfo = getContainer("User");
             </div>
             <div class="req__value medium-8 small-7 columns">
                 <span
-                    class="assets__black js-capital-assets"><?= !empty($userInfo["UF_CAPITAL_ASSETS"]) ? "<span class='assets__num_right'>" . $userInfo["UF_CAPITAL_ASSETS"] . "</span><span class='assets__small'>%" . (!empty($userInfo["UF_CAPITAL_A_DATE"]) ? " по состоянию на " . date("d.m.Y", strtotime($userInfo["UF_CAPITAL_A_DATE"])) : "") . "</span>" : "<span class='req__name'>—</span>" ?></span>
+                    class="assets__black js-capital-assets"><?= !empty($userInfo["UF_CAPITAL_ASSETS"]) ? "<span class='assets__num_right'>" . $userInfo["UF_CAPITAL_ASSETS"] . "</span><span class='assets__small'>%</span>" . (!empty($userInfo["UF_CAPITAL_A_DATE"]) ? "<span class='assets__small assets__date'> на " . date("d.m.Y", strtotime($userInfo["UF_CAPITAL_A_DATE"])) . "</span>" : "") : "<span class='req__name'>—</span>" ?></span>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@ $userInfo = getContainer("User");
             </div>
             <div class="req__value medium-8 small-7 columns">
 <span
-    class="assets__red js-capital"><?= !empty($userInfo["UF_CAPITAL"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_CAPITAL"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей" . (!empty($userInfo["UF_CAPITAL_DATE"]) ? " по состоянию на " . date("d.m.Y", strtotime($userInfo["UF_CAPITAL_DATE"])) : "") . "</span>" : "<span class='req__name'>—</span>" ?></span>
+    class="assets__red js-capital"><?= !empty($userInfo["UF_CAPITAL"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_CAPITAL"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей</span>" . (!empty($userInfo["UF_CAPITAL_DATE"]) ? "<span class='assets__small assets__date'> на " . date("d.m.Y", strtotime($userInfo["UF_CAPITAL_DATE"])) . "</span>" : "") : "<span class='req__name'>—</span>" ?></span>
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@ $userInfo = getContainer("User");
             <div class="req__value medium-8 small-7 columns">
 <span class="js-assets-parent">
                     <span
-                        class="assets__red js-assets"><?= !empty($userInfo["UF_ASSETS"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_ASSETS"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей" . (!empty($userInfo["UF_ASSETS_DATE"]) ? " по состоянию на " . date("d.m.Y", strtotime($userInfo["UF_ASSETS_DATE"])) : "") . "</span>" : "<span class='req__name'>—</span>" ?></span>
+                        class="assets__red js-assets"><?= !empty($userInfo["UF_ASSETS"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_ASSETS"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей</span>" . (!empty($userInfo["UF_ASSETS_DATE"]) ? "<span class='assets__small assets__date'> на " . date("d.m.Y", strtotime($userInfo["UF_ASSETS_DATE"])) . "</span>" : "") : "<span class='req__name'>—</span>" ?></span>
             </span>
             </div>
         </div>
@@ -295,13 +295,13 @@ $userInfo = getContainer("User");
                         $(document).foundation('alert', 'reflow');
 
                         if (response.NEW.UF_ASSETS !== undefined) {
-                            $(".js-assets").html("<span class='assets__num_right'>" + response.NEW.UF_ASSETS + "</span><span class='assets__small'>млрд. рублей по состоянию на " + response.NEW.UF_ASSETS_DATE + "</span>");
+                            $(".js-assets").html("<span class='assets__num_right'>" + response.NEW.UF_ASSETS + "</span><span class='assets__small'>млрд. рублей</span><span class='assets__small assets__date'> на " + response.NEW.UF_ASSETS_DATE + "</span>");
                         }
                         if (response.NEW.UF_CAPITAL_ASSETS !== undefined) {
-                            $(".js-capital-assets").html("<span class='assets__num_right'>" + response.NEW.UF_CAPITAL_ASSETS + "</span><span class='assets__small'>% по состоянию на " + response.NEW.UF_CAPITAL_A_DATE + "</span>");
+                            $(".js-capital-assets").html("<span class='assets__num_right'>" + response.NEW.UF_CAPITAL_ASSETS + "</span><span class='assets__small'>%</span><span class='assets__small assets__date'> на " + response.NEW.UF_CAPITAL_A_DATE + "</span>");
                         }
                         if (response.NEW.UF_CAPITAL !== undefined) {
-                            $(".js-capital").html("<span class='assets__num_right'>" + response.NEW.UF_CAPITAL + "</span><span class='assets__small'>млрд. рублей по состоянию на " + response.NEW.UF_CAPITAL_DATE + "</span>");
+                            $(".js-capital").html("<span class='assets__num_right'>" + response.NEW.UF_CAPITAL + "</span><span class='assets__small'>млрд. рублей</span><span class='assets__small assets__date'> на " + response.NEW.UF_CAPITAL_DATE + "</span>");
                         }
                     }
 
