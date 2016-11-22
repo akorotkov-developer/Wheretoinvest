@@ -91,6 +91,8 @@ ob_end_clean();
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta property="og:image" content="/local/templates/wic_common/images/logo.png">
+	<link rel="image_src" href="/local/templates/wic_common/images/logo.png"> 
     <title><?php $APPLICATION->ShowTitle() ?></title>
     <link rel="icon" href="/uploads/icon-96.png" type="image/x-icon">
     <link rel="shortcut icon" href="/uploads/icon-96.png" type="image/x-icon">
