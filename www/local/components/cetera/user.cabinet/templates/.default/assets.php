@@ -21,10 +21,11 @@ $userInfo = getContainer("User");
     <div class="columns req">
         <div class="row">
             <div class="req__name medium-4 small-5 columns assets__first-column">Капитал / Активы&nbsp;<span
-                    data-tooltip
-                    aria-haspopup="true"
-                    class="has-tip assets__tooltip"
-                    title="Для банков соответствует нормативу Н1.1 на последнюю отчетную дату.<br><br>Для остальных организаций соответствует отношению суммы собственных средств (капитала) к сумме активов по балансу, в процентах."></span>
+                    class="assets__tooltip_wrapper"><span
+                        data-tooltip
+                        aria-haspopup="true"
+                        class="has-tip assets__tooltip show-for-large-up"
+                        title="Для банков соответствует нормативу Н1.1 на последнюю отчетную дату.<br><br>Для остальных организаций соответствует отношению суммы собственных средств (капитала) к сумме активов по балансу, в процентах."></span></span>
             </div>
             <div class="req__value medium-8 small-7 columns">
                 <span
@@ -35,11 +36,12 @@ $userInfo = getContainer("User");
     <div class="columns req">
         <div class="row">
             <div class="req__name medium-4 small-5 columns assets__first-column">Собственный капитал&nbsp;<span
-                    data-tooltip
-                    aria-haspopup="true"
-                    class="has-tip assets__tooltip"
-                    title="Для банков соответствует показателю «Базовый капитал» (строка 102 формы
-            0409123 «Расчёт собственных средств (капитала) («Базель III»)) на последнюю отчетную дату.<br><br>Для остальных организаций соответствует сумме собственных средств (капитала) на последнюю отчетную дату."></span>
+                    class="assets__tooltip_wrapper"><span
+                        data-tooltip
+                        aria-haspopup="true"
+                        class="has-tip assets__tooltip show-for-large-up"
+                        title="Для банков соответствует показателю «Базовый капитал» (строка 102 формы
+            0409123 «Расчёт собственных средств (капитала) («Базель III»)) на последнюю отчетную дату.<br><br>Для остальных организаций соответствует сумме собственных средств (капитала) на последнюю отчетную дату."></span></span>
             </div>
             <div class="req__value medium-8 small-7 columns">
 <span
@@ -49,10 +51,11 @@ $userInfo = getContainer("User");
     </div>
     <div class="columns">
         <div class="row">
-            <div class="req__name medium-4 small-5 columns assets__first-column">Активы&nbsp;<span data-tooltip
-                                                                                                   aria-haspopup="true"
-                                                                                                   class="has-tip assets__tooltip"
-                                                                                                   title="Для банков соответствует сумме активов, взвешенных по уровню риска.<br><br>Для остальных организаций соответствует сумме активов по балансу."></span>
+            <div class="req__name medium-4 small-5 columns assets__first-column">Активы&nbsp;<span
+                    class="assets__tooltip_wrapper"><span data-tooltip
+                                                          aria-haspopup="true"
+                                                          class="has-tip assets__tooltip show-for-large-up"
+                                                          title="Для банков соответствует сумме активов, взвешенных по уровню риска.<br><br>Для остальных организаций соответствует сумме активов по балансу."></span></span>
             </div>
             <div class="req__value medium-8 small-7 columns">
 <span class="js-assets-parent">
@@ -93,8 +96,9 @@ $userInfo = getContainer("User");
                     <div class="assets columns small-12 medium-12 large-8">
                         <div class="assets__head">
                             <div class="assets__title">Капитал / Активы</div>
-                        <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip"
-                              title="Для банков соответствует нормативу Н1.1 на последнюю отчетную дату.<br><br>Для остальных организаций соответствует отношению суммы собственных средств (капитала) к сумме активов по балансу, в процентах."></span>
+                        <span class="assets__tooltip_wrapper"><span data-tooltip aria-haspopup="true"
+                                                                    class="has-tip assets__tooltip show-for-large-up"
+                                                                    title="Для банков соответствует нормативу Н1.1 на последнюю отчетную дату.<br><br>Для остальных организаций соответствует отношению суммы собственных средств (капитала) к сумме активов по балансу, в процентах."></span></span>
 
                             <div class="level">
                                 <input type="text" name="UF_CAPITAL_ASSETS" class="level__inp js-number-only"
@@ -126,8 +130,10 @@ $userInfo = getContainer("User");
                     <div class="assets columns small-12 medium-12 large-8">
                         <div class="assets__head">
                             <div class="assets__title">Собственный капитал</div>
-                    <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip" title="Для банков соответствует показателю «Базовый капитал» (строка 102 формы
-            0409123 «Расчёт собственных средств (капитала) («Базель III»)) на последнюю отчетную дату.<br><br>Для остальных организаций соответствует сумме собственных средств (капитала) на последнюю отчетную дату."></span>
+                    <span class="assets__tooltip_wrapper"><span data-tooltip aria-haspopup="true"
+                                                                class="has-tip assets__tooltip show-for-large-up"
+                                                                title="Для банков соответствует показателю «Базовый капитал» (строка 102 формы
+            0409123 «Расчёт собственных средств (капитала) («Базель III»)) на последнюю отчетную дату.<br><br>Для остальных организаций соответствует сумме собственных средств (капитала) на последнюю отчетную дату."></span></span>
 
                             <div class="level">
                                 <input type="text" class="level__inp level__inp_big js-assets-mask" name="UF_CAPITAL"
@@ -159,8 +165,9 @@ $userInfo = getContainer("User");
                     <div class="assets columns small-12 medium-12 large-8">
                         <div class="assets__head">
                             <div class="assets__title">Активы</div>
-                            <span data-tooltip aria-haspopup="true" class="has-tip assets__tooltip"
-                                  title="Для банков соответствует сумме активов, взвешенных по уровню риска.<br><br>Для остальных организаций соответствует сумме активов по балансу."></span>
+                            <span class="assets__tooltip_wrapper"><span data-tooltip aria-haspopup="true"
+                                                                        class="has-tip assets__tooltip show-for-large-up"
+                                                                        title="Для банков соответствует сумме активов, взвешенных по уровню риска.<br><br>Для остальных организаций соответствует сумме активов по балансу."></span></span>
 
                             <div class="level">
                                 <input type="text" class="level__inp level__inp_big js-assets-mask" name="UF_ASSETS"
@@ -190,9 +197,11 @@ $userInfo = getContainer("User");
                 </div>
         </div>
 
-        <div class="row">
-            <div class="column small-12 medium-5 small-centered">
-                <button class="b-form__btn" type="submit">Сохранить</button>
+        <div class="column small-12">
+            <div class="row">
+                <div class="column small-12 medium-5 small-centered">
+                    <button class="b-form__btn" type="submit">Сохранить</button>
+                </div>
             </div>
         </div>
         </form>
