@@ -19,18 +19,6 @@
                 ),
                 false
             ); ?>
-            <? $APPLICATION->IncludeComponent("bitrix:main.include", "", array(
-                "AREA_FILE_SHOW" => "file",
-                "AREA_FILE_SUFFIX" => "",
-                "PATH" => "/include/social.php",
-                "AREA_FILE_RECURSIVE" => "Y",
-                "EDIT_TEMPLATE" => "standard.php"
-            ),
-                false,
-                array(
-                    "ACTIVE_COMPONENT" => "N"
-                )
-            ); ?>
         </div>
         <div class="column medium-4 medium-push-2">
             <? $APPLICATION->IncludeComponent("bitrix:menu", "bottom", Array(
@@ -48,6 +36,28 @@
             ); ?>
         </div>
         <div class="column medium-5 medium-pull-7">
+            <? $APPLICATION->IncludeComponent("bitrix:main.include", "", array(
+                "AREA_FILE_SHOW" => "file",
+                "AREA_FILE_SUFFIX" => "",
+                "PATH" => "/include/social.php",
+                "AREA_FILE_RECURSIVE" => "Y",
+                "EDIT_TEMPLATE" => "standard.php"
+            ),
+                false,
+                array(
+                    "ACTIVE_COMPONENT" => "Y"
+                )
+            ); ?>
+
+            <? $APPLICATION->IncludeComponent("bitrix:main.include", "", Array(
+                    "AREA_FILE_SHOW" => "file",
+                    "AREA_FILE_SUFFIX" => "",
+                    "PATH" => "/include/copyright.php",
+                    "AREA_FILE_RECURSIVE" => "Y",
+                    "EDIT_TEMPLATE" => "standard.php"
+                )
+            ); ?>
+
             <? $APPLICATION->IncludeComponent("bitrix:menu", "bottom", Array(
                     "ROOT_MENU_TYPE" => "bottom_left",
                     "MAX_LEVEL" => "1",
@@ -59,15 +69,6 @@
                     "MENU_CACHE_TIME" => "3600",
                     "MENU_CACHE_USE_GROUPS" => "Y",
                     "MENU_CACHE_GET_VARS" => ""
-                )
-            ); ?>
-
-            <? $APPLICATION->IncludeComponent("bitrix:main.include", "", Array(
-                    "AREA_FILE_SHOW" => "file",
-                    "AREA_FILE_SUFFIX" => "",
-                    "PATH" => "/include/copyright.php",
-                    "AREA_FILE_RECURSIVE" => "Y",
-                    "EDIT_TEMPLATE" => "standard.php"
                 )
             ); ?>
         </div>

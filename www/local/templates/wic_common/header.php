@@ -119,6 +119,12 @@ ob_end_clean();
     <link rel="apple-touch-icon" href="/uploads/ios-icon-180x180.png">
     <link rel="apple-touch-icon" href="/uploads/ios-icon-1024x1024.png">
     <?*/ ?>
+	
+	<meta property="og:title" content="Куда вложить деньги"/>
+    <meta property="og:description" content="Куда вложить деньги. Доходность или надежность? Удобный поиск и сравнение инвестиций wheretoinvest.ru или кудавложить.рф"/>
+    <meta property="og:image" content="http://wheretoinvest.ru<?=WIC_TEMPLATE_PATH?>/images/wic_logo.png">
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content= "http://wheretoinvest.ru/" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="copyright" content="Создание сайтов - Cetera Labs, www.cetera.ru, 2015"/>
