@@ -18,10 +18,6 @@ class Sbrf extends Parser
     /**
      * @var
      */
-    private $url;
-    /**
-     * @var
-     */
     private $content;
 
     /**
@@ -30,16 +26,15 @@ class Sbrf extends Parser
      */
     public function __construct($url)
     {
+        parent::__construct();
+
         $this->url = $url;
+        $this->configPath = __DIR__ . "/config/sbrf_config.php";
+        $this->includedJsSnippets[] = "console.log($('.tabs-area').html())";
     }
 
-
-    /**
-     *
-     */
-    public function getUrlContent()
+    public function getUrl()
     {
-        $this->content = self::getWebPage($this->url);
-        cl($this->content);
+        cl(self::getWebPage($this->url));
     }
 }

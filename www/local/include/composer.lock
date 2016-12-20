@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c5c7120c2efb73935b676aff2fef33ad",
-    "content-hash": "7224f044665fa48783ed42a883baf918",
+    "hash": "ed790078947273c89ef8226db2ef2fcb",
+    "content-hash": "3eb2b3005237ddbf0d915437a9a055af",
     "packages": [
         {
             "name": "electrolinux/phpquery",
@@ -46,6 +46,57 @@
             "description": "phpQuery is a server-side, chainable, CSS3 selector driven Document Object Model (DOM) API based on jQuery JavaScript Library",
             "homepage": "http://code.google.com/p/phpquery/",
             "time": "2013-03-21 12:39:33"
+        },
+        {
+            "name": "microweber/screen",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/microweber/screen.git",
+                "reference": "74ba54e7bbf14019a005887f53891ec5c8187168"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/microweber/screen/zipball/74ba54e7bbf14019a005887f53891ec5c8187168",
+                "reference": "74ba54e7bbf14019a005887f53891ec5c8187168",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "symfony/var-dumper": "~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Screen\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Ivanov",
+                    "email": "peter@microweber.com",
+                    "homepage": "http://microweber.com"
+                },
+                {
+                    "name": "André Filipe",
+                    "email": "andre.r.flip@gmail.com",
+                    "homepage": "http://masnathan.com"
+                }
+            ],
+            "description": "A PHP Class to interact with PhantomJs and capture screenshot of a webpage",
+            "keywords": [
+                "capture",
+                "phantomjs",
+                "print-screen",
+                "screen"
+            ],
+            "time": "2016-10-13 13:55:06"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
