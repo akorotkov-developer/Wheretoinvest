@@ -67,8 +67,8 @@ $arResult["FORM_FIELDS"] = Array(
         "TYPE" => "TEXT",
         "TITLE" => "ИНН",
         "VALUE" => $userInfo["UF_INN"]
-    ),
-    "UF_KPP" => Array(
+    )
+    /*"UF_KPP" => Array(
         "TYPE" => "TEXT",
         "TITLE" => "КПП",
         "VALUE" => $userInfo["UF_KPP"]
@@ -93,6 +93,7 @@ $arResult["FORM_FIELDS"] = Array(
         "TITLE" => "Корр.счёт",
         "VALUE" => $userInfo["UF_C_ACCOUNT"]
     ),
+    */
 );
 ?>
 
