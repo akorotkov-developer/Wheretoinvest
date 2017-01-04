@@ -13,8 +13,8 @@
         $timeList = Array(
             "93" => "3 мес.",
             "185" => "6 мес.",
-            "369" => "1 год",
-            "549" => "1,5 года",
+            "365" => "1 год",
+            "545" => "1,5 года",
         );
 
         if (!empty($_REQUEST["time"]) && !array_key_exists($_REQUEST["time"], $timeList))

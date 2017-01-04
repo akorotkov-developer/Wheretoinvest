@@ -128,10 +128,10 @@ foreach ($arResult["OFFER"] as $key => $arItem) {
 $filter = Array();
 
 if (empty($_REQUEST["summ"]))
-    $_REQUEST["summ"] = "100 000";
+    $_REQUEST["summ"] = "1 500 000";
 
 if (empty($_REQUEST["time"]))
-    $_REQUEST["time"] = "369";
+    $_REQUEST["time"] = "365";
 
 if (count($offers)) {
     $filter["UF_OFFER"] = $offers;
