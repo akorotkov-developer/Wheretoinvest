@@ -8,6 +8,9 @@ global $USER;
 /** @global CMain $APPLICATION */
 global $APPLICATION;
 
+if (isset($_REQUEST['Login']) && $_REQUEST['Login'] == 'Y' && $APPLICATION->GetCurPage() != '/cabinet/')
+    LocalRedirect("/cabinet/");
+
 if ($arParams["USE_FILTER"] == "Y") {
     if (strlen($arParams["FILTER_NAME"]) <= 0 || !preg_match("/^[A-Za-z_][A-Za-z01-9_]*$/", $arParams["FILTER_NAME"])) {
         $arParams["FILTER_NAME"] = "arrFilter";
