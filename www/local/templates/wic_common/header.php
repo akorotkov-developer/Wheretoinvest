@@ -125,6 +125,8 @@ ob_end_clean();
     <meta property="og:image" content="http://wheretoinvest.ru<?=WIC_TEMPLATE_PATH?>/images/wic_logo.png">
     <meta property="og:type" content="website"/>
     <meta property="og:url" content= "http://wheretoinvest.ru/" />
+	
+	<meta name="yandex-tableau-widget" content="logo=http://wheretoinvest.ru<?=WIC_TEMPLATE_PATH?>/images/wic_logo.png, color=#ffffff" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="copyright" content="Создание сайтов - Cetera Labs, www.cetera.ru, 2015"/>
