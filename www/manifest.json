@@ -1,0 +1,10 @@
+{ 
+"api_version": 4, 
+"layout": 
+ { 
+ "logo": "http://wheretoinvest.ru/local/templates/wic_common/images/yandex-tableau-new.png", 
+ "color": "#ffffff", 
+ "show_title": false 
+ } 
+  
+}
