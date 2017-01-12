@@ -37,6 +37,7 @@ abstract class Parser
 
     public static function parse($id = "")
     {
+        \CModule::IncludeModule("highloadblock");
         $hblock = new \Cetera\HBlock\SimpleHblockObject(3);
         if (!empty($id)) {
             $list = $hblock->getList(Array("filter" => Array("!UF_SITE" => false, "ID" => $id)));
@@ -44,12 +45,13 @@ abstract class Parser
                 try {
                     $hblock->update($el["ID"], Array("UF_UPDATED" => date("d.m.Y H:i:s")));
                     $parser = self::getParser($el["ID"]);
+
                     if ($parser !== null) {
+                        file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/parseMatrix.log", date("d.m.Y H:i:s") . " - [" . $el["ID"] . "] " . $el["UF_NAME"] . "\n", FILE_APPEND);
                         $parser->getData();
                         $parser->saveData();
                         $obCache = new \CPHPCache();
                         $obCache->CleanDir("/offers/");
-                        file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/parseMatrix.log", date("d.m.Y H:i:s") . " - [" . $el["ID"] . "] " . $el["UF_NAME"] . "\n", FILE_APPEND);
                     }
                 } catch (\Exception $e) {
                 }
@@ -135,6 +137,8 @@ abstract class Parser
                 if (!empty($site)) {
                     if (preg_match("#gazprombank\.ru#is", $site)) {
                         return new Gazprombank($site, $itemID);
+                    } elseif (preg_match("#alfabank\.ru#is", $site)) {
+                        return new Alfabank($site, $itemID);
                     }
                 }
             }
