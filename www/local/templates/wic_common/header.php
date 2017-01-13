@@ -98,8 +98,8 @@ ob_end_clean();
     <link rel="shortcut icon" href="/uploads/icons/c76.png" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="72x72" href="/uploads/icons/c72.png">
     <link rel="apple-touch-icon" sizes="76x76" href="/uploads/icons/c76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/uploads/icons/c76.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/uploads/icons/c152.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/uploads/icons/c120m.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/uploads/icons/c152m.png">
     <? /*?>
     <link rel="apple-touch-icon" href="/uploads/ios-icon-29x29.png">
     <link rel="apple-touch-icon" href="/uploads/ios-icon-40x40.png">
