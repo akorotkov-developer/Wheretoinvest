@@ -8,8 +8,6 @@
 
 namespace Parser;
 
-use phpQuery;
-
 abstract class Parser
 {
     protected $timeout = 10;
@@ -139,6 +137,8 @@ abstract class Parser
                         return new Gazprombank($site, $itemID);
                     } elseif (preg_match("#alfabank\.ru#is", $site)) {
                         return new Alfabank($site, $itemID);
+                    } elseif (preg_match("#rshb\.ru#is", $site)) {
+                        return new Rosselhoz($site, $itemID);
                     }
                 }
             }
