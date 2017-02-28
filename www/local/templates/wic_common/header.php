@@ -121,7 +121,7 @@ ob_end_clean();
     <?*/ ?>
 	
 	<meta property="og:title" content="Куда вложить деньги"/>
-    <meta property="og:description" content="Куда вложить деньги. Доходность или надежность? Удобный поиск и сравнение инвестиций wheretoinvest.ru или кудавложить.рф"/>
+    <meta property="og:description" content="Удобный поиск и сравнение инвестиций"/>
     <meta property="og:image" content="http://wheretoinvest.ru<?=WIC_TEMPLATE_PATH?>/images/wic_logo.png">
     <meta property="og:type" content="website"/>
     <meta property="og:url" content= "http://wheretoinvest.ru/" />
