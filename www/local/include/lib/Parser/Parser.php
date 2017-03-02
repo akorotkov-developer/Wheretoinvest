@@ -139,6 +139,8 @@ abstract class Parser
                         return new Alfabank($site, $itemID);
                     } elseif (preg_match("#rshb\.ru#is", $site)) {
                         return new Rosselhoz($site, $itemID);
+                    } elseif (preg_match("#psbank\.ru#is", $site)) {
+                        return new Promsvyaz($site, $itemID);
                     }
                 }
             }

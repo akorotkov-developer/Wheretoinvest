@@ -27,6 +27,7 @@ class Gazprombank extends Parser
      */
     public function __construct($url, $id)
     {
+        parent::__construct();
         $this->url = $url;
         $this->id = $id;
         $this->configPath = __DIR__ . "/config/gazprom_config.php";
