@@ -2,7 +2,7 @@
   &__place {
     padding-top: 20px;
     position: absolute;
-    left: 260px;
+    left: 180px;
     width: calc(100% - 440px) !important;
   }
   &__showMenu {
@@ -21,6 +21,7 @@
   &__loginform {
     float: right;
     padding-top: 21px;
+	width: rem-calc(360) !important;
   }
   &__firstline {
     position: relative;
