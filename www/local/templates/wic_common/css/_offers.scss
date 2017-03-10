@@ -126,7 +126,7 @@
     }
   }
   &__name {
-    font-size: rem-calc(14);
+    font-size: rem-calc(13);
     color: #202020;
     display: inline-block;
     padding-top: 11px;
@@ -198,6 +198,7 @@
 
     .b-offers__name {
       padding: 0;
+	  font-size: rem-calc(13) !important;
     }
   }
   &__rest {
