@@ -294,7 +294,7 @@
       padding-right: 0;
     }
     &__name, &__logo {
-      display: inline-block;
+      display: table-cell;
     }
     &__link {
       padding-left: 9px;
