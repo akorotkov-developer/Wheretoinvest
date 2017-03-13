@@ -113,9 +113,9 @@
   &__logo {
     width: rem-calc(40);
     margin-right: rem-calc(5);
-    display: inline-block;
+    display: table-cell;
     text-align: center;
-    vertical-align: bottom;
+    vertical-align: middle;
     height: rem-calc(40);
     line-height: rem-calc(44);
 
@@ -126,9 +126,9 @@
     }
   }
   &__name {
-    font-size: rem-calc(13);
+    font-size: rem-calc(14);
     color: #202020;
-    display: inline-block;
+    display: table-cell;
     padding-top: 11px;
     padding-bottom: 9px;
     padding-left: 5px;
