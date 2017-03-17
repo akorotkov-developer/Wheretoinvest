@@ -609,7 +609,7 @@
                                     maxWidth = $(this).outerWidth(true);
                             });
 
-                            maxWidth += 5;
+                            maxWidth += 35;
                             $(".x-rating-agency", $(this)).css({"min-width": maxWidth});
                             $(this).addClass("ratingChecked");
                         });
