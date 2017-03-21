@@ -7,6 +7,11 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
     $arResult = [];
     switch (trim($_REQUEST["action"])) {
         case "changeMethods":
+            $obCache = new CPHPCache();
+            $obCache->CleanDir("/user_methods/user_method_" . $USER->GetID() . "/");
+            $obCache->CleanDir("/offers/users/" . $USER->GetID() . "/");
+            $obCache->CleanDir("/offers/" . $USER->GetID() . "/");
+
             $hblock = new \Cetera\HBlock\SimpleHblockObject(6);
             $list = $hblock->getList(Array("filter" => Array("UF_USER" => $USER->GetID())));
             while ($el = $list->fetch()) {
@@ -22,7 +27,6 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                     $arFields = $arResult["METHODS"][$methodID];
                     $arFields["UF_SORT"] = $val["sort"];
                     $arFields["UF_ACTIVE"] = !empty($val["active"]) ? 23 : "";
-
                 } else {
                     $arFields = Array(
                         "UF_USER" => $USER->GetID(),
@@ -46,10 +50,6 @@ if (check_bitrix_sessid() && isset($_REQUEST["ajax"]) && !empty($_REQUEST["actio
                     }
                 }
             }
-            $obCache = new CPHPCache();
-            $obCache->CleanDir("/user_methods/user_method_" . $USER->GetID());
-            $obCache->CleanDir("/offers/users/" . $USER->GetID());
-            $obCache->CleanDir("/offers/" . $USER->GetID());
 
             break;
         default:

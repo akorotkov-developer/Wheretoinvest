@@ -182,7 +182,7 @@ if (count($offers)) {
     if ($obCache->InitCache($cacheLifetime, $cacheID, $cachePath)) {
         $vars = $obCache->GetVars();
         $arResult = $vars;
-    } elseif ($obCache->StartDataCache()) {
+    } elseif ($obCache->StartDataCache($cacheLifetime, $cacheID, $cachePath)) {
         $hblock = new \Cetera\HBlock\SimpleHblockObject(9);
         $list = $hblock->getList($query);
 

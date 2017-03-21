@@ -108,7 +108,7 @@ function getUserMethods()
 
     if ($obCache->InitCache($cacheLifetime, $cacheID, $cachePath)) {
         $arMethods = $obCache->GetVars();
-    } elseif ($obCache->StartDataCache()) {
+    } elseif ($obCache->StartDataCache($cacheLifetime, $cacheID, $cachePath)) {
         $arFields = $USER_FIELD_MANAGER->GetUserFields("HLBLOCK_6");
         $obEnum = new CUserFieldEnum;
 
@@ -175,7 +175,7 @@ function getUserSafety()
     if ($obCache->InitCache($cacheLifetime, $cacheID, $cachePath)) {
         $vars = $obCache->GetVars();
         $arResult["USERS"] = $vars["USERS"];
-    } elseif ($obCache->StartDataCache()) {
+    } elseif ($obCache->StartDataCache($cacheLifetime, $cacheID, $cachePath)) {
         $ratingList = Array();
         $hblock = new \Cetera\HBlock\SimpleHblockObject(8);
         $list = $hblock->getList();
