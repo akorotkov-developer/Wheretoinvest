@@ -179,6 +179,8 @@ if (count($offers)) {
 
     $cachePath .= $cacheID;
 
+    $query["order"] = Array("UF_DATE_START" => "DESC");
+
     if ($obCache->InitCache($cacheLifetime, $cacheID, $cachePath)) {
         $vars = $obCache->GetVars();
         $arResult = $vars;
@@ -194,7 +196,14 @@ if (count($offers)) {
             $user = $offer["USER"];
             unset($offer["USER"]);
 
-            if (empty($arResult["ITEMS"][$el["UF_OFFER"]]) || floatval($el["UF_PERCENT"]) > floatval($arResult["ITEMS"][$el["UF_OFFER"]]["UF_PERCENT"])) {
+            if (
+                empty($arResult["ITEMS"][$el["UF_OFFER"]]) ||
+                (
+                    floatval($el["UF_PERCENT"]) > floatval($arResult["ITEMS"][$el["UF_OFFER"]]["UF_PERCENT"])
+                    && intval($arResult["ITEMS"][$el["UF_OFFER"]]["UF_DATE_START"]) <= intval($el["UF_DATE_START"])
+                    && intval($arResult["ITEMS"][$el["UF_OFFER"]]["UF_SUMM"]) < intval($el["UF_SUMM"])
+                )
+            ) {
                 $el["UF_PERCENT"] = floatval($el["UF_PERCENT"]);
                 $el["UF_DATE_START"] = intval($el["UF_DATE_START"]);
                 $el["UF_DATE_END"] = intval($el["UF_DATE_END"]);
@@ -212,8 +221,6 @@ if (count($offers)) {
         }
 
         $methods = getUserMethods();
-
-
         $obCache->EndDataCache($arResult);
     }
 
@@ -236,7 +243,6 @@ if (count($offers)) {
 
         array_multisort($tempOrder, $order, $tempPercent, SORT_DESC, $arResult["ITEMS"]);
     }
-
 
     // Задаем количество элементов на странице
     $countOnPage = $arParams["PAGE_COUNT"];

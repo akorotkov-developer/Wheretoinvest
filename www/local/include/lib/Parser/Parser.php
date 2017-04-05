@@ -97,15 +97,23 @@ abstract class Parser
     public function saveData()
     {
         if (!empty($this->id)) {
-
             $itemHblock = new \Cetera\HBlock\SimpleHblockObject(3);
             $itemList = $itemHblock->getList(Array("filter" => Array("ID" => $this->id)));
             if ($itemEl = $itemList->fetch()) {
                 $message = Array(
                     "NAME" => $itemEl["UF_NAME"],
                     "TIME" => date("d.m.Y H:i:s"),
-                    "MESSAGE" => ""
+                    "MESSAGE" => "",
+                    "ORG" => ""
                 );
+
+                try {
+                    $partner = \CUser::GetByID($itemEl["UF_USER_ID"])->GetNext();
+                    if (!empty($partner)) {
+                        $message["ORG"] = $partner["UF_FULL_WORK_NAME"];
+                    }
+                } catch (\Exception $e) {
+                }
 
                 if (!empty($this->data) && is_array($this->data) && count($this->data)) {
                     $matrix = $this->data;
