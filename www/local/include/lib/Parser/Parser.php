@@ -19,7 +19,6 @@ abstract class Parser
     protected $id;
     protected $content;
 
-
     /**
      * Parser constructor.
      */
@@ -33,96 +32,42 @@ abstract class Parser
         }
     }
 
-    public static function parse($id = "")
+    public static function parse()
     {
+        ignore_user_abort(true);
+        set_time_limit(600);
         \CModule::IncludeModule("highloadblock");
         $hblock = new \Cetera\HBlock\SimpleHblockObject(3);
-        if (!empty($id)) {
-            $list = $hblock->getList(Array("filter" => Array("!UF_SITE" => false, "ID" => $id)));
-            if ($el = $list->fetch()) {
-                try {
-                    $hblock->update($el["ID"], Array("UF_UPDATED" => date("d.m.Y H:i:s")));
-                    $parser = self::getParser($el["ID"]);
+        $filter = Array(
+            "!UF_SITE" => false
+        );
 
-                    if ($parser !== null) {
-                        file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/parseMatrix.log", date("d.m.Y H:i:s") . " - [" . $el["ID"] . "] " . $el["UF_NAME"] . "\n", FILE_APPEND);
-                        $parser->getData();
-                        $parser->saveData();
-                        $obCache = new \CPHPCache();
-                        $obCache->CleanDir("/offers/");
-                    }
-                } catch (\Exception $e) {
-                }
-            }
-        } else {
-            $filter = Array(
-                "!UF_SITE" => false
-            );
+        $showToday = \Ceteralabs\UserVars::GetVar('PAID_ACCESS')["VALUE"];
 
-            $showToday = \Ceteralabs\UserVars::GetVar('PAID_ACCESS')["VALUE"];
-
-            if ($showToday !== "N") {
-                $filter["<=UF_ACTIVE_START"] = date("d.m.Y");
-                $filter[">=UF_ACTIVE_END"] = date("d.m.Y");
-            }
-
-            $list = $hblock->getList(Array("filter" => $filter));
-            $multi = curl_multi_init();
-            $channels = array();
-            $urls = Array();
-
-            while ($el = $list->fetch()) {
-                try {
-                    $hblock->update($el["ID"], Array("UF_UPDATED" => date("d.m.Y H:i:s")));
-                    $urls[] = $el["ID"];
-                } catch (\Exception $e) {
-                }
-            }
-
-            foreach ($urls as &$url) {
-                $url = "http://" . $_SERVER["SERVER_NAME"] . "/local/ajax/parseMatrix.php?ID=" . $url;
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-
-                // если будет редирект - перейти по нему
-                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-                // возвращать результат
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                // не возвращать http-заголовок
-                curl_setopt($ch, CURLOPT_HEADER, 0);
-                // таймаут соединения
-                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-                // таймаут ожидания
-                curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-
-                curl_multi_add_handle($multi, $ch);
-
-                $channels[$url] = $ch;
-            }
-
-            $active = null;
-            do {
-                $mrc = curl_multi_exec($multi, $active);
-            } while ($mrc == CURLM_CALL_MULTI_PERFORM);
-
-            while ($active && $mrc == CURLM_OK) {
-                if (curl_multi_select($multi) == -1) {
-                    continue;
-                }
-
-                do {
-                    $mrc = curl_multi_exec($multi, $active);
-                } while ($mrc == CURLM_CALL_MULTI_PERFORM);
-            }
-
-            foreach ($channels as $channel) {
-                curl_multi_remove_handle($multi, $channel);
-            }
-
-            curl_multi_close($multi);
-
-            return "\\Parser\\Parser::parse();";
+        if ($showToday !== "N") {
+            $filter["<=UF_ACTIVE_START"] = date("d.m.Y");
+            $filter[">=UF_ACTIVE_END"] = date("d.m.Y");
         }
+        $list = $hblock->getList(Array("filter" => $filter));
+
+        while ($el = $list->fetch()) {
+            try {
+                $hblock->update($el["ID"], Array("UF_UPDATED" => date("d.m.Y H:i:s")));
+                file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/parseMatrix.log", date("d.m.Y H:i:s") . " - [" . $el["ID"] . "] " . $el["UF_NAME"] . "\n", FILE_APPEND);
+
+                $parser = self::getParser($el["ID"]);
+
+                if ($parser !== null) {
+                    $parser->getData();
+                    $parser->saveData();
+                    $obCache = new \CPHPCache();
+                    $obCache->CleanDir("/offers/");
+                }
+            } catch (\Exception $e) {
+            }
+        }
+
+        return "\\Parser\\Parser::parse();";
     }
 
     public static function getParser($itemID)
@@ -238,13 +183,16 @@ abstract class Parser
         $path = isset($parsed_url['path']) ? $parsed_url['path'] : '';
         $query = isset($parsed_url['query']) ? '?' . $parsed_url['query'] : '';
         $fragment = isset($parsed_url['fragment']) ? '#' . $parsed_url['fragment'] : '';
+
         return "$scheme$user$pass$host$port$path$query$fragment";
     }
 
     /**
      * Загрузка файла/html-страницы
+     *
      * @param $url
      * @param bool|false $headers
+     *
      * @return bool|mixed|string
      */
     protected function getWebPage($url, $headers = false, $post = false, $returnArray = false)
@@ -260,7 +208,7 @@ abstract class Parser
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->timeout); // таймаут соединения
             curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);        // таймаут ответа
             curl_setopt($ch, CURLOPT_MAXREDIRS, 10);       // останавливаться после 10-ого редиректа
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
             if (!empty($this->currentUrl))
                 curl_setopt($ch, CURLOPT_REFERER, $this->currentUrl);
@@ -311,6 +259,7 @@ abstract class Parser
      * @param $ch
      * @param $redirects
      * @param bool|false $curlopt_header
+     *
      * @return mixed
      */
     protected function curl_redirect_exec(&$ch, &$redirects, $curlopt_header = false)
@@ -345,6 +294,7 @@ abstract class Parser
                 curl_setopt($ch, CURLOPT_URL, $url);
                 $redirects++;
                 sleep(1);
+
                 return $this->curl_redirect_exec($ch, $redirects);
             }
         } elseif ($http_code == 403) {
@@ -354,6 +304,7 @@ abstract class Parser
             return $data;
         else {
             list(, $body) = explode("\r\n\r\n", $data, 2);
+
             return $body;
         }
     }
