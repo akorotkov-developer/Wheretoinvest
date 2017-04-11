@@ -53,11 +53,11 @@ abstract class Parser
         while ($el = $list->fetch()) {
             try {
                 $hblock->update($el["ID"], Array("UF_UPDATED" => date("d.m.Y H:i:s")));
-                file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/parseMatrix.log", date("d.m.Y H:i:s") . " - [" . $el["ID"] . "] " . $el["UF_NAME"] . "\n", FILE_APPEND);
-
                 $parser = self::getParser($el["ID"]);
 
                 if ($parser !== null) {
+//                    file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/parseMatrix.log", date("d.m.Y H:i:s") . " - [" . $el["ID"] . "] " . $el["UF_NAME"] . "\n", FILE_APPEND);
+
                     $parser->getData();
                     $parser->saveData();
                     $obCache = new \CPHPCache();
@@ -123,6 +123,10 @@ abstract class Parser
                         $cur = preg_replace("#[^\d]#is", "", $currency);
                         foreach ($cols as $col => $rows) {
                             list($start, $end) = explode("-", $col);
+                            if (empty($start))
+                                $start = "";
+                            if (empty($end))
+                                $end = "";
 
                             foreach ($rows as $row => $percent) {
                                 list($summStart, $summEnd) = explode("-", $row);
@@ -143,37 +147,55 @@ abstract class Parser
                     }
 
                     $hblock = new \Cetera\HBlock\SimpleHblockObject(9);
+                    $oldMatrix = Array();
                     $list = $hblock->getList(Array("filter" => Array("UF_OFFER" => $this->id)));
                     $matrixList = Array();
                     while ($el = $list->fetch()) {
+                        $item = Array(
+                            "UF_OFFER" => $el["UF_OFFER"],
+                            "UF_CURRENCY" => $el["UF_CURRENCY"],
+                            "UF_DATE_START" => !empty($el["UF_DATE_START"]) ? $el["UF_DATE_START"] : "",
+                            "UF_DATE_END" => !empty($el["UF_DATE_END"]) ? $el["UF_DATE_END"] : "",
+                            "UF_SUMM" => floatval($el["UF_SUMM"]),
+                            "UF_SUMM_END" => floatval($el["UF_SUMM_END"]),
+                            "UF_PERCENT" => floatval($el["UF_PERCENT"])
+                        );
+
+                        $oldMatrix[] = $item;
                         $matrixList[] = $el["ID"];
                     }
+                    sort($newMatrix);
+                    sort($oldMatrix);
+                    $oldCheck = base64_encode(serialize($oldMatrix));
+                    $newCheck = base64_encode(serialize($newMatrix));
 
-                    if (count($newMatrix)) {
-                        foreach ($matrixList as $key => $listId) {
-                            if (count($newMatrix)) {
-                                $item = array_shift($newMatrix);
-                                $hblock->update($listId, $item);
-                                unset($matrixList[$key]);
+                    if ($oldCheck !== $newCheck) {
+                        if (count($newMatrix)) {
+                            foreach ($matrixList as $key => $listId) {
+                                if (count($newMatrix)) {
+                                    $item = array_shift($newMatrix);
+                                    $hblock->update($listId, $item);
+                                    unset($matrixList[$key]);
+                                }
                             }
                         }
-                    }
 
-                    foreach ($newMatrix as $item) {
-                        $hblock->add($item);
-                    }
+                        foreach ($newMatrix as $item) {
+                            $hblock->add($item);
+                        }
 
-                    foreach ($matrixList as $listId) {
-                        $hblock->delete($listId);
-                    }
+                        foreach ($matrixList as $listId) {
+                            $hblock->delete($listId);
+                        }
 
-                    $message["STATUS"] = "Успешно обновлено";
+                        $message["STATUS"] = "Успешно обновлено";
+                        \CEvent::SendImmediate("PARSER_UPDATE", SITE_ID, $message);
+                    }
                 } else {
                     $message["STATUS"] = "Ошибка обновления";
                     $message["MESSAGE"] = "Не найдена матрица для предложения. \nПроверьте правильность указанной ссылки для предложения. \nЕсли по указанной ссылке матрица выводится, значит изменилась структура данных на странице. \nВ таком случае сообщите об ошибке разработчику.";
+                    \CEvent::SendImmediate("PARSER_UPDATE", SITE_ID, $message);
                 }
-
-                \CEvent::SendImmediate("PARSER_UPDATE", SITE_ID, $message);
             }
         }
     }
