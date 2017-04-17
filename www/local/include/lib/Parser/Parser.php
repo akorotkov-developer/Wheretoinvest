@@ -39,7 +39,7 @@ abstract class Parser
         \CModule::IncludeModule("highloadblock");
         $hblock = new \Cetera\HBlock\SimpleHblockObject(3);
         $filter = Array(
-            "!UF_SITE" => false
+            "!UF_SITE" => false,
         );
 
         $showToday = \Ceteralabs\UserVars::GetVar('PAID_ACCESS')["VALUE"];
@@ -86,6 +86,8 @@ abstract class Parser
                         return new Rosselhoz($site, $itemID);
                     } elseif (preg_match("#psbank\.ru#is", $site)) {
                         return new Promsvyaz($site, $itemID);
+                    } elseif (preg_match("#rosbank\.ru#is", $site)) {
+                        return new Rosbank($site, $itemID);
                     }
                 }
             }
