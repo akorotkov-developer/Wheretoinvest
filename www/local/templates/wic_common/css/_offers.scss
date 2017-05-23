@@ -472,3 +472,10 @@
     }
   }
 }
+
+@media (max-width: 641px) {
+	.column, .columns {
+		padding-left: rem-calc(4) !important;
+		padding-right: rem-calc(4) !important;
+	}
+}
