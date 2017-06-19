@@ -23,3 +23,10 @@ a.b-offers__title {
 .b-offers__title.b-offers__title_sort {
     border-bottom: 1px dashed #000 !important;
 }
+
+@media (max-width: 641px) {
+	.column, .columns {
+		padding-left: .25rem !important;
+		padding-right: .25rem !important;
+	}
+}
