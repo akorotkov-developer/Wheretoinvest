@@ -88,6 +88,8 @@ abstract class Parser
                         return new Promsvyaz($site, $itemID);
                     } elseif (preg_match("#rosbank\.ru#is", $site)) {
                         return new Rosbank($site, $itemID);
+                    } elseif (preg_match("#binbank\.ru#is", $site)) {
+                        return new Binbank($site, $itemID);
                     }
                 }
             }
