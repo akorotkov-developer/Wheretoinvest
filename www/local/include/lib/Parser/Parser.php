@@ -10,6 +10,7 @@ namespace Parser;
 
 abstract class Parser
 {
+    public static $debug = false;
     protected $timeout = 10;
     protected $redirectsCount = 0;
     protected $maxRedirects = 10;
@@ -56,7 +57,8 @@ abstract class Parser
                 $parser = self::getParser($el["ID"]);
 
                 if ($parser !== null) {
-//                    file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/parseMatrix.log", date("d.m.Y H:i:s") . " - [" . $el["ID"] . "] " . $el["UF_NAME"] . "\n", FILE_APPEND);
+                    if (static::$debug)
+                        file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/parseMatrix.log", date("d.m.Y H:i:s") . " - [" . $el["ID"] . "] " . $el["UF_NAME"] . "\n", FILE_APPEND);
 
                     $parser->getData();
                     $parser->saveData();

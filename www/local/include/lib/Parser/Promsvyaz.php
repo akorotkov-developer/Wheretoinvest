@@ -46,7 +46,15 @@ class Promsvyaz extends Parser
     {
         self::getTableData();
         if (!empty($this->content) && $this->content instanceof \phpQueryObject) {
-            $table = pq($this->content->find(".v2-product-page-rules")->find("[ng-switch-when=\"2\"]")->find("table")->eq(0));
+            $switchNum = "";
+            foreach ($this->content->find(".v2-view-switcher li") as $li) {
+                $li = pq($li);
+                if (strpos($li->text(), "Процентные ставки") !== false) {
+                    $switchNum = preg_replace("#[^\d]#is", "", $li->attr("ng-click"));
+                    break;
+                }
+            }
+            $table = pq($this->content->find(".v2-product-page-rules")->find("[ng-switch-when=\"" . $switchNum . "\"]")->find("table")->eq(0));
             if (!empty($table)) {
                 $tmpCol = Array();
 
