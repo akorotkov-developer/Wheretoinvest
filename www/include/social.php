@@ -5,7 +5,7 @@
 	</div>
 	<script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
 	<script src="//yastatic.net/share2/share.js"></script>
-	<div class="ya-share2" data-services="vkontakte,facebook,twitter" data-size="m" data-title="Куда вложить деньги" data-description="Удобный поиск и сравнение инвестиций" data-image="http://wheretoinvest.ru<?=WIC_TEMPLATE_PATH?>/images/wic_logo.png" data-url="http://wheretoinvest.ru/" data-title:twitter="Удобный поиск и сравнение инвестиций" data-image:facebook="http://wheretoinvest.ru<?=WIC_TEMPLATE_PATH?>/images/wic_logo.png"></div>
+	<div class="ya-share2" data-services="vkontakte,facebook,twitter" data-size="m" data-title="Куда вложить деньги" data-description="Удобный поиск и сравнение инвестиций" data-image="http://wheretoinvest.ru<?=WIC_TEMPLATE_PATH?>/images/wic_logo.png" data-url="http://wheretoinvest.ru/" data-title:twitter="Удобный поиск и сравнение инвестиций" data-image:facebook="http://wheretoinvest.ru<?=WIC_TEMPLATE_PATH?>/images/wic_logo_fb.png"></div>
 </div>
 
 <?/*
