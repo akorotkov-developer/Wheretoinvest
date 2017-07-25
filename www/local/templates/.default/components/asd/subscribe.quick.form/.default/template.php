@@ -41,5 +41,16 @@ if (method_exists($this, 'setFrameMode')) {
         <div class="small-2 columns b-footer__bug end">
             <input type="submit" class="b-footer__postfix" name="asd_submit" id="asd_subscribe_submit">
         </div>
+        <div class="columns small-12">
+            <input type="checkbox" name="CONFIRM_S" value="Y" data-confirm-input="Y" id="FIELD_CONFIRM_S"
+                   class="modal__checkbox">
+            <label class="modal__chck " for="FIELD_CONFIRM_S">
+                Я согласен с условиями <a
+                        href="/upload/uf/63d/%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%BE%D0%B5%20%D1%81%D0%BE%D0%B3%D0%BB%D0%B0%D1%88%D0%B5%D0%BD%D0%B8%D0%B5%202017.07.01.pdf"
+                        target="_blank">Пользовательского соглашения</a> и <a
+                        href="/upload/uf/307/%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8%202017.07.01.pdf"
+                        target="_blank">Политики конфиденциальности</a>
+            </label>
+        </div>
     </div>
 </form>

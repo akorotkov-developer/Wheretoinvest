@@ -272,6 +272,18 @@
             $(".js-phone").mask('+7 (999) 999-99-99');
             $(".js-date").mask('99.99.9999');
         }
+
+        $("form[data-confirm]").on("submit", function (e) {
+            var id = $(this).find("[data-confirm-input]");
+
+            if ($(id).length) {
+                if (!$(id).is(":checked")) {
+                    alert("Для продолжения Вам необходимо согласиться с условиями.");
+                    e.preventDefault();
+                    return false;
+                }
+            }
+        });
     });
 })
 (jQuery);

@@ -1,9 +1,18 @@
 if (typeof($) !== 'undefined') {
     $(document).ready(function () {
-        $('#asd_subscribe_form').on("submit", function () {
+        $('#asd_subscribe_form').unbind().on("submit", function () {
             if (!$.trim($('#asd_subscribe_form input[name$="asd_email"]').val()).length) {
                 return false;
             }
+            var id = $(this).find("[data-confirm-input]");
+
+            if ($(id).length) {
+                if (!$(id).is(":checked")) {
+                    alert("Для продолжения Вам необходимо согласиться с условиями.");
+                    return false;
+                }
+            }
+
             var arPost = {};
             arPost.asd_rub = [];
             $.each($('#asd_subscribe_form input'), function () {

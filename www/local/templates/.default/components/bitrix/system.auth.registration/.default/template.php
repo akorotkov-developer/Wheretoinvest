@@ -109,11 +109,14 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                         "SINGLE" => "Y",
                         "LIST" => Array(
                             "Y" => 'Я согласен с условиями <a href="/upload/uf/63d/%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%BE%D0%B5%20%D1%81%D0%BE%D0%B3%D0%BB%D0%B0%D1%88%D0%B5%D0%BD%D0%B8%D0%B5%202017.07.01.pdf" target="_blank">Пользовательского соглашения</a> и <a href="/upload/uf/307/%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8%202017.07.01.pdf" target="_blank">Политики конфиденциальности</a>'
+                        ),
+                        "PARAMS" => Array(
+                            "data-confirm-input" => "Y"
                         )
                     ),
                 );
                 ?>
-                <form method="post" action="<?= $arResult["AUTH_URL"] ?>" name="bform">
+                <form method="post" action="<?= $arResult["AUTH_URL"] ?>" name="bform" data-confirm>
                     <br>
                     <input type="hidden" name="AUTH_FORM" value="Y"/>
                     <input type="hidden" name="TYPE" value="REGISTRATION"/>
@@ -184,11 +187,14 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                         "SINGLE" => "Y",
                         "LIST" => Array(
                             "Y" => 'Я согласен с условиями <a href="/upload/uf/63d/%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%BE%D0%B5%20%D1%81%D0%BE%D0%B3%D0%BB%D0%B0%D1%88%D0%B5%D0%BD%D0%B8%D0%B5%202017.07.01.pdf" target="_blank">Пользовательского соглашения</a> и <a href="/upload/uf/307/%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8%202017.07.01.pdf" target="_blank">Политики конфиденциальности</a>'
+                        ),
+                        "PARAMS" => Array(
+                            "data-confirm-input" => "Y"
                         )
                     ),
                 );
                 ?>
-                <form method="post" action="<?= $arResult["AUTH_URL"] ?>" name="bform">
+                <form method="post" action="<?= $arResult["AUTH_URL"] ?>" name="bform" data-confirm>
                     <br>
                     <input type="hidden" name="AUTH_FORM" value="Y"/>
                     <input type="hidden" name="TYPE" value="REGISTRATION"/>
@@ -214,19 +220,3 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $(function () {
-        $("[name='bform']").on("submit", function () {
-            var id = "";
-            if ($(this).find("#FIELD_CONFIRM_C").length)
-                id = "#FIELD_CONFIRM_C";
-            else
-                id = "#FIELD_CONFIRM_P";
-
-            if (!$(id).is(":checked")) {
-                alert("Для продолжения Вам необходимо согласиться с условиями Пользовательского соглашения и Политики конфиденциальности.");
-                return false;
-            }
-        });
-    });
-</script>
