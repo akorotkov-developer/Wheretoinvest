@@ -108,7 +108,7 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                         "REQUIRED" => "Y",
                         "SINGLE" => "Y",
                         "LIST" => Array(
-                            "Y" => 'Я принимаю условия <a href="/upload/uf/988/Пользовательское%20соглашение.pdf" target="_blank">Пользовательского соглашения</a> и <a href="/upload/uf/4b8/Политика%20конфиденциальности.pdf" target="_blank">Политики конфиденциальности</a>'
+                            "Y" => 'Я принимаю условия <a href="/uploads/docs/Пользовательское%20соглашение.pdf" target="_blank">Пользовательского соглашения</a> и <a href="/uploads/docs/Политика%20конфиденциальности.pdf" target="_blank">Политики конфиденциальности</a>'
                         ),
                         "PARAMS" => Array(
                             "data-confirm-input" => "Y"
@@ -186,7 +186,7 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                         "REQUIRED" => "Y",
                         "SINGLE" => "Y",
                         "LIST" => Array(
-                            "Y" => 'Я принимаю условия <a href="/upload/uf/988/Пользовательское%20соглашение.pdf" target="_blank">Пользовательского соглашения</a> и <a href="/upload/uf/4b8/Политика%20конфиденциальности.pdf" target="_blank">Политики конфиденциальности</a>'
+                            "Y" => 'Я принимаю условия <a href="/uploads/docs/Пользовательское%20соглашение.pdf" target="_blank">Пользовательского соглашения</a> и <a href="/uploads/docs/Политика%20конфиденциальности.pdf" target="_blank">Политики конфиденциальности</a>'
                         ),
                         "PARAMS" => Array(
                             "data-confirm-input" => "Y"

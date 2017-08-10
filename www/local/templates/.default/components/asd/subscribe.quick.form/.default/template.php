@@ -46,9 +46,9 @@ if (method_exists($this, 'setFrameMode')) {
                    class="modal__checkbox">
             <label class="modal__chck " for="FIELD_CONFIRM_S">
                 Я принимаю условия <a
-                        href="/upload/uf/988/Пользовательское%20соглашение.pdf"
+                        href="/uploads/docs/Пользовательское%20соглашение.pdf"
                         target="_blank">Пользовательского соглашения</a> и <a
-                        href="/upload/uf/4b8/Политика%20конфиденциальности.pdf"
+                        href="/uploads/docs/Политика%20конфиденциальности.pdf"
                         target="_blank">Политики конфиденциальности</a>
             </label>
         </div>
