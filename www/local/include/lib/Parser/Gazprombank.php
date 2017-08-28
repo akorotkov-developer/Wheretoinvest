@@ -23,6 +23,7 @@ class Gazprombank extends Parser
 
     /**
      * Sbrf constructor.
+     *
      * @param $url
      */
     public function __construct($url, $id)
@@ -37,6 +38,7 @@ class Gazprombank extends Parser
     {
         if (empty($this->data))
             self::parseData();
+
         return $this->data;
     }
 
@@ -82,16 +84,22 @@ class Gazprombank extends Parser
                                 foreach ($tr->find("td") as $td) {
                                     $td = pq($td);
                                     $val = $td->text();
-                                    $val = explode("год", $val);
-                                    foreach ($val as &$v) {
-                                        $v = preg_replace("#[^\d]#is", "", $v);
+
+                                    if (preg_match("#год#is", $val)) {
+                                        $val = explode("год", $val);
+                                        foreach ($val as &$v) {
+                                            $v = preg_replace("#[^\d]#is", "", $v);
+                                        }
+
+                                        if (count($val) > 1) {
+                                            $val = intval($val[0]) * 365 + intval($val[1]);
+                                        } else {
+                                            $val = intval($val[0]);
+                                        }
+                                    } else {
+                                        $val = preg_replace("#[^\d-]#is", "", $val);
                                     }
 
-                                    if (count($val) > 1) {
-                                        $val = intval($val[0]) * 365 + intval($val[1]);
-                                    } else {
-                                        $val = intval($val[0]);
-                                    }
                                     if (!empty($val)) {
                                         $tmpCol[$i] = $val;
                                         $this->data[$type][$tmpCol[$i]] = Array();
