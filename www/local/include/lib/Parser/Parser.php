@@ -11,7 +11,7 @@ namespace Parser;
 abstract class Parser
 {
     public static $debug = false;
-    protected $timeout = 10;
+    protected $timeout = 30;
     protected $redirectsCount = 0;
     protected $maxRedirects = 10;
     protected $configPath = "";
