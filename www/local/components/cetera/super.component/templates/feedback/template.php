@@ -2,8 +2,8 @@
 <div class="hide-for-small-only hide-for-touch">
     <a href="#" class="js-open-mistake i-mistake__btn b-form__btn">Сообщить об
         ошибке<span class="i-mistake__btn-help_wrapper"><span
-                class="i-mistake__btn-help has-tip" data-tooltip="" aria-haspopup="true"
-                title="Нашли ошибку? Выделите ее мышью и нажмите на эту кнопку!">?</span></span></a>
+                    class="i-mistake__btn-help has-tip" data-tooltip="" aria-haspopup="true"
+                    title="Нашли ошибку? Выделите ее мышью и нажмите на эту кнопку!">?</span></span></a>
 
     <div id="mistake" class="reveal-modal tiny modal" data-reveal aria-labelledby="modalTitle"
          aria-hidden="true"
@@ -72,6 +72,27 @@
             }
         }
 
+        function loadCaptcha(callback) {
+            var mistake = $("#mistake");
+
+            $.ajax({
+                url: '<?=$templateFolder?>/ajax.php?action=getCaptcha',
+                method: "POST",
+                dataType: "json",
+                success: function (response) {
+                    mistake.find("#captcha_code").val(response.captcha);
+                    mistake.find("#captcha_img").attr('src', '/bitrix/tools/captcha.php?captcha_code=' + response.captcha);
+                    if (callback !== undefined)
+                        callback();
+                }
+            });
+        }
+
+        $("#captcha_reload").on("click", function () {
+            loadCaptcha();
+            return false;
+        });
+
         $(".js-open-mistake")
             .on("mouseover", sl)
             .on("click", function () {
@@ -82,7 +103,9 @@
                     return false;
                 }
 
-                $("#mistake").foundation('reveal', 'open');
+                loadCaptcha(function () {
+                    $("#mistake").foundation('reveal', 'open');
+                });
 
                 return false;
             });
