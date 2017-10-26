@@ -10,7 +10,8 @@
          role="dialog">
         <div class="row">
             <div class="column small-12">
-                <form action="<?= $templateFolder ?>/ajax.php" class="b-form x-save-form" enctype="multipart/form-data"
+                <form action="<?= $templateFolder ?>/ajax.php" class="b-form x-save-form-feedback"
+                      enctype="multipart/form-data"
                       method="post">
                     <input type="hidden" name="sessid" value="<?= bitrix_sessid(); ?>">
                     <input type="hidden" name="ajax" value="Y">
@@ -110,7 +111,7 @@
                 return false;
             });
 
-        $(".x-save-form").on("submit", function () {
+        $(".x-save-form-feedback").on("submit", function () {
             var data = $(this).serialize(),
                 _this = $(this),
                 url = _this.attr("action") !== "" ? _this.attr("action") : "<?=$templateFolder?>/ajax.php";

@@ -21,46 +21,46 @@ $userInfo = getContainer("User");
     <div class="columns req">
         <div class="row">
             <div class="req__name medium-4 small-5 columns assets__first-column">Капитал / Активы&nbsp;<span
-                    class="assets__tooltip_wrapper"><span
-                        data-tooltip
-                        aria-haspopup="true"
-                        class="has-tip assets__tooltip show-for-large-up"
-                        title="Для банков соответствует нормативу Н1.1 на последнюю отчетную дату.<br><br>Для остальных организаций соответствует отношению суммы собственных средств (капитала) к сумме активов по балансу, в процентах."></span></span>
+                        class="assets__tooltip_wrapper"><span
+                            data-tooltip
+                            aria-haspopup="true"
+                            class="has-tip assets__tooltip show-for-large-up"
+                            title="Для банков соответствует нормативу Н1.1 на последнюю отчетную дату.<br><br>Для остальных организаций соответствует отношению суммы собственных средств (капитала) к сумме активов по балансу, в процентах."></span></span>
             </div>
             <div class="req__value medium-8 small-7 columns">
                 <span
-                    class="assets__black js-capital-assets"><?= !empty($userInfo["UF_CAPITAL_ASSETS"]) ? "<span class='assets__num_right'>" . $userInfo["UF_CAPITAL_ASSETS"] . "</span><span class='assets__small'>%</span>" . (!empty($userInfo["UF_CAPITAL_A_DATE"]) ? "<span class='assets__small assets__date'> на " . date("d.m.Y", strtotime($userInfo["UF_CAPITAL_A_DATE"])) . "</span>" : "") : "<span class='req__name'>—</span>" ?></span>
+                        class="assets__black js-capital-assets"><?= !empty($userInfo["UF_CAPITAL_ASSETS"]) ? "<span class='assets__num_right'>" . $userInfo["UF_CAPITAL_ASSETS"] . "</span><span class='assets__small'>%</span>" . (!empty($userInfo["UF_CAPITAL_A_DATE"]) ? "<span class='assets__small assets__date'> на " . date("d.m.Y", strtotime($userInfo["UF_CAPITAL_A_DATE"])) . "</span>" : "") : "<span class='req__name'>—</span>" ?></span>
             </div>
         </div>
     </div>
     <div class="columns req">
         <div class="row">
             <div class="req__name medium-4 small-5 columns assets__first-column">Собственный капитал&nbsp;<span
-                    class="assets__tooltip_wrapper"><span
-                        data-tooltip
-                        aria-haspopup="true"
-                        class="has-tip assets__tooltip show-for-large-up"
-                        title="Для банков соответствует показателю «Базовый капитал» (строка 102 формы
+                        class="assets__tooltip_wrapper"><span
+                            data-tooltip
+                            aria-haspopup="true"
+                            class="has-tip assets__tooltip show-for-large-up"
+                            title="Для банков соответствует показателю «Базовый капитал» (строка 102 формы
             0409123 «Расчёт собственных средств (капитала) («Базель III»)) на последнюю отчетную дату.<br><br>Для остальных организаций соответствует сумме собственных средств (капитала) на последнюю отчетную дату."></span></span>
             </div>
             <div class="req__value medium-8 small-7 columns">
 <span
-    class="assets__red js-capital"><?= !empty($userInfo["UF_CAPITAL"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_CAPITAL"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей</span>" . (!empty($userInfo["UF_CAPITAL_DATE"]) ? "<span class='assets__small assets__date'> на " . date("d.m.Y", strtotime($userInfo["UF_CAPITAL_DATE"])) . "</span>" : "") : "<span class='req__name'>—</span>" ?></span>
+        class="assets__red js-capital"><?= !empty($userInfo["UF_CAPITAL"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_CAPITAL"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей</span>" . (!empty($userInfo["UF_CAPITAL_DATE"]) ? "<span class='assets__small assets__date'> на " . date("d.m.Y", strtotime($userInfo["UF_CAPITAL_DATE"])) . "</span>" : "") : "<span class='req__name'>—</span>" ?></span>
             </div>
         </div>
     </div>
     <div class="columns">
         <div class="row">
             <div class="req__name medium-4 small-5 columns assets__first-column">Активы&nbsp;<span
-                    class="assets__tooltip_wrapper"><span data-tooltip
-                                                          aria-haspopup="true"
-                                                          class="has-tip assets__tooltip show-for-large-up"
-                                                          title="Для банков соответствует сумме активов, взвешенных по уровню риска.<br><br>Для остальных организаций соответствует сумме активов по балансу."></span></span>
+                        class="assets__tooltip_wrapper"><span data-tooltip
+                                                              aria-haspopup="true"
+                                                              class="has-tip assets__tooltip show-for-large-up"
+                                                              title="Для банков соответствует сумме активов, взвешенных по уровню риска.<br><br>Для остальных организаций соответствует сумме активов по балансу."></span></span>
             </div>
             <div class="req__value medium-8 small-7 columns">
 <span class="js-assets-parent">
                     <span
-                        class="assets__red js-assets"><?= !empty($userInfo["UF_ASSETS"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_ASSETS"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей</span>" . (!empty($userInfo["UF_ASSETS_DATE"]) ? "<span class='assets__small assets__date'> на " . date("d.m.Y", strtotime($userInfo["UF_ASSETS_DATE"])) . "</span>" : "") : "<span class='req__name'>—</span>" ?></span>
+                            class="assets__red js-assets"><?= !empty($userInfo["UF_ASSETS"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_ASSETS"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей</span>" . (!empty($userInfo["UF_ASSETS_DATE"]) ? "<span class='assets__small assets__date'> на " . date("d.m.Y", strtotime($userInfo["UF_ASSETS_DATE"])) . "</span>" : "") : "<span class='req__name'>—</span>" ?></span>
             </span>
             </div>
         </div>
@@ -81,9 +81,9 @@ $userInfo = getContainer("User");
 <div id="assets" class="reveal-modal tiny modal" data-reveal aria-labelledby="modalTitle"
      aria-hidden="true"
      role="dialog">
-    <div class="row">
-        <div class="column small-12">
-            <form action="" class="b-form x-save-form" enctype="multipart/form-data" method="post">
+    <form action="" class="b-form x-save-form-asset" enctype="multipart/form-data" method="post">
+        <div class="row">
+            <div class="column small-12">
                 <input type="hidden" name="sessid" value="<?= bitrix_sessid(); ?>">
                 <input type="hidden" name="ajax" value="Y">
                 <input type="hidden" name="action" value="changeAssets">
@@ -96,9 +96,9 @@ $userInfo = getContainer("User");
                     <div class="assets columns small-12 medium-12 large-8">
                         <div class="assets__head">
                             <div class="assets__title">Капитал / Активы</div>
-                        <span class="assets__tooltip_wrapper"><span data-tooltip aria-haspopup="true"
-                                                                    class="has-tip assets__tooltip show-for-large-up"
-                                                                    title="Для банков соответствует нормативу Н1.1 на последнюю отчетную дату.<br><br>Для остальных организаций соответствует отношению суммы собственных средств (капитала) к сумме активов по балансу, в процентах."></span></span>
+                            <span class="assets__tooltip_wrapper"><span data-tooltip aria-haspopup="true"
+                                                                        class="has-tip assets__tooltip show-for-large-up"
+                                                                        title="Для банков соответствует нормативу Н1.1 на последнюю отчетную дату.<br><br>Для остальных организаций соответствует отношению суммы собственных средств (капитала) к сумме активов по балансу, в процентах."></span></span>
 
                             <div class="level">
                                 <input type="text" name="UF_CAPITAL_ASSETS" class="level__inp js-number-only"
@@ -130,9 +130,9 @@ $userInfo = getContainer("User");
                     <div class="assets columns small-12 medium-12 large-8">
                         <div class="assets__head">
                             <div class="assets__title">Собственный капитал</div>
-                    <span class="assets__tooltip_wrapper"><span data-tooltip aria-haspopup="true"
-                                                                class="has-tip assets__tooltip show-for-large-up"
-                                                                title="Для банков соответствует показателю «Базовый капитал» (строка 102 формы
+                            <span class="assets__tooltip_wrapper"><span data-tooltip aria-haspopup="true"
+                                                                        class="has-tip assets__tooltip show-for-large-up"
+                                                                        title="Для банков соответствует показателю «Базовый капитал» (строка 102 формы
             0409123 «Расчёт собственных средств (капитала) («Базель III»)) на последнюю отчетную дату.<br><br>Для остальных организаций соответствует сумме собственных средств (капитала) на последнюю отчетную дату."></span></span>
 
                             <div class="level">
@@ -195,19 +195,18 @@ $userInfo = getContainer("User");
                         </div>
                     </div>
                 </div>
-        </div>
+            </div>
 
-        <div class="column small-12">
-            <div class="row">
-                <div class="column small-12 medium-5 small-centered">
-                    <button class="b-form__btn" type="submit">Сохранить</button>
+            <div class="column small-12">
+                <div class="row">
+                    <div class="column small-12 medium-5 small-centered">
+                        <button class="b-form__btn" type="submit">Сохранить</button>
+                    </div>
                 </div>
             </div>
         </div>
-        </form>
-    </div>
-</div>
-<a class="close-reveal-modal modal__close" aria-label="Close">×</a>
+    </form>
+    <a class="close-reveal-modal modal__close" aria-label="Close">×</a>
 </div>
 
 <script type="text/javascript">
@@ -277,7 +276,7 @@ $userInfo = getContainer("User");
             }
         });
 
-        $(".x-save-form").on("submit", function () {
+        $(".x-save-form-asset").unbind().on("submit", function () {
             var data = $(this).serialize(),
                 _this = $(this),
                 url = _this.attr("action") !== "" ? _this.attr("action") : "/local/ajax/editAssets.php";
