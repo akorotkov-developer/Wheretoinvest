@@ -29,7 +29,7 @@ $userInfo = getContainer("User");
             </div>
             <div class="req__value medium-8 small-7 columns">
                 <span
-                        class="assets__black js-capital-assets"><?= !empty($userInfo["UF_CAPITAL_ASSETS"]) ? "<span class='assets__num_right'>" . $userInfo["UF_CAPITAL_ASSETS"] . "</span><span class='assets__small'>%</span>" . (!empty($userInfo["UF_CAPITAL_A_DATE"]) ? "<span class='assets__small assets__date'> на " . date("d.m.Y", strtotime($userInfo["UF_CAPITAL_A_DATE"])) . "</span>" : "") : "<span class='req__name'>—</span>" ?></span>
+                        class="assets__black js-capital-assets"><?= strlen($userInfo["UF_CAPITAL_ASSETS"]) ? "<span class='assets__num_right'>" . $userInfo["UF_CAPITAL_ASSETS"] . "</span><span class='assets__small'>%</span>" . (!empty($userInfo["UF_CAPITAL_A_DATE"]) ? "<span class='assets__small assets__date'> на " . date("d.m.Y", strtotime($userInfo["UF_CAPITAL_A_DATE"])) . "</span>" : "") : "<span class='req__name'>—</span>" ?></span>
             </div>
         </div>
     </div>
@@ -45,7 +45,7 @@ $userInfo = getContainer("User");
             </div>
             <div class="req__value medium-8 small-7 columns">
 <span
-        class="assets__red js-capital"><?= !empty($userInfo["UF_CAPITAL"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_CAPITAL"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей</span>" . (!empty($userInfo["UF_CAPITAL_DATE"]) ? "<span class='assets__small assets__date'> на " . date("d.m.Y", strtotime($userInfo["UF_CAPITAL_DATE"])) . "</span>" : "") : "<span class='req__name'>—</span>" ?></span>
+        class="assets__red js-capital"><?= strlen($userInfo["UF_CAPITAL"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_CAPITAL"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей</span>" . (!empty($userInfo["UF_CAPITAL_DATE"]) ? "<span class='assets__small assets__date'> на " . date("d.m.Y", strtotime($userInfo["UF_CAPITAL_DATE"])) . "</span>" : "") : "<span class='req__name'>—</span>" ?></span>
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@ $userInfo = getContainer("User");
             <div class="req__value medium-8 small-7 columns">
 <span class="js-assets-parent">
                     <span
-                            class="assets__red js-assets"><?= !empty($userInfo["UF_ASSETS"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_ASSETS"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей</span>" . (!empty($userInfo["UF_ASSETS_DATE"]) ? "<span class='assets__small assets__date'> на " . date("d.m.Y", strtotime($userInfo["UF_ASSETS_DATE"])) . "</span>" : "") : "<span class='req__name'>—</span>" ?></span>
+                            class="assets__red js-assets"><?= strlen($userInfo["UF_ASSETS"]) ? "<span class='assets__num_right'>" . number_format(round(intval(preg_replace("#[^\d]#is", "", $userInfo["UF_ASSETS"])) / 1000000, 1), 1, ",", " ") . "</span><span class='assets__small'>млрд. рублей</span>" . (!empty($userInfo["UF_ASSETS_DATE"]) ? "<span class='assets__small assets__date'> на " . date("d.m.Y", strtotime($userInfo["UF_ASSETS_DATE"])) . "</span>" : "") : "<span class='req__name'>—</span>" ?></span>
             </span>
             </div>
         </div>
@@ -253,8 +253,8 @@ $userInfo = getContainer("User");
                 var val = $(this).val();
                 val = val.replace(/[^\d,]/g, '').trim();
                 val = number_format(parseInt(val), 0, ".", " ");
-                if (val == 0)
-                    val = "";
+                if (val < 0)
+                    val = 0;
                 $(this).val(val);
             }
         });
@@ -270,8 +270,8 @@ $userInfo = getContainer("User");
             else {
                 var val = $(this).val();
                 val = val.replace(/[^\d\.,]/g, '').replace(/\./g, ',').trim();
-                if (val == 0)
-                    val = "";
+                if (val < 0)
+                    val = 0;
                 $(this).val(val);
             }
         });
