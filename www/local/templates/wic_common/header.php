@@ -91,8 +91,11 @@ ob_end_clean();
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta property="og:image" content="http://wheretoinvest.ru/local/templates/wic_common/images/logo.png">
-	<link rel="image_src" href="http://wheretoinvest.ru/local/templates/wic_common/images/logo.png"> 
+    <meta property="og:image" content="http://wheretoinvest.ru/local/templates/wic_common/images/logo.png">
+    <meta property="og:image:width" content="200" />
+    <meta property="og:image:height" content="200" />
+<!--	<meta property="og:image" content="http://wheretoinvest.ru/local/templates/wic_common/images/logo.png">-->
+	<link rel="image_src" href="http://wheretoinvest.ru/local/templates/wic_common/images/logo_big.png"> 
     <title><?php $APPLICATION->ShowTitle() ?></title>
     <link rel="icon" href="/uploads/icons/c76.png" type="image/x-icon">
     <link rel="shortcut icon" href="/uploads/icons/c76.png" type="image/x-icon">
@@ -101,17 +104,10 @@ ob_end_clean();
     <link rel="apple-touch-icon" sizes="120x120" href="/uploads/icons/i120n.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/uploads/icons/i152n.png">
     <? /*?>
-    <link rel="apple-touch-icon" href="/uploads/ios-icon-29x29.png">
     <link rel="apple-touch-icon" href="/uploads/ios-icon-40x40.png">
-    <link rel="apple-touch-icon" href="/uploads/ios-icon-50x50.png">
-    <link rel="apple-touch-icon" href="/uploads/ios-icon-57x57.png">
-    <link rel="apple-touch-icon" href="/uploads/ios-icon-58x58.png">
     <link rel="apple-touch-icon" href="/uploads/ios-icon-72x72.png">
     <link rel="apple-touch-icon" href="/uploads/ios-icon-76x76.png">
-    <link rel="apple-touch-icon" href="/uploads/ios-icon-80x80.png">
-    <link rel="apple-touch-icon" href="/uploads/ios-icon-87x87.png">
     <link rel="apple-touch-icon" href="/uploads/ios-icon-100x100.png">
-    <link rel="apple-touch-icon" href="/uploads/ios-icon-114x114.png">
     <link rel="apple-touch-icon" href="/uploads/ios-icon-120x120.png">
     <link rel="apple-touch-icon" href="/uploads/ios-icon-144x144.png">
     <link rel="apple-touch-icon" href="/uploads/ios-icon-152x152.png">
@@ -119,10 +115,9 @@ ob_end_clean();
     <link rel="apple-touch-icon" href="/uploads/ios-icon-180x180.png">
     <link rel="apple-touch-icon" href="/uploads/ios-icon-1024x1024.png">
     <?*/ ?>
-	
-	<meta property="og:title" content="Куда вложить деньги"/>
+
+	<meta property="og:title" content="Куда вложить"/>
     <meta property="og:description" content="Удобный поиск и сравнение инвестиций"/>
-    <meta property="og:image" content="http://wheretoinvest.ru<?=WIC_TEMPLATE_PATH?>/images/wic_logo.png">
     <meta property="og:type" content="website"/>
     <meta property="og:url" content= "http://wheretoinvest.ru/" />
 	
