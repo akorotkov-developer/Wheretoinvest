@@ -99,8 +99,8 @@ ob_end_clean();
     <title><?php $APPLICATION->ShowTitle() ?></title>
     <link rel="icon" href="/uploads/icons/c76.png" type="image/x-icon">
     <link rel="shortcut icon" href="/uploads/icons/c76.png" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="72x72" href="/uploads/icons/i72n.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/uploads/icons/i76n.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/uploads/icons/c72n.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/uploads/icons/c76n.png">
     <link rel="apple-touch-icon" sizes="120x120" href="/uploads/icons/i120n.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/uploads/icons/i152n.png">
     <? /*?>
