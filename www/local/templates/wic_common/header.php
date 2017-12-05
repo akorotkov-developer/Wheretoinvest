@@ -97,8 +97,8 @@ ob_end_clean();
 <!--	<meta property="og:image" content="http://wheretoinvest.ru/local/templates/wic_common/images/logo.png">-->
 	<link rel="image_src" href="http://wheretoinvest.ru/local/templates/wic_common/images/logo_big.png"> 
     <title><?php $APPLICATION->ShowTitle() ?></title>
-    <link rel="icon" href="/uploads/icons/c76.png" type="image/x-icon">
-    <link rel="shortcut icon" href="/uploads/icons/c76.png" type="image/x-icon">
+    <link rel="icon" href="/uploads/icons/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/uploads/icons/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="72x72" href="/uploads/icons/c72n.png">
     <link rel="apple-touch-icon" sizes="76x76" href="/uploads/icons/c76n.png">
     <link rel="apple-touch-icon" sizes="120x120" href="/uploads/icons/i120n.png">
