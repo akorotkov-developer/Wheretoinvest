@@ -21,7 +21,7 @@ if ($USER->IsAuthorized()):?>
 <? else: ?>
     <a href="/cabinet/auth/" class="b-header__firstline-link"><span
             class="b-header__auth-link">Войти</span><span
-            class="b-header__auth-link_short"><img style="opacity:0.55;" src="/uploads/regicon_c_m.png"></span>
+            class="b-header__auth-link_short"><img style="opacity:0.55;width:20px;height:auto;" src="/uploads/regicon_m_b.png"></span>
     </a>
     <span class="b-header__firstline-slash">|</span>
     <a href="/cabinet/auth/?register=yes" class="b-header__firstline-link">Регистрация&nbsp;<span
