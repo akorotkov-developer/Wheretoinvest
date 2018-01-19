@@ -46,16 +46,16 @@ class Rosbank extends Parser
     {
         self::getTableData();
         if (!empty($this->content) && $this->content instanceof \phpQueryObject) {
-            foreach ($this->content->find(".page-deposit__tabs.js-tabs-container .js-tab-content") as $p) {
+            foreach ($this->content->find(".page-deposit__tabs.js-tabs-container1 .js-tab-content") as $p) {
                 $p = pq($p);
                 switch (trim($p->attr("id"))) {
-                    case "rub":
+                    case "office_rub":
                         $type = "28";
                         break;
-                    case "usd":
+                    case "office_usd":
                         $type = "29";
                         break;
-                    case "eur":
+                    case "office_eur":
                         $type = "30";
                         break;
                     default:
