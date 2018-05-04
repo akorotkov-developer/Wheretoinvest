@@ -46,11 +46,12 @@ class Rosselhoz extends Parser
     {
         self::getTableData();
         if (!empty($this->content) && $this->content instanceof \phpQueryObject) {
-            foreach ($this->content->find(".b-text-block > p") as $p) {
+            foreach ($this->content->find(".b-slide-pane-head") as $p) {
                 $p = pq($p);
 
                 if (preg_match("#Открываемый через дистанционные каналы обслуживания \(выплата процентов в конце срока\)#is", $p->text())) {
-                    $table = pq($p->next("table"));
+
+                    $table = pq($p->next(".b-slide-pane-content")->find("table"));
                     if (!empty($table)) {
                         $tmpCol = Array();
                         $line = 1;
