@@ -284,6 +284,15 @@
                 }
             }
         });
-    });
+    });    
 })
 (jQuery);
+
+jQuery(document).ready(function ($) {
+
+    addToHomescreen({
+        startDelay: 1,
+        lifespan: 45
+    });
+
+});

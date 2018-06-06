@@ -133,6 +133,7 @@ ob_end_clean();
     <script data-skip-moving="true" src="<?= WIC_TEMPLATE_PATH ?>/js/vendor/modernizr.js"></script>
     <?php
     $APPLICATION->SetAdditionalCSS(WIC_TEMPLATE_PATH . "/js/vendor/sortable/jquery-ui.min.css");
+    $APPLICATION->SetAdditionalCSS(WIC_TEMPLATE_PATH . "/js/vendor/add-to-home-screen/addtohomescreen.css");
     $APPLICATION->SetAdditionalCSS(WIC_TEMPLATE_PATH . "/css/style.css");
     $APPLICATION->ShowHead();
     ?>

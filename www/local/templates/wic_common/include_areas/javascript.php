@@ -3,6 +3,7 @@
 global $APPLICATION;
 use Cetera\Tools\JsIncludes;
 
+JsIncludes::registerFile('common.add-to-home-screen', '#WIC_TEMPLATE_PATH#/js/vendor/add-to-home-screen/addtohomescreen.js?v=1');
 JsIncludes::registerFile('common.common', '#WIC_TEMPLATE_PATH#/js/common.js?v=1');
 JsIncludes::registerFile('common.foundation', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.js?v=1');
 JsIncludes::registerFile('common.foundation.reveal', '#WIC_TEMPLATE_PATH#/js/foundation/foundation.reveal.js?v=1');
@@ -28,6 +29,7 @@ if ($APPLICATION->GetCurPage() == "/cabinet/method/") {
     JsIncludes::registerFile('common.js.sortabletouch', '#WIC_TEMPLATE_PATH#/js/vendor/sortable/jquery.ui.touch-punch.min.js?v=1');
 }
 
+JsIncludes::includeFiles('common.add-to-home-screen');
 JsIncludes::includeFiles('common.foundation');
 JsIncludes::includeFiles('common.js');
 JsIncludes::includeFiles('common.common');
