@@ -289,10 +289,24 @@
 (jQuery);
 
 jQuery(document).ready(function ($) {
+    addToHomescreen.removeSession();
 
+
+
+   
+//    addToHomescreen({
+//        startDelay: 10,
+//        lifespan: 10,
+//        displayPace:60
+//    });
+    
     addToHomescreen({
+        debug:1,
         startDelay: 1,
-        lifespan: 45
+        lifespan: 200,
+        displayPace:60,
+        customIcon: "/local/templates/wic_common/images/wic-aths.jpg"
+        
     });
 
 });
