@@ -289,8 +289,7 @@
 (jQuery);
 
 jQuery(document).ready(function ($) {
-    addToHomescreen.removeSession();
-    
+    //addToHomescreen.removeSession();
     addToHomescreen({
         startDelay: 10,
         lifespan: 10,
