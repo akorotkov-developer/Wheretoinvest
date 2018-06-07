@@ -40,73 +40,16 @@
     ath.intl = {
 
         ru: {
-            ios: 'Чтобы добавить веб-приложение на главном экране: нажмите %icon а затем <strong>Добавить на главный экран</strong>.',
-            android: 'Чтобы добавить это веб-приложение на главный экран, откройте меню опций браузера и нажмите <strong>Добавить на главный экран</strong>. <small>Доступ к меню можно получить, нажав кнопку аппаратного обеспечения меню, если на вашем устройстве есть оно, или нажав значок верхнего правого меню  <span class="ath-action-icon">icon</span>.</small>',
-        },
-        de_de: {
-            ios: 'Um diese Web-App zum Home-Bildschirm hinzuzufügen, tippen Sie auf %icon und dann <strong>Zum Home-Bildschirm</strong>.',
-            android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>',
-        },
-
-        en_us: {
-            ios: 'To add this web app to the home screen: tap %icon and then <strong>Add to Home Screen</strong>.',
-            android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>',
+            ios: {
+                title: "Быстрый доступ к сайту <br> «Куда&nbsp;вложить»",
+                message: 'Нажмите %icon и выберите на экран «Домой».'
+            },
+            android: {
+                title: "Быстрый доступ к сайту <br> «Куда&nbsp;вложить»",
+                message: 'Откройте меню браузера %icon и нажмите <br> <strong>Добавить на главный экран</strong>.',
+            }
         },
 
-        es_es: {
-            ios: 'Para añadir esta aplicación web a la pantalla de inicio: pulsa %icon y selecciona <strong>Añadir a pantalla de inicio</strong>.',
-            android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>',
-        },
-
-        fr_fr: {
-            ios: 'Pour ajouter cette application web sur l\'écran d\'accueil : Appuyez %icon et sélectionnez <strong>Ajouter sur l\'écran d\'accueil</strong>.',
-            android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>',
-        },
-
-        he_il: {
-            ios: '<span dir="rtl">להוספת האפליקציה למסך הבית: ללחוץ על %icon ואז <strong>הוסף למסך הבית</strong>.</span>',
-            android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>',
-        },
-
-        it_it: {
-            ios: 'Per aggiungere questa web app alla schermata iniziale: premi %icon e poi <strong>Aggiungi a Home</strong>.',
-            android: 'Per aggiungere questa web app alla schermata iniziale, apri il menu opzioni del browser e premi su <strong>Aggiungi alla homescreen</strong>. <small>Puoi accedere al menu premendo il pulsante hardware delle opzioni se la tua device ne ha uno, oppure premendo l\'icona <span class="ath-action-icon">icon</span> in alto a destra.</small>',
-        },
-
-        nb_no: {
-            ios: 'For å installere denne appen på hjem-skjermen: trykk på %icon og deretter <strong>Legg til på Hjem-skjerm</strong>.',
-            android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>',
-        },
-
-        pt_br: {
-            ios: 'Para adicionar este app à tela de início: clique %icon e então <strong>Tela de início</strong>.',
-            android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>',
-        },
-
-        pt_pt: {
-            ios: 'Para adicionar esta app ao ecrã principal: clique %icon e depois <strong>Ecrã principal</strong>.',
-            android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>',
-        },
-
-        nl_nl: {
-            ios: 'Om deze webapp op je telefoon te installeren, klik op %icon en dan <strong>Zet in beginscherm</strong>.',
-            android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>',
-        },
-
-        sv_se: {
-            ios: 'För att lägga till denna webbapplikation på hemskärmen: tryck på %icon och därefter <strong>Lägg till på hemskärmen</strong>.',
-            android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>',
-        },
-
-        zh_cn: {
-            ios: '如要把应用程式加至主屏幕,请点击%icon, 然后<strong>加至主屏幕</strong>',
-            android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>',
-        },
-
-        zh_tw: {
-            ios: '如要把應用程式加至主屏幕, 請點擊%icon, 然後<strong>加至主屏幕</strong>.',
-            android: 'To add this web app to the home screen open the browser option menu and tap on <strong>Add to homescreen</strong>. <small>The menu can be accessed by pressing the menu hardware button if your device has one, or by tapping the top right menu icon <span class="ath-action-icon">icon</span>.</small>',
-        }
     };
 
 // Add 2 characters language support (Android mostly)
@@ -128,6 +71,7 @@
         displayPace: 1440, // minutes before the message is shown again (0: display every time, default 24 hours)
         maxDisplayCount: 0, // absolute maximum number of times the message will be shown to the user (0: no limit)
         icon: true, // add touch icon to the message
+        title: "",
         message: '', // the message can be customized
         validLocation: [], // list of pages where the message will be shown (array of regexes)
         onInit: null, // executed on instance creation
@@ -136,7 +80,7 @@
         onAdd: null, // when the application is launched the first time from the homescreen (guesstimate)
         onPrivate: null, // executed if user is in private mode
         privateModeOverride: false, // show the message even in private mode (very rude)
-        detectHomescreen: false,		// try to detect if the site has been added to the homescreen (false | true | 'hash' | 'queryString' | 'smartURL')
+        detectHomescreen: false, // try to detect if the site has been added to the homescreen (false | true | 'hash' | 'queryString' | 'smartURL')
         customIcon: false
     };
 
@@ -406,15 +350,27 @@
             var message = '';
 
             if (this.options.message in ath.intl) {		// you can force the locale
-                message = ath.intl[this.options.message][ath.OS];
+                message = ath.intl[this.options.message][ath.OS].message;
             } else if (this.options.message !== '') {		// or use a custom message
                 message = this.options.message;
             } else {										// otherwise we use our message
-                message = ath.intl[ath.language][ath.OS];
+                message = ath.intl[ath.language][ath.OS].message;
             }
-
+         
             // add the action icon
             message = '<p>' + message.replace('%icon', '<span class="ath-action-icon">icon</span>') + '</p>';
+            
+            var title = '';
+            
+            if (this.options.title in ath.intl) {		// you can force the locale
+                title = ath.intl[this.options.message][ath.OS].title;
+            } else if (this.options.title !== '') {		// or use a custom message
+                title = this.options.title;
+            } else {										// otherwise we use our message
+                title = ath.intl[ath.language][ath.OS].title;
+            }
+            title = "<p class=''>" + title +"</p>";
+            
 
             // create the message container
             this.viewport = document.createElement('div');
@@ -434,6 +390,8 @@
             this.element.style.webkitTransform = 'translate3d(0,-' + window.innerHeight + 'px,0)';
             this.element.style.transform = 'translate3d(0,-' + window.innerHeight + 'px,0)';
 
+            this.element.innerHTML += title;
+            
             // add the application icon
             if (this.options.icon && this.applicationIcon) {
                 this.element.className += ' ath-icon';
@@ -442,7 +400,7 @@
                 this.img.addEventListener('load', this, false);
                 this.img.addEventListener('error', this, false);
 
-                this.img.src = this.options.customIcon ? this.options.customIcon :  this.applicationIcon.href;
+                this.img.src = this.options.customIcon ? this.options.customIcon : this.applicationIcon.href;
                 this.element.appendChild(this.img);
             }
 
