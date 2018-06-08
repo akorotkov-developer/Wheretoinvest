@@ -168,7 +168,11 @@
 	background-size: 100% auto;
 }
 
-.ath-container p {
+.ath-container p:first-child{
+    margin-top: 24px;
+}
+
+.ath-container p{
 	margin: 0;
 	padding: 0;
 	position: relative;
