@@ -1,4 +1,4 @@
-<? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+<?php if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
 global $APPLICATION;
 use Cetera\Tools\JsIncludes;
@@ -56,5 +56,30 @@ echo JsIncludes::showIncludes();
             e.setAttribute("src", "https://browser-update.org/update.js");
             document.body.appendChild(e);
         }
-    </script><?
+    </script>
+    <script>
+    jQuery(document).ready(function ($) {
+        //addToHomescreen.removeSession();
+        <?php
+        $startDelay = \Ceteralabs\UserVars::GetVar('ATH_START_DELAY')["VALUE"];
+        $lifespan = \Ceteralabs\UserVars::GetVar('ATH_LIFESPAN')["VALUE"];
+        $displayPace = \Ceteralabs\UserVars::GetVar('ATH_DISPLAYPACE')["VALUE"];
+        $debug = \Ceteralabs\UserVars::GetVar('ATH_DEBUG')["VALUE"];
+        ?>
+      
+            addToHomescreen({
+                debug: <?=!empty($debug) ? intval($debug) : 0?>,
+                startDelay: <?=!empty($startDelay) ? intval($startDelay) : 10?>,
+                lifespan: <?=!empty($lifespan) ? intval($lifespan) : 10?>,
+                displayPace: <?=!empty($displayPace) ? intval($displayPace) : 60?>,
+                customIcon: "/local/templates/wic_common/images/wic-aths.jpg"
+            });
+        
+    });
+    
+    
+    </script>   
+
+        
+     <?php
 
