@@ -30,7 +30,8 @@ class Binbank
     public function __construct($url, $id)
     {
         parent::__construct();
-        $this->url = $url;
+        //$this->url = $url;
+        $this->url = "https://www.binbank.ru/local/templates/binbank2017common/js/json_deposit.js";
         $this->id = $id;
         $this->configPath = __DIR__ . "/config/binbank_config.php";
     }
@@ -45,92 +46,48 @@ class Binbank
 
     public function parseData()
     {
-        self::getTableData();
-        if (!empty($this->content) && $this->content instanceof \phpQueryObject) {
-            $num = 0;
-            foreach ($this->content->find(".procent_stavka_wrap .procent_stavka_table_wrap") as $p) {
-                $p = pq($p);
+        self::getDataArray();
 
-                switch (trim($this->content->find(".procent_stavka_tabs span")->eq($num)->text())) {
-                    case "Рубли":
+        if (!empty($this->content)) {
+
+            foreach ($this->content as $k => $val) {
+
+                switch (trim($k)) {
+                    case "ru":
                         $type = "28";
                         break;
-                    case "Доллары США":
+                    case "dol":
                         $type = "29";
-                        break;
-                    case "Евро":
-                        $type = "30";
                         break;
                     default:
                         $type = "";
                         break;
                 }
 
-                $num++;
-
                 if (empty($type))
                     continue;
 
                 $this->data[$type] = Array();
 
-                $table = pq($p->find(".procent_stavka_table"));
-                if (!empty($table)) {
-                    $tmpCol = Array();
-
-                    $tableHead = $table->find(".procent_stavka_table_gray.procent_stavka_table_gray_no_bord");
-                    $tableRow = $table->find("tr")->not(".procent_stavka_table_gray");
-
-                    if (empty($tableHead) || empty($tableRow))
-                        continue;
-
-                    $i = 1;
-                    foreach ($tableHead->find("td") as $td) {
-                        $td = pq($td);
-                        $val = intval(trim($td->text()));
-                        if (empty($val))
-                            continue;
-
-                        if (!empty($val)) {
-                            $tmpCol[$i] = $val;
-                            $this->data[$type][$tmpCol[$i]] = Array();
-                        }
-
-                        $i++;
-                    }
-
-                    foreach ($tableRow as $tr) {
-                        $tr = pq($tr);
-                        $i = 0;
-                        $row = "";
-                        foreach ($tr->find("td") as $td) {
-                            $td = pq($td);
-
-                            if ($i === 0) {
-                                $val = trim($td->text());
-                                $val = preg_replace("#[^\d,\.-]#is", "", $val);
-                                $val = preg_replace("#\.#is", ",", $val);
-                                if (!empty($val)) {
-                                    $row = $val;
-                                }
-                            } else {
-                                if (!empty($row) && !empty($tmpCol[$i])) {
-                                    $val = preg_replace("#[^\d,\.-]#is", "", $td->text());
-                                    $val = floatval(preg_replace("#,#is", ".", $val));
-
-                                    $this->data[$type][$tmpCol[$i]][$row] = $val;
-                                }
-                            }
-                            $i++;
-                        }
-                    }
+                foreach ($val as $k2 => $val2) {
+                    foreach ($val2 as $k3 => $val3)
+                        $this->data[$type][$k2][$k3] = $val3;
                 }
             }
         }
     }
 
-    public function getTableData()
+    public function getDataArray()
     {
-        $this->content = phpQuery::newDocument(self::getUrl());
+        $sContent =  self::getUrl();
+
+        preg_match("/\'1\'\:.*'valute'\:(.*)\'2'\:/is", $sContent, $matches);
+
+        $sContent = trim(str_replace(array('//valut', ':.'), array('', ':0.'), $matches[1]));
+
+        $sContent = substr($sContent, 0, strlen($sContent) - 2);
+
+        $this->content = json_decode($sContent);
     }
 
     public function getUrl()
