@@ -46,9 +46,11 @@ class Gazprombank extends Parser
     {
         self::getTableData();
         if (!empty($this->content) && $this->content instanceof \phpQueryObject) {
-            foreach ($this->content->find("p") as $p) {
+
+            foreach ($this->content->find(".interest-rate-table") as $p) {
                 $p = pq($p);
-                switch (trim($p->text())) {
+
+                switch (trim($p->find('.interest-rate-table__title')->text())) {
                     case "Российские рубли":
                         $type = "28";
                         break;
@@ -68,72 +70,44 @@ class Gazprombank extends Parser
 
                 $this->data[$type] = Array();
 
-                $table = pq($p->next("table"));
-                if (!empty($table)) {
-                    $tmpCol = Array();
-                    $line = 1;
-                    foreach ($table->find("tr") as $tr) {
-                        $tr = pq($tr);
+                $tmpCol = Array();
+                $i = 0;
+                foreach ($p->find('.interest-rate-header__text') as $row) {
+                    $row = pq($row);
 
-                        switch ($line) {
-                            case 1:
-                                continue;
-                                break;
-                            case 2:
-                                $i = 1;
-                                foreach ($tr->find("td") as $td) {
-                                    $td = pq($td);
-                                    $val = $td->text();
+                    $val = $row->text();
 
-                                    if (preg_match("#год#is", $val)) {
-                                        $val = explode("год", $val);
-                                        foreach ($val as &$v) {
-                                            $v = preg_replace("#[^\d]#is", "", $v);
-                                        }
+                    $val = preg_replace("#[^\d -]#is", "", $val);
+                    $val = intval($val);
+                    if (!empty($val)) {
+                        $tmpCol[$i] = $val;
+                        $this->data[$type][$tmpCol[$i]] = Array();
+                    }
 
-                                        if (count($val) > 1) {
-                                            $val = intval($val[0]) * 365 + intval($val[1]);
-                                        } else {
-                                            $val = intval($val[0]);
-                                        }
-                                    } else {
-                                        $val = preg_replace("#[^\d-]#is", "", $val);
-                                    }
+                    $i++;
+                }
 
-                                    if (!empty($val)) {
-                                        $tmpCol[$i] = $val;
-                                        $this->data[$type][$tmpCol[$i]] = Array();
-                                    }
+                foreach ($p->find('.row--interest-rate-table') as $row) {
+                    $row = pq($row);
 
-                                    $i++;
-                                }
-                                break;
-                            default:
-                                $i = 0;
-                                $row = "";
-                                foreach ($tr->find("td") as $td) {
-                                    $td = pq($td);
+                    $k = 0;
+                    $sum = '';
+                    foreach ($row->find('.interest-rate-table__digit') as $column) {
+                        $column = pq($column);
 
-                                    if ($i === 0) {
-                                        $val = preg_replace("#[^\d,\.-]#is", "", $td->text());
-                                        $val = preg_replace("#\.#is", ",", $val);
-                                        if (!empty($val)) {
-                                            $row = $val;
-                                        }
-                                    } else {
-                                        if (!empty($row) && !empty($tmpCol[$i])) {
-                                            $val = preg_replace("#[^\d,\.-]#is", "", $td->text());
-                                            $val = floatval(preg_replace("#,#is", ".", $val));
-
-                                            $this->data[$type][$tmpCol[$i]][$row] = $val;
-                                        }
-                                    }
-                                    $i++;
-                                }
-                                break;
+                        $val = trim($column->text());
+                        if ($k == 0) {
+                            $sum = str_replace(array(' — ', ',99'), array('-', ''), $val);
+                            $sum = htmlentities($sum, null, 'utf-8');
+                            $sum = str_replace('от&nbsp;', '', $sum);
+                        }
+                        else {
+                            $val = preg_replace("#[^\d,\.-]#is", "", $val);
+                            $val = floatval(preg_replace("#,#is", ".", $val));
+                            $this->data[$type][$tmpCol[$k - 1]][$sum] = $val;
                         }
 
-                        $line++;
+                        $k++;
                     }
                 }
             }
@@ -142,25 +116,7 @@ class Gazprombank extends Parser
 
     public function getTableData()
     {
-        self::getTableUrl();
-        if (!empty($this->tableUrl)) {
-            $this->content = self::getWebPage($this->tableUrl);
-            $this->content = phpQuery::newDocument($this->content);
-        }
-    }
-
-    public function getTableUrl()
-    {
-        $document = phpQuery::newDocument($this->getUrl());
-        $tableUrl = $document->find(".tabs-content iframe[name='chapter']")->attr("src");
-
-        if (!empty($tableUrl)) {
-            $uri = parse_url($this->url);
-            $uri["path"] = $tableUrl;
-            if (!empty($uri["host"])) {
-                $this->tableUrl = self::unparse_url($uri);
-            }
-        }
+        $this->content = phpQuery::newDocument($this->getUrl());
     }
 
     public function getUrl()
