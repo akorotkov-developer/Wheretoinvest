@@ -71,7 +71,7 @@ class Binbank
 
                 foreach ($val as $k2 => $val2) {
                     foreach ($val2 as $k3 => $val3)
-                        $this->data[$type][$k2][$k3] = $val3;
+                        $this->data[$type][$k3][$k2] = $val3;
                 }
             }
         }
