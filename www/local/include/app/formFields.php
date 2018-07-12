@@ -18,6 +18,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                 <input type="hidden"
                        value="<?= htmlentities($arItem["VALUE"]) ?>"
                        name="<?= $arKey ?>"
+                       maxlength="30"
                        id="FIELD_<?= $arKey ?>" <?
                        if (!empty($arItem["DISABLED"])): ?>disabled <?endif;
                        ?>
@@ -169,11 +170,12 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                         <? endif; ?>
                         <div class="column small-12 medium-<?= $inputSize; ?> end">
                             <input
-                                class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?>"
+                                class="b-form__input<? if (!empty($arItem["INPUT_CLASS"])): ?> <?= $arItem["INPUT_CLASS"] ?><? endif; ?><? if($arKey == "UF_NAME"):?> contentbox<? endif ?>"
                                 type="text"
                                 value="<?= addslashes($arItem["VALUE"]) ?>"
                                 name="<?= $arKey ?>"
-                                id="FIELD_<?= $arKey ?>" <?
+                                id="FIELD_<?= $arKey ?>"
+                                <? if($arKey == "UF_NAME"):?>maxlength="70"<? endif ?><?
                                 if (!empty($arItem["REQUIRED"])): ?>required <?endif;
                                 ?><?
                             if (!empty($arItem["PLACEHOLDER"])): ?>placeholder="<?= $arItem["PLACEHOLDER"] ?>"
@@ -189,6 +191,7 @@ function getFormFields($data, $col = "", $row_class = "", $form_name = "FORM", $
                                 <?= $k ?>="<?= htmlentities($v) ?>"
                                 <?endforeach;
                                 endif; ?>/>
+                            <? if($arKey == "UF_NAME"):?><div id="count" class="b-form__title"></div><? endif ?>
                         </div>
                         <div class="column small-12 b-form__error-block">
                             <? if (!empty($arItem["ERROR"])): ?>

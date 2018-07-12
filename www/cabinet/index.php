@@ -74,4 +74,32 @@ require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
     </script>
 <? endif; ?>
 
+
+<script type="text/javascript">
+        $(document).ready(function()
+        {
+            var count =70 - $(".contentbox").val().length;
+            $('#count').html("Символов осталось - " + count);
+            $(".contentbox").keyup(function()
+            {
+                var box=$(this).val();
+                var main = box.length *100;
+                var value= (main / 70);
+                var count= 70 - box.length;
+
+                if(box.length <= 70)
+                {
+                    $('#count').html("Символов осталось - " + count);
+                    $('#bar').animate(
+                        {
+                            "width": value+'%',
+                        }, 1);
+                }
+                return false;
+            });
+
+        });
+</script>
+
+
 <? require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>
