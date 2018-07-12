@@ -97,9 +97,15 @@ require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
                 }
                 return false;
             });
-
+            $('.contentbox').on('keyup keypress', function(e) {
+                if (e.keyCode == 8 || e.keyCode == 46) {}
+                else
+                {
+                    var letters=' +-()~!@#$%^&*_{}[]:;?/><,.1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
+                    return (letters.indexOf(String.fromCharCode(e.which))!=-1);
+                }
+            });
         });
 </script>
-
 
 <? require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>
