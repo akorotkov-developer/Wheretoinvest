@@ -79,6 +79,7 @@
   }
 
   &__item {
+    min-height: 6.15rem;
     position: relative;
     &.active .b-offers__hidden {
       display: block;
