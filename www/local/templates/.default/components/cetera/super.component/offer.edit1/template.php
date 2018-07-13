@@ -5,7 +5,7 @@ $redirectUrl = preg_replace("#" . (!empty($arParams["ID"]) ? "edit/.*?/" : "add/
 if (defined("ERROR_404"))
     return;
 
-$APPLICATION->AddHeadScript($templateFolder."/js/script.js");
+$APPLICATION->AddHeadScript($templateFolder."/js/block-sim.js");
 ?>
 
 <form action="" method="post" class="x-save-form">
@@ -28,7 +28,7 @@ $APPLICATION->AddHeadScript($templateFolder."/js/script.js");
         ),
         "UF_NAME" => Array(
             "TYPE" => "TEXT",
-            "TITLE" => "Наименование предложения",
+            "TITLE" => "Наименование предложения (без кавычек)",
             "VALUE" => htmlentities($arResult["ITEM"]["UF_NAME"]),
             "REQUIRED" => "Y",
         ),
