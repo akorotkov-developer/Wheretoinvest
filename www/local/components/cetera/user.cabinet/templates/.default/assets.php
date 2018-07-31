@@ -40,7 +40,7 @@ $userInfo = getContainer("User");
                             data-tooltip
                             aria-haspopup="true"
                             class="has-tip assets__tooltip show-for-large-up"
-                            title="Соответствует сумме собственных средства (капитала) на последнюю отчетную дату"></span></span>
+                            title="Соответствует сумме собственных средств (капитала) на последнюю отчетную дату"></span></span>
             </div>
             <div class="req__value medium-8 small-7 columns">
 <span
