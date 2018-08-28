@@ -10,7 +10,9 @@ global $USER_FIELD_MANAGER;
 global $USER;
 global $APPLICATION;
 
+
 $arFields = $USER_FIELD_MANAGER->GetUserFields("HLBLOCK_3");
+
 $obEnum = new CUserFieldEnum;
 $arResult["FIELDS"] = Array();
 
@@ -82,6 +84,13 @@ if ($showToday !== "N") {
     $filter[">=UF_ACTIVE_END"] = date("d.m.Y");
 }
 
+//Для Беты обнуляем фильтр в противном случае всегда будет пустая главная страница
+//Т.к. поле Дата начала активности и дата окончания активности в HILoad блоке Offers
+//на бете не заполнено
+if ($_GET["tst"] == "tst") {
+    $filter = array();
+}
+
 $query = Array();
 if (!empty($filter))
     $query["filter"] = $filter;
@@ -91,9 +100,12 @@ $list = $hblock->getList($query);
 $arResult["OFFER"] = Array();
 $users = Array();
 $offers = Array();
+
 while ($el = $list->fetch()) {
+
     $today = new \DateTime();
     $today->setTime(0, 0, 0);
+
 
     foreach ($el["UF_ACTIVE_START"] as $key => $val) {
         if (!empty($val) && !empty($el["UF_ACTIVE_END"][$key])) {
@@ -116,6 +128,7 @@ while ($el = $list->fetch()) {
     $users[$el["UF_USER_ID"]] = $el["UF_USER_ID"];
     $offers[$el["ID"]] = $el["ID"];
 }
+
 $arResult["USERS"] = getUserSafety();
 
 $arResult["USER_COUNT"] = count($arResult["USERS"]);
