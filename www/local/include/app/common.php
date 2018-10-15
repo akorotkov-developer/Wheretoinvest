@@ -221,6 +221,13 @@ function getUserSafety()
             $userTodayList[$el["UF_USER_ID"]] = $el["UF_USER_ID"];
         }
 
+        //Получаем партнеров, которые выкачены с ЦБ и у них нет предложений
+        $filter = Array("UF_SIT_CB" => 1);
+        $rsUsers = CUser::GetList(($by = "ID"), ($order = "desc"), $filter);
+        while ($arUser = $rsUsers->Fetch()) {
+            $userTodayList[$arUser["ID"]] = $arUser["ID"];
+        }
+
         $arResult["USER_SORT"] = Array();
         $rsUsers = \CUser::GetList(($by = "ID"), ($order = "ASC"), Array("GROUPS_ID" => Array(PARTNER_GROUP), "ID" => implode("|", $userTodayList)), Array("SELECT" => Array("UF_*")));
         while ($arUser = $rsUsers->GetNext()) {

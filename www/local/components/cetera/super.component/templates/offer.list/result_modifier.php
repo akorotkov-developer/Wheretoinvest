@@ -87,15 +87,17 @@ if ($showToday !== "N") {
 //Для Беты обнуляем фильтр в противном случае всегда будет пустая главная страница
 //Т.к. поле Дата начала активности и дата окончания активности в HILoad блоке Offers
 //на бете не заполнено
-if ($_GET["tst"] == "tst") {
-    $filter = array();
-}
+//if ($_GET["tst"] == "tst") {
+    //$filter = array();
+//}
 
 $query = Array();
 if (!empty($filter))
     $query["filter"] = $filter;
 
 $list = $hblock->getList($query);
+
+
 
 $arResult["OFFER"] = Array();
 $users = Array();
@@ -130,14 +132,13 @@ while ($el = $list->fetch()) {
 }
 
 $arResult["USERS"] = getUserSafety();
-
 $arResult["USER_COUNT"] = count($arResult["USERS"]);
+
 
 foreach ($arResult["OFFER"] as $key => $arItem) {
     if (!empty($arResult["USERS"][$arItem["UF_USER_ID"]]))
         $arResult["OFFER"][$key]["USER"] = $arResult["USERS"][$arItem["UF_USER_ID"]];
 }
-
 $filter = Array();
 
 if (empty($_REQUEST["summ"]))
@@ -232,7 +233,6 @@ if (count($offers)) {
                 $arResult["ITEMS"][$el["UF_OFFER"]]["USER"] = $user;
             }
         }
-
         $methods = getUserMethods();
         $obCache->EndDataCache($arResult);
     }

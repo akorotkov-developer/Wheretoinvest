@@ -353,7 +353,9 @@
                         <div class="b-offers__prof b-offers__prof_main">
                             <div class="has-tooltip" data-tooltip aria-haspopup="true"
                                  title="<?= !empty($offer["UF_UPDATED"]) && is_object($offer["UF_UPDATED"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", $offer["UF_UPDATED"]->getTimestamp())) : "" ?>">
-                                <?= floatval($arItem["UF_PERCENT"]); ?> <span>%</span>
+                                <? if (floatval($arItem["UF_PERCENT"]) > 0.1) {?>
+                                    <?= floatval($arItem["UF_PERCENT"]); ?> <span>%</span>
+                                <?} else {echo "-";}?>
                             </div>
                         </div>
                     </div>
@@ -544,6 +546,42 @@
                                                 <div class="has-tooltip" data-tooltip aria-haspopup="true"
                                                      title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
                                                     <?= $user["FULL_WORK_COMPANY"] ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row b-offers__more-item">
+                                    <div class="column medium-3 small-6">
+                                        <div class="b-offers__label">Лицензия ЦБ РФ:</div>
+                                    </div>
+                                    <div class="column medium-9 small-6 b-offers__nopadding">
+                                        <div class="b-offers__res2">
+                                            <div class="b-offers__rest">
+                                                <div class="has-tooltip" data-tooltip aria-haspopup="true"
+                                                     title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
+                                                    <?if ($user["UF_LICENSE"]) {?>
+                                                        <?= $user["UF_LICENSE"] ?>
+                                                    <?} else {echo "-";}?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row b-offers__more-item">
+                                    <div class="column medium-3 small-6">
+                                        <div class="b-offers__label">Лицензия</div>
+                                    </div>
+                                    <div class="column medium-9 small-6 b-offers__nopadding">
+                                        <div class="b-offers__res2">
+                                            <div class="b-offers__rest">
+                                                <div class="has-tooltip" data-tooltip aria-haspopup="true"
+                                                     title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
+                                                    <?if ($user["UF_NOTE"]) {?>
+                                                        <?= $user["UF_NOTE"] ?>
+                                                    <?} else {echo "-";}?>
                                                 </div>
                                             </div>
                                         </div>
