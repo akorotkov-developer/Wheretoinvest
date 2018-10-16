@@ -71,12 +71,13 @@ class Promsvyaz extends Parser
                     $j = 0;
                     foreach ($table->find("tbody")->find("tr") as $tr) {
                         $tr = pq($tr);
-                        if ($j === 2) {
+                        if ($j === 3) {
                             foreach ($tr->find("th") as $td) {
                                 $td = pq($td);
                                 $val = $td->text();
-                                $val = preg_replace("#[^\d-]#is", "", $val);
-                                $tmpCol[$i] = $val;
+                                $val = preg_replace("#[^\d–]#is", "", $val);
+                                $val = explode("–", $val);
+                                $tmpCol[$i] = $val[1];
                                 $i++;
                             }
                             $tr->remove();
@@ -88,15 +89,18 @@ class Promsvyaz extends Parser
                 }
 
                 $type = "";
+
                 foreach ($table->find("tbody")->find("tr") as $tr) {
                     $tr = pq($tr);
 
-                    $row = "";
-                    $line = 1;
-                    $i = 0;
+                    $row = "";                    
+                    $line = 0;
+
                     foreach ($tr->find("td") as $td) {
+
                         $td = pq($td);
-                        if ($td->attr("rowspan") !== null) {
+
+                        if ($line == 0) {
                             $typeS = trim($td->text());
                             switch ($typeS) {
                                 case "Рубли РФ":
@@ -115,63 +119,22 @@ class Promsvyaz extends Parser
 
                             if (!empty($type))
                                 $this->data[$type] = Array();
-
-                            continue;
+                            else break;
                         }
 
-                        if (empty($type))
-                            continue;
+                        if ($line == 1) {
+                            $val = preg_replace("#[^\d]#is", "", $td->text());
+                            $val = preg_replace("#\.#is", ",", $val);
 
-                        switch ($line) {
-                            case 1:
-                                $val = preg_replace("#[^\d,\.-]#is", "", $td->text());
-                                $val = preg_replace("#\.#is", ",", $val);
-                                if (!empty($val)) {
-                                    $row = $val;
-                                }
-                                break;
-                            case 2:
-                                if (!empty($row) && !empty($tmpCol[$i])) {
-                                    $val = preg_replace("#[^\d,\.-]#is", "", $td->text());
-                                    $val = floatval(preg_replace("#,#is", ".", $val));
+                            if (!empty($val)) {
+                                $row = $val;
+                            }
+                        }
+                        elseif ($line > 1) {
+                            $val = preg_replace("#[^\d,\.-]#is", "", $td->text());
+                            $val = floatval(preg_replace("#,#is", ".", $val));
 
-                                    if (!empty($val)) {
-                                        if ($val > intval(preg_replace("#[^\d,\.-]#is", "", $row))) {
-                                            $row = $row . "-" . preg_replace("#\.#is", ",", preg_replace("#[^\d,\.-]#is", "", $td->text()));
-                                            $line++;
-                                            continue;
-                                        } else {
-                                            if (($colspan = $td->attr("colspan")) !== null) {
-                                                for ($k = 0; $k < $colspan; $k++) {
-                                                    $this->data[$type][$tmpCol[$i]][$row] = $val;
-                                                    $i++;
-                                                }
-                                            } else {
-                                                $this->data[$type][$tmpCol[$i]][$row] = $val;
-                                            }
-                                        }
-                                    }
-                                }
-                                $i++;
-                                break;
-                            default:
-                                if (!empty($row) && !empty($tmpCol[$i])) {
-                                    $val = preg_replace("#[^\d,\.-]#is", "", $td->text());
-                                    $val = floatval(preg_replace("#,#is", ".", $val));
-
-                                    if (!empty($val)) {
-                                        if (($colspan = $td->attr("colspan")) !== null) {
-                                            for ($k = 0; $k < $colspan; $k++) {
-                                                $this->data[$type][$tmpCol[$i]][$row] = $val;
-                                                $i++;
-                                            }
-                                        } else {
-                                            $this->data[$type][$tmpCol[$i]][$row] = $val;
-                                        }
-                                    }
-                                }
-                                $i++;
-                                break;
+                            $this->data[$type][$tmpCol[$line - 2]][$row] = $val;
                         }
 
                         $line++;
