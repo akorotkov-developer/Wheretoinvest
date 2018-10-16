@@ -93,7 +93,7 @@ class Promsvyaz extends Parser
                 foreach ($table->find("tbody")->find("tr") as $tr) {
                     $tr = pq($tr);
 
-                    $row = "";                    
+                    $row = "";
                     $line = 0;
 
                     foreach ($tr->find("td") as $td) {

@@ -110,7 +110,9 @@ class Rosselhoz extends Parser
                                         $td = pq($td);
 
                                         if ($i === 0) {
-                                            $val = preg_replace("#[^\d,\.-]#is", "", $td->text());
+                                            $txt = str_replace(' до ', '-', $td->text());
+
+                                            $val = preg_replace("#[^\d,\.-]#is", "", $txt);
                                             $val = preg_replace("#\.#is", ",", $val);
                                             if (!empty($val)) {
                                                 $row = $val;
