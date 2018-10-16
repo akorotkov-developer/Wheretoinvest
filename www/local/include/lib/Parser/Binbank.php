@@ -83,9 +83,9 @@ class Binbank
 
         preg_match("/\'1\'\:.*'valute'\:(.*)\'2'\:/is", $sContent, $matches);
 
-        $sContent = trim(str_replace(array('//valut', ':.'), array('', ':0.'), $matches[1]));
+        $sContent = trim(str_replace(array('//valut', ':.', '\''), array('', ':0.', '"'), $matches[1]));
 
-        $sContent = substr($sContent, 0, strlen($sContent) - 2);
+        $sContent = trim(substr($sContent, 0, strlen($sContent) - 2));
 
         $this->content = json_decode($sContent);
     }
