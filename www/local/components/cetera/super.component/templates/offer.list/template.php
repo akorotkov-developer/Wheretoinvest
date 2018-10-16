@@ -314,6 +314,10 @@
                 $user = $arItem["USER"];
                 $offer = $arItem["OFFER"];
                 ?>
+                <?
+                if ($user["UF_NOTE"] == "в процессе оформления (лицензии нет)" || $user["UF_NOTE"] == "лицензия отозвана"
+                    || $user["UF_NOTE"] == "лицензия аннулирована" || $user["UF_NOTE"] == "ликвидирована") continue;
+                ?>
                 <? if (!empty($inflation) && (empty($_REQUEST["SORT"]) || !empty($_REQUEST["SORT"]["percent"])) && $showInflation): ?>
                     <? if (((empty($_REQUEST["SORT"]) || $_REQUEST["SORT"]["percent"] == "D") && $inflation > floatval($arItem["UF_PERCENT"])) || ($_REQUEST["SORT"]["percent"] == "A" && $inflation < floatval($arItem["UF_PERCENT"]))): ?>
                         <div class="row b-offers__infl" data-percent="<?= floatval($inflation) ?>">
@@ -344,7 +348,10 @@
                     </div>
 
                     <div class="column medium-3 hide-for-small-only" data-equalizer-watch>
-                        <div class="b-offers__type">
+                        <?
+                        $class = "";
+                        if ($offer["UF_NAME"] == "-") {$class="b-offers__prof";}?>
+                        <div class="b-offers__type <?=$class?>">
                             <?= $offer["UF_NAME"] ?>
                         </div>
                     </div>
