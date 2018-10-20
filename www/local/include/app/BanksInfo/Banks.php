@@ -10,7 +10,6 @@ class Banks
     private $client;
     private $websites;
     private $banks;
-    private $regions;
 
     function __construct() {
         //Создаем подключение к WSDL серверу
