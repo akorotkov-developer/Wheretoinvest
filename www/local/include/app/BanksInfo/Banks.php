@@ -21,23 +21,6 @@ class Banks
         $this->banks = new \SimpleXMLElement(file_get_contents("http://cbr.ru/scripts/XML_bic2.asp"));
     }
 
-    public function test() {
-        //$i = $this->client->GetOfficesByRegionXML(array("RegCode"=>"16"));
-
-        $bankList = $this->banks;
-        return $bankList;
-
-        //return $i;
-
-/*      $intCode = $this->client->BicToIntCode(array("BicCode" => "044525593"))->BicToIntCodeResult;
-
-        $filialInfo = $this->client->GetOfficesXML(array("IntCode" => $intCode))->GetOfficesXMLResult->any;
-        $xml =  new \SimpleXMLElement($filialInfo);
-        $xml->saveXML("regions.xml");
-
-        return $xml;*/
-    }
-
     private function getFilialInfoByBic($BIC) {
         $intCode = $this->client->BicToIntCode(array("BicCode" => (string)$BIC))->BicToIntCodeResult;
 
