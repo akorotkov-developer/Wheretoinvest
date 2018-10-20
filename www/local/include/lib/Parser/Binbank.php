@@ -81,11 +81,19 @@ class Binbank
     {
         $sContent =  self::getUrl();
 
-        preg_match("/\'1\'\:.*'valute'\:(.*)\'2'\:/is", $sContent, $matches);
+        if ($this->id == 104)
+            preg_match("/\'1\'\:.*'valute'\:(.*)\'2'\:/is", $sContent, $matches);
+        else
+            preg_match("/\'7\'\:.*'valute'\:(.*)/is", $sContent, $matches);
 
         $sContent = trim(str_replace(array('//valut', ':.', '\''), array('', ':0.', '"'), $matches[1]));
 
-        $sContent = trim(substr($sContent, 0, strlen($sContent) - 2));
+        // Удаление js-комментариев
+        $sContent = preg_replace('/(?:(?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:(?<!\:|\\\|\'|\")\/\/.*))/', '', $sContent);
+
+        if ($this->id == 104)
+            $sContent = trim(substr($sContent, 0, strlen($sContent) - 2));
+        else $sContent = trim(substr($sContent, 0, strlen($sContent) - 3));
 
         $this->content = json_decode($sContent);
     }
