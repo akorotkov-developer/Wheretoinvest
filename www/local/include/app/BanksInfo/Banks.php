@@ -382,10 +382,6 @@ class Banks
                 }
 
                 //Н1.0 по форме 135
-                echo "H!";
-                echo "<pre>";
-                var_dump($regNumber);
-                echo "</pre>";
                 $h10 = $this->get135formData($regNumber);
 
                 //Собственный капитал по форме 123
