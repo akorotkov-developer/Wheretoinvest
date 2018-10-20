@@ -266,7 +266,7 @@ class Banks
     }
 
     //Дополнительная информация по организации организации по Bic коду
-    public function getOrgInfoByIntCode($BIC) {
+    private function getOrgInfoByIntCode($BIC) {
        $info = array();
 
        $intCode = $this->client->BicToIntCode(array('BicCode' => $BIC));
@@ -279,6 +279,7 @@ class Banks
 
        $info["ShortName"] = $ShortName;
        $info["OrgStatus"] = $xml->CO->OrgStatus;
+       $info["SSV_Date"] = $xml->CO->SSV_Date;
 
        return $info;
     }
@@ -391,6 +392,13 @@ class Banks
                 $regNumber = $this->client->BicToRegNumber(array('BicCode' => (string)$Record->Bic));
                 $regNumber = $regNumber->BicToRegNumberResult;
 
+                //Участие в системе страхования вкладов
+                if ($info["SSV_Date"] > 0) {
+                    $insurance = 25;
+                } else {
+                    $insurance = 0;
+                }
+
                 //Н1.0 по форме 135
                 echo "H!";
                 echo "<pre>";
@@ -433,6 +441,7 @@ class Banks
                         "UF_NOTE" => $info["OrgStatus"],
                         "UF_ASSETS_DATE" => $sobcapital["date"],
                         "UF_SIT_CB" => 1,
+                        "UF_BANK_PARTICIP" => $insurance,
                     );
 
                     if ($user->Update($arUser["ID"], $arFields)) {
@@ -464,6 +473,7 @@ class Banks
                         "UF_NOTE" => $info["OrgStatus"],
                         "UF_ASSETS_DATE" => $sobcapital["date"],
                         "UF_SIT_CB" => 1,
+                        "UF_BANK_PARTICIP" => $insurance,
                     );
 
                     $ID = $user->Add($arFields);
@@ -482,7 +492,7 @@ class Banks
             }
             $i++;
             echo "<br><b>" . $i . "</b><br>";
-            if ($i > 10) {
+            if ($i > 100) {
                 break;
             }
         }
