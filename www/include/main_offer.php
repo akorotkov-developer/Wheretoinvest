@@ -6,7 +6,8 @@
         "COMPONENT_TEMPLATE" => "offer.list",
         "CACHE_TYPE" => "N",
         "CACHE_TIME" => "1",
-        "PAGE_COUNT" => 20
+        "PAGE_COUNT" => 50,
+        "PAGING" => "Y"
     ),
     false
 ); ?>

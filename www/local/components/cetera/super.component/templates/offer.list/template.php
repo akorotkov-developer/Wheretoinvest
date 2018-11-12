@@ -729,55 +729,159 @@
             } ?>
         </div>
 
-        <? if ($arResult["NAV_PAGE_NUM"] < $arResult["NAV_PAGE_COUNT"]): ?>
-            <div class="b-offers__bottom">
-                <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("", Array("page")); ?>"
-                   class="b-offers__showmore js-show-more"><span>+</span>Показать ещё</a>
-            </div>
+        <?if ($arParams["PAGING"] == "Y") {?>
+            <?
+            $iCurr = intval($_GET["page"]) > 0 ? $_GET["page"] : 1;
+            $iLastPage = $arResult["NAV_PAGE_COUNT"];
+            $iLeftLimit = $iCurr > 1 ? $iCurr - 1 : 0;
+            $iRightLimit = $iCurr == $arResult["NAV_PAGE_COUNT"] ? 0 : $iCurr + 1;
 
-            <script type="text/javascript">
-                $(function () {
-                    $(".js-show-more").on("click", function () {
-                        var data = $(this).attr("href");
-                        if (data.indexOf("?") > -1) {
-                            data = data.split("?");
-                            data = data[1];
-                        }
-                        else {
-                            data = "";
-                        }
-                        data += "&ajax=Y&page=" + (window.paging.pageNum + 1);
+            $limit = 3;
+            $total_pages = $iLastPage;
+            $stages = 1;
+            $page = $_GET['page'];
 
-                        $.ajax({
-                            url: "/include/main_offer.php",
-                            data: data,
-                            method: "get",
-                            success: function (response) {
-                                $(".b-offers__list").append(response);
-                                var inflation = $(".row.b-offers__infl"),
-                                    val = parseFloat(inflation.data("percent")),
-                                    emptySort = "<?=empty($_REQUEST["SORT"]) ? 1 : 0;?>";
+            if ($page == 0){$page = 1;}
+            $prev = $page - 1;
+            $next = $page + 1;
+            $lastpage = $iLastPage;
+            $LastPagem1 = $lastpage - 1;
 
-                                if (emptySort == "1") {
-                                    $(".b-offers__list .b-offers__item").each(function () {
-                                        var itemVal = parseFloat($(this).data("percent"));
-                                        if (itemVal >= val)
-                                            inflation.insertAfter($(this));
-                                    });
-                                }
+            $paginate = '';
+            if($lastpage > 1)
+            {
 
-                                $(document).foundation("tooltip", "reflow");
+                $paginate .= "<div class='paginate'>";
+                if ($page > 1){
+                    $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=".$prev, array("page"))."'><</a>";
 
-                                if (window.paging.pageNum == window.paging.pageCount) {
-                                    $(".js-show-more").detach();
-                                }
+                }else{
+                    $paginate.= "<span class='disabled'><</span>"; }
+
+                if ($lastpage < 5 + ($stages * 2))
+                {
+                    for ($counter = 1; $counter <= $lastpage; $counter++)
+                    {
+                        if ($counter == $page){
+                            $paginate.= "<span class='current'>$counter</span>";
+                        }else{
+                            $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=".$counter, array("page"))."'>$counter</a>";}
+                    }
+                }
+                elseif($lastpage > 3 + ($stages * 2))
+                {
+                    if($page < 1 + ($stages * 2))
+                    {
+                        for ($counter = 1; $counter < 4 + ($stages * 2); $counter++)
+                        {
+                            if ($counter == $page){
+                                $paginate.= "<span class='current'>$counter</span>";
+                            }else{
+                                $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=".$counter, array("page"))."'>$counter</a>";
                             }
+                        }
+                        $paginate.= "...";
+                        $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=".$LastPagem1, array("page"))."'>$LastPagem1</a>";
+                        $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=".$lastpage, array("page"))."'>$lastpage</a>";
+                    }
+                    elseif($lastpage - ($stages * 2) > $page && $page > ($stages * 2))
+                    {
+                        $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=1", array("page"))."'>1</a>";
+                        $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=2", array("page"))."'>2</a>";
+                        $paginate.= "...";
+                        for ($counter = $page - $stages; $counter <= $page + $stages; $counter++)
+                        {
+                            if ($counter == $page){
+                                $paginate.= "<span class='current'>$counter</span>";
+                            }else{
+                                $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=".$counter, array("page"))."'>$counter</a>";}
+                        }
+                        $paginate.= "...";
+                        $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=".$LastPagem1, array("page"))."'>$LastPagem1</a>";
+                        $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=".$lastpage, array("page"))."'>$lastpage</a>";
+                    }
+                    else
+                    {
+                        $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=1", array("page"))."'>1</a>";
+                        $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=2", array("page"))."'>2</a>";
+                        $paginate.= "...";
+                        for ($counter = $lastpage - (2 + ($stages * 2)); $counter <= $lastpage; $counter++)
+                        {
+                            if ($counter == $page){
+                                $paginate.= "<span class='current'>$counter</span>";
+                            }else{
+                                $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=".$couinter, array("page"))."'>$counter</a>";
+                            }
+                        }
+                    }
+                }
+
+                if ($page < $counter - 1){
+                    $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=".$next, array("page"))."'> > </a>";
+                }else{
+                    $paginate.= "<span class='disabled'> > </span>";
+                }
+
+                $paginate.= "</div>";
+
+            }
+
+            echo $paginate;
+            ?>
+        <?} else {?>
+
+            <? if ($arResult["NAV_PAGE_NUM"] < $arResult["NAV_PAGE_COUNT"]): ?>
+                <div class="b-offers__bottom">
+                    <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("", Array("page")); ?>"
+                       class="b-offers__showmore js-show-more"><span>+</span>Показать ещё</a>
+                </div>
+
+                <script type="text/javascript">
+                    $(function () {
+                        $(".js-show-more").on("click", function () {
+                            var data = $(this).attr("href");
+                            if (data.indexOf("?") > -1) {
+                                data = data.split("?");
+                                data = data[1];
+                            }
+                            else {
+                                data = "";
+                            }
+                            data += "&ajax=Y&page=" + (window.paging.pageNum + 1);
+
+                            $.ajax({
+                                url: "/include/main_offer.php",
+                                data: data,
+                                method: "get",
+                                success: function (response) {
+                                    $(".b-offers__list").append(response);
+                                    var inflation = $(".row.b-offers__infl"),
+                                        val = parseFloat(inflation.data("percent")),
+                                        emptySort = "<?=empty($_REQUEST["SORT"]) ? 1 : 0;?>";
+
+                                    if (emptySort == "1") {
+                                        $(".b-offers__list .b-offers__item").each(function () {
+                                            var itemVal = parseFloat($(this).data("percent"));
+                                            if (itemVal >= val)
+                                                inflation.insertAfter($(this));
+                                        });
+                                    }
+
+                                    $(document).foundation("tooltip", "reflow");
+
+                                    if (window.paging.pageNum == window.paging.pageCount) {
+                                        $(".js-show-more").detach();
+                                    }
+                                }
+                            });
+                            return false;
                         });
-                        return false;
                     });
-                });
-            </script>
-        <? endif; ?>
+                </script>
+            <? endif; ?>
+
+        <?}?>
+
     </section>
 <? else: ?>
     <div class="row">

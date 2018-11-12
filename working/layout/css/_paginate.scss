@@ -1,0 +1,14 @@
+.paginate {
+  text-align: center;
+  margin-top: rem-calc(30);
+  padding: rem-calc(5);
+  font-size: rem-calc(23);
+  & a {
+    padding: rem-calc(5);
+    font-size: rem-calc(23);
+  }
+  & span {
+    padding: rem-calc(5);
+    font-size: rem-calc(23);
+  }
+}

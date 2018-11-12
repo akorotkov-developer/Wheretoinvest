@@ -266,9 +266,15 @@ if (count($offers)) {
     // Исходный массив данных для списка
     $elements = $arResult["ITEMS"];
     // Получаем номер текущей страницы из реквеста
-    $page = intval($_REQUEST['page']);
-    if (empty($page))
-        $page = 1;
+    if ($arParams["PAGING"] == "Y") {
+        if ($_GET["page"]) {
+            $page = $_GET["page"];
+        } else $page = 1;
+    }  else {
+        $page = intval($_REQUEST['page']);
+        if (empty($page))
+            $page = 1;
+    }
 
     // Отбираем элементы текущей страницы
     $elementsPage = array_slice($elements, ($page - 1) * $countOnPage, $countOnPage);
