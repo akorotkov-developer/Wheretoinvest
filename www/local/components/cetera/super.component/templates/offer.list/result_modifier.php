@@ -68,7 +68,11 @@ if (!empty($loc)) {
 }
 
 if (!empty($_REQUEST["method"])) {
-    $filter["UF_METHOD"] = explode(",", $_REQUEST["method"]);
+    if("all" != $_REQUEST["method"]){
+        $filter["UF_METHOD"] = explode(",", $_REQUEST["method"]);
+    }
+}else if(empty($_REQUEST["favorite"])){
+    $filter["UF_METHOD"] = 3;
 }
 
 if (!empty($_REQUEST["favorite"])) {

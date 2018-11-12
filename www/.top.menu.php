@@ -2,14 +2,14 @@
 $aMenuLinks = Array(
 	Array(
 		"Общий список", 
-		"/", 
+		"/?method=all", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Вклады", 
-		"/?method=3", 
+		"/", 
 		Array(), 
 		Array(), 
 		"" 
