@@ -2,14 +2,14 @@
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 $APPLICATION->SetTitle("SOAP Рабочий варинат");
 
-use Wic\BanksInfo\Banks;
+use Wic\BanksInfo\UpdateBanks, Wic\BanksInfo\Tools, Wic\BanksInfo\Info, Wic\BanksInfo\SiteOffers;
 ?>
 
 <?
-    $banks = new Banks;
+    $banks = new UpdateBanks;
 
-    //Обновляем список пользователей
-    $banks->updateUsers();
+    $banks->updateUsers($tools = new Tools, $Cinfo = new Info,   $siteOffers = new SiteOffers);
+
 
     //Удаляем объект класса
     unset($banks);
