@@ -7,9 +7,9 @@ class UpdateBanks extends Connects implements Interfaces\IUpdateBanks {
         //Получаем список банков и для каждого банка обновляем либо создаем пользователя
         $bankList = $this->banks;
 
-        $i=0;
+        $i = 0;
         foreach ($bankList->Record as $Record) {
-            if ($i > -1) {
+            $i++;
                 //Смотрим есть ли уже пользователь для банка
                 $login = $tools->translit($Record->ShortName, "Y") . "@wheretoinvest.ru";
                 $password = $tools->translit($Record->ShortName);
@@ -80,8 +80,7 @@ class UpdateBanks extends Connects implements Interfaces\IUpdateBanks {
                     );
 
                     if ($user->Update($arUser["ID"], $arFields)) {
-                        echo "Пользователь: " . $login . " Обновлен";
-                        echo "<br>";
+                        AddMessage2Log("№".$i.": Пользователь: " . $login . " Обновлен", "");
                     }
 
                     //Добавляем предлпжение и матрицу для банка
@@ -113,23 +112,14 @@ class UpdateBanks extends Connects implements Interfaces\IUpdateBanks {
 
                     $ID = $user->Add($arFields);
                     if (intval($ID) > 0) {
-                        echo "Пользователь: " . $login . " Успешно добавлен.";
-                        echo "<br>";
+                        AddMessage2Log("№".$i.":Пользователь: " . $login . " Успешно добавлен.", "");
                     } else {
-                        echo $user->LAST_ERROR;
+                        AddMessage2Log($user->LAST_ERROR, "");
                     }
 
                     //Добавляем предлпжение и матрицу для банка
                     $siteOffers->setOfferAndMAtrix($arUser["ID"]);
                 }
-
-
-            }
-            $i++;
-            echo "<br><b>" . $i . "</b><br>";
-            if ($i > 3) {
-                break;
-            }
         }
     }
 }

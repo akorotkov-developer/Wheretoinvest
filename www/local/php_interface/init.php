@@ -32,3 +32,6 @@ function IBElementCreateAfterHandler(&$arFields) {
     }
 
 }
+
+$date = date('d.m.Y');
+define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"]."/logs/".$date.".log");
