@@ -10,7 +10,6 @@ class UpdateBanks extends Connects implements Interfaces\IUpdateBanks {
         $i = 0;
         foreach ($bankList->Record as $Record) {
             $i++;
-            if ($i > 722) {
                 //Смотрим есть ли уже пользователь для банка
                 $login = $tools->translit($Record->ShortName, "Y") . "@wheretoinvest.ru";
                 $password = $tools->translit($Record->ShortName);
@@ -82,6 +81,9 @@ class UpdateBanks extends Connects implements Interfaces\IUpdateBanks {
 
                     if ($user->Update($arUser["ID"], $arFields)) {
                         AddMessage2Log("№" . $i . ": Пользователь: " . $login . " Обновлен", "");
+                    } else {
+                        throw new Exception($user->LAST_ERROR);
+                        //AddMessage2Log($user->LAST_ERROR, "");
                     }
 
                     //Добавляем предлпжение и матрицу для банка
@@ -121,7 +123,6 @@ class UpdateBanks extends Connects implements Interfaces\IUpdateBanks {
                     //Добавляем предлпжение и матрицу для банка
                     $siteOffers->setOfferAndMAtrix($arUser["ID"]);
                 }
-            }
         }
     }
 }

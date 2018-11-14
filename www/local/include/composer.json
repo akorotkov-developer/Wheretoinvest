@@ -17,7 +17,8 @@
     "files": [
       "app/dumphper.php",
       "app/common.php",
-      "app/handlers.php"
+      "app/handlers.php",
+      "app/formFields.php"
     ]
   }
 }

@@ -1,5 +1,6 @@
 <? define("NEED_AUTH", true);
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
+ini_set('error_reporting', E_ALL);
 ?>
 
 <? $APPLICATION->IncludeComponent(
