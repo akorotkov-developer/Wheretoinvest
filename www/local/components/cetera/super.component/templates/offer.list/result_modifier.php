@@ -138,8 +138,10 @@ $arResult["USERS"] = getUserSafety();
 $arResult["USER_COUNT"] = count($arResult["USERS"]);
 
 foreach ($arResult["OFFER"] as $key => $arItem) {
-    if (!empty($arResult["USERS"][$arItem["UF_USER_ID"]]))
+    if (!empty($arResult["USERS"][$arItem["UF_USER_ID"]])) {
         $arResult["OFFER"][$key]["USER"] = $arResult["USERS"][$arItem["UF_USER_ID"]];
+
+    }
 }
 
 $filter = Array();
@@ -151,6 +153,7 @@ if (empty($_REQUEST["time"]))
     $_REQUEST["time"] = "369";
 
 if (count($offers)) {
+
     $filter["UF_OFFER"] = $offers;
 
     $filter["UF_CURRENCY"] = !empty($_REQUEST["currency"]) ? $_REQUEST["currency"] : 28;
@@ -231,6 +234,7 @@ if (count($offers)) {
                 $el["UF_ORG"] = !empty($user["UF_FULL_WORK_NAME"]) ? $user["UF_FULL_WORK_NAME"] : $user["WORK_COMPANY"];
                 $el["UF_SAFETY"] = $user["UF_SAFETY"];
 
+
                 $arResult["ITEMS"][$el["UF_OFFER"]] = $el;
                 $arResult["ITEMS"][$el["UF_OFFER"]]["OFFER"] = $offer;
                 $arResult["ITEMS"][$el["UF_OFFER"]]["USER"] = $user;
@@ -241,8 +245,33 @@ if (count($offers)) {
         $obCache->EndDataCache($arResult);
     }
 
-    $by = "UF_PERCENT";
-    $order = SORT_DESC;
+
+    //Задаем правильное место для банков
+    //Сначала отсортируем их по Надежности
+    $RSORT = array("safety"=>"A");
+    $by="UF_SAFETY";
+    $order = SORT_ASC;
+
+    $tempOrder = Array();
+    $tempPercent = Array();
+    foreach ($arResult["ITEMS"] as $key => $arItem) {
+        $tempOrder[$key] = $arItem[$by];
+        $tempPercent[$key] = $arItem["UF_PERCENT"];
+    }
+
+    array_multisort($tempOrder, $order, $tempPercent, SORT_DESC, $arResult["ITEMS"]);
+
+    //Теперь переберем массив и поменяем у него места надежности
+    $i=1;
+    foreach ($arResult["ITEMS"] as $key=>$item) {
+        if ($item["UF_ORG"] && (!$item["USER"]["UF_NOTE"] || $item["USER"]["UF_NOTE"] == "норм.")) {
+            $arResult["ITEMS"][$key]["UF_SAFETY"] = $i;
+            $i++;
+        } else {
+            unset($arResult["ITEMS"][$key]);
+        }
+    }
+
 
     if (!empty($_REQUEST["SORT"])) {
         $by = reset(array_keys($_REQUEST["SORT"]));
@@ -260,6 +289,7 @@ if (count($offers)) {
 
         array_multisort($tempOrder, $order, $tempPercent, SORT_DESC, $arResult["ITEMS"]);
     }
+
 
     // Задаем количество элементов на странице
     $countOnPage = $arParams["PAGE_COUNT"];
@@ -284,7 +314,6 @@ if (count($offers)) {
     $arResult["NAV_PAGE_NUM"] = $page;
     $arResult["NAV_PAGE_COUNT"] = ceil(count($elements) / $countOnPage);
 }
-
 // saving template name to cache array
 $arResult["__TEMPLATE_FOLDER"] = $this->__folder;
 

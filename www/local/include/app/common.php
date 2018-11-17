@@ -221,19 +221,17 @@ function getUserSafety()
             $userTodayList[$el["UF_USER_ID"]] = $el["UF_USER_ID"];
         }
 
-        //Получаем партнеров, которые выкачены с ЦБ и у них нет предложений
-        $filter = Array("UF_SIT_CB" => 1);
-        $rsUsers = CUser::GetList(($by = "ID"), ($order = "desc"), $filter);
-        while ($arUser = $rsUsers->Fetch()) {
-            $userTodayList[$arUser["ID"]] = $arUser["ID"];
-        }
-
         $arResult["USER_SORT"] = Array();
-        $rsUsers = \CUser::GetList(($by = "ID"), ($order = "ASC"), Array("GROUPS_ID" => Array(PARTNER_GROUP), "ID" => implode("|", $userTodayList)), Array("SELECT" => Array("UF_*")));
+        $rsUsers = \CUser::GetList(($by = "ID"), ($order = "ASC"), Array( "GROUPS_ID" => Array(PARTNER_GROUP), "ID" => implode("|", $userTodayList)), Array("SELECT" => Array("UF_*")));
+
+
         while ($arUser = $rsUsers->GetNext()) {
             if ($showToday !== "N" && !in_array($arUser["ID"], $userTodayList)) {
                 continue;
             }
+
+
+
             $name = Array();
             $name[] = $arUser["WORK_COMPANY"];
             if (!empty($arUser["UF_OGRN"]))
@@ -243,6 +241,7 @@ function getUserSafety()
             $arUser["FULL_WORK_COMPANY"] = implode(", ", $name);
 
             $arResult["USERS"][$arUser["ID"]] = $arUser;
+
             $arResult["USER_SORT"][$arUser["ID"]] = Array(
                 "ID" => $arUser["ID"],
                 "RATING" => intval($ratingDetail[$arUser["ID"]]) > 0 ? intval($ratingDetail[$arUser["ID"]]) : 1000,
@@ -280,8 +279,8 @@ function getUserSafety()
 
         $i = 1;
         foreach ($arResult["USER_SORT"] as $sort => $item) {
-            $arResult["USERS"][$item["ID"]]["UF_SAFETY"] = $i;
-            ++$i;
+                $arResult["USERS"][$item["ID"]]["UF_SAFETY"] = $i;
+                ++$i;
         }
 
         foreach ($arResult["USERS"] as $key => $arUser) {

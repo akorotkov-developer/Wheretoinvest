@@ -10,11 +10,9 @@ class UpdateBanks extends Connects implements Interfaces\IUpdateBanks {
         $i = 0;
         foreach ($bankList->Record as $Record) {
             $i++;
-                //Смотрим есть ли уже пользователь для банка
+                //Логин Пароль пользователя
                 $login = $tools->translit($Record->ShortName, "Y") . "@wheretoinvest.ru";
                 $password = $tools->translit($Record->ShortName);
-                $rsUser = \CUser::GetByLogin($login);
-                $arUser = $rsUser->Fetch();
 
                 //Получаем все данные для банка
 
@@ -51,6 +49,17 @@ class UpdateBanks extends Connects implements Interfaces\IUpdateBanks {
                     $active = false;
                 }
 
+
+                //Смотрим есть ли уже пользователь для банка
+                $filter = Array(
+                    "UF_LICENSE" => $regNumber,
+                );
+                $rsUsers = \CUser::GetList(($by ), ($order = "desc"), $filter);
+                while ($arUser = $rsUsers->Fetch()) {
+                    $arSpecUser[] = $arUser["LOGIN"];
+                }
+                $rsUser = \CUser::GetByLogin($login);
+                $arUser = $rsUser->Fetch();
                 //Если пользователь есть, то обновляем его данные, если нет, то создаем нового пользователя
                 $user = new \CUser;
 

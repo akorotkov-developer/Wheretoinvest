@@ -310,13 +310,19 @@
                 $APPLICATION->RestartBuffer();
             } ?>
             <? foreach ($arResult["ITEMS"] as $arItem): ?>
+                <?if (empty($arItem["UF_ORG"])) continue;?>
                 <?
                 $user = $arItem["USER"];
                 $offer = $arItem["OFFER"];
                 ?>
                 <?
-                if ($user["UF_NOTE"] == "в процессе оформления (лицензии нет)" || $user["UF_NOTE"] == "лицензия отозвана"
-                    || $user["UF_NOTE"] == "лицензия аннулирована" || $user["UF_NOTE"] == "ликвидирована") continue;
+                if ($user["UF_NOTE"] != "норм." && $user["UF_NOTE"]) {
+                    continue;
+                }
+                ?>
+                <?
+                /*if ($user["UF_NOTE"] == "в процессе оформления (лицензии нет)" || $user["UF_NOTE"] == "лицензия отозвана"
+                    || $user["UF_NOTE"] == "лицензия аннулирована" || $user["UF_NOTE"] == "ликвидирована") continue;*/
                 ?>
                 <? if (!empty($inflation) && (empty($_REQUEST["SORT"]) || !empty($_REQUEST["SORT"]["percent"])) && $showInflation): ?>
                     <? if (((empty($_REQUEST["SORT"]) || $_REQUEST["SORT"]["percent"] == "D") && $inflation > floatval($arItem["UF_PERCENT"])) || ($_REQUEST["SORT"]["percent"] == "A" && $inflation < floatval($arItem["UF_PERCENT"]))): ?>
@@ -368,7 +374,7 @@
                     </div>
                     <div class="column small-4 medium-2 text-right" data-equalizer-watch>
                         <div class="b-offers__prof has-tooltip b-offers__prof_main" data-tooltip aria-haspopup="true"
-                             title="<?= $arItem["UF_SAFETY"] ?> место из <?= $arResult["USER_COUNT"] ?>"><?= $arItem["UF_SAFETY"] ?>
+                             title="<?=$arItem["UF_SAFETY"] ?> место из <?=$arResult["USER_COUNT"] ?>"><?= $arItem["UF_SAFETY"] ?>
                             <span>место</span>
                         </div>
                     </div>

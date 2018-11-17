@@ -284,6 +284,19 @@
                 }
             }
         });
+
+        //Сделать блок Инфляции по высоте такой же, как и остальные
+        $(window).load(function() {
+            var mh = 0;
+            $(".b-offers__item").each(function () {
+                var h_block = parseInt($(this).height());
+                if(h_block > mh) {
+                    mh = h_block;
+                };
+            });
+            $(".b-offers__infl").height(mh);
+        });
+
     });    
 })
 (jQuery);
