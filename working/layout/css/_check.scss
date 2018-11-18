@@ -14,12 +14,13 @@ label.check__chck {
   font-size: 14px;
   color: #202020;
   font-weight: 400;
-
-  padding-left: 16px;
+  position: relative;
+  padding-left: 22px;
+  margin-left: 0 !important;
 
   &:after {
     position: absolute;
-    top: 1px;
+    top: 3px;
     left: 0px;
 
     display: block;

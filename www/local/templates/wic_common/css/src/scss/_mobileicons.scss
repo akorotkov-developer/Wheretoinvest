@@ -1,0 +1,6 @@
+@media screen and (max-width: 1024px) {
+	.assets__tooltip:after, .assets__tooltip:hover:after {
+		content: url(/uploads/regicon_m.png);
+		opacity: 0.5;
+	}
+}

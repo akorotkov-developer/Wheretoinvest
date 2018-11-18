@@ -80,14 +80,15 @@
     font-weight: 400;
   }
 }
-@media (max-width:640px) {
-    .contribution {
-      margin-top:20px;
-      &__th,&__td {
-        width: 28%;
-        &_third {
-          width: 44%;
-        }
+
+@media (max-width: 640px) {
+  .contribution {
+    margin-top: 20px;
+    &__th, &__td {
+      width: 28%;
+      &_third {
+        width: 44%;
       }
     }
+  }
 }

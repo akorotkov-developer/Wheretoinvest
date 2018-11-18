@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 // 1. Скачать последний foundation с https://github.com/zurb/bower-foundation
 // 2. Скопировать содержимое папки /scss/ в эту папку (/css/)
 // 3. переименовать foundation.scss в _foundation.scss, normalize.scss в _normalize.scss
@@ -8,9 +10,7 @@
 // @see http://foundation.zurb.com/docs/
 // @see http://foundation.zurb.com/docs/using-sass.html
 // @see http://foundation.zurb.com/docs/sass-files.html
-
 @import 'normalize';
-
 @import "settings";
 @import "foundation";
 @import "fonts";
@@ -44,12 +44,7 @@
 @import "met";
 @import "reg";
 @import "check";
-@import "paginate";
-
-/**
-* Layout files
-*/
-/*@import "common";
-@import "header";
-//@import "....";
-@import "footer";*/
+@import "form";
+@import "indivset";
+@import "reviews";
+@import "mobileicons";

@@ -1,0 +1,24 @@
+.paginate {
+  text-align: center;
+  margin-top: rem-calc(40);
+  font-family: "Open Sans",Helvetica,Roboto,Arial,sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  & a {
+    padding-left: rem-calc(10);
+    font-size: rem-calc(14);
+    color: #000;
+    font-family: "Open Sans",Helvetica,Roboto,Arial,sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  & span.current {
+    padding-left: rem-calc(10);
+    color: #e53935;
+  }
+  &__dots {
+    padding-left: rem-calc(10);
+  }
+}

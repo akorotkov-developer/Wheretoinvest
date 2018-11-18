@@ -1,24 +1,25 @@
 .sentence {
   color: #e53935;
-  font-size: 12px;
-  font-weight: 700;
-  float: left;
-  text-transform: uppercase;
-  border: 2px solid #e53935;
   border-radius: 3px 2px 2px 3px;
-  padding-left: 16px;
-  transition: .5s;
-  &:hover {
+  font-size: 14px;
+  background: #fff;
+  border: 1px solid #e53935;
+  padding: rem-calc(5 16 6);
+  text-align: center;
+  display: inline-block;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all .5s;
+
+  &:hover, &:focus {
     background: #e53935;
     color: #fff;
   }
-  padding-right: 16px;
-  padding-top: 9px;
-  padding-bottom: 10px;
 }
 
+/*
 @media (max-width: 640px) {
   .sentence {
     margin-left: calc(50% - 100px);
   }
-}
+}*/

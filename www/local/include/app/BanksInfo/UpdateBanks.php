@@ -7,9 +7,10 @@ class UpdateBanks extends Connects implements Interfaces\IUpdateBanks {
         //Получаем список банков и для каждого банка обновляем либо создаем пользователя
         $bankList = $this->banks;
 
-        $i = 0;
+        $i = -1;
         foreach ($bankList->Record as $Record) {
             $i++;
+            if ($i>818) {
                 //Логин Пароль пользователя
                 $login = $tools->translit($Record->ShortName, "Y") . "@wheretoinvest.ru";
                 $password = $tools->translit($Record->ShortName);
@@ -51,12 +52,16 @@ class UpdateBanks extends Connects implements Interfaces\IUpdateBanks {
 
 
                 //Смотрим есть ли уже пользователь для банка
+                $arSpecUser = false;
                 $filter = Array(
                     "UF_LICENSE" => $regNumber,
                 );
-                $rsUsers = \CUser::GetList(($by ), ($order = "desc"), $filter);
+                $rsUsers = \CUser::GetList(($by), ($order = "desc"), $filter);
                 while ($arUser = $rsUsers->Fetch()) {
-                    $arSpecUser[] = $arUser["LOGIN"];
+                    $arSpecUser = $arUser["LOGIN"];
+                }
+                if ($arSpecUser) {
+                    $login = $arSpecUser;
                 }
                 $rsUser = \CUser::GetByLogin($login);
                 $arUser = $rsUser->Fetch();
@@ -67,6 +72,9 @@ class UpdateBanks extends Connects implements Interfaces\IUpdateBanks {
                     //ADD USER
                     if (!$active) {
                         $active = $arUser["UF_ASSETS"];
+                    }
+                    if ($arUser["UF_SITE"] != "") {
+                        $website = $arUser["UF_SITE"];
                     }
 
                     $arFields = Array(
@@ -132,6 +140,8 @@ class UpdateBanks extends Connects implements Interfaces\IUpdateBanks {
                     //Добавляем предлпжение и матрицу для банка
                     $siteOffers->setOfferAndMAtrix($arUser["ID"]);
                 }
+            }
         }
+
     }
 }

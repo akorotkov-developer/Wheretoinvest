@@ -272,7 +272,13 @@ if (count($offers)) {
         }
     }
 
+    //Дефолтная сортирвка
+    if (!$_REQUEST["SORT"]) {
+        $_REQUEST["SORT"] = array('safety'=>'A');
+    }
 
+
+    //Сортировка банков
     if (!empty($_REQUEST["SORT"])) {
         $by = reset(array_keys($_REQUEST["SORT"]));
         $order = $_REQUEST["SORT"][$by] == "D" ? SORT_DESC : SORT_ASC;

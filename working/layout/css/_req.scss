@@ -1,14 +1,7 @@
 .req {
-  margin-top: 14px;
-  letter-spacing: .6px;
-  &_p {
-    margin-top: 37px;
-  }
+  margin-bottom: rem-calc(15);
   &_mini {
     margin-top: 0;
-  }
-  &_last {
-    margin-bottom: 40px;
   }
   &__link {
     font-size: 14px;
@@ -19,10 +12,10 @@
   &__name {
     font-size: 14px;
     font-weight: 400;
-
     color: #9e9e9e;
-    &_hi {
+	padding-bottom: 10px;
 
+    &_hi {
       padding-top: 5px;
     }
 

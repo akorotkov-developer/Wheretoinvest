@@ -6,7 +6,7 @@
   color: #d2d2d2;
   font-weight: 300;
   input::-webkit-input-placeholder {
-    color:#9e9e9e;
+    color: #9e9e9e;
   }
   &__bug {
     overflow-x: hidden;
@@ -33,24 +33,24 @@
   }
 
   &__copyr {
-    margin-top: rem-calc(30);
     font-size: 15px;
+    line-height: rem-calc(29);
   }
   &__menu {
     list-style: none;
-    margin: 0;
+    margin: 0 0 rem-calc(20);
   }
   &__smalltext {
     color: #d2d2d2;
-    font-size: rem-calc(14);
+    font-size: rem-calc(15);
     margin-bottom: rem-calc(10);
-
   }
 
   &__postfix {
     border: 0;
     color: transparent;
     background: transparent;
+    outline: none;
 
     background: url("../images/arrow-right.png") no-repeat center center;
     width: 100%;
@@ -76,11 +76,14 @@
   .b-footer {
     padding-bottom: 32px;
     &__copyr {
-      margin-top: 98px;
-
+      margin-top: 30px;
     }
     &__icon {
       margin-right: 14px;
+    }
+    &__menu {
+      margin-top: 30px;
+      margin-bottom: 50px;
     }
 
     &__icons {

@@ -1,13 +1,13 @@
 .b-offers {
   padding: 0 rem-calc(10);
   max-width: rem-calc(980);
-  margin: 0 auto;
-  margin-bottom: rem-calc(10);
-  &__bility {
-    padding-right: 50px;
-  }
+  margin: 0 auto rem-calc(10);
+
   &__infl {
     border-bottom: 1px solid #e6e6e6;
+    padding: 9px 0 3px;
+    min-height: rem-calc(68);
+
     * {
       color: #e53935;
     }
@@ -29,33 +29,12 @@
       width: 100%;
       left: calc(50% - 490px);
     }
-
   }
   &__th {
-
     font-size: rem-calc(12);
 
     padding-top: rem-calc(20);
     padding-bottom: rem-calc(20);
-    &_sort {
-      .b-offers__title {
-        &:after {
-          content: '';
-          display: inline-block;
-          position: absolute;
-          background: url(../images/ari.png) no-repeat right center;
-          -webkit-background-size: 100%;
-          background-size: 100%;
-          margin-top: 5px;
-          margin-left: 3px;
-          width: 7px;
-          height: 9px;
-          -webkit-background-size: 100%;
-          background-size: 100%;
-        }
-      }
-
-    }
 
     &.first {
       padding-left: rem-calc(45);
@@ -63,24 +42,47 @@
   }
 
   &__title {
-
     font-family: "Open Sans", sans-serif;
     font-weight: 700;
     color: #202020;
-    &_sort {
+    position: relative;
+
+    &_sort, &_sort:hover {
       border-bottom: 1px dashed #000;
+      margin-right: 15px;
+      pointer-events: none;
+
+      &:after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        right: -12px;
+        margin-top: -2px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 6px 5px 0 5px;
+        border-color: #e53935 transparent transparent transparent;
+      }
+
+      &.b-offers__title_sort_desc {
+        &:after {
+          transform: rotate(180deg);
+        }
+      }
     }
-    &:hover {
+
+    &:hover, &:focus {
       border: none;
       color: #202020;
-
     }
 
   }
 
   &__item {
-    min-height: 6.15rem;
     position: relative;
+    min-height: rem-calc(68);
     &.active .b-offers__hidden {
       display: block;
 
@@ -91,14 +93,8 @@
     border-bottom: rem-calc(1) solid #e6e6e6;
 
     &:hover {
-
-      .b-offers__stars {
-        background: url("../images/star-active.png") no-repeat center center;
-      }
-
       .b-offers__arrows {
         display: block;
-
       }
     }
     &.active {
@@ -121,6 +117,7 @@
     text-align: center;
     vertical-align: middle;
     height: rem-calc(40);
+    line-height: rem-calc(44);
 
     img {
       max-width: 100%;
@@ -132,9 +129,9 @@
     font-size: rem-calc(14);
     color: #202020;
     display: table-cell;
-    padding-top: 14px;
+    padding-top: 11px;
+    padding-bottom: 9px;
     padding-left: 5px;
-
   }
   &__arrows {
 
@@ -150,20 +147,25 @@
   }
 
   &__type {
-    padding-top: rem-calc(14);
-    word-wrap: break-word;
+    padding: rem-calc(11 0 9);
+
     &_infl {
-      padding-bottom: 14px;
+      padding-bottom: 17px;
+      padding-top: 14px;
     }
 
   }
   &__prof {
     font-size: rem-calc(28);
     font-family: 'Conv_HelveticaNeueCyr-Thin', sans-serif;
-    padding-top: 5px;
+    margin-bottom: rem-calc(8);
+
+    &.b-offers__prof_main {
+      padding-top: rem-calc(8);
+    }
 
     span {
-      font-size: rem-calc(12);
+      font-size: rem-calc(14);
     }
   }
 
@@ -174,6 +176,9 @@
     display: inline-block;
     margin-top: 10px;
 
+    &.b-offers__stars_active, &:hover {
+      background: url("../images/star-active.png") no-repeat center center;
+    }
   }
 
   &__label {
@@ -189,9 +194,11 @@
   &__hidden {
     padding-top: rem-calc(45);
     display: none;
+    cursor: default;
 
     .b-offers__name {
       padding: 0;
+	  font-size: rem-calc(13) !important;
     }
   }
   &__rest {
@@ -200,8 +207,7 @@
 
   }
   &__nopadding {
-    padding: 0;
-    padding-left: 25px;
+    padding: 0 0 0 29px;
   }
 
   &__more {
@@ -217,8 +223,7 @@
 
     }
     &-item {
-      padding-bottom: rem-calc(10);
-
+      padding-bottom: rem-calc(14);
     }
   }
   &__link {
@@ -234,6 +239,12 @@
     bottom: rem-calc(10);
     left: rem-calc(15);
     text-transform: uppercase;
+    transition: all .5s;
+
+    &:hover {
+      background: #e53935;
+      color: #fff;
+    }
   }
 
   &__bottom {
@@ -283,7 +294,7 @@
       padding-right: 0;
     }
     &__name, &__logo {
-      display: inline-block;
+      display: table-cell;
     }
     &__link {
       padding-left: 9px;
@@ -300,17 +311,15 @@
 @media (max-width: 790px) {
   .b-offers {
     &__prof {
-
       &_infl {
-
         padding-top: 30px;
       }
     }
-    &__type {
 
+    &__type {
       &_infl {
-        padding-top: 36px;
-        padding-bottom: 30px;
+        padding-top: 10px;
+        padding-bottom: 10px;
       }
 
     }
@@ -324,12 +333,6 @@
   .b-offers {
     &__rest {
       padding-top: 6px;
-    }
-    &__bility {
-      padding-right: 10px;
-    }
-    &__percent {
-      padding-right: 0;
     }
     &__go {
       padding-left: 10px;
@@ -345,7 +348,7 @@
     &__best {
       border-top: 1px solid #ebebeb;
       padding-top: 17px;
-      padding-bottom: 25px;
+      padding-bottom: 17px;
     }
     &__liked {
       color: #202020;
@@ -357,18 +360,15 @@
 
     }
     &__stars {
-      margin-top: 0px;
-    }
-    &__profit {
-      padding-left: 6px;
-      padding-right: 0;
+      margin-top: 0;
+      top: 7px;
+      position: relative;
     }
     padding-left: 0;
     padding-right: 0;
 
     &__arrows {
-      right: 20px;
-      top: 28px;
+      display: none !important;
     }
 
     &__logo {
@@ -380,16 +380,15 @@
       padding-top: 0;
       text-align: center;
       display: inline-block;
-      line-height: 2.4;
       width: 100%;
+      padding-left: 0;
+      margin-top: rem-calc(3);
     }
 
     &__th.first {
       padding-left: 0;
     }
     &__item {
-
-
 
     }
     &__more {
@@ -409,16 +408,21 @@
     }
     &__prof {
       padding-top: 40px;
-      &_infl {
 
-        padding-top: 30px;
+      &.b-offers__prof_main {
+        padding-top: rem-calc(20);
+      }
+
+      &_infl {
+        padding-top: 16px;
+        padding-bottom: 19px;
       }
     }
     &__type {
       padding: 0;
       &_infl {
-        padding-top: 31px;
-        padding-bottom: 35px;
+        padding-top: 16px;
+        padding-bottom: 26px;
       }
 
     }
@@ -433,6 +437,10 @@
       padding-top: 6px;
       text-align: left;
       margin-bottom: 0;
+
+      .assets__tooltip {
+        display: none !important;
+      }
     }
 
     &__res {
@@ -452,6 +460,7 @@
     }
     &__nopadding {
       padding-left: 0;
+      padding-right: 10px;
     }
   }
 }

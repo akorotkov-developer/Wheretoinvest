@@ -1,7 +1,6 @@
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
-
 @import 'global';
 
 //
@@ -67,7 +66,9 @@ $crumb-slash-position: 1px !default;
   margin: 0;
   text-transform: $crumb-font-transform;
 
-  &:hover a, &:focus a { text-decoration: $crumb-link-decor; }
+  &:hover a, &:focus a {
+    text-decoration: $crumb-link-decor;
+  }
 
   a {
     color: $crumb-font-color;
@@ -83,13 +84,17 @@ $crumb-slash-position: 1px !default;
     }
 
     &:hover, &:hover a,
-    &:focus, &:focus a { text-decoration: none; }
+    &:focus, &:focus a {
+      text-decoration: none;
+    }
   }
 
   // Unavailable removed color and link styles so it looks inactive.
   &.unavailable {
     color: $crumb-font-color-unavailable;
-    a { color: $crumb-font-color-unavailable; }
+    a {
+      color: $crumb-font-color-unavailable;
+    }
 
     &:hover,
     &:hover a,

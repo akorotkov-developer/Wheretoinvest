@@ -1,0 +1,147 @@
+.b-form {
+  font-size: rem-calc(14);
+  color: #000;
+  line-height: rem-calc(21);
+
+  &__row {
+    margin-bottom: rem-calc(21);
+
+    &.b-form__row_no-margin {
+      margin-bottom: rem-calc(5);
+    }
+
+    &.b-form__row_margin-top {
+      margin-top: rem-calc(-15);
+    }
+  }
+
+  &__title {
+    position: relative;
+    font-size: rem-calc(14);
+    color: #9e9e9e;
+    line-height: rem-calc(21);
+    margin-bottom: rem-calc(4);
+
+    &.b-form__title_small {
+      font-size: rem-calc(13);
+      margin-bottom: rem-calc(5);
+    }
+
+    &.b-form__title_margin-bottom {
+      margin-bottom: rem-calc(7);
+    }
+
+    &-link {
+      color: #e53935;
+      font-size: rem-calc(14);
+      line-height: rem-calc(21);
+    }
+
+    &-desc {
+      color: #9e9e9e;
+      padding-top: rem-calc(5);
+      font-size: rem-calc(14);
+      line-height: rem-calc(21);
+    }
+  }
+
+  &__label {
+    font-size: rem-calc(14);
+    color: #9e9e9e !important;
+    display: inline-block;
+    margin: rem-calc(0 23 0 0);
+    cursor: pointer;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.b-form__title_block {
+      display: block;
+      margin: 0;
+    }
+  }
+
+  &__input {
+    margin-bottom: 0 !important;
+    display: block;
+
+    &:read-only {
+      cursor: not-allowed;
+    }
+
+    &:disabled {
+      background: #e2e2e2;
+      cursor: not-allowed;
+    }
+
+    &_radio, &_checkbox {
+      vertical-align: middle;
+      margin-right: rem-calc(5);
+      outline: none;
+    }
+  }
+
+  &__textarea {
+    display: block;
+    outline: none;
+    resize: none;
+    min-height: rem-calc(100);
+    margin-bottom: 0 !important;
+  }
+
+  &__select {
+    display: block;
+    width: 100%;
+    margin-bottom: 0 !important;
+  }
+
+  &__required {
+    color: #e53935;
+    font-size: 110%;
+    top: -0.05em;
+  }
+
+  &__error {
+    font-size: rem-calc(12);
+    color: #e53935;
+    line-height: rem-calc(16);
+    padding-top: rem-calc(1);
+    margin-bottom: rem-calc(-11);
+  }
+
+  &__text {
+    margin-bottom: rem-calc(7);
+    font-size: rem-calc(16);
+
+    &.b-form__text_large {
+      font-size: rem-calc(19);
+      color: #000;
+    }
+  }
+
+  &__btn {
+    width: 100%;
+    display: block;
+    color: #fff;
+    border-radius: 3px 2px 2px 3px;
+    font-size: 14px;
+    background: #e53935;
+    border: 1px solid #e53935;
+    padding: rem-calc(5 16 6);
+    text-align: center;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background .5s;
+
+    &:hover, &:focus {
+      color: #ffffff;
+      background: #c81e1a;
+    }
+  }
+}
+
+.b-form__autocomplete {
+  @include form-select;
+  cursor: default;
+}

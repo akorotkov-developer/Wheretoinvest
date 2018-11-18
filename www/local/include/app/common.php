@@ -229,11 +229,7 @@ function getUserSafety()
             if ($showToday !== "N" && !in_array($arUser["ID"], $userTodayList)) {
                 continue;
             }
-
-
-
             $name = Array();
-            $name[] = $arUser["WORK_COMPANY"];
             if (!empty($arUser["UF_OGRN"]))
                 $name[] = "ОГРН " . $arUser["UF_OGRN"];
             if (!empty($arUser["UF_LICENSE"]))

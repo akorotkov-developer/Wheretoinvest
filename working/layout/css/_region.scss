@@ -147,6 +147,11 @@ input.region__inp {
     width: 75px;
     margin-right: 5px;
   }
+  &_medium {
+    width: calc(50% - 54px);
+    margin-right: 5px;
+  }
+
   font-size: 14px;
   color: #202020;
   border: 1px solid #d0d0d0;

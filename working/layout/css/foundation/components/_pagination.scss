@@ -1,7 +1,6 @@
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
-
 @import 'global';
 
 //
@@ -42,7 +41,9 @@ $pagination-link-current-active-bg: $primary-color !default;
 // Style the pagination container. Currently only used when centering elements.
 // $center - Default: false, Options: true
 @mixin pagination-container($center:false) {
-  @if $center { text-align: center; }
+  @if $center {
+    text-align: center;
+  }
 }
 
 // @mixins
@@ -55,11 +56,12 @@ $pagination-link-current-active-bg: $primary-color !default;
   }
   &:hover a,
   & a:focus,
-
   &:hover button,
-  & button:focus
-  { background: $pagination-link-unavailable-bg-active; }
+  & button:focus {
+    background: $pagination-link-unavailable-bg-active;
+  }
 }
+
 // @mixins
 // Style the current list item. Do not assume that the current item has
 // an anchor <a> element.
@@ -73,7 +75,9 @@ $pagination-link-current-active-bg: $primary-color !default;
       font-weight: $pagination-link-current-font-weight;
 
       &:hover,
-      &:focus { background: $pagination-link-current-active-bg; }
+      &:focus {
+        background: $pagination-link-current-active-bg;
+      }
     }
   } @else {
     background: $pagination-link-current-background;
@@ -85,7 +89,9 @@ $pagination-link-current-active-bg: $primary-color !default;
     @include radius;
 
     &:hover,
-    &:focus { background: $pagination-link-current-active-bg; }
+    &:focus {
+      background: $pagination-link-current-active-bg;
+    }
   }
 }
 
@@ -123,12 +129,17 @@ $pagination-link-current-active-bg: $primary-color !default;
       &:hover a,
       a:focus,
       &:hover button,
-      button:focus
-      { background: $pagination-link-active-bg; }
+      button:focus {
+        background: $pagination-link-active-bg;
+      }
 
       @if $use-default-classes {
-        &.unavailable { @include pagination-unavailable-item(); }
-        &.current { @include pagination-current-item(); }
+        &.unavailable {
+          @include pagination-unavailable-item();
+        }
+        &.current {
+          @include pagination-current-item();
+        }
       }
     }
   }

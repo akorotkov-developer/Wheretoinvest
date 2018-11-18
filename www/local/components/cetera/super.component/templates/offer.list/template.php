@@ -565,42 +565,6 @@
                                     </div>
                                 </div>
 
-                                <div class="row b-offers__more-item">
-                                    <div class="column medium-3 small-6">
-                                        <div class="b-offers__label">Лицензия ЦБ РФ:</div>
-                                    </div>
-                                    <div class="column medium-9 small-6 b-offers__nopadding">
-                                        <div class="b-offers__res2">
-                                            <div class="b-offers__rest">
-                                                <div class="has-tooltip" data-tooltip aria-haspopup="true"
-                                                     title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
-                                                    <?if ($user["UF_LICENSE"]) {?>
-                                                        <?= $user["UF_LICENSE"] ?>
-                                                    <?} else {echo "-";}?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row b-offers__more-item">
-                                    <div class="column medium-3 small-6">
-                                        <div class="b-offers__label">Лицензия</div>
-                                    </div>
-                                    <div class="column medium-9 small-6 b-offers__nopadding">
-                                        <div class="b-offers__res2">
-                                            <div class="b-offers__rest">
-                                                <div class="has-tooltip" data-tooltip aria-haspopup="true"
-                                                     title="<?= !empty($user["TIMESTAMP_X"]) ? "Обновлено<br>" . strtolower(CIBlockFormatProperties::DateFormat("d M Y в H:i", strtotime($user["TIMESTAMP_X"]))) : "" ?>">
-                                                    <?if ($user["UF_NOTE"]) {?>
-                                                        <?= $user["UF_NOTE"] ?>
-                                                    <?} else {echo "-";}?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="row">
                                     <? if ($USER->IsAuthorized()): ?>
                                         <div class="columns show-for-small-only b-offers__best b-offers__nopadding">
@@ -786,7 +750,7 @@
                                 $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=".$counter, array("page"))."'>$counter</a>";
                             }
                         }
-                        $paginate.= "...";
+                        $paginate.= "<span class='paginate__dots'>...</span>";
                         $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=".$LastPagem1, array("page"))."'>$LastPagem1</a>";
                         $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=".$lastpage, array("page"))."'>$lastpage</a>";
                     }
@@ -794,7 +758,7 @@
                     {
                         $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=1", array("page"))."'>1</a>";
                         $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=2", array("page"))."'>2</a>";
-                        $paginate.= "...";
+                        $paginate.= "<span class='paginate__dots'>...</span>";
                         for ($counter = $page - $stages; $counter <= $page + $stages; $counter++)
                         {
                             if ($counter == $page){
@@ -802,7 +766,7 @@
                             }else{
                                 $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=".$counter, array("page"))."'>$counter</a>";}
                         }
-                        $paginate.= "...";
+                        $paginate.= "<span class='paginate__dots'>...</span>";
                         $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=".$LastPagem1, array("page"))."'>$LastPagem1</a>";
                         $paginate.= "<a href='".$APPLICATION->GetCurPageParam("page=".$lastpage, array("page"))."'>$lastpage</a>";
                     }
