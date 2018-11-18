@@ -14,6 +14,4 @@ class Connects {
         //Подключение к списку банков
         $this->banks = new \SimpleXMLElement(file_get_contents("http://cbr.ru/scripts/XML_bic2.asp"));
     }
-
-
 }

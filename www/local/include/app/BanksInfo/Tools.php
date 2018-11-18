@@ -3,7 +3,7 @@ namespace Wic\BanksInfo;
 
 class Tools implements Interfaces\ITools {
 
-    public function translit($s, $param = "N") {
+    public static function translit($s, $param = "N") {
         if ($param == "Y") {
             $s = (string)$s; // преобразуем в строковое значение
             $s = strip_tags($s); // убираем HTML-теги
@@ -69,7 +69,7 @@ class Tools implements Interfaces\ITools {
     }
 
 
-    public function getShortNameByFullName($FullName) {
+    public static function getShortNameByFullName($FullName) {
         $name = $FullName;
         $ShortName = "";
         $needle = '"';

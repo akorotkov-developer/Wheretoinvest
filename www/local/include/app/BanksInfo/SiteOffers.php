@@ -2,12 +2,11 @@
 namespace Wic\BanksInfo;
 
 class SiteOffers implements Interfaces\ISiteOffers {
-    const ALL_REGIONS = array(71,77,24,34,3,16,18,32,23,17,83,66,4,64,38,26,5,78,42,67,47,6,31,65,85,60,7,20,8,79,19,2,25,29,48,28,68,69,54,9,53,52,81,27,35,75,55,72,37,41,36,22,21,46,44,80,39,45,74,73,33,10,51,30,57,82,59,4913,11,40,12,13,70,14,58,49,56,76,62,63,43,50,84,61,15);
 
     //Добавлить предложение и Матрицу для банка
     public function setOfferAndMAtrix($userID) {
-        $itemHblockOffer = new \Cetera\HBlock\SimpleHblockObject(3);
-        $itemHblockMatrix = new \Cetera\HBlock\SimpleHblockObject(9);
+        $itemHblockOffer = new \Cetera\HBlock\SimpleHblockObject(Config::HOFFRES);
+        $itemHblockMatrix = new \Cetera\HBlock\SimpleHblockObject(Config::HMATRIX);
 
         //Проверяем есть ли предлжение с таким ID
         $idElem = array();
@@ -19,10 +18,13 @@ class SiteOffers implements Interfaces\ISiteOffers {
         }
 
         //TODO пока клиент не придумал что делать с полученными данными берем первое попавшееся предложение
-        if ($idElem[0]["ID"]) {
+        $offerID = $idElem[0]["ID"];
+        $findMatrix = false;
+
+        if ($offerID) {
             //Если предложение есть, то ищем Матрицу в HBlock Matrix создаем Матрицу в HBlock Matrix
             $filter = array();
-            $filter["UF_OFFER"] = $idElem[0]["ID"];
+            $filter["UF_OFFER"] = $offerID;
             $query["filter"] = $filter;
             $list = $itemHblockMatrix->getList($query);
             $Elem = false;
@@ -31,55 +33,38 @@ class SiteOffers implements Interfaces\ISiteOffers {
             }
             //TODO Если нашли Матрицу в HBlock Matrix то..
             if ($Elem) {
-                //В процессе
-            } else {
-                $item = array(
-                    "UF_OFFER" => $idElem[0]["ID"],
-                    "UF_SUMM"  => 10000,
-                    "UF_DATE_START" => 369,
-                    "UF_CURRENCY" => 28,
-                    "UF_PERCENT" => 0.1
-                );
-                $itemHblockMatrix->add($item);
+                $findMatrix = true;
             }
         } else {
             //Если нет создаем предложение
-            $date = "12.10.2019";
+            $date = Config::ENDDATEOFFER;
             $date = strtotime($date); // переводит из строки в дату
             $dateEnd = date("d.m.Y", $date);
 
-            $item = array(
+            $offeritems = array(
                 "UF_USER_ID"=>$userID,
-                "UF_METHOD"=>3,
+                "UF_METHOD"=>Config::OFFER_UF_METHOD,
                 "UF_NAME"=>"-",
-                "UF_TYPE"=>26,
-                "UF_REGIONS"=>self::ALL_REGIONS,
+                "UF_TYPE"=>Config::OFFER_UF_TYPE,
+                "UF_REGIONS"=>Config::ALL_REGIONS,
                 "UF_UPDATED"=>date("d.m.Y H:i:s"),
                 "UF_SITE"=>"",
                 "UF_ACTIVE_START"=>array(date("d.m.Y")),
                 "UF_ACTIVE_END"=>array($dateEnd)
             );
-            $itemHblockOffer->add($item);
-
-            //Ищем предложение
-            $idElem =array();
-            $filter["UF_USER_ID"] = $userID;
-            $query["filter"] = $filter;
-            $list = $itemHblockOffer->getList($query);
-            while ($el = $list->fetch()) {
-                $idElem[] = $el;
-            }
-            //Затем создаем матрицу для этого предложения
-            if ($idElem[0]["ID"]) {
-                $item = array(
-                    "UF_OFFER" => $idElem[0]["ID"],
-                    "UF_SUMM"  => 10000,
-                    "UF_DATE_START" => 369,
-                    "UF_CURRENCY" => 28,
-                    "UF_PERCENT" => 0.1
-                );
-                $itemHblockMatrix->add($item);
-            }
+            $offerID = $itemHblockOffer->add($offeritems)->getId();
         }
+
+        if (!$findMatrix) {
+            $item = array(
+                "UF_OFFER" => $offerID,
+                "UF_SUMM" => Config::MATRIX_UF_SUMM,
+                "UF_DATE_START" => Config::MATRIX_UF_DATE_START,
+                "UF_CURRENCY" => Config::MATRIX_UF_CURRENCY,
+                "UF_PERCENT" => Config::MATRIX_UF_PERCENT
+            );
+            $itemHblockMatrix->add($item);
+        }
+
     }
 }

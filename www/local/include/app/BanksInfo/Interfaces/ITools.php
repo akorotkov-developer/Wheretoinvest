@@ -3,6 +3,6 @@ namespace Wic\BanksInfo\Interfaces;
 
 interface ITools
 {
-    public function translit($s, $param);
-    public function getShortNameByFullName($FullName);
+    public static function translit($s, $param);
+    public static function getShortNameByFullName($FullName);
 }

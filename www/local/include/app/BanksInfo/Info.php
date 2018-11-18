@@ -1,10 +1,18 @@
 <?
 namespace Wic\BanksInfo;
 
-use Wic\BanksInfo\Tools;
-
-class Info extends Connects implements Interfaces\IInfo
+class Info implements Interfaces\IInfo
 {
+    protected $client;
+    protected $websites;
+
+    function __construct() {
+        //Создаем подключение к WSDL серверу
+        $this->client = new \SoapClient(Config::CLIENT, array('exceptions' => false));
+        //Подключение к списку сайтов банков
+        $this->websites = new \SimpleXMLElement(file_get_contents(Config::WEBSITES));
+    }
+
     public function getFilialInfoByBic($BIC) {
         $intCode = $this->client->BicToIntCode(array("BicCode" => (string)$BIC))->BicToIntCodeResult;
 
@@ -31,6 +39,7 @@ class Info extends Connects implements Interfaces\IInfo
     //Получаем данные по формы 135
     public function get135formData($regNumber) {
         //Получаем последнюю дату для формы 135
+        $h10 = "";
         $response = $this->client->GetDatesForF135(array("CredprgNumber" => $regNumber));
         $response = $response->GetDatesForF135Result->dateTime;
         $response = $response[count($response)-1];
@@ -84,12 +93,11 @@ class Info extends Connects implements Interfaces\IInfo
             } else {$result = "";}
         }
 
-
         return $result;
     }
 
     //Дополнительная информация по организации организации по Bic коду
-    public function getOrgInfoByIntCode($BIC, Tools $tools) {
+    public function getOrgInfoByIntCode($BIC) {
         $info = array();
 
         $intCode = $this->client->BicToIntCode(array('BicCode' => $BIC));
@@ -98,7 +106,7 @@ class Info extends Connects implements Interfaces\IInfo
         $xml =  new \SimpleXMLElement($obj->CreditInfoByIntCodeXMLResult->any);
 
         $FullName = $xml->CO->OrgFullName;
-        $ShortName = $tools->getShortNameByFullName($FullName);
+        $ShortName = Tools::getShortNameByFullName($FullName);
 
         $info["ShortName"] = $ShortName;
         $info["OrgStatus"] = $xml->CO->OrgStatus;
