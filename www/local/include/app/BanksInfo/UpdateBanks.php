@@ -14,6 +14,9 @@ class UpdateBanks extends Connects implements Interfaces\IUpdateBanks {
                 //Логин Пароль пользователя
                 $login = $tools->translit($Record->ShortName, "Y") . "@wheretoinvest.ru";
                 $password = $tools->translit($Record->ShortName);
+                if (strlen($password) < 6) {
+                    $password = $password.$password;
+                }
 
                 //Получаем все данные для банка
 
