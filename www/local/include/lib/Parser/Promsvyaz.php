@@ -62,8 +62,8 @@ class Promsvyaz extends Parser
                 if ($table->find("thead")->count()) {
                     foreach ($table->find("thead")->find("tr")->eq(2)->find("th") as $td) {
                         $td = pq($td);
-                        $val = $td->text();
-                        $val = preg_replace("#[^\d-]#is", "", $val);
+                        $val = trim($td->text());
+                        $val = str_replace('360', '369', $val);
                         $tmpCol[$i] = $val;
                         $i++;
                     }
@@ -74,10 +74,9 @@ class Promsvyaz extends Parser
                         if ($j === 3) {
                             foreach ($tr->find("th") as $td) {
                                 $td = pq($td);
-                                $val = $td->text();
-                                $val = preg_replace("#[^\d–]#is", "", $val);
-                                $val = explode("–", $val);
-                                $tmpCol[$i] = $val[1];
+                                $val = trim($td->text());
+                                $val = str_replace('360', '369', $val);
+                                $tmpCol[$i] = $val;
                                 $i++;
                             }
                             $tr->remove();
