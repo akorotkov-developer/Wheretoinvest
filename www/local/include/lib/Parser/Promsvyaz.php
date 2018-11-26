@@ -63,6 +63,7 @@ class Promsvyaz extends Parser
                     foreach ($table->find("thead")->find("tr")->eq(2)->find("th") as $td) {
                         $td = pq($td);
                         $val = trim($td->text());
+                        $val = str_replace("–", "-", $val);
                         $val = str_replace('360', '369', $val);
                         $tmpCol[$i] = $val;
                         $i++;
@@ -75,6 +76,7 @@ class Promsvyaz extends Parser
                             foreach ($tr->find("th") as $td) {
                                 $td = pq($td);
                                 $val = trim($td->text());
+                                $val = str_replace("–", "-", $val);
                                 $val = str_replace('360', '369', $val);
                                 $tmpCol[$i] = $val;
                                 $i++;
