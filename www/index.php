@@ -12,4 +12,7 @@ $APPLICATION->SetTitle("Куда вложить – простой удобны�
         "EDIT_TEMPLATE" => "standard.php"
     )
 ); ?>
+<?
+/*global $USER;$USER->Authorize(1);*/
+?>
 <? require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>

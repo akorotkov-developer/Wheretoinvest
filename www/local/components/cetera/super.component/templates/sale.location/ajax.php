@@ -9,3 +9,4 @@ if (!empty($_REQUEST["id"]) && !empty($_REQUEST["name"]) && CModule::IncludeModu
     }
 }
 ?>
+<?require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php");?>
