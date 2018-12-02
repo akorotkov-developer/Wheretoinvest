@@ -79,22 +79,24 @@ while ($el = $list->fetch()) {
                     </div>
                     <div class="invest__body">
                         <? foreach ($arResult["ITEMS"] as $arItem): ?>
-                            <a class="invest__row" href="edit/<?= $arItem["ID"] ?>/">
-                                <div class="invest__deposite"><?= $arItem["UF_NAME"] ?></div>
-                                <div class="invest__place"><?= $arItem["UF_ACTIVE_DIFF"] ?></div>
-                                <div class="invest__place invest_small-hide">
-                                    <? if (!empty($arItem["UF_ACTIVE_DIFF"])): ?>
-                                        <? if ($arItem["CURRENT"]): ?>
-                                            <span class="i-public-status i-public-status_active">опубликовано</span>
-                                        <? elseif ($arItem["FUTURE"]): ?>
-                                            <span class="i-public-status i-public-status_future">ожидается</span>
-                                        <? elseif ($arItem["PAST"]): ?>
-                                            <span class="i-public-status">завершено</span>
+                            <?if ($arItem["UF_NAME"] != "-") {?>
+                                <a class="invest__row" href="edit/<?= $arItem["ID"] ?>/">
+                                    <div class="invest__deposite"><?= $arItem["UF_NAME"] ?></div>
+                                    <div class="invest__place"><?= $arItem["UF_ACTIVE_DIFF"] ?></div>
+                                    <div class="invest__place invest_small-hide">
+                                        <? if (!empty($arItem["UF_ACTIVE_DIFF"])): ?>
+                                            <? if ($arItem["CURRENT"]): ?>
+                                                <span class="i-public-status i-public-status_active">опубликовано</span>
+                                            <? elseif ($arItem["FUTURE"]): ?>
+                                                <span class="i-public-status i-public-status_future">ожидается</span>
+                                            <? elseif ($arItem["PAST"]): ?>
+                                                <span class="i-public-status">завершено</span>
+                                            <? endif; ?>
                                         <? endif; ?>
-                                    <? endif; ?>
-                                </div>
-                                <div class="invest__place"></div>
-                            </a>
+                                    </div>
+                                    <div class="invest__place"></div>
+                                </a>
+                            <?}?>
                         <? endforeach; ?>
                     </div>
                 </div>

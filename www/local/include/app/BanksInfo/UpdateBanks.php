@@ -19,10 +19,10 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
         $i = -1;
         foreach ($bankList->Record as $Record) {
             $i++;
-            if ($i<1) {
+            if ($i>700) {
                 //Логин Пароль пользователя
                 $login = Tools::translit($Record->ShortName, "Y") . Config::EMAIL_END;
-                $password = Tools::translit($Record->ShortName, "Y").Config::PASSWORD_KEY;
+                $password = Tools::translit($Record->ShortName, "Y") . Config::PASSWORD_KEY;
 
                 //Получаем все данные для банка
 
@@ -91,6 +91,9 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                     "UF_ASSETS_DATE" => $sobcapital["date"],
                     "UF_SIT_CB" => 1,
                     "UF_BANK_PARTICIP" => $insurance,
+                    "UF_CAPITAL_A_DATE" =>  date("d.m.Y"),
+                    "UF_CAPITAL_DATE" =>  date("d.m.Y"),
+
                 );
 
                 if ($arUser) {
@@ -115,6 +118,8 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                         "LOGIN" => $login,
                         "PASSWORD" => $password,
                         "CONFIRM_PASSWORD" => $password,
+                        "UF_CAPITAL_A_DATE" =>  date("d.m.Y"),
+                        "UF_CAPITAL_DATE" =>  date("d.m.Y")
                     );
 
                     $arFields = array_merge($arFields, $arFieldsNewUser);

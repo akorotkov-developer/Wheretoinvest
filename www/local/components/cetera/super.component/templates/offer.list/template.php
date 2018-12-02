@@ -90,8 +90,8 @@
                                 <div
                                     class="column medium-2 small-4 text-right b-offers__bility">
                                     <div class="b-offers__th">
-                                        <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("", Array("SORT")) ?>"
-                                           class="b-offers__title<? if (empty($_REQUEST["SORT"])): ?> b-offers__title_sort<? endif; ?> has-tooltip"
+                                        <a href="<?= \Cetera\Tools\Uri::GetCurPageParam("SORT[yield]=A", Array("SORT")) ?>"
+                                           class="b-offers__title<? if (!empty($_REQUEST["SORT"]["yield"])): ?> b-offers__title_sort<? endif; ?> has-tooltip"
                                            data-tooltip aria-haspopup="true"
                                            title="с учетом капитализации процентов,<br> % годовых">
                                             Доходность

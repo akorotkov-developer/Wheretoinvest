@@ -245,7 +245,6 @@ if (count($offers)) {
         $obCache->EndDataCache($arResult);
     }
 
-
     //Задаем правильное место для банков
     //Сначала отсортируем их по Надежности
     $RSORT = array("safety"=>"A");
@@ -264,9 +263,14 @@ if (count($offers)) {
     //Теперь переберем массив и поменяем у него места надежности
     $i=1;
     foreach ($arResult["ITEMS"] as $key=>$item) {
-        if ($item["UF_ORG"] && (!$item["USER"]["UF_NOTE"] || $item["USER"]["UF_NOTE"] == "норм.")) {
-            $arResult["ITEMS"][$key]["UF_SAFETY"] = $i;
-            $i++;
+        if ($item["UF_ORG"] && ((!$item["USER"]["UF_NOTE"] || $item["USER"]["UF_NOTE"] == "норм.") and $item["USER"]["UF_BANK_PARTICIP"] == 25)) {
+            if ($arResult["ITEMS"][$key]["USER"]["UF_LICENSE"] == $arResult["ITEMS"][$lastkey]["USER"]["UF_LICENSE"]) {
+                $arResult["ITEMS"][$key]["UF_SAFETY"] = $i - 1;
+            } else {
+                $arResult["ITEMS"][$key]["UF_SAFETY"] = $i;
+                $i++;
+            }
+            $lastkey = $key;
         } else {
             unset($arResult["ITEMS"][$key]);
         }

@@ -75,70 +75,112 @@ class Tools implements Interfaces\ITools {
         $needle = '"';
         $lastPos = 0;
         $positions = array();
+        if (strpos($name, $needle, $lastPos) == false) {
+            $needle = "(";
+            while (($lastPos = strpos($name, $needle, $lastPos))!== false) {
+                $positions[] = $lastPos;
+                $lastPos = $lastPos + strlen($needle);
+            }
 
-        while (($lastPos = strpos($name, $needle, $lastPos))!== false) {
-            $positions[] = $lastPos;
-            $lastPos = $lastPos + strlen($needle);
-        }
+            $needle = ")";
+            while (($lastPos = strpos($name, $needle, $lastPos))!== false) {
+                $positions[] = $lastPos;
+                $lastPos = $lastPos + strlen($needle);
+            }
 
-        $cuurentN = substr($name, $positions[0], $positions[count($positions)-1]-$positions[0]+1);
+            $cuurentN = substr($name, $positions[0], $positions[count($positions)-1]-$positions[0]+1);
 
-        if ($positions[0] == 0) {
-            $firstN = false;
+
+            if ($positions[0] == 0) {
+                $firstN = false;
+            } else {
+                $firstN = substr($name, 0, $positions[0] - 1);
+            }
+
+            $cuurentN = explode(" ", $cuurentN);
+
+            foreach ($cuurentN as $word ) {
+                if ($word[0] == "(") {
+                    $ShortName .= substr($word, 1, 1);
+                } else {
+                    if ($word[count($word) - 1] == ")") { $word[count($word) - 1] = "";}
+                    $ShortName .=  substr($word, 0, 1);
+                }
+            }
+
+            $BeginName =  substr($name, 0, $positions[0] );
+
+            $ShortName =$BeginName."(".strtoupper($ShortName).")";
+
+            echo "<pre>";
+            var_dump($ShortName);
+            echo "</pre>";
         } else {
-            $firstN = substr($name, 0, $positions[0] - 1);
-        }
-        $lastN = substr($name, $positions[count($positions)-1]+2, strlen($name)-1);
+
+            while (($lastPos = strpos($name, $needle, $lastPos)) !== false) {
+                $positions[] = $lastPos;
+                $lastPos = $lastPos + strlen($needle);
+            }
+
+            $cuurentN = substr($name, $positions[0], $positions[count($positions) - 1] - $positions[0] + 1);
+
+            if ($positions[0] == 0) {
+                $firstN = false;
+            } else {
+                $firstN = substr($name, 0, $positions[0] - 1);
+            }
+            $lastN = substr($name, $positions[count($positions) - 1] + 2, strlen($name) - 1);
 
 
-        if ($firstN) {
-            $firstN = explode(' ', $firstN);
-            if (count($firstN) > 1) {
-                foreach ($firstN as $i => $element) {
-                    if (strlen($firstN[$i]) > 1) {
-                        $fSymb = substr($firstN[$i], 0, 1);
+            if ($firstN) {
+                $firstN = explode(' ', $firstN);
+                if (count($firstN) > 1) {
+                    foreach ($firstN as $i => $element) {
+                        if (strlen($firstN[$i]) > 1) {
+                            $fSymb = substr($firstN[$i], 0, 1);
+                            if ($fSymb != '"') {
+                                if ($fSymb == '(') {
+                                    $fSymb = substr($firstN[$i], 1, 1);
+                                    $firstN[$i] = '(' . strtoupper($fSymb);
+                                } elseif (substr($firstN[$i], strlen($firstN[$i]) - 1, 1) == ')') {
+                                    $fSymb = substr($firstN[$i], 0, 1);
+                                    $firstN[$i] = strtoupper($fSymb) . ')';
+                                } else {
+                                    $fSymb = substr($firstN[$i], 0, 1);
+                                    $firstN[$i] = strtoupper($fSymb);
+                                }
+                            }
+                            $ShortName .= $firstN[$i];
+                        }
+                    }
+                    $ShortName .= ' ';
+                } else {
+                    $ShortName .= $firstN[0] . ' ';
+                }
+            }
+
+            $ShortName .= $cuurentN;
+
+            if ($lastN != '') {
+                $ShortName .= ' ';
+                $lastN = explode(' ', $lastN);
+                foreach ($lastN as $i => $element) {
+                    if (strlen($lastN[$i]) > 1) {
+                        $fSymb = substr($lastN[$i], 0, 1);
                         if ($fSymb != '"') {
                             if ($fSymb == '(') {
-                                $fSymb = substr($firstN[$i], 1, 1);
-                                $firstN[$i] = '(' . strtoupper($fSymb);
-                            } elseif (substr($firstN[$i], strlen($firstN[$i]) - 1, 1) == ')') {
-                                $fSymb = substr($firstN[$i], 0, 1);
-                                $firstN[$i] = strtoupper($fSymb) . ')';
+                                $fSymb = substr($lastN[$i], 1, 1);
+                                $lastN[$i] = '(' . strtoupper($fSymb);
+                            } elseif (substr($lastN[$i], strlen($lastN[$i]) - 1, 1) == ')') {
+                                $fSymb = substr($lastN[$i], 0, 1);
+                                $lastN[$i] = strtoupper($fSymb) . ')';
                             } else {
-                                $fSymb = substr($firstN[$i], 0, 1);
-                                $firstN[$i] = strtoupper($fSymb);
+                                $fSymb = substr($lastN[$i], 0, 1);
+                                $lastN[$i] = strtoupper($fSymb);
                             }
                         }
-                        $ShortName .= $firstN[$i];
+                        $ShortName .= $lastN[$i];
                     }
-                }
-                $ShortName .= ' ';
-            } else {
-                $ShortName .= $firstN[0].' ';
-            }
-        }
-
-        $ShortName .= $cuurentN;
-
-        if ($lastN != '') {
-            $ShortName .= ' ';
-            $lastN = explode(' ', $lastN);
-            foreach ($lastN as $i => $element) {
-                if (strlen($lastN[$i]) > 1) {
-                    $fSymb = substr($lastN[$i], 0, 1);
-                    if ($fSymb != '"') {
-                        if ($fSymb == '(') {
-                            $fSymb = substr($lastN[$i], 1, 1);
-                            $lastN[$i] = '(' . strtoupper($fSymb);
-                        } elseif (substr($lastN[$i], strlen($lastN[$i]) - 1, 1) == ')') {
-                            $fSymb = substr($lastN[$i], 0, 1);
-                            $lastN[$i] = strtoupper($fSymb) . ')';
-                        } else {
-                            $fSymb = substr($lastN[$i], 0, 1);
-                            $lastN[$i] = strtoupper($fSymb);
-                        }
-                    }
-                    $ShortName .= $lastN[$i];
                 }
             }
         }
