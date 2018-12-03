@@ -1,5 +1,6 @@
 <? require_once($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php"); ?>
 <?
+use Wic\BanksInfo\Config;
 global $USER;
 $USER = getContainer("User");
 
@@ -18,6 +19,53 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
 
             $arResult["SUCCESS"] = "Предложение успешно удалено.";
             $_SESSION["SUCCESS"] = $arResult["SUCCESS"];
+
+            //Добавляем пустое предложение, если у банка больше не осталось предложений, чтобы он выводился на главной странице
+            //Проверяем есть ли предлжение с таким ID
+            $itemHblockOffer = new \Cetera\HBlock\SimpleHblockObject(Config::HOFFRES);
+            $itemHblockMatrix = new \Cetera\HBlock\SimpleHblockObject(Config::HMATRIX);
+            $idElem = array();
+            $filter["UF_USER_ID"] = $USER->GetID();
+            $query["filter"] = $filter;
+            $list = $itemHblockOffer->getList($query);
+            while ($el = $list->fetch()) {
+                $idElem[] = $el;
+            }
+
+            $offerID = $idElem[0]["ID"];
+            mail("89065267799@mail.ru", "Тема письма", print_r($offerID, true));
+            $findMatrix = false;
+            //Если нет предложения, то создадим его
+            if (!$offerID) {
+                //Если нет создаем предложение
+                $date = Config::ENDDATEOFFER;
+                $date = strtotime($date); // переводит из строки в дату
+                $dateEnd = date("d.m.Y", $date);
+
+                $offeritems = array(
+                    "UF_USER_ID"=>$USER->GetID(),
+                    "UF_METHOD"=>Config::OFFER_UF_METHOD,
+                    "UF_NAME"=>"-",
+                    "UF_TYPE"=>Config::OFFER_UF_TYPE,
+                    "UF_REGIONS"=>Config::ALL_REGIONS,
+                    "UF_UPDATED"=>date("d.m.Y H:i:s"),
+                    "UF_SITE"=>"",
+                    "UF_ACTIVE_START"=>array(date("d.m.Y")),
+                    "UF_ACTIVE_END"=>array($dateEnd)
+                );
+                $offerID = $itemHblockOffer->add($offeritems)->getId();
+                //Добавляем матрицу
+                $item = array(
+                    "UF_OFFER" => $offerID,
+                    "UF_SUMM" => Config::MATRIX_UF_SUMM,
+                    "UF_DATE_START" => Config::MATRIX_UF_DATE_START,
+                    "UF_CURRENCY" => Config::MATRIX_UF_CURRENCY,
+                    "UF_PERCENT" => Config::MATRIX_UF_PERCENT
+                );
+                $itemHblockMatrix->add($item);
+            }
+
+
         } else {
             $arResult["ERRORS"] = "Предложение не найдено, либо у Вас нет прав на удаление.";
         }
@@ -133,6 +181,40 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
 
                 if ($res = $hblock->add($arFields)) {
                     $arResult["ID"] = $res->getId();
+
+                    //После добавления предложения проверяем есть ли пустое предложения для этого банка
+                    $itemHblockOffer = new \Cetera\HBlock\SimpleHblockObject(Config::HOFFRES);
+                    $itemHblockMatrix = new \Cetera\HBlock\SimpleHblockObject(Config::HMATRIX);
+
+                    //Проверяем есть ли предлжение с таким ID
+                    $idElem = array();
+                    $filter["UF_USER_ID"] = $USER->GetID();
+                    $query["filter"] = $filter;
+                    $list = $itemHblockOffer->getList($query);
+                    while ($el = $list->fetch()) {
+                        $idElem[] = $el;
+                    }
+
+                    $offerID = $idElem[0]["ID"];
+                    if ($offerID) {
+                        //Если предложение есть, то ищем Матрицу в HBlock Matrix создаем Матрицу в HBlock Matrix
+                        $filter = array();
+                        $filter["UF_OFFER"] = $offerID;
+                        $query["filter"] = $filter;
+                        $list = $itemHblockMatrix->getList($query);
+                        $Elem = false;
+                        while ($el = $list->fetch()) {
+                            $Elem[] = $el;
+                        }
+
+                        if ($Elem) {
+                            $matrixID = $Elem[0]["ID"];
+                        }
+                    }
+
+                    //Удаляем предложение и матрицу
+                    $itemHblockOffer->delete($offerID);
+                    $itemHblockMatrix->delete($matrixID);
                 }
             }
 
