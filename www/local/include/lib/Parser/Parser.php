@@ -49,6 +49,9 @@ abstract class Parser
             $filter["<=UF_ACTIVE_START"] = date("d.m.Y");
             $filter[">=UF_ACTIVE_END"] = date("d.m.Y");
         }
+
+        $filter["=UF_DISABLED"] = false;
+
         $list = $hblock->getList(Array("filter" => $filter));
 
         while ($el = $list->fetch()) {
