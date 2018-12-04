@@ -95,6 +95,8 @@ class Binbank
             $sContent = trim(substr($sContent, 0, strlen($sContent) - 2));
         else $sContent = trim(substr($sContent, 0, strlen($sContent) - 3));
 
+        $sContent = substr($sContent, 0, strrpos($sContent, ',')) . '}}';
+
         $this->content = json_decode($sContent);
     }
 
