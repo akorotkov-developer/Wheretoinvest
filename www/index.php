@@ -12,5 +12,4 @@ $APPLICATION->SetTitle("Куда вложить – простой удобны�
         "EDIT_TEMPLATE" => "standard.php"
     )
 ); ?>
-
 <? require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>

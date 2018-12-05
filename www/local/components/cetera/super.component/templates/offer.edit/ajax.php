@@ -33,7 +33,6 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
             }
 
             $offerID = $idElem[0]["ID"];
-            mail("89065267799@mail.ru", "Тема письма", print_r($offerID, true));
             $findMatrix = false;
             //Если нет предложения, то создадим его
             if (!$offerID) {

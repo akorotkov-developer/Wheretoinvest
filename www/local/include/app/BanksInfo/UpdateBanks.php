@@ -19,7 +19,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
         $i = -1;
         foreach ($bankList->Record as $Record) {
             $i++;
-            if ($i>700) {
+            if ($i>300) {
                 //Логин Пароль пользователя
                 $login = Tools::translit($Record->ShortName, "Y") . Config::EMAIL_END;
                 $password = Tools::translit($Record->ShortName, "Y") . Config::PASSWORD_KEY;
@@ -88,11 +88,13 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                     "UF_CAPITAL" => $sobcapital["sobcapital"],
                     "UF_ASSETS" => $active,
                     "UF_NOTE" => $info["OrgStatus"],
-                    "UF_ASSETS_DATE" => $sobcapital["date"],
+                    "UF_ASSETS_DATE" => date("1.m.Y"),
                     "UF_SIT_CB" => 1,
                     "UF_BANK_PARTICIP" => $insurance,
-                    "UF_CAPITAL_A_DATE" =>  date("d.m.Y"),
-                    "UF_CAPITAL_DATE" =>  date("d.m.Y"),
+                    "UF_CAPITAL_A_DATE" =>  date("1.m.Y"),
+                    "UF_CAPITAL_DATE" =>  date("1.m.Y"),
+                    "PASSWORD" => $password,
+                    "CONFIRM_PASSWORD" => $password,
 
                 );
 
@@ -116,10 +118,9 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                         "NAME" => Config::CLIENT_NAME,
                         "EMAIL" => $login,
                         "LOGIN" => $login,
-                        "PASSWORD" => $password,
-                        "CONFIRM_PASSWORD" => $password,
-                        "UF_CAPITAL_A_DATE" =>  date("d.m.Y"),
-                        "UF_CAPITAL_DATE" =>  date("d.m.Y")
+                        "UF_ASSETS_DATE" => date("1.m.Y"),
+                        "UF_CAPITAL_A_DATE" =>  date("1.m.Y"),
+                        "UF_CAPITAL_DATE" =>  date("1.m.Y")
                     );
 
                     $arFields = array_merge($arFields, $arFieldsNewUser);
