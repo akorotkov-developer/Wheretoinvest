@@ -49,13 +49,13 @@ class Rosbank extends Parser
             foreach ($this->content->find(".page-deposit__tabs.js-tabs-container1 .js-tab-content") as $p) {
                 $p = pq($p);
                 switch (trim($p->attr("id"))) {
-                    case "office_rub":
+                    case "office_rub_1":
                         $type = "28";
                         break;
-                    case "office_usd":
+                    case "office_usd_1":
                         $type = "29";
                         break;
-                    case "office_eur":
+                    case "office_eur_1":
                         $type = "30";
                         break;
                     default:
