@@ -82,7 +82,7 @@ class Binbank
         $sContent =  self::getUrl();
 
         if ($this->id == 104)
-            preg_match("/\'1\'\:.*'valute'\:(.*)\'2'\:/is", $sContent, $matches);
+            preg_match("/\'8\'\:.*'valute'\:(.*)/is", $sContent, $matches);
         else
             preg_match("/\'7\'\:.*'valute'\:(.*)/is", $sContent, $matches);
 
