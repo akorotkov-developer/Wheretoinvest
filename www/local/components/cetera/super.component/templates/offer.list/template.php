@@ -292,7 +292,7 @@
     <? $inflationName = \Ceteralabs\UserVars::GetVar('USER_VAR_INFLATION')["DESCRIPTION"]; ?>
     <section class="b-offers">
         <? $showInflation = empty($_REQUEST["ajax"]) ? true : false; ?>
-        <? if (!empty($inflation) && !empty($_REQUEST["SORT"]) && empty($_REQUEST["SORT"]["percent"]) && $showInflation): ?>
+        <? if (!empty($inflation) && !empty($_REQUEST["SORT"]["safety"]) && empty($_REQUEST["SORT"]["percent"]) && $showInflation): ?>
             <div class="row b-offers__infl" data-percent="<?= floatval($inflation) ?>">
                 <div class="columns medium-3 medium-offset-4 small-4 small-text-center medium-text-left">
                     <div class="b-offers__type b-offers__type_infl"><?= $inflationName ?></div>
@@ -309,7 +309,8 @@
             <? if (!empty($_REQUEST["ajax"])) {
                 $APPLICATION->RestartBuffer();
             } ?>
-            <? foreach ($arResult["ITEMS"] as $arItem): ?>
+
+            <? foreach ($arResult["ITEMS"] as $key => $arItem): ?>
                 <?if (empty($arItem["UF_ORG"])) continue;?>
                 <?
                 $user = $arItem["USER"];
@@ -324,8 +325,8 @@
                 /*if ($user["UF_NOTE"] == "в процессе оформления (лицензии нет)" || $user["UF_NOTE"] == "лицензия отозвана"
                     || $user["UF_NOTE"] == "лицензия аннулирована" || $user["UF_NOTE"] == "ликвидирована") continue;*/
                 ?>
-                <? if (!empty($inflation) && (empty($_REQUEST["SORT"]) || !empty($_REQUEST["SORT"]["percent"])) && $showInflation): ?>
-                    <? if (((empty($_REQUEST["SORT"]) || $_REQUEST["SORT"]["percent"] == "D") && $inflation > floatval($arItem["UF_PERCENT"])) || ($_REQUEST["SORT"]["percent"] == "A" && $inflation < floatval($arItem["UF_PERCENT"]))): ?>
+                <?if ($showInflation): ?>
+                    <? if ($inflation > floatval($arItem["UF_PERCENT"]) || $arItem["UF_PERCENT"] == 0.1 ): ?>
                         <div class="row b-offers__infl" data-percent="<?= floatval($inflation) ?>">
                             <div class="columns medium-3 medium-offset-4 small-4 small-text-center medium-text-left">
                                 <div class="b-offers__type b-offers__type_infl"><?= $inflationName ?></div>
