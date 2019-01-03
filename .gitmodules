@@ -1,0 +1,3 @@
+[submodule "boilerplate"]
+	path = boilerplate
+	url = ssh://git@gitlab.cetera.ru:6022/boilerplate/docker
