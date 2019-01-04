@@ -1,0 +1,35 @@
+include:
+  - 'https://gitlab.cetera.ru/boilerplate/ci/raw/master/before_script.yml'
+  - 'https://gitlab.cetera.ru/boilerplate/ci/raw/master/stages.yml'
+  - 'https://gitlab.cetera.ru/boilerplate/ci/raw/master/.build_assets.yml'
+  - 'https://gitlab.cetera.ru/boilerplate/ci/raw/master/.build_composer.yml'
+  - 'https://gitlab.cetera.ru/boilerplate/ci/raw/master/.deploy_assets_to_staging.yml'
+  - 'https://gitlab.cetera.ru/boilerplate/ci/raw/master/.deploy_code_to_server.yml'
+  - 'https://gitlab.cetera.ru/boilerplate/ci/raw/master/.deploy_composer_files_to_server.yml'
+
+build_assets:
+  extends: .build_assets
+
+build_composer:
+  extends: .build_composer
+  only:
+    refs:
+      - master
+      - beta
+
+deploy_assets_to_staging:
+  extends: .deploy_assets_to_staging
+
+deploy_code_to_server_with_delete:
+  extends: .deploy_code_to_server_with_delete
+  only:
+    refs:
+      - master
+      - beta
+
+deploy_composer_files_to_server:
+  extends: .deploy_composer_files_to_server
+  only:
+    refs:
+      - master
+      - beta

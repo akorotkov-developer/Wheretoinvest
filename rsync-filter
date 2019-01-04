@@ -1,0 +1,6 @@
+# Preserve files that don't exist in the repository, but should not be
+# deleted by deployment.
+protect /www/bitrix/***
+protect /www/upload/***
+include /www/local/***
+exclude /www/**
