@@ -7,13 +7,19 @@ Thumbs.db
 
 # working: layout, wireframes etc
 working/*
-!working/.gitignore
 !working/layout
 
 # site
-www/bitrix
+www/*
+vendor/*
 !www/.gitignore
 !www/local
-!www/robots.txt\n.env
-\ndb/*
-\ntmp/*
+!www/include
+!www/robots.txt
+!www/.htaccess
+!www/working
+!composer.json
+!composer.lock
+.env
+db/*
+tmp/*
