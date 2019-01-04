@@ -5,11 +5,12 @@
  * после внесения изменений в конфигурацию выполнить php composer.phar install
  * @link https://getcomposer.org/
  */
-require(__DIR__ . "/../include/vendor/autoload.php");
+require($_SERVER['DOCUMENT_ROOT'] . "/../vendor/autoload.php");
 
 /**
  * инициализация приложения
  */
+
 Wic\Application::init();
 
 // при создании нового отзыва отсылать письмо

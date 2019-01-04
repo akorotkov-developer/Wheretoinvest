@@ -1,0 +1,24 @@
+{
+  "require": {
+    "pimple/pimple": "~3.0",
+    "electrolinux/phpquery": "^0.9.6",
+    "microweber/screen": "~1.0.4",
+    "mobiledetect/mobiledetectlib": "^2.8"
+  },
+  "autoload": {
+    "psr-0": {
+      "CUserTypeBool": "www/local/include/app/lib/",
+      "Cetera\\": "www/local/include/app/lib/",
+      "Parser\\": "www/local/include/app/lib/"
+    },
+    "psr-4": {
+      "Wic\\": "www/local/include/app/"
+    },
+    "files": [
+      "www/local/include/app/dumphper.php",
+      "www/local/include/app/common.php",
+      "www/local/include/app/handlers.php",
+      "www/local/include/app/formFields.php"
+    ]
+  }
+}
