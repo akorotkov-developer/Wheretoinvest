@@ -1,0 +1,89 @@
+.js-percent-text {
+    padding: 12px 2px 0;
+    display: inline-block;
+}
+
+.graph__td:not(.i-show-text) .js-percent-text {
+    display: none;
+}
+
+.graph__td.i-show-text input {
+    display: none;
+}
+
+.graph__wrapper {
+    overflow-x: auto;
+    position: relative;
+    min-height: 84px;
+}
+
+.graph__wrapper:before {
+    content: '';
+    display: inline-block;
+    width: 100%;
+    height: 84px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #ebebeb;
+}
+
+.graph__td {
+    min-width: 80px;
+}
+
+.i-date-table {
+    display: table;
+    min-width: 100%;
+}
+
+.i-date-table__head {
+    display: table-header-group;
+}
+
+.i-date-table__body {
+    display: table-row-group;
+}
+
+.i-date-table__row {
+    display: table-row;
+}
+
+.i-date-table__col {
+    display: table-cell;
+}
+
+.i-date-table__head .i-date-table__col {
+    padding: 20px 15px;
+    background: #ebebeb;
+    color: #202020;
+    max-width: 150px;
+    min-width: 95px;
+    font-weight: 400;
+}
+
+.i-date-table__head .i-date-table__col.i-date-table__col_tariff {
+    width: 150px;
+}
+
+.i-date-table__body .i-date-table__col {
+    padding: 16px 15px;
+    color: #000;
+    border-bottom: 1px solid #e6e6e6;
+    max-width: 150px;
+    min-width: 95px;
+    vertical-align: middle;
+}
+
+.i-date-table__body input {
+    margin: 0 !important;
+}
+
+.i-date-table_wrapper {
+    overflow: auto;
+    width: 100%;
+}
+
+.i-date-table__body .i-date-table__col .b-form__row {
+    margin: 0 !important;
+}

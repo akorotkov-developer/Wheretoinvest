@@ -1,0 +1,46 @@
+.check {
+  margin-top: 11px;
+  width: 38%;
+  float: left;
+  position: relative;
+
+}
+
+input.check__checkbox {
+  display: none;
+}
+
+label.check__chck {
+  font-size: 14px;
+  color: #202020;
+  font-weight: 400;
+  position: relative;
+  padding-left: 22px;
+  margin-left: 0 !important;
+
+  &:after {
+    position: absolute;
+    top: 3px;
+    left: 0px;
+
+    display: block;
+
+    width: 16px;
+    height: 16px;
+    margin-top: 0;
+
+    content: '';
+
+    background: url('../images/c11.png') no-repeat;
+  }
+}
+
+.check__checkbox:checked + label:after {
+  width: 16px;
+  height: 16px;
+  background: url('../images/c12.png') no-repeat;
+}
+
+.check__checkbox:checked + label {
+  color: #000;
+}

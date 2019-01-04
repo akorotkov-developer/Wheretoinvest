@@ -1,0 +1,105 @@
+.b-footer {
+  margin-top: rem-calc(60);
+  background: #3b3e43;
+  padding-top: rem-calc(60);
+  padding-bottom: rem-calc(60);
+  color: #d2d2d2;
+  font-weight: 300;
+  input::-webkit-input-placeholder {
+    color: #9e9e9e;
+  }
+  &__bug {
+    overflow-x: hidden;
+  }
+  &__cetera {
+    color: #e53935;
+    &:hover {
+      text-decoration: underline;
+      color: #e53935;
+    }
+  }
+
+  &__link {
+    font-size: rem-calc(15);
+    color: #d2d2d2;
+    line-height: rem-calc(25);
+    margin-bottom: 8px;
+    display: block;
+
+    &:hover, &:focus {
+      color: #e53935;
+
+    }
+  }
+
+  &__copyr {
+    font-size: 15px;
+    line-height: rem-calc(29);
+  }
+  &__menu {
+    list-style: none;
+    margin: 0 0 rem-calc(20);
+  }
+  &__smalltext {
+    color: #d2d2d2;
+    font-size: rem-calc(15);
+    margin-bottom: rem-calc(10);
+  }
+
+  &__postfix {
+    border: 0;
+    color: transparent;
+    background: transparent;
+    outline: none;
+
+    background: url("../images/arrow-right.png") no-repeat center center;
+    width: 100%;
+    height: rem-calc(40);
+
+  }
+  &__form {
+    margin-bottom: rem-calc(10);
+  }
+  &__icons {
+    font-size: 0;
+    margin-bottom: rem-calc(10);
+    img {
+      width: 32px;
+    }
+  }
+  &__icon {
+    margin-right: rem-calc(5);
+  }
+}
+
+@media (max-width: 640px) {
+  .b-footer {
+    padding-bottom: 32px;
+    &__copyr {
+      margin-top: 30px;
+    }
+    &__icon {
+      margin-right: 14px;
+    }
+    &__menu {
+      margin-top: 30px;
+      margin-bottom: 50px;
+    }
+
+    &__icons {
+      position: absolute;
+      top: 327px;
+      z-index: 6;
+      text-align: center;
+      width: calc(100% - 20px);
+
+      img {
+        width: 48px;
+      }
+    }
+    padding-left: 17px;
+    padding-top: 23px;
+    padding-right: 17px;
+    margin-top: 50px;
+  }
+}

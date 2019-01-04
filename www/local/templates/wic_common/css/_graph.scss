@@ -1,0 +1,92 @@
+.graph {
+  display: table;
+  max-width: 100%;
+
+  &_reg {
+    .graph__td {
+      padding-top: 18px;
+    }
+  }
+  &__add {
+    color: #202020;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  &__cr {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    background: url(../images/cr.png) no-repeat;
+    top: 16px;
+    position: absolute;
+    left: calc(50% - 8px);
+    &_td {
+      top: 3px;
+      left: auto;
+      right: 30px;
+    }
+  }
+  &__head {
+    background-color: #ebebeb;
+    display: table-row-group;
+  }
+  &__th {
+    position: relative;
+    display: table-cell;
+    width: 80px;
+    color: #202020;
+    font-size: 14px;
+    padding: 15px 2px;
+    text-align: center;
+    line-height: 1.17;
+    &_reg {
+      padding-top: 37px;
+    }
+    &:first-child {
+      width: 100px;
+    }
+  }
+  &__body {
+    display: table-row-group;
+  }
+  &__row {
+    display: table-row;
+    border-bottom: 1px solid #e6e6e6;
+  }
+  &__td {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #202020;
+    text-align: center;
+    padding: 11px 2px 12px;
+    position: relative;
+    display: table-cell;
+    &:first-child {
+      background-color: #ebebeb;
+    }
+    width: 80px;
+
+    &_reg {
+      text-align: right;
+      padding: 17px 5px 22px;
+    }
+    &:first-child {
+      width: 110px;
+      word-wrap: normal;
+      white-space: nowrap;
+    }
+    &_js {
+      cursor: pointer;
+      padding-top: 6px !important;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .graph {
+    &__th, &__td {
+      width: calc((100% - 100px) / 3);
+    }
+  }
+}
