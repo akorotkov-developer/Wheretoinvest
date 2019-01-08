@@ -17,7 +17,6 @@ vendor/*
 !www/include
 !www/robots.txt
 !www/.htaccess
-!www/working
 !composer.json
 !composer.lock
 .env
