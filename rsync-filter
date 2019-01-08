@@ -3,4 +3,6 @@
 protect /www/bitrix/***
 protect /www/upload/***
 include /www/local/***
+include /www/.htaccess
+exclude /old_site/***
 exclude /www/**
