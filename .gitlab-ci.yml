@@ -22,6 +22,8 @@ deploy_assets_to_staging:
 
 deploy_code_to_server_with_delete:
   extends: .deploy_code_to_server_with_delete
+  variables:
+    RSYNC_PARAMS: '--delete'
   only:
     refs:
       - master
