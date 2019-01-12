@@ -2,7 +2,7 @@
   "require": {
     "pimple/pimple": "~3.0",
     "electrolinux/phpquery": "^0.9.6",
-    "microweber/screen": "~1.0.4",
+    "microweber/screen": "~1.0.3",
     "mobiledetect/mobiledetectlib": "^2.8"
   },
   "autoload": {
