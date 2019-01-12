@@ -12,7 +12,8 @@
       "Parser\\": "www/local/include/app/lib/"
     },
     "psr-4": {
-      "Wic\\": "www/local/include/app/"
+      "Wic\\": "www/local/include/app/",
+      "Cetera\\": "www/local/include/lib/Cetera/"
     },
     "files": [
       "www/local/include/app/dumphper.php",
