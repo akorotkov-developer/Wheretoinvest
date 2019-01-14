@@ -88,16 +88,11 @@ if ($showToday !== "N") {
     $filter[">=UF_ACTIVE_END"] = date("d.m.Y");
 }
 
-//Для Беты обнуляем фильтр в противном случае всегда будет пустая главная страница
-//Т.к. поле Дата начала активности и дата окончания активности в HILoad блоке Offers
-//на бете не заполнено
-if ($_GET["tst"] == "tst") {
-    $filter = array();
-}
 
 $query = Array();
 if (!empty($filter))
     $query["filter"] = $filter;
+
 
 $list = $hblock->getList($query);
 
@@ -246,6 +241,8 @@ if (count($offers)) {
         $obCache->EndDataCache($arResult);
     }
 
+
+
     //Задаем правильное место для банков
     //Сначала отсортируем их по Надежности
     $RSORT = array("safety"=>"A");
@@ -261,79 +258,85 @@ if (count($offers)) {
 
     array_multisort($tempOrder, $order, $tempPercent, SORT_DESC, $arResult["ITEMS"]);
 
-    //Теперь переберем массив и поменяем у него места надежности
-    $i=1;
-    foreach ($arResult["ITEMS"] as $key=>$item) {
-        if ($item["UF_ORG"] && ((!$item["USER"]["UF_NOTE"] || $item["USER"]["UF_NOTE"] == "норм.") and $item["USER"]["UF_BANK_PARTICIP"] == 25)) {
-            if ($arResult["ITEMS"][$key]["USER"]["UF_LICENSE"] == $arResult["ITEMS"][$lastkey]["USER"]["UF_LICENSE"]) {
-                $arResult["ITEMS"][$key]["UF_SAFETY"] = $i - 1;
+    //todo Не работает с ?method пока исключим его, т.к. организаций очень мало с этим фильтром
+    if (!$_REQUEST["method"]) {
+
+        //Теперь переберем массив и поменяем у него места надежности
+        $i = 1;
+        foreach ($arResult["ITEMS"] as $key => $item) {
+            if ($item["UF_ORG"] && ((!$item["USER"]["UF_NOTE"] || $item["USER"]["UF_NOTE"] == "норм.") and $item["USER"]["UF_BANK_PARTICIP"] == 25)) {
+                if ($arResult["ITEMS"][$key]["USER"]["UF_LICENSE"] == $arResult["ITEMS"][$lastkey]["USER"]["UF_LICENSE"]) {
+                    $arResult["ITEMS"][$key]["UF_SAFETY"] = $i - 1;
+                } else {
+                    $arResult["ITEMS"][$key]["UF_SAFETY"] = $i;
+                    $i++;
+                }
+                $lastkey = $key;
             } else {
-                $arResult["ITEMS"][$key]["UF_SAFETY"] = $i;
+                unset($arResult["ITEMS"][$key]);
+            }
+        }
+
+        //Дефолтная сортирвка
+        if (!$_REQUEST["SORT"]) {
+            $_REQUEST["SORT"] = array('yield' => 'A');
+        }
+
+        //Сортировка банков
+        if (!empty($_REQUEST["SORT"])) {
+            $by = reset(array_keys($_REQUEST["SORT"]));
+            $order = $_REQUEST["SORT"][$by] == "D" ? SORT_DESC : SORT_ASC;
+            $by = "UF_" . strtoupper($by);
+        }
+
+        if (!empty($by) && !empty($order)) {
+            $tempOrder = Array();
+            $tempPercent = Array();
+            foreach ($arResult["ITEMS"] as $key => $arItem) {
+                $tempOrder[$key] = $arItem[$by];
+                $tempPercent[$key] = $arItem["UF_PERCENT"];
+            }
+
+            array_multisort($tempOrder, $order, $tempPercent, SORT_DESC, $arResult["ITEMS"]);
+        }
+
+
+        /*Сортировка по дохдности вторая сортировка по активам*/
+        if ($_REQUEST["SORT"]["yield"] == "A") {
+            $s = false;
+            $i = 0;
+            $tempOrderPercent = array();
+            foreach ($arResult["ITEMS"] as $key => $item) {
+                if ($item["UF_PERCENT"] != 0.1) {
+                    $tempOrderPercent[] = $arResult["ITEMS"][$key];
+                } else {
+                    $s = true;
+                }
+                if ($s) continue;
                 $i++;
             }
-            $lastkey = $key;
-        } else {
-            unset($arResult["ITEMS"][$key]);
-        }
-    }
 
-    //Дефолтная сортирвка
-    if (!$_REQUEST["SORT"]) {
-        $_REQUEST["SORT"] = array('yield'=>'A');
-    }
 
-    //Сортировка банков
-    if (!empty($_REQUEST["SORT"])) {
-        $by = reset(array_keys($_REQUEST["SORT"]));
-        $order = $_REQUEST["SORT"][$by] == "D" ? SORT_DESC : SORT_ASC;
-        $by = "UF_" . strtoupper($by);
-    }
-
-    if (!empty($by) && !empty($order)) {
-        $tempOrder = Array();
-        $tempPercent = Array();
-        foreach ($arResult["ITEMS"] as $key => $arItem) {
-            $tempOrder[$key] = $arItem[$by];
-            $tempPercent[$key] = $arItem["UF_PERCENT"];
-        }
-
-        array_multisort($tempOrder, $order, $tempPercent, SORT_DESC, $arResult["ITEMS"]);
-    }
-
-    /*Сортировка по дохдности вторая сортировка по активам*/
-    if ($_REQUEST["SORT"]["yield"] == "A") {
-        $s = false;
-        $i = 0;
-        $tempOrderPercent = array();
-        foreach ($arResult["ITEMS"] as $key => $item) {
-            if ($item["UF_PERCENT"] != 0.1) {
-                $tempOrderPercent[] = $arResult["ITEMS"][$key];
-            } else {
-                $s = true;
+            $index = $i + 1;
+            $tempOrderDohod = array();
+            while ($index < count($arResult["ITEMS"]) - 1) {
+                $tempOrderDohod[] = $arResult["ITEMS"][$index];
+                $index++;
             }
-            if ($s) continue;
-            $i++;
+
+
+            // По возрастанию:
+            function cmp_function($a, $b)
+            {
+                return ($a['UF_ASSETS'] > $b['UF_ASSETS']);
+            }
+
+            uasort($tempOrderDohod, 'cmp_function');
+            $tempOrderDohod = array_reverse($tempOrderDohod);
+
+            $arResult["ITEMS"] = array_merge($tempOrderPercent, $tempOrderDohod);
         }
 
-
-        $index = $i + 1;
-        $tempOrderDohod = array();
-        while ($index < count($arResult["ITEMS"]) - 1) {
-            $tempOrderDohod[] = $arResult["ITEMS"][$index];
-            $index++;
-        }
-
-
-        // По возрастанию:
-        function cmp_function($a, $b)
-        {
-            return ($a['UF_ASSETS'] > $b['UF_ASSETS']);
-        }
-
-        uasort($tempOrderDohod, 'cmp_function');
-        $tempOrderDohod = array_reverse($tempOrderDohod);
-
-        $arResult["ITEMS"] = array_merge($tempOrderPercent, $tempOrderDohod);
     }
     /**********************************/
 
