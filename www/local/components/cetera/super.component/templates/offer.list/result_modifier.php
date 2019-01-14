@@ -301,36 +301,40 @@ if (count($offers)) {
     }
 
     /*Сортировка по дохдности вторая сортировка по активам*/
-    $s=false;
-    $i=0;
-    $tempOrderPercent = array();
-    foreach ($arResult["ITEMS"] as $key => $item) {
-        if ($item["UF_PERCENT"] != 0.1) {
-            $tempOrderPercent[] = $arResult["ITEMS"][$key];
-        } else {
-            $s = true;
+    if ($_REQUEST["SORT"]["yield"] == "A") {
+        $s = false;
+        $i = 0;
+        $tempOrderPercent = array();
+        foreach ($arResult["ITEMS"] as $key => $item) {
+            if ($item["UF_PERCENT"] != 0.1) {
+                $tempOrderPercent[] = $arResult["ITEMS"][$key];
+            } else {
+                $s = true;
+            }
+            if ($s) continue;
+            $i++;
         }
-        if ($s) continue;
-        $i++;
+
+
+        $index = $i + 1;
+        $tempOrderDohod = array();
+        while ($index < count($arResult["ITEMS"]) - 1) {
+            $tempOrderDohod[] = $arResult["ITEMS"][$index];
+            $index++;
+        }
+
+
+        // По возрастанию:
+        function cmp_function($a, $b)
+        {
+            return ($a['UF_ASSETS'] > $b['UF_ASSETS']);
+        }
+
+        uasort($tempOrderDohod, 'cmp_function');
+        $tempOrderDohod = array_reverse($tempOrderDohod);
+
+        $arResult["ITEMS"] = array_merge($tempOrderPercent, $tempOrderDohod);
     }
-
-
-    $index = $i+1;
-    $tempOrderDohod = array();
-    while($index < count($arResult["ITEMS"]) - 1) {
-        $tempOrderDohod[] = $arResult["ITEMS"][$index];
-        $index++;
-    }
-
-
-    // По возрастанию:
-    function cmp_function($a, $b){
-        return ($a['UF_ASSETS'] > $b['UF_ASSETS']);
-    }
-    uasort($tempOrderDohod, 'cmp_function');
-    $tempOrderDohod = array_reverse($tempOrderDohod);
-
-    $arResult["ITEMS"] = array_merge($tempOrderPercent, $tempOrderDohod);
     /**********************************/
 
     // Задаем количество элементов на странице
