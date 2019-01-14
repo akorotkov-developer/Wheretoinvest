@@ -277,10 +277,10 @@ if (count($offers)) {
         }
     }
 
-    //Дефолтная сортирвкаaффф
-    /*if (!$_REQUEST["SORT"]) {
+    //Дефолтная сортирвка
+    if (!$_REQUEST["SORT"]) {
         $_REQUEST["SORT"] = array('yield'=>'A');
-    }*/
+    }
 
     //Сортировка банков
     if (!empty($_REQUEST["SORT"])) {
