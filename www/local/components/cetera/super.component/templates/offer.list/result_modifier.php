@@ -277,7 +277,7 @@ if (count($offers)) {
         }
     }
 
-    //Дефолтная сортирвкаa
+    //Дефолтная сортирвкаaффф
     /*if (!$_REQUEST["SORT"]) {
         $_REQUEST["SORT"] = array('yield'=>'A');
     }*/
