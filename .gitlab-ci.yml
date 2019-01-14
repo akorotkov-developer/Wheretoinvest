@@ -28,10 +28,5 @@ deploy_code_to_server_with_delete:
     refs:
       - master
       - beta
-
-deploy_composer_files_to_server:
-  extends: .deploy_composer_files_to_server
-  only:
-    refs:
-      - master
-      - beta
+    changes:
+      - www/**/*
