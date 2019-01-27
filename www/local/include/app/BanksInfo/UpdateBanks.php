@@ -19,7 +19,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
         $i=0;
         foreach ($bankList->Record as $Record) {
                 $i++;
-            if ($i < 2) {
+
                 //Логин Пароль пользователя
                 $login = Tools::translit($Record->ShortName, "Y") . Config::EMAIL_END;
                 $password = Tools::translit($Record->ShortName, "Y") . Config::PASSWORD_KEY;
@@ -137,7 +137,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 echo "<pre>";
                 var_dump($arFields);
                 echo "</pre>";
-            }
+
         }
     }
 }
