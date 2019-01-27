@@ -16,10 +16,8 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
         //Получаем список банков и для каждого банка обновляем либо создаем пользователя
         $bankList = $this->banks;
 
-        $i = -1;
         foreach ($bankList->Record as $Record) {
-            $i++;
-            if ($i>300) {
+
                 //Логин Пароль пользователя
                 $login = Tools::translit($Record->ShortName, "Y") . Config::EMAIL_END;
                 $password = Tools::translit($Record->ShortName, "Y") . Config::PASSWORD_KEY;
@@ -78,7 +76,6 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                     "ACTIVE" => "Y",
                     "GROUP_ID" => Config::PARTENRS_GROUP,
                     "WORK_COMPANY" => $info["ShortName"],
-                    "UF_SHORT_WORK_EN" => Tools::translit($info["ShortName"], "N"),
                     "UF_FULL_WORK_NAME" => $Record->ShortName,
                     "UF_BIK" => $Record->Bic,
                     "UF_SITE" => $website,
@@ -134,7 +131,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 }
                 //Добавляем предлпжение и матрицу для банка
                 $siteOffers->setOfferAndMAtrix($userID);
-            }
+
         }
     }
 }
