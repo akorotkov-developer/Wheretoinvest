@@ -19,6 +19,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
         $i=0;
         foreach ($bankList->Record as $Record) {
                 $i++;
+            if ($i < 2) {
                 //Логин Пароль пользователя
                 $login = Tools::translit($Record->ShortName, "Y") . Config::EMAIL_END;
                 $password = Tools::translit($Record->ShortName, "Y") . Config::PASSWORD_KEY;
@@ -89,8 +90,8 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                     "UF_ASSETS_DATE" => date("1.m.Y"),
                     "UF_SIT_CB" => 1,
                     "UF_BANK_PARTICIP" => $insurance,
-                    "UF_CAPITAL_A_DATE" =>  date("1.m.Y"),
-                    "UF_CAPITAL_DATE" =>  date("1.m.Y"),
+                    "UF_CAPITAL_A_DATE" => date("1.m.Y"),
+                    "UF_CAPITAL_DATE" => date("1.m.Y"),
                     "PASSWORD" => $password,
                     "CONFIRM_PASSWORD" => $password,
 
@@ -117,8 +118,8 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                         "EMAIL" => $login,
                         "LOGIN" => $login,
                         "UF_ASSETS_DATE" => date("1.m.Y"),
-                        "UF_CAPITAL_A_DATE" =>  date("1.m.Y"),
-                        "UF_CAPITAL_DATE" =>  date("1.m.Y")
+                        "UF_CAPITAL_A_DATE" => date("1.m.Y"),
+                        "UF_CAPITAL_DATE" => date("1.m.Y")
                     );
 
                     $arFields = array_merge($arFields, $arFieldsNewUser);
@@ -133,6 +134,10 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 //Добавляем предлпжение и матрицу для банка
                 $siteOffers->setOfferAndMAtrix($userID);
 
+                echo "<pre>";
+                var_dump($arFields);
+                echo "</pre>";
+            }
         }
     }
 }

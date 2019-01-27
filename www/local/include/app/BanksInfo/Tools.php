@@ -112,9 +112,6 @@ class Tools implements Interfaces\ITools {
 
             $ShortName =$BeginName."(".strtoupper($ShortName).")";
 
-            echo "<pre>";
-            var_dump($ShortName);
-            echo "</pre>";
         } else {
 
             while (($lastPos = strpos($name, $needle, $lastPos)) !== false) {
