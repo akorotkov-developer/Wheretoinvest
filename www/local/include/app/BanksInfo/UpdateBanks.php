@@ -16,8 +16,9 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
         //Получаем список банков и для каждого банка обновляем либо создаем пользователя
         $bankList = $this->banks;
 
+        $i=0;
         foreach ($bankList->Record as $Record) {
-
+                $i++;
                 //Логин Пароль пользователя
                 $login = Tools::translit($Record->ShortName, "Y") . Config::EMAIL_END;
                 $password = Tools::translit($Record->ShortName, "Y") . Config::PASSWORD_KEY;
