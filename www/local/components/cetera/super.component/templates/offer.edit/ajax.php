@@ -194,26 +194,28 @@ if ($USER->IsAuthorized() && $USER->isPartner() && check_bitrix_sessid() && !emp
                         $idElem[] = $el;
                     }
 
-                    $offerID = $idElem[0]["ID"];
-                    if ($offerID) {
-                        //Если предложение есть, то ищем Матрицу в HBlock Matrix создаем Матрицу в HBlock Matrix
-                        $filter = array();
-                        $filter["UF_OFFER"] = $offerID;
-                        $query["filter"] = $filter;
-                        $list = $itemHblockMatrix->getList($query);
-                        $Elem = false;
-                        while ($el = $list->fetch()) {
-                            $Elem[] = $el;
+                    if ($idElem[0]["UF_NAME"] == '-') {
+                        $offerID = $idElem[0]["ID"];
+                        if ($offerID) {
+                            //Если предложение есть, то ищем Матрицу в HBlock Matrix создаем Матрицу в HBlock Matrix
+                            $filter = array();
+                            $filter["UF_OFFER"] = $offerID;
+                            $query["filter"] = $filter;
+                            $list = $itemHblockMatrix->getList($query);
+                            $Elem = false;
+                            while ($el = $list->fetch()) {
+                                $Elem[] = $el;
+                            }
+
+                            if ($Elem) {
+                                $matrixID = $Elem[0]["ID"];
+                            }
                         }
 
-                        if ($Elem) {
-                            $matrixID = $Elem[0]["ID"];
-                        }
+                        //Удаляем предложение и матрицу
+                        $itemHblockOffer->delete($offerID);
+                        $itemHblockMatrix->delete($matrixID);
                     }
-
-                    //Удаляем предложение и матрицу
-                    $itemHblockOffer->delete($offerID);
-                    $itemHblockMatrix->delete($matrixID);
                 }
             }
 
