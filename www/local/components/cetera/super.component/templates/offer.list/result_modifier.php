@@ -258,6 +258,7 @@ if (count($offers)) {
 
     array_multisort($tempOrder, $order, $tempPercent, SORT_DESC, $arResult["ITEMS"]);
 
+
     //todo Не работает с ?method пока исключим его, т.к. организаций очень мало с этим фильтром
     if (!$_REQUEST["method"]) {
 
@@ -337,6 +338,29 @@ if (count($offers)) {
             $arResult["ITEMS"] = array_merge($tempOrderPercent, $tempOrderDohod);
         }
 
+    } else {
+        //Дефолтная сортирвка
+        if (!$_REQUEST["SORT"]) {
+            $_REQUEST["SORT"] = array('yield' => 'A');
+        }
+
+        //Сортировка банков
+        if (!empty($_REQUEST["SORT"])) {
+            $by = reset(array_keys($_REQUEST["SORT"]));
+            $order = $_REQUEST["SORT"][$by] == "D" ? SORT_DESC : SORT_ASC;
+            $by = "UF_" . strtoupper($by);
+        }
+
+        if (!empty($by) && !empty($order)) {
+            $tempOrder = Array();
+            $tempPercent = Array();
+            foreach ($arResult["ITEMS"] as $key => $arItem) {
+                $tempOrder[$key] = $arItem[$by];
+                $tempPercent[$key] = $arItem["UF_PERCENT"];
+            }
+
+            array_multisort($tempOrder, $order, $tempPercent, SORT_DESC, $arResult["ITEMS"]);
+        }
     }
     /**********************************/
 
