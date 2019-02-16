@@ -339,6 +339,18 @@ if (count($offers)) {
         }
 
     } else {
+        //Теперь переберем массив и поменяем у него места надежности
+        $i = 1;
+        foreach ($arResult["ITEMS"] as $key => $item) {
+            if ($arResult["ITEMS"][$key]["USER"]["UF_LICENSE"] == $arResult["ITEMS"][$lastkey]["USER"]["UF_LICENSE"]) {
+                $arResult["ITEMS"][$key]["UF_SAFETY"] = $i - 1;
+            } else {
+                $arResult["ITEMS"][$key]["UF_SAFETY"] = $i;
+                $i++;
+            }
+            $lastkey = $key;
+        }
+
         //Дефолтная сортирвка
         if (!$_REQUEST["SORT"]) {
             $_REQUEST["SORT"] = array('yield' => 'A');

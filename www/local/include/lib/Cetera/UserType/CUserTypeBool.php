@@ -73,7 +73,7 @@ HTML;
   }
 
   // представление свойства в списке (главный модуль, инфоблок)
-  function GetAdminListViewHTML($arProperty, $value, $strHTMLControlName)
+  function GetAdminListViewHTML($value, $strHTMLControlName)
   {
     return self::getViewHTML($strHTMLControlName['VALUE'], $value['VALUE']);
   }

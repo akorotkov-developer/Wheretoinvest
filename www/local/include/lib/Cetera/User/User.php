@@ -151,7 +151,7 @@ class User extends \CUser implements \ArrayAccess
    * @param $params
    * @return bool
    */
-  public function Update($params)
+  public function Update($id=NULL, $params, $strHTMLname = NULL)
   {
     $user = new \CUser;
 
