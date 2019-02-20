@@ -34,6 +34,9 @@ if (method_exists($this, 'setFrameMode')) {
     <input type="hidden" name="asd_key"
            value="<?= md5($arParams['JS_KEY'] . $arParams['RUBRICS_STR'] . $arParams['SHOW_RUBRICS'] . $arParams['NOT_CONFIRM']) ?>"/>
 
+
+
+
     <div class="row collapse ">
         <div class="small-10 columns">
             <input type="text" placeholder="youremail@yandex.ru" name="asd_email" value="" required/>
@@ -41,7 +44,26 @@ if (method_exists($this, 'setFrameMode')) {
         <div class="small-2 columns b-footer__bug end">
             <input type="submit" class="b-footer__postfix" name="asd_submit" id="asd_subscribe_submit">
         </div>
+
+        <?include_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/classes/general/captcha.php");
+        $cpt = new CCaptcha();
+        $captchaPass = COption::GetOptionString("main", "captcha_password", "");
+        if(strlen($captchaPass) <= 0)
+        {
+            $captchaPass = randString(10);
+            COption::SetOptionString("main", "captcha_password", $captchaPass);
+        }
+        $cpt->SetCodeCrypt($captchaPass);
+        ?>
+        Введите код с картинки<span>*</span>
+        <input class="captchaSid" name="captcha_code" value="<?=htmlspecialchars($cpt->GetCodeCrypt());?>" type="hidden">
+        <tr>
+            <td><input class="inptext" required="" id="captcha_word" name="captcha_word" type="text"></td>
+            <td><img class="captchaImg" src="/bitrix/tools/captcha.php?captcha_code=<?=htmlspecialchars($cpt->GetCodeCrypt());?>"></td>
+        </tr>
+
         <div class="columns small-12">
+            <br>
             <input type="checkbox" name="CONFIRM_S" value="Y" data-confirm-input="Y" id="FIELD_CONFIRM_S"
                    class="modal__checkbox">
             <label class="modal__chck " for="FIELD_CONFIRM_S">
