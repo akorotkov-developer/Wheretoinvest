@@ -1,6 +1,32 @@
 if (typeof($) !== 'undefined') {
     $(document).ready(function () {
+        $('#asd_subscribe_submit').click(function(e){
+            e.preventDefault();
+            if ($('input[name="CONFIRM_S"]').is(':checked')) {
+                $('#asd_subscribe_capcha').foundation("reveal", "open");
+            }
+        });
+
+        function SubmittForm() {
+            $('input[name="captcha_code"]').val($('input[name="captcha_code_popup"]').val());
+            $('#captcha_word').val($('#captcha_word_popup').val());
+
+            $('#asd_subscribe_form').submit();
+        }
+        $('.subscribe_quick_form').click(function(e){
+                SubmittForm();
+        });
+
+/*        $('.subscribe_quick_form').keypress(function(e) {
+            if(e.which == 13) {
+                SubmittForm();
+            }
+        });*/
+
         $('#asd_subscribe_form').unbind().on("submit", function () {
+
+            $('#asd_subscribe_capcha').foundation("reveal", "open");
+
             if (!$.trim($('#asd_subscribe_form input[name$="asd_email"]').val()).length) {
                 return false;
             }

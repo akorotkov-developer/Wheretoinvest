@@ -18,6 +18,8 @@ if (method_exists($this, 'setFrameMode')) {
     <a class="close-reveal-modal modal__close" aria-label="Close">&#215;</a>
 </div>
 
+
+
 <form action="<?= POST_FORM_ACTION_URI ?>" method="post" id="asd_subscribe_form" class="b-footer__form">
     <div class="b-footer__smalltext">
         Подписаться на рассылку <br>
@@ -55,12 +57,8 @@ if (method_exists($this, 'setFrameMode')) {
         }
         $cpt->SetCodeCrypt($captchaPass);
         ?>
-        Введите код с картинки<span>*</span>
         <input class="captchaSid" name="captcha_code" value="<?=htmlspecialchars($cpt->GetCodeCrypt());?>" type="hidden">
-        <tr>
-            <td><input class="inptext" required="" id="captcha_word" name="captcha_word" type="text"></td>
-            <td><img class="captchaImg" src="/bitrix/tools/captcha.php?captcha_code=<?=htmlspecialchars($cpt->GetCodeCrypt());?>"></td>
-        </tr>
+        <input class="inptext" id="captcha_word" name="captcha_word" type="hidden">
 
         <div class="columns small-12">
             <br>
@@ -76,3 +74,16 @@ if (method_exists($this, 'setFrameMode')) {
         </div>
     </div>
 </form>
+
+<div id="asd_subscribe_capcha" class="reveal-modal modal modal_js-top" data-reveal aria-labelledby="modalTitle"
+     aria-hidden="true" role="dialog">
+    <div class="mess b-sizeinfo__title i-sizeinfo__title_subscribe" style="text-align:center">
+        Введите код с картинки<span>*</span><br>
+        <input style="width:30%" class="captchaSid" name="captcha_code_popup" value="<?=htmlspecialchars($cpt->GetCodeCrypt());?>" type="hidden"><br>
+        <tr>
+            <td><input class="inptext" id="captcha_word_popup" style="width:30%" name="captcha_word" type="text"></td>
+            <td><img class="captchaImg" src="/bitrix/tools/captcha.php?captcha_code=<?=htmlspecialchars($cpt->GetCodeCrypt());?>"></td>
+        </tr><br>
+        <button class="subscribe_quick_form">Подписаться</button>
+    </div>
+</div>
