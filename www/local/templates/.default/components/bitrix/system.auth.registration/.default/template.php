@@ -124,13 +124,42 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                     <? if (strlen($arResult["BACKURL"]) > 0): ?>
                         <input type="hidden" name="backurl" value="<?= $arResult["BACKURL"] ?>"/>
                     <? endif ?>
-                    <? foreach ($arResult["POST"] as $key => $value): ?>
-                        <input type="hidden" name="<?= $key ?>" value="<?= $value ?>"/>
-                    <? endforeach ?>
-                    <? foreach ($arResult["POST"] as $key => $value): ?>
-                        <input type="hidden" name="<?= $key ?>" value="<?= $value ?>"/>
-                    <? endforeach ?>
+
+                    <?if (is_array($arResult["POST"]) ) {?>
+                        <? foreach ($arResult["POST"] as $key => $value): ?>
+                            <input type="hidden" name="<?= $key ?>" value="<?= $value ?>"/>
+                        <? endforeach ?>
+                    <?}?>
+
+                    <?if (is_array($arResult["POST"]) ) {?>
+                        <? foreach ($arResult["POST"] as $key => $value): ?>
+                            <input type="hidden" name="<?= $key ?>" value="<?= $value ?>"/>
+                        <? endforeach ?>
+                    <?}?>
+
                     <?= getFormFields($arResult["FORM_FIELDS_PERSON"], 12, "b-form__row_small-margin") ?>
+
+                    <?
+                    if ($arResult["USE_CAPTCHA"] == "Y")
+                    {
+                        ?>
+                        <tr>
+                            <td colspan="2" class="sdfyhsdjfhsdkfjks"><b><?=GetMessage("CAPTCHA_REGF_TITLE")?></b></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="hidden" name="captcha_sid" value="<?=$arResult["CAPTCHA_CODE"]?>" />
+                                <img src="/bitrix/tools/captcha.php?captcha_sid=<?=$arResult["CAPTCHA_CODE"]?>" width="180" height="40" alt="CAPTCHA" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="starrequired"><br>*</span><?=GetMessage("CAPTCHA_REGF_PROMT")?>:</td>
+                            <td><input type="text" name="captcha_word" maxlength="50" value="" /></td>
+                        </tr>
+                        <?
+                    }
+                    ?>
                     <button class="reg__submit" type="submit" name="Register" value="Y">зарегистрироваться</button>
                     <noindex>
                         <div class="reg__already">Уже зарегистрированы? <a href="<?= $arResult["AUTH_AUTH_URL"] ?>"
@@ -203,13 +232,39 @@ $emailConfirm = COption::GetOptionString("main", "new_user_registration_email_co
                     <? if (strlen($arResult["BACKURL"]) > 0): ?>
                         <input type="hidden" name="backurl" value="<?= $arResult["BACKURL"] ?>"/>
                     <? endif ?>
-                    <? foreach ($arResult["POST"] as $key => $value): ?>
-                        <input type="hidden" name="<?= $key ?>" value="<?= $value ?>"/>
-                    <? endforeach ?>
-                    <? foreach ($arResult["POST"] as $key => $value): ?>
-                        <input type="hidden" name="<?= $key ?>" value="<?= $value ?>"/>
-                    <? endforeach ?>
+                    <?if (is_array($arResult["POST"]) ) {?>
+                        <? foreach ($arResult["POST"] as $key => $value): ?>
+                            <input type="hidden" name="<?= $key ?>" value="<?= $value ?>"/>
+                        <? endforeach ?>
+                    <?}?>
+                    <?if (is_array($arResult["POST"]) ) {?>
+                        <? foreach ($arResult["POST"] as $key => $value): ?>
+                            <input type="hidden" name="<?= $key ?>" value="<?= $value ?>"/>
+                        <? endforeach ?>
+                    <?}?>
                     <?= getFormFields($arResult["FORM_FIELDS_PARTNER"], 12, "b-form__row_small-margin") ?>
+
+                    <?
+                    if ($arResult["USE_CAPTCHA"] == "Y")
+                    {
+                        ?>
+                        <tr>
+                            <td colspan="2" class="sdfyhsdjfhsdkfjks"><b><?=GetMessage("CAPTCHA_REGF_TITLE")?></b></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="hidden" name="captcha_sid" value="<?=$arResult["CAPTCHA_CODE"]?>" />
+                                <img src="/bitrix/tools/captcha.php?captcha_sid=<?=$arResult["CAPTCHA_CODE"]?>" width="180" height="40" alt="CAPTCHA" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="starrequired">*</span><?=GetMessage("CAPTCHA_REGF_PROMT")?>:</td>
+                            <td><input type="text" name="captcha_word" maxlength="50" value="" /></td>
+                        </tr>
+                        <?
+                    }
+                    ?>
                     <button class="reg__submit" type="submit" name="Register" value="Y">зарегистрироваться</button>
                     <noindex>
                         <div class="reg__already">Уже зарегистрированы? <a href="<?= $arResult["AUTH_AUTH_URL"] ?>"
