@@ -129,6 +129,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
 
                     $userID = $user->Add($arFields);
                     if (intval($userID) > 0) {
+                        echo "№" . $i . ":Пользователь: " . $login . " Успешно добавлен.";
                         AddMessage2Log("№" . $i . ":Пользователь: " . $login . " Успешно добавлен.", "");
                     } else {
                         AddMessage2Log($user->LAST_ERROR, "");
