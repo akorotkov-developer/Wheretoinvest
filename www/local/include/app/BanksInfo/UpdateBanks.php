@@ -28,7 +28,9 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 //Получаем все данные для банка
 
                 //Получаем веб-сайт банка
-                $website = $Cinfo->getWebSiteOrganization($Record->Bic);
+                //TODO на сайте http://cbr.ru/development/WSCO/ не работает этот функционал
+                //$website = $Cinfo->getWebSiteOrganization($Record->Bic);
+                $website = '';
 
                 //Получаем дополнительную информацию об организации
                 $info = $Cinfo->getOrgInfoByIntCode($Record->Bic);
