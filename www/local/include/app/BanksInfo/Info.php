@@ -10,7 +10,8 @@ class Info implements Interfaces\IInfo
         //Создаем подключение к WSDL серверу
         $this->client = new \SoapClient(Config::CLIENT, array('exceptions' => false));
         //Подключение к списку сайтов банков
-        $this->websites = new \SimpleXMLElement(file_get_contents(Config::WEBSITES));
+        //TODO на сайте http://cbr.ru/development/WSCO/ не работает этот функционал
+        //$this->websites = new \SimpleXMLElement(file_get_contents(Config::WEBSITES));
     }
 
     public function getFilialInfoByBic($BIC) {
