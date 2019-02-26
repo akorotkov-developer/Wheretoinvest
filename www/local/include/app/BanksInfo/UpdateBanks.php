@@ -129,9 +129,9 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
 
                     $userID = $user->Add($arFields);
                     if (intval($userID) > 0) {
-                        AddMessage2Log("№" . $i . ":Пользователь: " . $login . " Успешно добавлен.", "");
+                        AddMessage2Log("№" . $i . ":Пользователь: " . $login . " Успешно добавлен.", "main");
                     } else {
-                        AddMessage2Log($user->LAST_ERROR, "");
+                        AddMessage2Log($user->LAST_ERROR, "main");
                     }
                 }
                 //Добавляем предлпжение и матрицу для банка
