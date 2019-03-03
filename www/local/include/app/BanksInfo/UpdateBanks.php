@@ -25,6 +25,11 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
         echo "<pre>";
         var_dump($xmlstr);
         echo "</pre>";
+        $this->banks = new \SimpleXMLElement(Config::BANKS, NULL, TRUE);
+        echo "<pre>";
+        var_dump($this->banks);
+        echo "</pre>";
+
         //$this->banks = new \SimpleXMLElement($xmlstr);
 
         $i=0;
