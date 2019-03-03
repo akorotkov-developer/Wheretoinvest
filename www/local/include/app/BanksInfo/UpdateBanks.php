@@ -18,7 +18,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
 
         $i=0;
         foreach ($bankList->Record as $Record) {
-            //if ($i < 3) {
+            if ($i < 100) {
                 $i++;
 
                 //Логин Пароль пользователя
@@ -134,9 +134,10 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                         AddMessage2Log($user->LAST_ERROR, "main");
                     }
                 }
+                echo "№" . $i . ":Пользователь: " . $login . " Успешно добавлен.<br>";
                 //Добавляем предлпжение и матрицу для банка
                 $siteOffers->setOfferAndMAtrix($userID);
-            //}
+            }
         }
     }
 }
