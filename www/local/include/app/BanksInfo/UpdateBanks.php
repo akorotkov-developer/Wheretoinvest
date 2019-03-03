@@ -18,10 +18,22 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
     public function updateUsers(Info $Cinfo, SiteOffers $siteOffers) {
         //ѕолучаем список банков и дл€ каждого банка обновл€ем либо создаем пользовател€
         $xmlstr = file_get_contents(Config::BANKS);
-        echo "<pre>";
+/*        echo "<pre>";
         var_dump($xmlstr);
-        echo "</pre>";
+        echo "</pre>";*/
 
+/*        $s = iconv("UTF-8", "windows-1251", $xmlstr);
+        echo "<pre>";
+        var_dump($s);
+        echo "</pre>";*/
+
+        $xml = \XMLReader::open(file_get_contents(Config::BANKS));
+
+        // ƒл€ работы метода об€зательно должна быть включена
+        // валидаци€ парсера.
+        $xml->setParserProperty(XMLReader::VALIDATE, true);
+
+        var_dump($xml->isValid());
         /*$bankList = $this->banks;
 
         $i=0;
