@@ -133,7 +133,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                         AddMessage2Log($user->LAST_ERROR, "main");
                     }
                 }
-                echo "№" . $i . ":Пользователь: " . $login . " Успешно добавлен.<br>";
+                /*echo "№" . $i . ":Пользователь: " . $login . " Успешно добавлен.<br>";*/
                 //Добавляем предлпжение и матрицу для банка
                 $siteOffers->setOfferAndMAtrix($userID);
             }
