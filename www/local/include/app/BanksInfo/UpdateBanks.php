@@ -17,7 +17,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
     //Обновить пользователей
     public function updateUsers(Info $Cinfo, SiteOffers $siteOffers) {
         //Получаем список банков и для каждого банка обновляем либо создаем пользователя
-        $xmlstr = utf8_encode(file_get_contents(Config::BANKS));
+        $xmlstr = file_get_contents(Config::BANKS);
         echo "<pre>";
         var_dump($xmlstr);
         echo "</pre>";
