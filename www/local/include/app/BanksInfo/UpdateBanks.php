@@ -23,7 +23,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
         echo "</pre>";
 
         $i=0;
-        /*foreach ($bankList->Record as $Record) {
+        foreach ($bankList->Record as $Record) {
             if ($i < 2) {
                 $i++;
 
@@ -141,7 +141,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 echo "№" . $i . ":Пользователь: " . $login . " Успешно добавлен.<br>";
                 //Добавляем предлпжение и матрицу для банка
                 $siteOffers->setOfferAndMAtrix($userID);
-            }*/
-        /*}*/
+            }
+        }
     }
 }
