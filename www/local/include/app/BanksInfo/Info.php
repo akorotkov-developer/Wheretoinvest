@@ -108,8 +108,6 @@ class Info implements Interfaces\IInfo
 
         $FullName = $xml->CO->OrgFullName;
         $ShortName = Tools::getShortNameByFullName($FullName);
-        echo $FullName;
-        echo "<br>";
 
         $info["ShortName"] = $ShortName;
         $info["OrgStatus"] = $xml->CO->OrgStatus;
