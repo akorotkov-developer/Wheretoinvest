@@ -22,18 +22,12 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
         var_dump($xmlstr);
         echo "</pre>";*/
 
-/*        $s = iconv("UTF-8", "windows-1251", $xmlstr);
+        $s = iconv("UTF-8", "windows-1251", $xmlstr);
         echo "<pre>";
         var_dump($s);
-        echo "</pre>";*/
+        echo "</pre>";
 
-        $xml = \XMLReader::open(file_get_contents(Config::BANKS));
 
-        // Для работы метода обязательно должна быть включена
-        // валидация парсера.
-        $xml->setParserProperty(XMLReader::VALIDATE, true);
-
-        var_dump($xml->isValid());
         /*$bankList = $this->banks;
 
         $i=0;
