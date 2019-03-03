@@ -113,6 +113,12 @@ class Info implements Interfaces\IInfo
         $info["OrgStatus"] = $xml->CO->OrgStatus;
         $info["SSV_Date"] = $xml->CO->SSV_Date;
 
+
+        $obj2 = $this->client->SearchByNameXML(array('NamePart' => "КОНСЕРВАТИВНЫЙ КОММЕРЧЕСКИЙ БАНК"));
+        echo "<pre>";
+        var_dump($obj2);
+        echo "</pre>";
+
         return $info;
     }
 }
