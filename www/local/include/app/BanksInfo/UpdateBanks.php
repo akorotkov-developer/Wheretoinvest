@@ -62,7 +62,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 //Смотрим есть ли уже пользователь для банка
                 $arSpecUser = false;
                 $filter = Array(
-                    "UF_LICENSE" => $regNumber,
+                    "UF_OGRN" => $Record->RegNum,
                 );
                 $rsUsers = \CUser::GetList(($by), ($order = "desc"), $filter);
                 while ($arUser = $rsUsers->Fetch()) {
@@ -82,7 +82,6 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                     "GROUP_ID" => Config::PARTENRS_GROUP,
                     "UF_BANK_INFO" => $info["ShortName"],
                     "UF_FULL_WORK_NAME" => $Record->ShortName,
-                    "UF_BIK" => $Record->Bic,
                     "UF_SITE" => $website,
                     "UF_LICENSE" => $regNumber,
                     "UF_OGRN" => $Record->RegNum,
@@ -90,13 +89,12 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                     "UF_CAPITAL" => $sobcapital["sobcapital"],
                     "UF_ASSETS" => $active,
                     "UF_NOTE" => $info["OrgStatus"],
-                    "UF_ASSETS_DATE" => date("1.m.Y"),
                     "UF_SIT_CB" => 1,
                     "UF_BANK_PARTICIP" => $insurance,
                     "UF_CAPITAL_A_DATE" => date("1.m.Y"),
                     "UF_CAPITAL_DATE" => date("1.m.Y"),
-                    "PASSWORD" => $password,
-                    "CONFIRM_PASSWORD" => $password,
+                    "UF_ASSETS_DATE" => date("1.m.Y"),
+                    "UF_LASTUPDATE" => date("d.m.Y H:i:s"),
 
                 );
 
@@ -120,9 +118,9 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                         "NAME" => Config::CLIENT_NAME,
                         "EMAIL" => $login,
                         "LOGIN" => $login,
-                        "UF_ASSETS_DATE" => date("1.m.Y"),
-                        "UF_CAPITAL_A_DATE" => date("1.m.Y"),
-                        "UF_CAPITAL_DATE" => date("1.m.Y")
+                        "UF_BIK" => $Record->Bic,
+                        "PASSWORD" => $password,
+                        "CONFIRM_PASSWORD" => $password,
                     );
 
                     $arFields = array_merge($arFields, $arFieldsNewUser);
