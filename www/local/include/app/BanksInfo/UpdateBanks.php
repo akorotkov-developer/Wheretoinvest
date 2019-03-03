@@ -68,7 +68,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 //Смотрим есть ли уже пользователь для банка
                 $arSpecUser = false;
                 $filter = Array(
-                    "UF_LICENSE" => $regNumber,
+                    "UF_OGRN" => $Record->RegNum,
                 );
                 $rsUsers = \CUser::GetList(($by), ($order = "desc"), $filter);
                 while ($arUser = $rsUsers->Fetch()) {
