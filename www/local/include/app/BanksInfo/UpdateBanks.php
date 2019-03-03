@@ -17,8 +17,6 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
 
         $bankList = $this->banks;
 
-        //$this->banks = new \SimpleXMLElement($xmlstr);
-
         $i=0;
         foreach ($bankList->Record as $Record) {
             if ($i < 2) {
