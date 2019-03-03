@@ -22,10 +22,9 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
         var_dump($xmlstr);
         echo "</pre>";*/
 
-        $s = iconv("UTF-8", "windows-1251", $xmlstr);
-        $s = mb_convert_encoding($xmlstr,"UTF-8","windows-1251");
+        $xmlstr = mb_convert_encoding($xmlstr,"UTF-8","windows-1251");
         echo "<pre>";
-        var_dump($s);
+        var_dump($xmlstr);
         echo "</pre>";
 
 
