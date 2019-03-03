@@ -24,7 +24,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
 
         $i=0;
         foreach ($bankList->Record as $Record) {
-            if ($i < 2) {
+            if ($i < 100) {
                 $i++;
 
                 //Логин Пароль пользователя
@@ -68,7 +68,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 //Смотрим есть ли уже пользователь для банка
                 $arSpecUser = false;
                 $filter = Array(
-                    "UF_OGRN" => $Record->RegNum,
+                    "UF_LICENSE" => $regNumber,
                 );
                 $rsUsers = \CUser::GetList(($by), ($order = "desc"), $filter);
                 while ($arUser = $rsUsers->Fetch()) {
