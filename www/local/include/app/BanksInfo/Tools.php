@@ -68,6 +68,9 @@ class Tools implements Interfaces\ITools {
         }
     }
 
+/*    public static function getShortNameByFullName($FullName) {
+
+    }*/
 
     public static function getShortNameByFullName($FullName) {
         $name = $FullName;

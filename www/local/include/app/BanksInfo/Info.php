@@ -108,17 +108,12 @@ class Info implements Interfaces\IInfo
 
         $FullName = $xml->CO->OrgFullName;
         $ShortName = Tools::getShortNameByFullName($FullName);
+        echo $FullName;
+        echo "<br>";
 
         $info["ShortName"] = $ShortName;
         $info["OrgStatus"] = $xml->CO->OrgStatus;
         $info["SSV_Date"] = $xml->CO->SSV_Date;
-
-
-        $obj2 = $this->client->SearchByNameXML(array('NamePart' => "КОНСЕРВАТИВНЫЙ КОММЕРЧЕСКИЙ БАНК"));
-        $xml = new \SimpleXMLElement($obj2->CreditInfoByIntCodeXMLResult);
-        echo "<pre>";
-        var_dump($xml);
-        echo "</pre>";
 
         return $info;
     }
