@@ -7,8 +7,9 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
 
     function __construct() {
         //Подключение к списку банков
-        $xmlstr = utf8_encode(file_get_contents(Config::BANKS));
-        $this->banks = new \SimpleXMLElement($xmlstr);
+/*        $xmlstr = utf8_encode(file_get_contents(Config::BANKS));
+        $this->banks = new \SimpleXMLElement($xmlstr);*/
+        $this->banks = new \SoapClient(Config::BANKS, array('exceptions' => false));
         //Создаем подключение к WSDL серверу
         $this->client = new \SoapClient(Config::CLIENT, array('exceptions' => false));
     }
@@ -18,7 +19,11 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
         $bankList = $this->banks;
 
         $i=0;
-        foreach ($bankList->Record as $Record) {
+        echo "<pre>";
+        var_dump($this->client);
+        echo "</pre>";
+
+        /*foreach ($bankList->Record as $Record) {
             if ($i < 150) {
                 $i++;
 
@@ -137,6 +142,6 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 //Добавляем предлпжение и матрицу для банка
                 $siteOffers->setOfferAndMAtrix($userID);
             }
-        }
+        }*/
     }
 }
