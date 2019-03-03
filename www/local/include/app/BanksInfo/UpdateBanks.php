@@ -21,7 +21,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
 
         $i=0;
         foreach ($bankList->Record as $Record) {
-            if ($i < 100) {
+            if ($i < 2) {
                 $i++;
 
                 //Логин Пароль пользователя
