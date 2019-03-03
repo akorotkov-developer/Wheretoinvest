@@ -8,6 +8,8 @@ use Wic\BanksInfo\UpdateBanks,
 ?>
 
 <?
+phpinfo();
+
 $banks = new UpdateBanks;
 $banks->updateUsers($Cinfo = new Info ,   $siteOffers = new SiteOffers);
 unset($banks);
