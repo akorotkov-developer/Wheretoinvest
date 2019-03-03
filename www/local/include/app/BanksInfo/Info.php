@@ -115,8 +115,9 @@ class Info implements Interfaces\IInfo
 
 
         $obj2 = $this->client->SearchByNameXML(array('NamePart' => "КОНСЕРВАТИВНЫЙ КОММЕРЧЕСКИЙ БАНК"));
+        $xml = new \SimpleXMLElement($obj->CreditInfoByIntCodeXMLResult);
         echo "<pre>";
-        var_dump($obj2);
+        var_dump($xml);
         echo "</pre>";
 
         return $info;
