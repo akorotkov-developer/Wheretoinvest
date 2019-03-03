@@ -7,7 +7,8 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
 
     function __construct() {
         //Подключение к списку банков
-        $this->banks = new \SimpleXMLElement(file_get_contents(Config::BANKS));
+        $xmlstr = utf8_encode(file_get_contents(Config::BANKS));
+        $this->banks = new \SimpleXMLElement($xmlstr);
         //Создаем подключение к WSDL серверу
         $this->client = new \SoapClient(Config::CLIENT, array('exceptions' => false));
     }
