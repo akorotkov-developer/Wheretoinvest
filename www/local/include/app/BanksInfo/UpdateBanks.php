@@ -6,23 +6,24 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
     protected $client;
 
     function __construct() {
-        //Подключение к списку банков
+        //РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє СЃРїРёСЃРєСѓ Р±Р°РЅРєРѕРІ
         //$xmlstr = utf8_encode(file_get_contents(Config::BANKS));
 /*        $xmlstr = utf8_encode(file_get_contents(Config::BANKS));
         settype($xmlstr, "string");
         $this->banks = new \SimpleXMLElement($xmlstr);
-        //Создаем подключение к WSDL серверу
+        //РЎРѕР·РґР°РµРј РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє WSDL СЃРµСЂРІРµСЂСѓ
         $this->client = new \SoapClient(Config::CLIENT, array('exceptions' => false));*/
     }
-    //Обновить пользователей
+    //РћР±РЅРѕРІРёС‚СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
     public function updateUsers(Info $Cinfo, SiteOffers $siteOffers) {
-        //Получаем список банков и для каждого банка обновляем либо создаем пользователя
+        //РџРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє Р±Р°РЅРєРѕРІ Рё РґР»СЏ РєР°Р¶РґРѕРіРѕ Р±Р°РЅРєР° РѕР±РЅРѕРІР»СЏРµРј Р»РёР±Рѕ СЃРѕР·РґР°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
         $xmlstr = file_get_contents(Config::BANKS);
 /*        echo "<pre>";
         var_dump($xmlstr);
         echo "</pre>";*/
 
         $s = iconv("UTF-8", "windows-1251", $xmlstr);
+        $s = mb_convert_encoding($xmlstr,"UTF-8","windows-1251");
         echo "<pre>";
         var_dump($s);
         echo "</pre>";
@@ -35,45 +36,45 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
             if ($i < 2) {
                 $i++;
 
-                //Логин Пароль пользователя
+                //Р›РѕРіРёРЅ РџР°СЂРѕР»СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
                 $login = Tools::translit($Record->ShortName, "Y") . Config::EMAIL_END;
                 $password = Tools::translit($Record->ShortName, "Y") . Config::PASSWORD_KEY;
 
-                //Получаем все данные для банка
+                //РџРѕР»СѓС‡Р°РµРј РІСЃРµ РґР°РЅРЅС‹Рµ РґР»СЏ Р±Р°РЅРєР°
 
-                //Получаем веб-сайт банка
-                //TODO на сайте http://cbr.ru/development/WSCO/ не работает этот функционал
+                //РџРѕР»СѓС‡Р°РµРј РІРµР±-СЃР°Р№С‚ Р±Р°РЅРєР°
+                //TODO РЅР° СЃР°Р№С‚Рµ http://cbr.ru/development/WSCO/ РЅРµ СЂР°Р±РѕС‚Р°РµС‚ СЌС‚РѕС‚ С„СѓРЅРєС†РёРѕРЅР°Р»
                 //$website = $Cinfo->getWebSiteOrganization($Record->Bic);
                 $website = '';
 
-                //Получаем дополнительную информацию об организации
+                //РџРѕР»СѓС‡Р°РµРј РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ РѕР± РѕСЂРіР°РЅРёР·Р°С†РёРё
                 $info = $Cinfo->getOrgInfoByIntCode($Record->Bic);
 
-                //Рег. Номер
+                //Р РµРі. РќРѕРјРµСЂ
                 $regNumber = $this->client->BicToRegNumber(array('BicCode' => (string)$Record->Bic));
                 $regNumber = $regNumber->BicToRegNumberResult;
 
-                //Участие в системе страхования вкладов
+                //РЈС‡Р°СЃС‚РёРµ РІ СЃРёСЃС‚РµРјРµ СЃС‚СЂР°С…РѕРІР°РЅРёСЏ РІРєР»Р°РґРѕРІ
                 if ($info["SSV_Date"] > 0) {
                     $insurance = 25;
                 } else {
                     $insurance = 0;
                 }
 
-                //Н1.0 по форме 135
+                //Рќ1.0 РїРѕ С„РѕСЂРјРµ 135
                 $h10 = $Cinfo->get135formData($regNumber);
 
-                //Собственный капитал по форме 123
+                //РЎРѕР±СЃС‚РІРµРЅРЅС‹Р№ РєР°РїРёС‚Р°Р» РїРѕ С„РѕСЂРјРµ 123
                 $sobcapital = $Cinfo->get123formData($regNumber);
 
-                //Активы
+                //РђРєС‚РёРІС‹
                 if ($sobcapital["sobcapital"] > 0 and $h10 != 0) {
                     $active = ceil($sobcapital["sobcapital"] / ((float)$h10 / 100));
                 } else {
                     $active = false;
                 }
 
-                //Смотрим есть ли уже пользователь для банка
+                //РЎРјРѕС‚СЂРёРј РµСЃС‚СЊ Р»Рё СѓР¶Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РґР»СЏ Р±Р°РЅРєР°
                 $arSpecUser = false;
                 $filter = Array(
                     "UF_OGRN" => $Record->RegNum,
@@ -87,10 +88,10 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 }
                 $rsUser = \CUser::GetByLogin($login);
                 $arUser = $rsUser->Fetch();
-                //Если пользователь есть, то обновляем его данные, если нет, то создаем нового пользователя
+                //Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РµСЃС‚СЊ, С‚Рѕ РѕР±РЅРѕРІР»СЏРµРј РµРіРѕ РґР°РЅРЅС‹Рµ, РµСЃР»Рё РЅРµС‚, С‚Рѕ СЃРѕР·РґР°РµРј РЅРѕРІРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
                 $user = new \CUser;
 
-                //Поля пользователя
+                //РџРѕР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
                 $arFields = Array(
                     "ACTIVE" => "Y",
                     "GROUP_ID" => Config::PARTENRS_GROUP,
@@ -123,7 +124,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                     }
 
                     if ($user->Update($userID, $arFields)) {
-                        AddMessage2Log("№" . $i . ": Пользователь: " . $login . " Обновлен", "");
+                        AddMessage2Log("в„–" . $i . ": РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ: " . $login . " РћР±РЅРѕРІР»РµРЅ", "");
                     } else {
                         AddMessage2Log($user->LAST_ERROR, "");
                     }
@@ -141,13 +142,13 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
 
                     $userID = $user->Add($arFields);
                     if (intval($userID) > 0) {
-                        AddMessage2Log("№" . $i . ":Пользователь: " . $login . " Успешно добавлен.", "main");
+                        AddMessage2Log("в„–" . $i . ":РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ: " . $login . " РЈСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ.", "main");
                     } else {
                         AddMessage2Log($user->LAST_ERROR, "main");
                     }
                 }
-                echo "№" . $i . ":Пользователь: " . $login . " Успешно добавлен.<br>";
-                //Добавляем предлпжение и матрицу для банка
+                echo "в„–" . $i . ":РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ: " . $login . " РЈСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ.<br>";
+                //Р”РѕР±Р°РІР»СЏРµРј РїСЂРµРґР»РїР¶РµРЅРёРµ Рё РјР°С‚СЂРёС†Сѓ РґР»СЏ Р±Р°РЅРєР°
                 $siteOffers->setOfferAndMAtrix($userID);
             }
         }*/
