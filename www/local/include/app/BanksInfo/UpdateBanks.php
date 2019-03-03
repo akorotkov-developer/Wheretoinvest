@@ -17,11 +17,6 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
 
         $bankList = $this->banks;
 
-        $this->banks = new \SimpleXMLElement(Config::BANKS, NULL, TRUE);
-        echo "<pre>";
-        var_dump($this->banks );
-        echo "</pre>";
-
         $i=0;
         foreach ($bankList->Record as $Record) {
             if ($i < 100) {
