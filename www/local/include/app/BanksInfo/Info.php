@@ -57,7 +57,7 @@ class Info implements Interfaces\IInfo
         var_dump($time);
         echo "</pre>";
 
-        $res["TIME"] = $time;
+        //$res["TIME"] = $time;
 
         //Данные по форме 135
         try {
