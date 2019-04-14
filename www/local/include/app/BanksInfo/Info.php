@@ -47,6 +47,9 @@ class Info implements Interfaces\IInfo
 
         $time = strtotime($response);
         $time = date("d.m.y", $time);
+        echo "<pre>";
+        var_dump($time);
+        echo "</pre>";
 
         $res["TIME"] = $time;
 
@@ -60,10 +63,6 @@ class Info implements Interfaces\IInfo
             if (get_class($data) != "SoapFault") {
 
                 $data = $data->Data135FormFullXMLResult->any;
-
-                echo "<pre>";
-                var_dump($data);
-                echo "</pre>";
 
                 $xml = new \SimpleXMLElement($data);
 
