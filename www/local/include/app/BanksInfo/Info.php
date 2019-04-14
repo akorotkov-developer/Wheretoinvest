@@ -45,19 +45,12 @@ class Info implements Interfaces\IInfo
         $response = $response->GetDatesForF135Result->dateTime;
         $response = $response[count($response)-1];
 
-        echo "Время: <br>";
-        echo "<pre>";
-        var_dump($response);
-        echo "</pre>";
-        $time = strtotime($response);
-        $res["TIME"] = $time;
-        $time = date("d.m.y", $time);
-        echo "Время переведенное <br>";
-        echo "<pre>";
-        var_dump($time);
-        echo "</pre>";
-
-        //$res["TIME"] = $time;
+        if ($response) {
+            $time = strtotime($response);
+            $res["TIME"] = date("d.m.y", $time);
+        } else {
+            $res["TIME"] = "";
+        }
 
         //Данные по форме 135
         try {
