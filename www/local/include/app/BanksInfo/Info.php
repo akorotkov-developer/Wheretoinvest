@@ -45,8 +45,13 @@ class Info implements Interfaces\IInfo
         $response = $response->GetDatesForF135Result->dateTime;
         $response = $response[count($response)-1];
 
+        echo "Время: <br>";
+        echo "<pre>";
+        var_dump($response);
+        echo "</pre>";
         $time = strtotime($response);
         $time = date("d.m.y", $time);
+        echo "Время переведенное <br>";
         echo "<pre>";
         var_dump($time);
         echo "</pre>";
