@@ -85,6 +85,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 echo "<pre>";
                 var_dump($h10["TIME"]);
                 echo "</pre>";
+
                 //Поля пользователя
                 $arFields = Array(
                     "ACTIVE" => "Y",
