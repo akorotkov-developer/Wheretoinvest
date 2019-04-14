@@ -23,6 +23,9 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 $i++;
 
                 //Логин Пароль пользователя
+                echo "<pre>";
+                var_dump($Record->ShortName);
+                echo "</pre>";
                 $login = Tools::translit($Record->ShortName, "Y") . Config::EMAIL_END;
                 $password = Tools::translit($Record->ShortName, "Y") . Config::PASSWORD_KEY;
 
