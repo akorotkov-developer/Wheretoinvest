@@ -51,7 +51,7 @@ class Info implements Interfaces\IInfo
         if ($response) {
             echo "Записали время";
             $time = strtotime($response);
-            $res["TIME"] = date("d.m.y", $time);
+            $res["TIME"] = date("d.m.Y", $time);
         } else {
             echo "НЕ записали время";
             $res["TIME"] = "";
