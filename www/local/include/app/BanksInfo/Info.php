@@ -50,6 +50,7 @@ class Info implements Interfaces\IInfo
         var_dump($response);
         echo "</pre>";
         $time = strtotime($response);
+        $res["TIME"] = $time;
         $time = date("d.m.y", $time);
         echo "Время переведенное <br>";
         echo "<pre>";

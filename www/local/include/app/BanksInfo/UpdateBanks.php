@@ -101,7 +101,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                     "UF_LASTUPDATE" => date("d.m.Y H:i:s"),
 
                 );
-                
+
                 echo "Время в UpdateBanks.php";
                 echo "<pre>";
                 var_dump(date("d.m.y", $h10["TIME"]));
