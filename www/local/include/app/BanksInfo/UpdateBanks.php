@@ -95,12 +95,17 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                     "UF_NOTE" => $info["OrgStatus"],
                     "UF_SIT_CB" => 1,
                     "UF_BANK_PARTICIP" => $insurance,
-                    "UF_CAPITAL_A_DATE" => $h10["TIME"],
-                    "UF_CAPITAL_DATE" => $h10["TIME"],
-                    "UF_ASSETS_DATE" => $h10["TIME"],
+                    "UF_CAPITAL_A_DATE" => date("d.m.y", $h10["TIME"]),
+                    "UF_CAPITAL_DATE" => date("d.m.y", $h10["TIME"]),
+                    "UF_ASSETS_DATE" => date("d.m.y", $h10["TIME"]),
                     "UF_LASTUPDATE" => date("d.m.Y H:i:s"),
 
                 );
+                
+                echo "Время в UpdateBanks.php";
+                echo "<pre>";
+                var_dump(date("d.m.y", $h10["TIME"]));
+                echo "</pre>";
 
                 if ($arUser) {
                     //ADD USER
