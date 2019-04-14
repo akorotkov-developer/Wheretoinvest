@@ -43,6 +43,10 @@ class Info implements Interfaces\IInfo
         $h10 = "";
         $response = $this->client->GetDatesForF135(array("CredprgNumber" => $regNumber));
         $response = $response->GetDatesForF135Result->dateTime;
+        echo "После  dateTime <br>";
+        echo "<pre>";
+        var_dump($response);
+        echo "</pre>";
         $response = $response[count($response)-1];
 
         //Данные по форме 135
