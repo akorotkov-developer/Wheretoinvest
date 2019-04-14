@@ -137,6 +137,10 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 //Добавляем предлпжение и матрицу для банка
                 $siteOffers->setOfferAndMAtrix($userID);
             }
+
+            echo "<pre>";
+            print_r($password);
+            echo "</pre>";
         }
     }
 }
