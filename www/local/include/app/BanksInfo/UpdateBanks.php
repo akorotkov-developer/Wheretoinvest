@@ -139,8 +139,14 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
             }
 
             echo "<pre>";
+            print_r($login);
+            echo "</pre>";
+
+            echo "<pre>";
             print_r($password);
             echo "</pre>";
+
+            echo "<hr>";
         }
     }
 }
