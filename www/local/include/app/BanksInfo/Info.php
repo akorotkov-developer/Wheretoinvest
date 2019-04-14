@@ -44,10 +44,11 @@ class Info implements Interfaces\IInfo
         $response = $this->client->GetDatesForF135(array("CredprgNumber" => $regNumber));
         $response = $response->GetDatesForF135Result->dateTime;
         $response = $response[count($response)-1];
-        echo "Дата запроса - <br>";
-        echo "<pre>";
-        var_dump($response);
-        echo "</pre>";
+
+        $time = strtotime($response);
+        $time = date("d.m.y", $time);
+
+        $res["TIME"] = $time;
 
         //Данные по форме 135
         try {
@@ -73,7 +74,9 @@ class Info implements Interfaces\IInfo
             } else {$h10 = "";}
         }
 
-        return $h10;
+        $res["H10"] = $h10;
+
+        return $res;
     }
 
     //Получаем данные по форме 123

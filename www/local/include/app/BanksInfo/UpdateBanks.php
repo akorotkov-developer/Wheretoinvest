@@ -57,8 +57,8 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 $sobcapital = $Cinfo->get123formData($regNumber);
 
                 //Активы
-                if ($sobcapital["sobcapital"] > 0 and $h10 != 0) {
-                    $active = ceil($sobcapital["sobcapital"] / ((float)$h10 / 100));
+                if ($sobcapital["sobcapital"] > 0 and $h10["H10"] != 0) {
+                    $active = ceil($sobcapital["sobcapital"] / ((float)$h10["H10"] / 100));
                 } else {
                     $active = false;
                 }
@@ -89,15 +89,15 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                     "UF_SITE" => $website,
                     "UF_LICENSE" => $regNumber,
                     "UF_OGRN" => $Record->RegNum,
-                    "UF_CAPITAL_ASSETS" => $h10,
+                    "UF_CAPITAL_ASSETS" => $h10["H10"],
                     "UF_CAPITAL" => $sobcapital["sobcapital"],
                     "UF_ASSETS" => $active,
                     "UF_NOTE" => $info["OrgStatus"],
                     "UF_SIT_CB" => 1,
                     "UF_BANK_PARTICIP" => $insurance,
-                    "UF_CAPITAL_A_DATE" => date("1.m.Y"),
-                    "UF_CAPITAL_DATE" => date("1.m.Y"),
-                    "UF_ASSETS_DATE" => date("1.m.Y"),
+                    "UF_CAPITAL_A_DATE" => $h10["H10"],
+                    "UF_CAPITAL_DATE" => $h10["H10"],
+                    "UF_ASSETS_DATE" => $h10["H10"],
                     "UF_LASTUPDATE" => date("d.m.Y H:i:s"),
 
                 );
