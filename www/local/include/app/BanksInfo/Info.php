@@ -60,6 +60,11 @@ class Info implements Interfaces\IInfo
 
                 $elements = $xml->xpath("//F135_3[contains(C3,'Н1.0')]");
                 foreach ($elements as $element) {
+                    /*TODO Убрать!*/
+                    echo "<pre>";
+                    var_dump($element);
+                    echo "</pre>";
+                    /*****************/
                     $h10 = $element->V3;
                 }
             } else {$h10 = "";}
