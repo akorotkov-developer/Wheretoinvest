@@ -80,6 +80,11 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 //Если пользователь есть, то обновляем его данные, если нет, то создаем нового пользователя
                 $user = new \CUser;
 
+
+                echo "Время в H10";
+                echo "<pre>";
+                var_dump($h10["TIME"]);
+                echo "</pre>";
                 //Поля пользователя
                 $arFields = Array(
                     "ACTIVE" => "Y",
