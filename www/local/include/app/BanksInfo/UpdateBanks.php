@@ -110,7 +110,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
 
                 echo "Время в UpdateBanks.php";
                 echo "<pre>";
-                var_dump(date("d.m.y", $h10["TIME"]));
+                var_dump($h10["TIME"]);
                 echo "</pre>";
 
                 if ($arUser) {
