@@ -45,10 +45,15 @@ class Info implements Interfaces\IInfo
         $response = $response->GetDatesForF135Result->dateTime;
         $response = $response[count($response)-1];
 
+        echo "<pre>";
+        var_dump($response);
+        echo "</pre>";
         if ($response) {
+            echo "Записали время";
             $time = strtotime($response);
             $res["TIME"] = date("d.m.y", $time);
         } else {
+            echo "НЕ записали время";
             $res["TIME"] = "";
         }
 
