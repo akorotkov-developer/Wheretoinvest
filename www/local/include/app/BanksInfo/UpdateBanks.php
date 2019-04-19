@@ -19,13 +19,8 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
 
         $i=0;
         foreach ($bankList->Record as $Record) {
-            if ($i < 50) {
-                $i++;
 
                 //Логин Пароль пользователя
-                echo "<pre>";
-                var_dump($Record->ShortName);
-                echo "</pre>";
                 $login = Tools::translit($Record->ShortName, "Y") . Config::EMAIL_END;
                 $password = Tools::translit($Record->ShortName, "Y") . Config::PASSWORD_KEY;
 
@@ -108,11 +103,6 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
 
                 );
 
-                echo "Время в UpdateBanks.php";
-                echo "<pre>";
-                var_dump($h10["TIME"]);
-                echo "</pre>";
-
                 if ($arUser) {
                     //ADD USER
                     $userID = $arUser["ID"];
@@ -150,17 +140,6 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 /*echo "№" . $i . ":Пользователь: " . $login . " Успешно добавлен.<br>";*/
                 //Добавляем предлпжение и матрицу для банка
                 $siteOffers->setOfferAndMAtrix($userID);
-            }
-
-            echo "<pre>";
-            print_r($login);
-            echo "</pre>";
-
-            echo "<pre>";
-            print_r($password);
-            echo "</pre>";
-
-            echo "<hr>";
         }
     }
 }
