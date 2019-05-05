@@ -19,7 +19,7 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
 
         $i=0;
         foreach ($bankList->Record as $Record) {
-
+            if ($i < 3) {
                 //Логин Пароль пользователя
                 $login = Tools::translit($Record->ShortName, "Y") . Config::EMAIL_END;
                 $password = Tools::translit($Record->ShortName, "Y") . Config::PASSWORD_KEY;
@@ -75,11 +75,12 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 //Если пользователь есть, то обновляем его данные, если нет, то создаем нового пользователя
                 $user = new \CUser;
 
-
-                echo "Время в H10";
+                echo "<br>";
+                echo "Record Short Name";
                 echo "<pre>";
-                var_dump($h10["TIME"]);
+                var_dump($Record->ShortName);
                 echo "</pre>";
+
 
                 //Поля пользователя
                 $arFields = Array(
@@ -100,7 +101,6 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                     "UF_CAPITAL_DATE" => $h10["TIME"],
                     "UF_ASSETS_DATE" => $h10["TIME"],
                     "UF_LASTUPDATE" => date("d.m.Y H:i:s"),
-
                 );
 
                 if ($arUser) {
@@ -140,6 +140,8 @@ class UpdateBanks implements Interfaces\IUpdateBanks {
                 /*echo "№" . $i . ":Пользователь: " . $login . " Успешно добавлен.<br>";*/
                 //Добавляем предлпжение и матрицу для банка
                 $siteOffers->setOfferAndMAtrix($userID);
+            }
+            $i++;
         }
     }
 }
